@@ -1,0 +1,10 @@
+{
+    "statusCode": 422,
+    "response": {
+        "error": {
+            "auditToken": [
+                "The audit token field is required."
+            ]
+        }
+    }
+}

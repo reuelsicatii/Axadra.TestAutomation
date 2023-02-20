@@ -1,0 +1,12 @@
+{
+    "statusCode": 200,
+    "response": {
+        "data": {
+            "audit": {
+                "error": "No record(s) found."
+            },
+            "nap": null,
+            "report": "No record(s) found."
+        }
+    }
+}
