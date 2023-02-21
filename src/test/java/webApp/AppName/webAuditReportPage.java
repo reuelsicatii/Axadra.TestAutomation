@@ -32,6 +32,10 @@ public class webAuditReportPage extends webAppHelper {
 
 	By summarySection_verdict_critical = By.xpath("//table//th[text()='Critical']");
 	By summarySection_verdict_criticalScore = By.xpath("//table//th[text()='Critical']/following-sibling::th");
+	By summarySection_verdict_forImprovement = By.xpath("//table//th[text()='For Improvement']");
+	By summarySection_verdict_forImprovementScore = By.xpath("//table//th[text()='For Improvement']/following-sibling::th");
+	By summarySection_verdict_lookingGood = By.xpath("//table//th[text()='Looking Good']");
+	By summarySection_verdict_lookingGoodScore = By.xpath("//table//th[text()='Looking Good']/following-sibling::th");
 
 	// Declare Driver Instance
 	// ==========================================
@@ -72,9 +76,15 @@ public class webAuditReportPage extends webAppHelper {
 
 		// For Improvement
 		// ============================
+		assertEquals(context.getDriver().findElement(summarySection_verdict_forImprovement).isDisplayed(), true);
+		assertEquals(context.getDriver().findElement(summarySection_verdict_forImprovementScore).isDisplayed(), true);
+		assertEquals(context.getDriver().findElement(summarySection_verdict_forImprovementScore).getText().isEmpty(), false);
 
 		// Looking Good
 		// ============================
+		assertEquals(context.getDriver().findElement(summarySection_verdict_lookingGood).isDisplayed(), true);
+		assertEquals(context.getDriver().findElement(summarySection_verdict_lookingGoodScore).isDisplayed(), true);
+		assertEquals(context.getDriver().findElement(summarySection_verdict_lookingGoodScore).getText().isEmpty(), false);
 
 	}
 

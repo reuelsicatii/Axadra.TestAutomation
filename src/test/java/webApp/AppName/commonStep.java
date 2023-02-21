@@ -1,22 +1,12 @@
 package webApp.AppName;
 
-import static org.testng.Assert.assertEquals;
-
-import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -54,5 +44,18 @@ public class commonStep extends webAppHelper {
 	public void userNavigatesTo(String url) {
 		context.getDriver().get(url);
 	}
+	
+	@When("User switch to new tab")
+	public void userSwitchToNewTab() {
+		ArrayList<String> newTb = new ArrayList<String>(context.getDriver().getWindowHandles());
+		context.getDriver().switchTo().window(newTb.get(1));	
+	}	
+	
+	@When("User switch back to previous tab")
+	public void userSwitchBackToPreviousTab() {
+		ArrayList<String> newTb = new ArrayList<String>(context.getDriver().getWindowHandles());
+		context.getDriver().switchTo().window(newTb.get(0));	
+	}
+
 
 }
