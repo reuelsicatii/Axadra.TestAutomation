@@ -1,0 +1,9 @@
+{
+    "statusCode": 422,
+    "response": {
+        "error": {
+            "headers": {},
+            "exception": null
+        }
+    }
+}

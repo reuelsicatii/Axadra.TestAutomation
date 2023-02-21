@@ -1,0 +1,10 @@
+{
+    "statusCode": 422,
+    "response": {
+        "error": {
+            "language_type_code": [
+                "The language type code field is required."
+            ]
+        }
+    }
+}
