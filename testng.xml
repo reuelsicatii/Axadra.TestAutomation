@@ -3,8 +3,7 @@
 <suite name="Suite" parallel="methods" thread-count="5">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="webApi.ApiName.getMethod"/>
-      <class name="webApi.ApiName.postMethod"/>
+      <class name="webOther.AppName.dummyTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
