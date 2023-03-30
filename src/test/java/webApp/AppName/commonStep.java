@@ -35,7 +35,7 @@ public class commonStep extends webAppHelper {
 		// System.out.println("BeforeScenario - Thread ID" +
 		// Thread.currentThread().getId());
 		context.setDriver(initializeBrowser(browserName));
-		context.setWait(initializeBrowserWait(context.getDriver()));
+		context.setWait(initializeBrowserWait(context.getDriver(), 120));
 		context.getDriver().get(url);
 		context.getDriver().manage().window().maximize();
 	}

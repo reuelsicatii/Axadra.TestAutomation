@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
@@ -76,12 +77,11 @@ public class webAppHelper {
 		return driver;
 	}
 
-	public WebDriverWait initializeBrowserWait(RemoteWebDriver driver) throws MalformedURLException {
+	public WebDriverWait initializeBrowserWait(RemoteWebDriver driver, long duration) throws MalformedURLException {
 
-		return new WebDriverWait(driver, Duration.ofSeconds(30));
+		return new WebDriverWait(driver, Duration.ofSeconds(duration));
 
 	}
-
 
 	public void getScreenshot(RemoteWebDriver driver, Scenario scenario) throws IOException {
 		
@@ -95,5 +95,16 @@ public class webAppHelper {
 		FileUtils.copyFile(SrcFile, new File(DestFile));
 		
 	}
+
+
+	public String getWebAuditReportVerbiages() throws IOException {
+		// Object Declarations
+		// ==========================================
+		File file = new File(System.getProperty("user.dir") + "\\Data\\webApp.SEOR.webAudit\\webAuditReportVerbiages.json");	
+		String json = new String(Files.readAllBytes(file.toPath()));
+		
+		return json;
+	}
+
 
 }
