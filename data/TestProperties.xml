@@ -5,7 +5,7 @@
 
 <properties>
 
-	<!-- Use below configuration to choose between Network or BrowserStack Grid -->
+	<!-- Use below configuration to choose between Local Network or BrowserStack Grid -->
 	<entry key="Grid">Browser</entry>
 	<!-- <entry key="Grid">BrowserStack</entry> -->
 	

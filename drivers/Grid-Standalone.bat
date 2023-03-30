@@ -1,0 +1,1 @@
+java -jar selenium-server-4.7.2.jar standalone

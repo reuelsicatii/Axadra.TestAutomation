@@ -1,0 +1,56 @@
+{
+	"Usability": {
+		"Mobile Friendliness": {
+			"Looking Good": "Congratulations, your website is considered as mobile-friendly by Google.",
+			"Critical": "Google does not consider your website as mobile-friendly. Did you know that 57% of users say they won't recommend a business with a poorly-designed mobile site?",
+			"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again."
+		},
+		"Google Analytics": {
+			"Looking Good": "GA detected with",
+			"Critical": "GA allows you to track and analyze the traffic and behaviour of the visitors on your site.",
+			"N/A": "Unfortunately, this data could not be retrieved at the moment."
+		},
+		"Page Speed Insights": {
+			"Looking Good": [
+				"Your website speed is off the roof!",
+				"Your website speed is acceptible"
+			],
+			"For Improvement": [
+				"Your mobile speed needs to be improved",
+				"Your desktop speed needs to be improved",
+				"Your website needs to be improved"
+			],
+			"Critical": [
+				"Your website speed is critical, especially on mobile",
+				"Your website speed is critical, especially on desktop",
+				"Your website speed is critical, and needs urgent fixing",
+				"Your website speed is making your website barely usable. Something must be done ASAP"
+			]
+		}
+	},
+	"Security": {
+		"SSL": {
+			"Looking Good": "Congratulations, your certificate is modern and secure",
+			"Critical": "Your HTTPS configuration is not optimal. If you take security seriously, you would need to upgrade your configuration",
+			"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again."
+		},
+		"Malware": {
+			"Looking Good": "Great, your website is not affected by any malware",
+			"Critical": "Alert! Malware has been detected on your website",
+			"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again"
+		},
+		"HTTPS": {
+			"Looking Good":"Your website accepts HTTP and HTTPS connections and redirects all connections to HTTPS",
+			"Critical": [
+				"Your website is considered not secure by Google Chrome because of HTTP Connections.",
+				"Your website is considered not secure by Google Chrome because of HTTP Connections.",
+				"Your website is considered not secure by Google Chrome because of HTTP Connections."
+			]
+		},
+		"Backlisted": {
+			"Looking Good": "Great, your website is not blacklisted.",
+			"Critical": "Alert! Your website has been blacklisted.",
+			"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again"
+		}
+	}
+}
