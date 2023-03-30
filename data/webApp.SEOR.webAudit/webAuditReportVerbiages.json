@@ -47,7 +47,7 @@
 				"Your website is considered not secure by Google Chrome because of HTTP Connections."
 			]
 		},
-		"Backlisted": {
+		"Blacklisted": {
 			"Looking Good": "Great, your website is not blacklisted.",
 			"Critical": "Alert! Your website has been blacklisted.",
 			"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again"

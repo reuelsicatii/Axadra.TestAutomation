@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.google.gson.JsonArray;
 import com.jayway.jsonpath.JsonPath;
 
 import helper.webAppContextDriver;
@@ -201,8 +202,10 @@ public class webAuditReportPage extends webAppHelper {
 			expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
 					"$.['Usability']['Google Analytics']['N/A']");
 
-			assertEquals(context.getDriver().findElement(subSectionElementFinder("data could not be retrieved", "verbiage"))
-					.getText().contains(expected_verbiage), true);
+			assertEquals(
+					context.getDriver().findElement(subSectionElementFinder("data could not be retrieved", "verbiage"))
+							.getText().contains(expected_verbiage),
+					true);
 		}
 
 	}
@@ -213,20 +216,20 @@ public class webAuditReportPage extends webAppHelper {
 		context.getWait().until(
 				ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("website speed", "verdict")));
 
-		JSONArray expected_verbiage = JsonPath
-				.read(getWebAuditReportVerbiages(),
-						"$.['Usability']['Page Speed Insights']['" + context.getDriver()
-								.findElement(subSectionElementFinder("website speed", "verdict")).getText()
-								+ "']");
+		JSONArray expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+				"$.['Usability']['Page Speed Insights']['"
+						+ context.getDriver().findElement(subSectionElementFinder("website speed", "verdict")).getText()
+						+ "']");
 
 		for (int i = 0; i < expected_verbiage.size(); i++) {
 
-			if (expected_verbiage.get(i).toString().equals(context.getDriver()
-					.findElement(subSectionElementFinder("website speed", "verbiage")).getText()))
+			if (expected_verbiage.get(i).toString().equals(
+					context.getDriver().findElement(subSectionElementFinder("website speed", "verbiage")).getText()))
 				;
 			{
-				assertEquals(context.getDriver().findElement(subSectionElementFinder("website speed", "verbiage"))
-						.getText(), expected_verbiage.get(i).toString());
+				assertEquals(
+						context.getDriver().findElement(subSectionElementFinder("website speed", "verbiage")).getText(),
+						expected_verbiage.get(i).toString());
 				break;
 			}
 		}
@@ -238,7 +241,7 @@ public class webAuditReportPage extends webAppHelper {
 
 		context.getWait().until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("SSL", "verdict")));
 
-		String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Usability']['SSL']['"
+		String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Security']['SSL']['"
 				+ context.getDriver().findElement(subSectionElementFinder("SSL", "verdict")).getText() + "']");
 
 		assertEquals(context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText()
@@ -252,7 +255,7 @@ public class webAuditReportPage extends webAppHelper {
 		context.getWait()
 				.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Malware", "verdict")));
 
-		String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Usability']['Malware']['"
+		String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Security']['Malware']['"
 				+ context.getDriver().findElement(subSectionElementFinder("Malware", "verdict")).getText() + "']");
 
 		assertEquals(context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText()
@@ -266,11 +269,31 @@ public class webAuditReportPage extends webAppHelper {
 		context.getWait()
 				.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("HTTPS", "verdict")));
 
-		String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Usability']['HTTPS']['"
-				+ context.getDriver().findElement(subSectionElementFinder("HTTPS", "verdict")).getText() + "']");
+		try {
+			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Security']['HTTPS']['"
+					+ context.getDriver().findElement(subSectionElementFinder("HTTPS", "verdict")).getText() + "']");
 
-		assertEquals(context.getDriver().findElement(subSectionElementFinder("HTTPS", "verbiage")).getText()
-				.contains(expected_verbiage), true);
+			// validate verbiage against actual
+			assertEquals(context.getDriver().findElement(subSectionElementFinder("HTTPS", "verbiage")).getText()
+					.contains(expected_verbiage), true);
+
+		} catch (Exception e) {
+			JsonArray expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Security']['HTTPS']['"
+					+ context.getDriver().findElement(subSectionElementFinder("HTTPS", "verdict")).getText() + "']");
+
+			// validate verbiage against actual
+			for (int i = 0; i < expected_verbiage.size(); i++) {
+
+				if (expected_verbiage.get(i).toString().equals(
+						context.getDriver().findElement(subSectionElementFinder("HTTPS", "verbiage")).getText()))
+					;
+				{
+					assertEquals(context.getDriver().findElement(subSectionElementFinder("HTTPS", "verbiage")).getText()
+							.contains(expected_verbiage.get(i).toString()), true);
+					break;
+				}
+			}
+		}
 
 	}
 
@@ -278,22 +301,13 @@ public class webAuditReportPage extends webAppHelper {
 	public void userSeesTheSecuritySectionBlacklistedSubSectionIsCorrect() throws IOException {
 
 		context.getWait()
-				.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Blacklisted", "verdict")));
+				.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("blacklisted", "verdict")));
 
-		JSONArray expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Usability']['Blacklisted']['"
-				+ context.getDriver().findElement(subSectionElementFinder("Blacklisted", "verdict")).getText() + "']");
+		String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Security']['Blacklisted']['"
+				+ context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict")).getText() + "']");
 
-		for (int i = 0; i < expected_verbiage.size(); i++) {
-
-			if (expected_verbiage.get(i).toString().equals(
-					context.getDriver().findElement(subSectionElementFinder("Blacklisted", "verbiage")).getText()))
-				;
-			{
-				assertEquals(context.getDriver().findElement(subSectionElementFinder("Blacklisted", "verbiage"))
-						.getText().contains(expected_verbiage.get(i).toString()), true);
-				break;
-			}
-		}
+		assertEquals(context.getDriver().findElement(subSectionElementFinder("blacklisted", "verbiage")).getText()
+				.contains(expected_verbiage), true);
 
 	}
 

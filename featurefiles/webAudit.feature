@@ -48,7 +48,7 @@ Feature: SEOR > Agency Tools > WebAudit
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
 
-  @WebAuditReportUsability @TestCode
+  @WebAuditReportUsability 
   Scenario Outline: WebAuditReportSummary
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "reuel+01@axadra.com"
@@ -66,7 +66,7 @@ Feature: SEOR > Agency Tools > WebAudit
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
 
-  @WebAuditReportSecurity
+  @WebAuditReportSecurity @TestCode
   Scenario Outline: WebAuditReportSummary
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "reuel+01@axadra.com"
