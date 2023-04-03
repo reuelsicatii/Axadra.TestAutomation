@@ -12,15 +12,16 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/webAudit.feature"},
+		features = {"featurefiles/dummy2.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
-		glue = { "webApp.AppName"},
-		tags =  "@WebAuditReportOrganicTraffic",
+		glue = { "webOther.AppName" },
+		tags =  "@TestCode",
 		plugin =  {
 				
 				"pretty",
+				//"html:reports/results" + new SimpleDateFormat("yyyyMMdd_hhmmssa").format(new Date()) + ".html",
 				"html:reports/results.html",
 				"json:reports/results.json",
 				"junit:reports/results.xml"
@@ -29,7 +30,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 
 	)
 
-public class runnerWebApp extends AbstractTestNGCucumberTests {	
+public class runnerDummy2 extends AbstractTestNGCucumberTests {	
 	
 	
 	// Running Cucumber - Parallel Test

@@ -13,34 +13,34 @@
 		"Page Speed Insights": {
 			"Looking Good": [
 				"Your website speed is off the roof!",
-				"Your website speed is acceptible"
+				"Your website speed is acceptible."
 			],
 			"For Improvement": [
-				"Your mobile speed needs to be improved",
-				"Your desktop speed needs to be improved",
-				"Your website needs to be improved"
+				"Your mobile speed needs to be improved.",
+				"Your desktop speed needs to be improved.",
+				"Your website needs to be improved."
 			],
 			"Critical": [
-				"Your website speed is critical, especially on mobile",
-				"Your website speed is critical, especially on desktop",
-				"Your website speed is critical, and needs urgent fixing",
-				"Your website speed is making your website barely usable. Something must be done ASAP"
+				"Your website speed is critical, especially on mobile.",
+				"Your website speed is critical, especially on desktop.",
+				"Your website speed is critical, and needs urgent fixing.",
+				"Your website speed is making your website barely usable. Something must be done ASAP."
 			]
 		}
 	},
 	"Security": {
 		"SSL": {
-			"Looking Good": "Congratulations, your certificate is modern and secure",
-			"Critical": "Your HTTPS configuration is not optimal. If you take security seriously, you would need to upgrade your configuration",
+			"Looking Good": "Congratulations, your certificate is modern and secure.",
+			"Critical": "Your HTTPS configuration is not optimal. If you take security seriously, you would need to upgrade your configuration.",
 			"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again."
 		},
 		"Malware": {
-			"Looking Good": "Great, your website is not affected by any malware",
-			"Critical": "Alert! Malware has been detected on your website",
-			"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again"
+			"Looking Good": "Great, your website is not affected by any malware.",
+			"Critical": "Alert! Malware has been detected on your website.",
+			"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again."
 		},
 		"HTTPS": {
-			"Looking Good":"Your website accepts HTTP and HTTPS connections and redirects all connections to HTTPS",
+			"Looking Good": "Your website accepts HTTP and HTTPS connections and redirects all connections to HTTPS.",
 			"Critical": [
 				"Your website is considered not secure by Google Chrome because of HTTP Connections.",
 				"Your website is considered not secure by Google Chrome because of HTTP Connections.",
@@ -50,7 +50,49 @@
 		"Blacklisted": {
 			"Looking Good": "Great, your website is not blacklisted.",
 			"Critical": "Alert! Your website has been blacklisted.",
-			"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again"
+			"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again."
+		}
+	},
+	
+	"Organic Traffic": {
+		"Technical SEO": {
+			"Sitemap": {
+				"Looking Good": "Nice, your sitemap.xml can be found. It allows search engines to find all of your web pages easily.",
+				"Critical": "Ouch, no sitemap.xml has been found. It can impair your results on search engines.",
+				"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again."
+			},
+			"Robot": {
+				"Looking Good": "Your robots.txt file is well configured.",
+				"Critical": "A robots file allows you to define which pages can or cannot be crawled (for example, your highly secret administration area) by search engines and other well-behaved robots.",
+				"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again"
+			},
+			"Redirection": {
+				"Looking Good": "Your website is served from both www and domain, but the canonicals are nicely set up. Nonetheless, it's better to use only one URL.",
+				"Critical": "Your website is served from both www and domain, this is seen as duplicate content by Google and impair your SEO rankings.",
+				"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again"
+			}
+		},
+		"On-Page SEO": {
+			"Title": {
+				"Looking Good": "Nice, your sitemap.xml can be found. It allows search engines to find all of your web pages easily.",
+				"Critical": "Ouch, no sitemap.xml has been found. It can impair your results on search engines.",
+				"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again."
+			},
+			"Description": {
+				"Looking Good": "Your robots.txt file is well configured.",
+				"Critical": "A robots file allows you to define which pages can or cannot be crawled (for example, your highly secret administration area) by search engines and other well-behaved robots.",
+				"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again"
+			},
+			"Headings": {
+				"Looking Good": "Your website is served from both www and domain, but the canonicals are nicely set up. Nonetheless, it's better to use only one URL.",
+				"Critical": "Your website is served from both www and domain, this is seen as duplicate content by Google and impair your SEO rankings.",
+				"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again"
+			},
+			"Images": {
+				"Looking Good": "Your website is served from both www and domain, but the canonicals are nicely set up. Nonetheless, it's better to use only one URL.",
+				"Critical": "Your website is served from both www and domain, this is seen as duplicate content by Google and impair your SEO rankings.",
+				"N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again"
+			}
 		}
 	}
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.aventstack.extentreports.GherkinKeyword;
+
 import helper.webAppContextDriver;
 import helper.webAppHelper;
 import io.cucumber.java.en.Then;
@@ -36,50 +38,116 @@ public class webAuditPage extends webAppHelper {
 	// =================================================
 	@When("User generates a WebAuditReport")
 	public void userGeneratesAWebAuditReport() throws Throwable {
-		String url = webAuditURLService.RetrieveFromPRD();
-		System.out.println("URL from SERVICE:" + url);
-		context.getDriver().findElement(urlWebAudit_inputfield).sendKeys(url);
-		Thread.sleep(2000);
-		context.getDriver().findElement(urlWebAudit_button).click();
 
-		// Check WebAudit Report is generated
-		// ==================================================
-		boolean whileloop = true;
-		while (whileloop) {
+		try {
+			// Step Definition
+			String url = webAuditURLService.RetrieveFromPRD();
+			System.out.println("URL from SERVICE:" + url);
+			context.getDriver().findElement(urlWebAudit_inputfield).sendKeys(url);
+			Thread.sleep(2000);
+			context.getDriver().findElement(urlWebAudit_button).click();
 
-			try {
+			// Check WebAudit Report is generated
+			// ==================================================
+			boolean whileloop = true;
+			int x = 0;
+			while (whileloop) {
 
-				if (context.getDriver()
-						.findElement(
-								By.xpath("//table[@id='webaudit-table']//tbody//a[contains(text(), '" + url + "')]"))
-						.isDisplayed()) {
-					// exit the loop
-					System.out.println("Exiting whileloop");
-					whileloop = false;
+				try {
+
+					if ((context.getDriver()
+							.findElement(By
+									.xpath("//table[@id='webaudit-table']//tbody//a[contains(text(), '" + url + "')]"))
+							.isDisplayed()) || (x == 1200)) {
+						// exit the loop
+						System.out.println("Exiting whileloop");
+						whileloop = false;
+					}
+
+				} catch (Exception e) {
+					Thread.sleep(10000);
+					System.out.println(e.getMessage());
+					x = x + 10;
+					System.out.println("WebAudit Report generation, waiting for " + x + "sec");
+
 				}
 
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-				System.out.println("WebAudit Report generation, waiting for 10sec");
-				Thread.sleep(10000);
 			}
 
+			// Extent Report
+			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User generates a WebAuditReport")
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 	}
 
 	@When("User clicks the most recent WebAuditReport")
 	public void userClicksTheMostRecentWebAuditReport() {
-		context.getWait().until(ExpectedConditions.presenceOfElementLocated(recent_WebAuditReport));
-		context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-				context.getDriver().findElement(urlWebAudit_button));
-		context.getDriver().findElement(recent_WebAuditReport).click();
+
+		try {
+			// Step Definition
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(recent_WebAuditReport));
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(urlWebAudit_button));
+			context.getDriver().findElement(recent_WebAuditReport).click();
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User clicks the most recent WebAuditReport")
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User clicks the most recent WebAuditReport")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 	@Then("User sees a new tab is open redering the WebAuditReport")
 	public void userSeesANewTabIsOpenRederingTheWebAuditReport() {
-		ArrayList<String> newTb = new ArrayList<String>(context.getDriver().getWindowHandles());
-		context.getDriver().switchTo().window(newTb.get(1));
+
+		try {
+			// Step Definition
+			ArrayList<String> newTb = new ArrayList<String>(context.getDriver().getWindowHandles());
+			context.getDriver().switchTo().window(newTb.get(1));
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User sees a new tab is open redering the WebAuditReport")
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees a new tab is open redering the WebAuditReport")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 }
