@@ -3,6 +3,7 @@ package webApp.AppName;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -71,6 +72,12 @@ public class webAuditReportPage extends webAppHelper {
 		}
 
 		return element;
+
+	}
+
+	private By subSectionElementParentH3Finder(String SubSectionName) {
+
+		return By.xpath("//p[contains(text(), '" + SubSectionName + "')]//parent::div/h3");
 
 	}
 
@@ -226,7 +233,7 @@ public class webAuditReportPage extends webAppHelper {
 			// Step Definition
 			context.getWait().until(ExpectedConditions
 					.presenceOfElementLocated(subSectionElementFinder("Mobile Friendliness", "verdict")));
-			
+
 			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
 					context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verdict")));
 
@@ -287,16 +294,17 @@ public class webAuditReportPage extends webAppHelper {
 										.findElement(subSectionElementFinder("Google Analytics", "verdict")).getText()
 								+ "']");
 
-				// Validate verboage from JSON against WebAudit Report -- Looking Good or
+				// Validate verbiage from JSON against WebAudit Report -- Looking Good or
 				// Critical
 				switch (context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verdict"))
-						.getText()) {
+						.getText())
+
+				{
 				case "Looking Good":
 					context.getSoftAssert()
 							.assertEquals(context.getDriver()
 									.findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText()
 									.contains(expected_verbiage), true);
-
 					break;
 
 				case "Critical":
@@ -369,7 +377,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				if (expected_verbiage.get(i).toString().equals(context.getDriver()
 						.findElement(subSectionElementFinder("website speed", "verbiage")).getText()))
-					;
+
 				{
 					context.getSoftAssert()
 							.assertEquals(context.getDriver()
@@ -510,7 +518,7 @@ public class webAuditReportPage extends webAppHelper {
 
 					if (expected_verbiage.get(i).toString().equals(
 							context.getDriver().findElement(subSectionElementFinder("HTTPS", "verbiage")).getText()))
-						;
+
 					{
 						context.getSoftAssert().assertEquals(
 								context.getDriver().findElement(subSectionElementFinder("HTTPS", "verbiage")).getText()
@@ -590,7 +598,7 @@ public class webAuditReportPage extends webAppHelper {
 					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Sitemap", "verdict")));
 
 			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-					context.getDriver().findElement(subSectionElementFinder("Sitemap", "verdict")));
+					context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict")));
 
 			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
 					"$.['Organic Traffic']['Technical SEO']['Sitemap']['"
@@ -633,7 +641,7 @@ public class webAuditReportPage extends webAppHelper {
 					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Robots", "verdict")));
 
 			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-					context.getDriver().findElement(subSectionElementFinder("Robots", "verdict")));
+					context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict")));
 
 			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
 					"$.['Organic Traffic']['Technical SEO']['Robot']['"
@@ -676,7 +684,7 @@ public class webAuditReportPage extends webAppHelper {
 					ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("redirection", "verdict")));
 
 			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-					context.getDriver().findElement(subSectionElementFinder("redirection", "verdict")));
+					context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict")));
 
 			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
 					"$.['Organic Traffic']['Technical SEO']['Redirection']['" + context.getDriver()
@@ -700,6 +708,539 @@ public class webAuditReportPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > Technical SEO > Redirection SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Organic Traffic > OnPage SEO > Title SubSection is correct")
+	public void userSeesTheOrganicTrafficSectionOnPageSEOTitleSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			context.getWait()
+					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Title", "verdict")));
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(subSectionElementFinder("redirection", "verdict")));
+
+			try {
+				String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+						"$.['Organic Traffic']['On-Page SEO']['Title']['"
+								+ context.getDriver().findElement(subSectionElementFinder("Title", "verdict")).getText()
+								+ "']");
+
+				// validate verbiage against actual
+				context.getSoftAssert()
+						.assertEquals(context.getDriver().findElement(subSectionElementFinder("Title", "verbiage"))
+								.getText().contains(expected_verbiage), true);
+
+			} catch (Exception e) {
+				JSONArray expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+						"$.['Organic Traffic']['On-Page SEO']['Title']['"
+								+ context.getDriver().findElement(subSectionElementFinder("Title", "verdict")).getText()
+								+ "']");
+
+				// validate verbiage against actual
+				for (int i = 0; i < expected_verbiage.size(); i++) {
+
+					if (expected_verbiage.get(i).toString().equals(
+							context.getDriver().findElement(subSectionElementFinder("Title", "verbiage")).getText()))
+						;
+					{
+						context.getSoftAssert().assertEquals(
+								context.getDriver().findElement(subSectionElementFinder("Title", "verbiage")).getText()
+										.contains(expected_verbiage.get(i).toString()),
+								true);
+
+						break;
+					}
+				}
+			}
+
+			// Extent Report
+			context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+					"User sees the Organic Traffic > OnPage SEO > Title SubSection is correct").pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > Title SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Organic Traffic > OnPage SEO > Description SubSection is correct")
+	public void userSeesTheOrganicTrafficSectionOnPageSEODescriptionSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			context.getWait().until(
+					ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Description", "verdict")));
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(subSectionElementFinder("redirection", "verdict")));
+
+			try {
+				String expected_verbiage = JsonPath
+						.read(getWebAuditReportVerbiages(),
+								"$.['Organic Traffic']['On-Page SEO']['Description']['" + context.getDriver()
+										.findElement(subSectionElementFinder("Description", "verdict")).getText()
+										+ "']");
+
+				// validate verbiage against actual
+				context.getSoftAssert().assertEquals(
+						context.getDriver().findElement(subSectionElementFinder("Description", "verbiage")).getText()
+								.contains(expected_verbiage),
+						true);
+
+			} catch (Exception e) {
+				JSONArray expected_verbiage = JsonPath
+						.read(getWebAuditReportVerbiages(),
+								"$.['Organic Traffic']['On-Page SEO']['Description']['" + context.getDriver()
+										.findElement(subSectionElementFinder("Description", "verdict")).getText()
+										+ "']");
+
+				// validate verbiage against actual
+				for (int i = 0; i < expected_verbiage.size(); i++) {
+
+					if (expected_verbiage.get(i).toString().equals(context.getDriver()
+							.findElement(subSectionElementFinder("Description", "verbiage")).getText()))
+						;
+					{
+						context.getSoftAssert()
+								.assertEquals(context.getDriver()
+										.findElement(subSectionElementFinder("Description", "verbiage")).getText()
+										.contains(expected_verbiage.get(i).toString()), true);
+
+						break;
+					}
+				}
+			}
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"),
+							"User sees the Organic Traffic > OnPage SEO > Description SubSection is correct")
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > Description SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct")
+	public void userSeesTheOrganicTrafficSectionOnPageSEOHeadingSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			context.getWait()
+					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("headings", "verdict")));
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(subSectionElementFinder("redirection", "verdict")));
+
+			try {
+				String expected_verbiage = JsonPath
+						.read(getWebAuditReportVerbiages(),
+								"$.['Organic Traffic']['On-Page SEO']['Headings']['"
+										+ context.getDriver()
+												.findElement(subSectionElementFinder("headings", "verdict")).getText()
+										+ "']");
+
+				// validate verbiage against actual
+				context.getSoftAssert()
+						.assertEquals(context.getDriver().findElement(subSectionElementFinder("headings", "verbiage"))
+								.getText().contains(expected_verbiage), true);
+
+			} catch (Exception e) {
+				JSONArray expected_verbiage = JsonPath
+						.read(getWebAuditReportVerbiages(),
+								"$.['Organic Traffic']['On-Page SEO']['Headings']['"
+										+ context.getDriver()
+												.findElement(subSectionElementFinder("headings", "verdict")).getText()
+										+ "']");
+
+				// validate verbiage against actual
+				for (int i = 0; i < expected_verbiage.size(); i++) {
+
+					if (expected_verbiage.get(i).toString().equals(
+							context.getDriver().findElement(subSectionElementFinder("headings", "verbiage")).getText()))
+
+					{
+						context.getSoftAssert().assertEquals(
+								context.getDriver().findElement(subSectionElementFinder("headings", "verbiage"))
+										.getText().contains(expected_verbiage.get(i).toString()),
+								true);
+
+						break;
+					}
+				}
+			}
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"),
+							"User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct")
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Organic Traffic > OnPage SEO > Images SubSection is correct")
+	public void userSeesTheOrganicTrafficSectionOnPageSEOImagesSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			context.getWait()
+					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Images", "verdict")));
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(subSectionElementFinder("Description", "verdict")));
+
+			try {
+				String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+						"$.['Organic Traffic']['On-Page SEO']['Images']['" + context.getDriver()
+								.findElement(subSectionElementFinder("Images", "verdict")).getText() + "']");
+
+				// validate verbiage against actual
+				context.getSoftAssert()
+						.assertEquals(context.getDriver().findElement(subSectionElementFinder("Images", "verbiage"))
+								.getText().contains(expected_verbiage), true);
+
+			} catch (Exception e) {
+				JSONArray expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+						"$.['Organic Traffic']['On-Page SEO']['Images']['" + context.getDriver()
+								.findElement(subSectionElementFinder("Images", "verdict")).getText() + "']");
+
+				// validate verbiage against actual
+				for (int i = 0; i < expected_verbiage.size(); i++) {
+
+					if (expected_verbiage.get(i).toString().equals(
+							context.getDriver().findElement(subSectionElementFinder("Images", "verbiage")).getText()))
+
+					{
+						context.getSoftAssert().assertEquals(
+								context.getDriver().findElement(subSectionElementFinder("Images", "verbiage")).getText()
+										.contains(expected_verbiage.get(i).toString()),
+								true);
+
+						break;
+					}
+				}
+			}
+
+			// Extent Report
+			context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+					"User sees the Organic Traffic > OnPage SEO > Images SubSection is correct").pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > Images SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Organic Traffic > OffPage SEO > Backlinks SubSection is correct")
+	public void userSeesTheOrganicTrafficSectionOffPageSEOBacklinksSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			context.getWait().until(
+					ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Backlinks", "verdict")));
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(subSectionElementFinder("Images", "verdict")));
+
+			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+					"$.['Organic Traffic']['Off-Page SEO']['Backlinks']['"
+							+ context.getDriver().findElement(subSectionElementFinder("headings", "verdict")).getText()
+							+ "']");
+
+			// Assertion
+			if (context.getDriver().findElement(By.xpath("//p[contains(text(), 'Backlinks')]")).getText()
+					.contains(expected_verbiage)
+					&& Pattern.matches("[0-9]+",
+							context.getDriver().findElement(subSectionElementParentH3Finder("Backlinks")).getText())) {
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > Backlinks SubSection is correct")
+						.pass("PASSED");
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > Backlinks SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Organic Traffic > OffPage SEO > MOZ Domain Authority SubSection is correct")
+	public void userSeesTheOrganicTrafficSectionOffPageSEOMOZDomainAuthoritySubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			context.getWait().until(ExpectedConditions
+					.presenceOfElementLocated(subSectionElementFinder("MOZ Domain Authority", "verbiage")));
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(subSectionElementFinder("Images", "verdict")));
+
+			JSONArray expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+					"$.['Organic Traffic']['Off-Page SEO']['MOZ Domain Authority']");
+
+			// validate verbiage against actual
+			for (int i = 0; i < expected_verbiage.size(); i++) {
+
+				if (expected_verbiage.get(i).toString().equals(context.getDriver()
+						.findElement(subSectionElementFinder("MOZ Domain Authority", "verbiage")).getText())) {
+					context.getSoftAssert()
+							.assertEquals(context.getDriver()
+									.findElement(subSectionElementFinder("MOZ Page Authority", "verbiage")).getText()
+									.contains(expected_verbiage.get(i).toString()), true);
+					if (Pattern.matches("[0-9]+", context.getDriver()
+							.findElement(subSectionElementParentH3Finder("MOZ Domain Authority")).getText())) {
+						// Extent Report
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > MOZ Domain Authority SubSection is correct")
+								.pass("PASSED");
+						break;
+					} else {
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > MOZ Domain Authority SubSection is correct")
+								.fail("FAILED: MOZ Domain Authority count is NULL and/or MOZ Domain Authority verbiage is incorrect");
+					}
+
+				}
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Organic Traffic > OnPage SEO > MOZ Domain Authority SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Organic Traffic > OffPage SEO > MOZ Page Authority SubSection is correct")
+	public void userSeesTheOrganicTrafficSectionOffPageSEOMOZPageAuthoritySubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			context.getWait().until(ExpectedConditions
+					.presenceOfElementLocated(subSectionElementFinder("MOZ Page Authority", "verbiage")));
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(subSectionElementFinder("MOZ Page Authority", "verbiage")));
+
+			JSONArray expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+					"$.['Organic Traffic']['Off-Page SEO']['MOZ Page Authority']");
+
+			// validate verbiage against actual
+			for (int i = 0; i < expected_verbiage.size(); i++) {
+
+				if (expected_verbiage.get(i).toString().equals(context.getDriver()
+						.findElement(subSectionElementFinder("MOZ Page Authority", "verbiage")).getText())) {
+					context.getSoftAssert()
+							.assertEquals(context.getDriver()
+									.findElement(subSectionElementFinder("MOZ Page Authority", "verbiage")).getText()
+									.contains(expected_verbiage.get(i).toString()), true);
+					if (Pattern.matches("[0-9]+", context.getDriver()
+							.findElement(subSectionElementParentH3Finder("MOZ Page Authority")).getText())) {
+						// Extent Report
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > MOZ Page Authority SubSection is correct")
+								.pass("PASSED");
+						break;
+					} else {
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > MOZ Page Authority SubSection is correct")
+								.fail("FAILED: MOZ Page Authority count is NULL and/or MOZ Page Authority verbiage is incorrect");
+					}
+
+				}
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > MOZ Page Authority SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Organic Traffic > OffPage SEO > Majestic Citation Flow SubSection is correct")
+	public void userSeesTheOrganicTrafficSectionOffPageSEOMajesticCitationFlowSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			context.getWait().until(ExpectedConditions
+					.presenceOfElementLocated(subSectionElementFinder("Majestic Citation Flow", "verbiage")));
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(subSectionElementFinder("Majestic Citation Flow", "verbiage")));
+
+			JSONArray expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+					"$.['Organic Traffic']['Off-Page SEO']['Majestic Citation Flow']");
+
+			// validate verbiage against actual
+			for (int i = 0; i < expected_verbiage.size(); i++) {
+
+				if (expected_verbiage.get(i).toString().equals(context.getDriver()
+						.findElement(subSectionElementFinder("Majestic Citation Flow", "verbiage")).getText())) {
+					context.getSoftAssert()
+							.assertEquals(context.getDriver()
+									.findElement(subSectionElementFinder("Majestic Citation Flow", "verbiage"))
+									.getText().contains(expected_verbiage.get(i).toString()), true);
+					if (Pattern.matches("[0-9]+", context.getDriver()
+							.findElement(subSectionElementParentH3Finder("Majestic Citation Flow")).getText())) {
+						// Extent Report
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > Majestic Citation Flow SubSection is correct")
+								.pass("PASSED");
+						break;
+					} else {
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > Majestic Citation Flow SubSection is correct")
+								.fail("FAILED: Majestic Citation Flow count is NULL and/or Majestic Citation Flow verbiage is incorrect");
+					}
+
+				}
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Organic Traffic > OnPage SEO > Majestic Citation Flow SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Organic Traffic > OffPage SEO > Majestic Trust Flow SubSection is correct")
+	public void userSeesTheOrganicTrafficSectionOffPageSEOMajesticTrustFlowSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			context.getWait().until(ExpectedConditions
+					.presenceOfElementLocated(subSectionElementFinder("Majestic Trust Flow", "verbiage")));
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(subSectionElementFinder("Majestic Citation Flow", "verbiage")));
+
+			JSONArray expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+					"$.['Organic Traffic']['Off-Page SEO']['Majestic Trust Flow']");
+
+			// validate verbiage against actual
+			for (int i = 0; i < expected_verbiage.size(); i++) {
+
+				if (expected_verbiage.get(i).toString().equals(context.getDriver()
+						.findElement(subSectionElementFinder("Majestic Trust Flow", "verbiage")).getText())) {
+
+					context.getSoftAssert()
+							.assertEquals(context.getDriver()
+									.findElement(subSectionElementFinder("Majestic Trust Flow", "verbiage")).getText()
+									.contains(expected_verbiage.get(i).toString()), true);
+
+					if (Pattern.matches("[a-z]+", context.getDriver()
+							.findElement(subSectionElementParentH3Finder("Majestic Trust Flow")).getText())) {
+						// Extent Report
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > Majestic Trust Flow SubSection is correct")
+								.pass("PASSED");
+						break;
+
+					} else {
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User sees the Organic Traffic > OnPage SEO > Majestic Trust Flow SubSection is correct")
+								.fail("FAILED: Majestic Trust Flow count is NULL and/or Majestic Trust Flow verbiage is incorrect");
+					}
+
+				}
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Organic Traffic > OnPage SEO > Majestic Trust Flow SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block

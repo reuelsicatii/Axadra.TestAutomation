@@ -7,7 +7,7 @@ import org.testng.asserts.SoftAssert;
 
 import io.cucumber.java.en.Then;
 
-public class dummy2 {
+public class SoftAssertTestNG {
 
 	SoftAssert softAssetion = new SoftAssert();
 

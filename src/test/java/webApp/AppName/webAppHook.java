@@ -51,7 +51,7 @@ public class webAppHook extends webAppHelper {
 		System.out.println("Im in a BeforeAll Scenario");
 		System.out.println("BeforeScenario - Thread ID" + Thread.currentThread().getId());
 
-		// Define Extent Report
+		// Define Extent Report HTML
 		extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/reports/extentReport"
 				+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".html");
 
@@ -109,12 +109,13 @@ public class webAppHook extends webAppHelper {
 					context.getScenario().getStatus().toString());
 
 			// Attached Screenshot to Extent Report
-			context.getExtentTestScenario().createNode("AfterStep").info("Captured Screenshot: ",
-					MediaEntityBuilder.createScreenCaptureFromPath(DestFile).build());
+			context.getExtentTestScenario().createNode(" ======================================== ")
+					.info("Captured Screenshot: ", MediaEntityBuilder.createScreenCaptureFromPath(DestFile).build());
 
 		} catch (Exception e) {
 			// Extent Report
-			context.getExtentTestScenario().warning(e.getMessage());
+			context.getExtentTestScenario().createNode(" ======================================== ")
+					.warning(e.getMessage());
 		}
 
 	}

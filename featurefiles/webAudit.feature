@@ -2,6 +2,7 @@
 Feature: SEOR > Agency Tools > WebAudit
 
   Background: 
+
   #Given User navigates to "https://account.seoreseller.com/login" using "chrome"
   #And User enter the username as "reuel+01@axadra.com"
   #And User enter the password as "asdasdasd"
@@ -9,8 +10,7 @@ Feature: SEOR > Agency Tools > WebAudit
   #Then User is successfully login
   #When User navigates to "https://account.seoreseller.com/pro/audits"
   #And User generates a WebAuditReport
-  
-  @GenerateWebAuditReport @TestCode
+  @GenerateWebAuditReport
   Scenario Outline: Generate WebAudit Report
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "<username>"
@@ -21,17 +21,18 @@ Feature: SEOR > Agency Tools > WebAudit
     And User generates a WebAuditReport
 
     Examples: 
-      | browser | loginUrl                              | webAuditUrl                                | username                 | password        |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
-
-  @WebAuditReportSummary
+      | browser | loginUrl                              | webAuditUrl                                | username            | password  |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com | asdasdasd |
+    # | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
+    # | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
+    # | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
+    # | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
+    # | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
+    # | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
+    # | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
+  
+  
+  @WebAuditReportSummary @TestCode
   Scenario Outline: Generate WebAudit Report and validate Summary section
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "reuel+01@axadra.com"
@@ -49,7 +50,7 @@ Feature: SEOR > Agency Tools > WebAudit
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
 
-  @WebAuditReportUsability
+  @WebAuditReportUsability @TestCode
   Scenario Outline: Generate WebAudit Report and validate Usability section
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "reuel+01@axadra.com"
@@ -67,7 +68,7 @@ Feature: SEOR > Agency Tools > WebAudit
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
 
-  @WebAuditReportSecurity
+  @WebAuditReportSecurity @TestCode
   Scenario Outline: Generate WebAudit Report and validate Security section
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "reuel+01@axadra.com"
@@ -86,7 +87,7 @@ Feature: SEOR > Agency Tools > WebAudit
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
 
-  @WebAuditReportOrganicTraffic
+  @WebAuditReportOrganicTrafficTechnicalSEO @TestCode
   Scenario Outline: Generate WebAudit Report and validate Organic Traffic > Technical SEO section
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "reuel+01@axadra.com"
@@ -103,4 +104,42 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
+
+  @WebAuditReportOrganicTrafficOnPageSEO @TestCode
+  Scenario Outline: Generate WebAudit Report and validate Organic Traffic > Technical SEO section
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel+01@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<webAuditUrl>"
+    And User clicks the most recent WebAuditReport
+    Then User sees a new tab is open redering the WebAuditReport
+    And User sees the Organic Traffic > OnPage SEO > Title SubSection is correct
+    And User sees the Organic Traffic > OnPage SEO > Description SubSection is correct
+    And User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct
+    And User sees the Organic Traffic > OnPage SEO > Images SubSection is correct
+
+    Examples: 
+      | browser | loginUrl                              | webAuditUrl                                |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
+
+  @WebAuditReportOrganicTrafficOffPageSEO @TestCode
+  Scenario Outline: Generate WebAudit Report and validate Organic Traffic > Technical SEO section
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel+01@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<webAuditUrl>"
+    And User clicks the most recent WebAuditReport
+    Then User sees a new tab is open redering the WebAuditReport
+    And User sees the Organic Traffic > OffPage SEO > Backlinks SubSection is correct
+    And User sees the Organic Traffic > OffPage SEO > MOZ Domain Authority SubSection is correct
+    And User sees the Organic Traffic > OffPage SEO > MOZ Page Authority SubSection is correct
+    And User sees the Organic Traffic > OffPage SEO > Majestic Citation Flow SubSection is correct
+    And User sees the Organic Traffic > OffPage SEO > Majestic Trust Flow SubSection is correct
+
+    Examples: 
+      | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |

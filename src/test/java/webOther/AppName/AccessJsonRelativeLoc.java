@@ -10,7 +10,7 @@ import com.jayway.jsonpath.JsonPath;
 
 import net.minidev.json.JSONArray;
 
-public class dummyTest {
+public class AccessJsonRelativeLoc {
 
 	@Test
 	void main() throws IOException {
@@ -21,14 +21,18 @@ public class dummyTest {
 		// true if for array
 		// =========================
 		if (true) {
-			JSONArray test = JsonPath.read(json, "$.['Usability']['Page Speed Insights']['For Improvement']");
+			// JSONArray test = JsonPath.read(json, "$.['Usability']['Page Speed
+			// Insights']['For Improvement']");
+
+			JSONArray test = JsonPath.read(json,
+					"$.['Organic Traffic']['Off-Page SEO']['MOZ Domain Authority']");
 
 			for (int i = 0; i < test.size(); i++) {
 				System.out.println(test.get(i));
 			}
 		} else {
-			String test = JsonPath.read(json, "$.['Usability']['Mobile Friendliness']['Critical']");
-			System.out.println(test);
+			//String test = JsonPath.read(json, "$.['Usability']['Mobile Friendliness']['Critical']");
+			//System.out.println(test);
 		}
 
 	}

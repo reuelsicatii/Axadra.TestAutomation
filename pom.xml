@@ -5,7 +5,6 @@
 	<groupId>seor.app.testAutomation</groupId>
 	<artifactId>seor.app.testAutomation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
@@ -32,7 +31,6 @@
 			<artifactId>cucumber-testng</artifactId>
 			<version>7.11.0</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
@@ -76,6 +74,5 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.30</version>
 		</dependency>
-
 	</dependencies>
 </project>
