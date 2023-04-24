@@ -81,6 +81,40 @@ public class webAuditReportPage extends webAppHelper {
 
 	}
 
+	private By subSectionSocialElementFinder(String SubSectionName, String SubSectionNameType) {
+
+		By element = null;
+		if (SubSectionNameType.matches("verdict")) {
+
+			element = By.xpath("//div[@id='" + SubSectionName + "']/div[2]/div[1]");
+
+		} else if (SubSectionNameType.matches("verbiage")) {
+			element = By.xpath("//div[@id='" + SubSectionName + "']/div[2]/div[2]");
+
+		} else if (SubSectionNameType.matches("verbiagerow1")) {
+			element = By.xpath("(//div[@id='" + SubSectionName + "']/div[2]/div[2]//h3)[1]");
+
+		} else if (SubSectionNameType.matches("verbiagerow2")) {
+			element = By.xpath("(//div[@id='" + SubSectionName + "']/div[2]/div[2]//h3)[2]");
+
+		} else if (SubSectionNameType.matches("verbiagerow3")) {
+			element = By.xpath("(//div[@id='" + SubSectionName + "']/div[2]/div[2]//h3)[3]");
+
+		} else if (SubSectionNameType.matches("verbiagerow4")) {
+			element = By.xpath("(//div[@id='" + SubSectionName + "']/div[2]/div[2]//h3)[4]");
+
+		}
+
+		return element;
+
+	}
+
+	private By subSectionSocialElementParentH3Finder(String SubSectionName, String colNumber) {
+
+		return By.xpath("(//div[@id='" + SubSectionName + "']//div[@class='row']/div)[" + colNumber + "]");
+
+	}
+
 	// Header Row
 	// h3[text()='Usability']//ancestor::div[contains(@class, 'row')]//span
 
@@ -1692,6 +1726,146 @@ public class webAuditReportPage extends webAppHelper {
 			}
 		}
 
+	}
+
+	@Then("User sees the Social Activity > Facebook SubSection is correct")
+	public void userSeesTheSocialActivityFacebookSubSectionIsCorrect() throws IOException {
+
+		// Step Definition
+		context.getWait().until(
+				ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@id='social-activity-section']//h3)[1]")));
+
+		context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+				context.getDriver().findElement(By.xpath("(//div[@id='social-activity-section']//h3)[1]")));
+
+		try {
+
+			if (context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()
+					.contains("No Facebook detected")
+					&& context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText()
+							.equals("Critical")
+					&& context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiage")).getText()
+							.equals("A Facebook page is a great way to reach and keep in contact with your customers.")) {
+
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Social Activity > Facebook SubSection is correct").pass("PASSED");
+
+			}
+
+			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-z]+$",
+					context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText())
+					&& context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText()
+							.equals("Looking Good")
+					&& Pattern.matches("^[0-9]+.[0-9]+[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1"))
+									.getText())
+					&& Pattern.matches("^[0-9]+$",
+							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2"))
+									.getText())
+					&& Pattern.matches("^[0-9]+$",
+							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow3"))
+									.getText())
+					&& Pattern.matches("^[0-9]+$", context.getDriver()
+							.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText())) {
+
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Social Activity > Facebook SubSection is correct").pass("PASSED");
+
+			}
+
+			else {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Social Activity > Facebook SubSection is correct").fail("FAILED");
+			}
+
+		}
+
+		catch (
+
+		Exception e) {
+
+			try {
+
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Social Activity > Facebook SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Social Activity > Twitter SubSection is correct")
+	public void userSeesTheSocialActivityTwitterSubSectionIsCorrect() {
+		// Step Definition
+		context.getWait().until(
+				ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@id='social-activity-section']//h3)[1]")));
+
+		context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+				context.getDriver().findElement(By.xpath("(//div[@id='social-activity-section']//h3)[1]")));
+
+		try {
+
+			if (context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText()
+					.contains("No Twitter detected")
+					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
+							.equals("Critical")
+					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiage")).getText()
+							.equals("A twitter account is a great way to converse with your customers and leads in real time.")) {
+
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Social Activity > Twitter SubSection is correct").pass("PASSED");
+
+			}
+
+			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-z]+$",
+					context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText())
+					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
+							.equals("Looking Good")
+					&& Pattern.matches("^[0-9]+.[0-9]+[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1"))
+									.getText())
+					&& Pattern.matches("^[0-9]+$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
+									.getText())
+					&& Pattern.matches("^[0-9]+$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow3"))
+									.getText())
+					&& Pattern.matches("^[0-9]+$", context.getDriver()
+							.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText())) {
+
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Social Activity > Facebook SubSection is correct").pass("PASSED");
+
+			}
+
+			else {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Social Activity > Twitter SubSection is correct").fail("FAILED");
+			}
+
+		}
+
+		catch (
+
+		Exception e) {
+
+			try {
+
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Social Activity > Twitter SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 }

@@ -161,3 +161,20 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
+
+  @WebAuditReportSocialActivity
+  Scenario Outline: Generate WebAudit Report and validate Paid Traffic
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel+01@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<webAuditUrl>"
+    And User clicks the most recent WebAuditReport
+    Then User sees a new tab is open redering the WebAuditReport
+    And User sees the Social Activity > Facebook SubSection is correct
+    And User sees the Social Activity > Twitter SubSection is correct
+
+    Examples: 
+      | browser | loginUrl                              | webAuditUrl                                |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
