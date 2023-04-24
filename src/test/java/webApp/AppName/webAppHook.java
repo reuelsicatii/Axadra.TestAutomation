@@ -31,7 +31,7 @@ public class webAppHook extends webAppHelper {
 	// Declare Driver Instance
 	// ==========================================
 	private webAppContextDriver context;
-	private String DestFile;
+	private String DestFile, SrcImage;
 	private File SrcFile;
 
 	private ExtentTest featureExtentTest;
