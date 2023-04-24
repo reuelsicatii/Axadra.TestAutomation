@@ -51,10 +51,18 @@ public class webAppHook extends webAppHelper {
 		System.out.println("Im in a BeforeAll Scenario");
 		System.out.println("BeforeScenario - Thread ID" + Thread.currentThread().getId());
 
-		// Define Extent Report HTML
+				// Define Extent Report
+		// ====================================================
+		/*
 		extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/reports/extentReport"
+			+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".html");		
+		extentReports.attachReporter(extentSparkReporter);
+		*/
+		
+		// Define Extent Report XAMPP htdocs Folder - Image not resolving
+		// ==============================================================================
+		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/extentReport"
 				+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".html");
-
 		extentReports.attachReporter(extentSparkReporter);
 
 	}
@@ -95,6 +103,8 @@ public class webAppHook extends webAppHelper {
 
 		try {
 
+			/*
+		
 			DestFile = System.getProperty("user.dir") + "\\screenshots\\"
 					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_"
 					+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".png";
@@ -110,7 +120,34 @@ public class webAppHook extends webAppHelper {
 
 			// Attached Screenshot to Extent Report
 			context.getExtentTestScenario().createNode(" ======================================== ")
-					.info("Captured Screenshot: ", MediaEntityBuilder.createScreenCaptureFromPath(DestFile).build());
+					.info("Captured Screenshot: ", MediaEntityBuilder.createScreenCaptureFromPath(DestFile).build());					
+			
+			*/
+			
+					
+		   // XAMPP htdocs Folder - Image not resolving
+			// ====================================================
+			DestFile = "C:/xampp/htdocs/AutomationProject/screenshots/"
+					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_"
+					+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".png";
+
+			SrcImage = "/AutomationProject/screenshots/"
+					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_"
+					+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".png";
+
+			SrcFile = ((TakesScreenshot) context.getDriver()).getScreenshotAs(OutputType.FILE);		
+			
+			// Generating and Copying Screenshot to DestFile
+			FileUtils.copyFile(SrcFile, new File(DestFile));
+
+			// Attaching screenshot to Cucumber Report
+			context.getScenario().attach(FileUtils.readFileToByteArray(SrcFile), "image/png",
+					context.getScenario().getStatus().toString());
+
+			// Attached Screenshot to Extent Report
+			context.getExtentTestScenario().createNode(" ======================================== ")
+					.info("Captured Screenshot: ", MediaEntityBuilder.createScreenCaptureFromPath(SrcImage).build());
+					
 
 		} catch (Exception e) {
 			// Extent Report
