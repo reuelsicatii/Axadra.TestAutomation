@@ -163,7 +163,7 @@ Feature: SEOR > Agency Tools > WebAudit
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
 
   @WebAuditReportSocialActivity
-  Scenario Outline: Generate WebAudit Report and validate Paid Traffic
+  Scenario Outline: Generate WebAudit Report and validate Social Activity
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "reuel+01@axadra.com"
     And User enter the password as "asdasdasd"
