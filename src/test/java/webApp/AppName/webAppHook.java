@@ -162,6 +162,7 @@ public class webAppHook extends webAppHelper {
 		System.out.println("Im in a After Scenario");
 		System.out.println("AfterScenario - Thread ID" + Thread.currentThread().getId());
 
+		context.getDriver().close();
 		context.getDriver().quit();
 		// context.getSoftAssert().assertAll();
 	}
