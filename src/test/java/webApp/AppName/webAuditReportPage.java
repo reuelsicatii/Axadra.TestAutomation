@@ -1347,7 +1347,7 @@ public class webAuditReportPage extends webAppHelper {
 			// validate verbiage against actual
 			if (expected_verbiage.toString()
 					.equals(context.getDriver().findElement(By.xpath("//p[contains(text(), 'Estimated')]")).getText())
-					&& Pattern.matches("^\\d+.\\d+K?$",
+					&& Pattern.matches("^\\d*.?\\d*K?$",
 							context.getDriver().findElement(subSectionElementParentH3Finder("Estimated")).getText())) {
 
 				// Extent Report
