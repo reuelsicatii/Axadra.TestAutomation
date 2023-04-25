@@ -59,7 +59,7 @@ public class webAuditPage extends webAppHelper {
 					if (context.getDriver()
 							.findElement(By
 									.xpath("(//table[@id='webaudit-table']//tbody//a[contains(text(), '" + url + "')])[1]"))
-							.isDisplayed() || x.equals(1200)) {
+							.isDisplayed() || x.equals(420)) {
 						// exit the loop
 						System.out.println("Exiting whileloop");
 						whileloop = false;
