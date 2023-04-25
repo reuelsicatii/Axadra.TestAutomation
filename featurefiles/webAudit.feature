@@ -9,27 +9,7 @@ Feature: SEOR > Agency Tools > WebAudit
   #And User click on the login button
   #Then User is successfully login
   #When User navigates to "https://account.seoreseller.com/pro/audits"
-  #And User generates a WebAuditReport
-  @GenerateWebAuditReport
-  Scenario Outline: Generate WebAudit Report
-    Given User navigates to "<loginUrl>" using "<browser>"
-    And User enter the username as "<username>"
-    And User enter the password as "<password>"
-    And User click on the login button
-    Then User is successfully login
-    When User navigates to "<webAuditUrl>"
-    And User generates a WebAuditReport
-
-    Examples: 
-      | browser | loginUrl                              | webAuditUrl                                | username                 | password        |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
+  #And User generates a WebAuditReport  
 
   @WebAuditReportSummary
   Scenario Outline: Generate WebAudit Report and validate Summary section
@@ -178,3 +158,24 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
+      
+  @GenerateWebAuditReport
+  Scenario Outline: Generate WebAudit Report
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<webAuditUrl>"
+    And User generates a WebAuditReport
+
+    Examples: 
+      | browser | loginUrl                              | webAuditUrl                                | username                 | password        |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | reuel+01@axadra.com      | asdasdasd       |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
