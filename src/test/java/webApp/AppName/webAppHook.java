@@ -51,7 +51,7 @@ public class webAppHook extends webAppHelper {
 		System.out.println("Im in a BeforeAll Scenario");
 		System.out.println("BeforeScenario - Thread ID" + Thread.currentThread().getId());
 
-				// Define Extent Report
+		// Define Extent Report
 		// ====================================================
 		/*
 		extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/reports/extentReport"
