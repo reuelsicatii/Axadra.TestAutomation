@@ -17,7 +17,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
 		glue = { "webApp.AppName"},
-		tags =  "@SEOR_AgencyTools_WebAudit",
+		tags =  "@GenerateWebAuditReport",
 		plugin =  {
 				
 				"pretty",

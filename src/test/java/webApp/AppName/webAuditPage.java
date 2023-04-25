@@ -50,15 +50,16 @@ public class webAuditPage extends webAppHelper {
 			// Check WebAudit Report is generated
 			// ==================================================
 			boolean whileloop = true;
-			int x = 0;
+			Integer x = 0;
+			
 			while (whileloop) {
 
 				try {
 
 					if (context.getDriver()
 							.findElement(By
-									.xpath("//table[@id='webaudit-table']//tbody//a[contains(text(), '" + url + "')]"))
-							.isDisplayed() || x == 1200) {
+									.xpath("(//table[@id='webaudit-table']//tbody//a[contains(text(), '" + url + "')])[1]"))
+							.isDisplayed() || x.equals(1200)) {
 						// exit the loop
 						System.out.println("Exiting whileloop");
 						whileloop = false;
