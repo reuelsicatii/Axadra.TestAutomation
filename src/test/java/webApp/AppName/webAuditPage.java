@@ -49,35 +49,51 @@ public class webAuditPage extends webAppHelper {
 
 			// Check WebAudit Report is generated
 			// ==================================================
-			boolean whileloop = true;
-			Integer x = 0;
-			
-			while (whileloop) {
+
+			int x = 0;
+			while (true) {
 
 				try {
 
-					if (context.getDriver()
-							.findElement(By
-									.xpath("(//table[@id='webaudit-table']//tbody//a[contains(text(), '" + url + "')])[1]"))
-							.isDisplayed() || x.equals(420)) {
+					if (x >= 420) {
+
+						// Extent Report
+						context.getExtentTestScenario()
+								.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport")
+								.fail("FAILED: Not able to generate WebAudit Report for " + url
+										+ "<br>"
+										+ "WebAudit Report generation, waiting for " + x + "sec");
+
 						// exit the loop
 						System.out.println("Exiting whileloop");
-						whileloop = false;
+						break;
+
+					}
+
+					else if (context.getDriver()
+							.findElement(By.xpath(
+									"(//table[@id='webaudit-table']//tbody//a[contains(text(), '" + url + "')])[1]"))
+							.isDisplayed()) {
+
+						// Extent Report
+						context.getExtentTestScenario()
+								.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport")
+								.pass("PASSED");
+
+						// exit the loop
+						System.out.println("Exiting whileloop");
+						break;
+
 					}
 
 				} catch (Exception e) {
+
 					Thread.sleep(10000);
-					System.out.println(e.getMessage());
 					x = x + 10;
 					System.out.println("WebAudit Report generation, waiting for " + x + "sec");
-
 				}
 
 			}
-
-			// Extent Report
-			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User generates a WebAuditReport")
-					.pass("PASSED");
 
 		} catch (Exception e) {
 
