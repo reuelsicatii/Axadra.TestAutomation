@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -32,7 +33,6 @@ public class webAppHook extends webAppHelper {
 	// ==========================================
 	private webAppContextDriver context;
 	private String DestFile, SrcImage;
-	private File SrcFile;
 
 	private ExtentTest featureExtentTest;
 	private ExtentTest scenarioExtentTest;
@@ -54,11 +54,11 @@ public class webAppHook extends webAppHelper {
 		// Define Extent Report
 		// ====================================================
 		/*
-		extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/reports/extentReport"
-			+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".html");		
-		extentReports.attachReporter(extentSparkReporter);
-		*/
-		
+		 * extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir")
+		 * + "/reports/extentReport" + new SimpleDateFormat("_yyMMdd_HHmmss").format(new
+		 * Date()) + ".html"); extentReports.attachReporter(extentSparkReporter);
+		 */
+
 		// Define Extent Report XAMPP htdocs Folder - Image not resolving
 		// ==============================================================================
 		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/extentReport"
@@ -104,50 +104,59 @@ public class webAppHook extends webAppHelper {
 		try {
 
 			/*
-		
-			DestFile = System.getProperty("user.dir") + "\\screenshots\\"
-					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_"
-					+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".png";
-
-			SrcFile = ((TakesScreenshot) context.getDriver()).getScreenshotAs(OutputType.FILE);
-
-			// Generating and Copying Screenshot to DestFile
-			FileUtils.copyFile(SrcFile, new File(DestFile));
-
-			// Attaching screenshot to Cucumber Report
-			context.getScenario().attach(FileUtils.readFileToByteArray(SrcFile), "image/png",
-					context.getScenario().getStatus().toString());
-
-			// Attached Screenshot to Extent Report
-			context.getExtentTestScenario().createNode(" ======================================== ")
-					.info("Captured Screenshot: ", MediaEntityBuilder.createScreenCaptureFromPath(DestFile).build());					
+			 * 
+			 * DestFile = System.getProperty("user.dir") + "\\screenshots\\" +
+			 * scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_" +
+			 * new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".png";
+			 * 
+			 * SrcFile = ((TakesScreenshot)
+			 * context.getDriver()).getScreenshotAs(OutputType.FILE);
+			 * 
+			 * // Generating and Copying Screenshot to DestFile FileUtils.copyFile(SrcFile,
+			 * new File(DestFile));
+			 * 
+			 * // Attaching screenshot to Cucumber Report
+			 * context.getScenario().attach(FileUtils.readFileToByteArray(SrcFile),
+			 * "image/png", context.getScenario().getStatus().toString());
+			 * 
+			 * // Attached Screenshot to Extent Report context.getExtentTestScenario().
+			 * createNode(" ======================================== ")
+			 * .info("Captured Screenshot: ",
+			 * MediaEntityBuilder.createScreenCaptureFromPath(DestFile).build());
+			 * 
+			 */
 			
-			*/
-			
-					
-		   // XAMPP htdocs Folder - Image not resolving
+			Random generator = new Random();
+			int randomIndex = generator.nextInt(2000);
+			Thread.sleep(randomIndex);
+
+			String date = new SimpleDateFormat("_yyMMdd_HHmmssSSS").format(new Date());
+
+			// XAMPP htdocs Folder - Image not resolving
 			// ====================================================
 			DestFile = "C:/xampp/htdocs/AutomationProject/screenshots/"
 					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_"
-					+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".png";
+					+ date + ".png";
 
 			SrcImage = "/AutomationProject/screenshots/"
 					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_"
-					+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".png";
+					+ date + ".png";
 
-			SrcFile = ((TakesScreenshot) context.getDriver()).getScreenshotAs(OutputType.FILE);		
-			
+			context.setSrcFile(((TakesScreenshot) context.getDriver()).getScreenshotAs(OutputType.FILE));
+
+			// SrcFile = ((TakesScreenshot)
+			// context.getDriver()).getScreenshotAs(OutputType.FILE);
+
 			// Generating and Copying Screenshot to DestFile
-			FileUtils.copyFile(SrcFile, new File(DestFile));
+			FileUtils.copyFile(context.getSrcFile(), new File(DestFile));
 
 			// Attaching screenshot to Cucumber Report
-			context.getScenario().attach(FileUtils.readFileToByteArray(SrcFile), "image/png",
+			context.getScenario().attach(FileUtils.readFileToByteArray(context.getSrcFile()), "image/png",
 					context.getScenario().getStatus().toString());
 
 			// Attached Screenshot to Extent Report
 			context.getExtentTestScenario().createNode(" ======================================== ")
-					.info("Captured Screenshot: ", MediaEntityBuilder.createScreenCaptureFromPath(SrcImage).build());
-					
+					.info("Captured Screenshot: ", MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
 
 		} catch (Exception e) {
 			// Extent Report

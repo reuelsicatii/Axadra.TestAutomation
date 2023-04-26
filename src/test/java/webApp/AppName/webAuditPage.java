@@ -60,8 +60,7 @@ public class webAuditPage extends webAppHelper {
 						// Extent Report
 						context.getExtentTestScenario()
 								.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport")
-								.fail("FAILED: Not able to generate WebAudit Report for " + url
-										+ "<br>"
+								.fail("FAILED: Not able to generate WebAudit Report for " + url + "<br>"
 										+ "WebAudit Report generation, waiting for " + x + "sec");
 
 						// exit the loop
@@ -165,6 +164,7 @@ public class webAuditPage extends webAppHelper {
 				e1.printStackTrace();
 			}
 		}
+
 	}
 
 }

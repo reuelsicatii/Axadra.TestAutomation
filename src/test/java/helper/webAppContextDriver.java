@@ -1,5 +1,7 @@
 package helper;
 
+import java.io.File;
+
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
@@ -16,6 +18,7 @@ public class webAppContextDriver {
 	private SoftAssert softAssert;
 	private ExtentTest extentTestFeature;
 	private ExtentTest extentTestScenario;
+	private File SrcFile;
 
 	public ExtentTest getExtentTestFeature() {
 		return extentTestFeature;
@@ -63,6 +66,14 @@ public class webAppContextDriver {
 
 	public void setSoftAssert() {
 		this.softAssert = new SoftAssert();
+	}
+
+	public File getSrcFile() {
+		return SrcFile;
+	}
+
+	public void setSrcFile(File SrcFile) {
+		this.SrcFile = SrcFile;
 	}
 
 }

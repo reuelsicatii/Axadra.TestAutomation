@@ -56,6 +56,13 @@ public class webAuditReportPage extends webAppHelper {
 
 	// Sub Section - Element Finder
 	// ===================================
+	private By SectionElemenFinder(String SectionName) {
+
+		// return By.xpath("(//div[contains(@id,'" + SectionName + "')]//h3)[1]");
+		return By.xpath("//div[contains(@id,'" + SectionName + "')]");
+
+	}
+
 	private By subSectionElementFinder(String SubSectionName, String SubSectionNameType) {
 
 		By element = null;
@@ -443,17 +450,45 @@ public class webAuditReportPage extends webAppHelper {
 
 	}
 
+	@Then("User scroll to Security Section")
+	public void userScrollToSecuritySection() {
+
+		try {
+			// document zooming
+			// context.getDriver().executeScript("document.body.style.zoom = '0.75'");
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(SectionElemenFinder("security")));
+
+			// scroll to pixel
+			// context.getDriver().executeScript("window.scrollBy(0,2000)");
+
+			// scroll to element
+			context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
+					context.getDriver().findElement(SectionElemenFinder("security")));
+
+			// Extent Report
+			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User scroll to Security Section")
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User scroll to Security Section")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
 	@Then("User sees the Security Section > SSL SubSection is correct")
 	public void userSeesTheSecuritySectionSSLSubSectionIsCorrect() throws IOException {
 
 		try {
 			// Step Definition
-			context.getWait()
-					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("SSL", "verdict")));
-
-			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-					context.getDriver().findElement(subSectionElementFinder("SSL", "verdict")));
-
 			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Security']['SSL']['"
 					+ context.getDriver().findElement(subSectionElementFinder("SSL", "verdict")).getText() + "']");
 
@@ -486,12 +521,6 @@ public class webAuditReportPage extends webAppHelper {
 
 		try {
 			// Step Definition
-			context.getWait()
-					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Malware", "verdict")));
-
-			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-					context.getDriver().findElement(subSectionElementFinder("Malware", "verdict")));
-
 			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Security']['Malware']['"
 					+ context.getDriver().findElement(subSectionElementFinder("Malware", "verdict")).getText() + "']");
 
@@ -521,12 +550,6 @@ public class webAuditReportPage extends webAppHelper {
 
 	@Then("User sees the Security Section > HTTPS SubSection is correct")
 	public void userSeesTheSecuritySectionHTTPSSubSectionIsCorrect() throws IOException {
-
-		context.getWait().until(ExpectedConditions
-				.presenceOfElementLocated(By.xpath("//div[@id='security-section']/div/div[4]/div[2]/p")));
-
-		context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-				context.getDriver().findElement(By.xpath("//div[@id='security-section']/div/div[4]/div[2]/p")));
 
 		String subSectionAnchor;
 
@@ -580,25 +603,32 @@ public class webAuditReportPage extends webAppHelper {
 										.findElement(subSectionElementFinder(subSectionAnchor, "verdict")).getText()
 										+ "']");
 
-				while (true) {
+				// validate verbiage against actual
+				boolean fail = true;
+				for (int i = 0; i < expected_verbiage.size(); i++) {
 
-					// validate verbiage against actual
-					for (int i = 0; i < expected_verbiage.size(); i++) {
+					if (expected_verbiage.get(i).toString().equals(context.getDriver()
+							.findElement(subSectionElementFinder(subSectionAnchor, "verbiage")).getText()))
 
-						if (expected_verbiage.get(i).toString().equals(context.getDriver()
-								.findElement(subSectionElementFinder(subSectionAnchor, "verbiage")).getText()))
+					{
+						context.getSoftAssert()
+								.assertEquals(context.getDriver()
+										.findElement(subSectionElementFinder(subSectionAnchor, "verbiage")).getText()
+										.contains(expected_verbiage.get(i).toString()), true);
 
-						{
-							context.getSoftAssert()
-									.assertEquals(context.getDriver()
-											.findElement(subSectionElementFinder(subSectionAnchor, "verbiage"))
-											.getText().contains(expected_verbiage.get(i).toString()), true);
+						// Extent Report
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User sees the Security Section > HTTPS SubSection is correct").pass("PASSED");
 
-							break;
-						}
+						fail = false;
 
+						// Exit While-Loop
+						break;
 					}
 
+				}
+
+				if (fail) {
 					// Extent Report
 					context.getExtentTestScenario()
 							.createNode(new GherkinKeyword("When"),
@@ -606,9 +636,6 @@ public class webAuditReportPage extends webAppHelper {
 							.fail("FAILED: " + "<br>" + "Actual - verbiage: " + context.getDriver()
 									.findElement(subSectionElementFinder(subSectionAnchor, "verbiage")).getText()
 									+ "<br>" + "Expected - verbiage: " + expected_verbiage);
-
-					// Exit While-Loop
-					break;
 
 				}
 
@@ -635,12 +662,6 @@ public class webAuditReportPage extends webAppHelper {
 
 		try {
 			// Step Definition
-			context.getWait().until(
-					ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("blacklisted", "verdict")));
-
-			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-					context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict")));
-
 			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Security']['Blacklisted']['"
 					+ context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict")).getText()
 					+ "']");
@@ -1330,17 +1351,47 @@ public class webAuditReportPage extends webAppHelper {
 
 	}
 
+	@Then("User scroll to Paid Traffic Section")
+	public void userScrollToPaidTrafficSection() {
+
+		try {
+			// document zooming
+			context.getDriver().executeScript("document.body.style.zoom = '0.75'");
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(SectionElemenFinder("paid")));
+
+			// scroll to pixel
+			// context.getDriver().executeScript("window.scrollBy(0,2000)");
+
+			// scroll to element
+			context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
+					context.getDriver().findElement(SectionElemenFinder("paid")));
+			
+			//Thread.sleep(1000);
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User scroll to Paid Traffic Section").pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User scroll to Paid Traffic Section")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
 	@Then("User sees the Paid Traffic > Estimated Traffic SubSection is correct")
 	public void userSeesThePaidTrafficEstimatedTrafficSubSectionIsCorrect() throws IOException {
 
 		try {
 			// Step Definition
-			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-					context.getDriver().findElement(subSectionElementFinder("Majestic Citation Flow", "verbiage")));
-
-			context.getWait()
-					.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[contains(text(), 'Estimated')]")));
-
 			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
 					"$.['Paid Traffic']['Estimated traffic']['N/A']");
 
@@ -1395,12 +1446,6 @@ public class webAuditReportPage extends webAppHelper {
 
 		try {
 			// Step Definition
-			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-					context.getDriver().findElement(subSectionElementFinder("Majestic Citation Flow", "verbiage")));
-
-			context.getWait()
-					.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[contains(text(), 'Keywords')]")));
-
 			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
 					"$.['Paid Traffic']['Keywords']['N/A']");
 
@@ -1460,12 +1505,6 @@ public class webAuditReportPage extends webAppHelper {
 	public void userSeesThePaidTrafficAveragePositionSubSectionIsCorrect() throws IOException {
 
 		// Step Definition
-		context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-				context.getDriver().findElement(By.xpath("//p[contains(text(), 'Keywords')]")));
-
-		context.getWait()
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[contains(text(), 'Position')]")));
-
 		try {
 
 			try {
@@ -1527,38 +1566,40 @@ public class webAuditReportPage extends webAppHelper {
 										+ "']");
 
 				// validate verbiage against actual
-				while (true) {
+				boolean fail = true;
+				for (int i = 0; i < expected_verbiage_JSON.size(); i++) {
 
-					for (int i = 0; i < expected_verbiage_JSON.size(); i++) {
+					if (expected_verbiage_JSON.get(i).toString().equals(
+							context.getDriver().findElement(subSectionElementFinder("Position", "verbiage")).getText())
+							&& Pattern.matches("[0-9]+", context.getDriver()
+									.findElement(subSectionElementParentH3Finder("Position")).getText())) {
 
-						if (expected_verbiage_JSON.get(i).toString()
-								.equals(context.getDriver().findElement(subSectionElementFinder("Position", "verbiage"))
-										.getText())
-								&& Pattern.matches("[0-9]+", context.getDriver()
-										.findElement(subSectionElementParentH3Finder("Position")).getText())) {
+						context.getSoftAssert().assertEquals(
+								context.getDriver().findElement(subSectionElementFinder("Position", "verbiage"))
+										.getText().contains(expected_verbiage_JSON.get(i).toString()),
+								true);
 
-							context.getSoftAssert().assertEquals(
-									context.getDriver().findElement(subSectionElementFinder("Position", "verbiage"))
-											.getText().contains(expected_verbiage_JSON.get(i).toString()),
-									true);
+						// Extent Report
+						System.out.println("======================five===============================");
+						context.getExtentTestScenario()
+								.createNode(new GherkinKeyword("When"),
+										"User sees the Paid Traffic > Average Position SubSection is correct")
+								.pass("PASSED" + "<br>" + "Actual - verbiage: "
+										+ context.getDriver()
+												.findElement(subSectionElementFinder("Position", "verbiage")).getText()
+										+ "<br>" + "Expected - verbiage: " + expected_verbiage_JSON.get(i).toString()
+										+ "<br>" + "Actual - count: " + context.getDriver()
+												.findElement(subSectionElementParentH3Finder("Position")).getText());
 
-							// Extent Report
-							System.out.println("======================five===============================");
-							context.getExtentTestScenario()
-									.createNode(new GherkinKeyword("When"),
-											"User sees the Paid Traffic > Average Position SubSection is correct")
-									.pass("PASSED" + "<br>" + "Actual - verbiage: " + context.getDriver()
-											.findElement(subSectionElementFinder("Position", "verbiage")).getText()
-											+ "<br>" + "Expected - verbiage: "
-											+ expected_verbiage_JSON.get(i).toString() + "<br>" + "Actual - count: "
-											+ context.getDriver()
-													.findElement(subSectionElementParentH3Finder("Position"))
-													.getText());
-							break;
-						}
+						fail = false;
 
+						// Exit While-Loop
+						break;
 					}
 
+				}
+
+				if (fail) {
 					// Extent Report
 					context.getExtentTestScenario()
 							.createNode(new GherkinKeyword("When"),
@@ -1569,10 +1610,6 @@ public class webAuditReportPage extends webAppHelper {
 									+ "<br>" + "Expected - verbiage: " + expected_verbiage_JSON + "<br>"
 									+ "Actual - count: " + context.getDriver()
 											.findElement(subSectionElementParentH3Finder("Position")).getText());
-
-					// Exit While-Loop
-					break;
-
 				}
 
 			}
@@ -1599,12 +1636,6 @@ public class webAuditReportPage extends webAppHelper {
 	public void userSeesThePaidTrafficSEMvsSEORatioSubSectionIsCorrect() throws IOException {
 
 		// Step Definition
-		context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-				context.getDriver().findElement(By.xpath("//p[contains(text(), 'Keywords')]")));
-
-		context.getWait()
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[contains(text(), 'Ratio')]")));
-
 		try {
 
 			try {
@@ -1661,36 +1692,39 @@ public class webAuditReportPage extends webAppHelper {
 								+ "']");
 
 				// validate verbiage against actual
-				while (true) {
+				boolean fail = true;
+				for (int i = 0; i < expected_verbiage_JSON.size(); i++) {
 
-					for (int i = 0; i < expected_verbiage_JSON.size(); i++) {
+					if (expected_verbiage_JSON.get(i).toString().equals(
+							context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText())
+							&& Pattern.matches("^\\d+.\\d+%$", context.getDriver()
+									.findElement(subSectionElementParentH3Finder("Ratio")).getText())) {
 
-						if (expected_verbiage_JSON.get(i).toString().equals(
-								context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText())
-								&& Pattern.matches("^\\d+.\\d+%$", context.getDriver()
-										.findElement(subSectionElementParentH3Finder("Ratio")).getText())) {
+						context.getSoftAssert().assertEquals(
+								context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText()
+										.contains(expected_verbiage_JSON.get(i).toString()),
+								true);
 
-							context.getSoftAssert()
-									.assertEquals(context.getDriver()
-											.findElement(subSectionElementFinder("Ratio", "verbiage")).getText()
-											.contains(expected_verbiage_JSON.get(i).toString()), true);
+						System.out.println("======================five===============================");
+						// Extent Report
+						context.getExtentTestScenario()
+								.createNode(new GherkinKeyword("When"),
+										"User sees the Paid Traffic > SEMvsSEO Ratio SubSection is correct")
+								.pass("PASSED" + "<br>" + "Actual - verbiage: "
+										+ context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage"))
+												.getText()
+										+ "<br>" + "Expected - verbiage: " + expected_verbiage_JSON.get(i).toString()
+										+ "<br>" + "Actual - count: " + context.getDriver()
+												.findElement(subSectionElementParentH3Finder("Ratio")).getText());
 
-							System.out.println("======================five===============================");
-							// Extent Report
-							context.getExtentTestScenario()
-									.createNode(new GherkinKeyword("When"),
-											"User sees the Paid Traffic > SEMvsSEO Ratio SubSection is correct")
-									.pass("PASSED" + "<br>" + "Actual - verbiage: "
-											+ context.getDriver()
-													.findElement(subSectionElementFinder("Ratio", "verbiage")).getText()
-											+ "<br>" + "Expected - verbiage: "
-											+ expected_verbiage_JSON.get(i).toString() + "<br>" + "Actual - count: "
-											+ context.getDriver().findElement(subSectionElementParentH3Finder("Ratio"))
-													.getText());
-							break;
-						}
+						fail = false;
+
+						// Exit While-Loop
+						break;
 					}
+				}
 
+				if (fail) {
 					// Extent Report
 					context.getExtentTestScenario()
 							.createNode(new GherkinKeyword("When"),
@@ -1703,12 +1737,10 @@ public class webAuditReportPage extends webAppHelper {
 											.findElement(subSectionElementParentH3Finder("Ratio")).getText()
 									+ "<br>" + "Exception Message: " + e.getMessage());
 
-					// Exit While-Loop
-					break;
-
 				}
 
 			}
+
 		}
 
 		catch (Exception e) {
@@ -1728,15 +1760,44 @@ public class webAuditReportPage extends webAppHelper {
 
 	}
 
+	@Then("User scroll to Social Activity Section")
+	public void userScrollToSocialActivitySection() {
+
+		try {
+			// document zooming
+			// context.getDriver().executeScript("document.body.style.zoom = '0.75'");
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(SectionElemenFinder("social")));
+
+			// scroll to pixel
+			// context.getDriver().executeScript("window.scrollBy(0,2000)");
+
+			// scroll to element
+			context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
+					context.getDriver().findElement(SectionElemenFinder("social")));
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User scroll to Social Activity Section").pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User scroll to Social Activity Section")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
 	@Then("User sees the Social Activity > Facebook SubSection is correct")
 	public void userSeesTheSocialActivityFacebookSubSectionIsCorrect() throws IOException {
 
 		// Step Definition
-		context.getWait().until(
-				ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@id='social-activity-section']//h3)[1]")));
-
-		context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-				context.getDriver().findElement(By.xpath("(//div[@id='social-activity-section']//h3)[1]")));
 
 		try {
 
@@ -1752,20 +1813,20 @@ public class webAuditReportPage extends webAppHelper {
 
 			}
 
-			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-z]+$",
+			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+$",
 					context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText()
 							.equals("Looking Good")
-					&& Pattern.matches("^[0-9]+.[0-9]+[A-Z]?$",
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
 							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1"))
 									.getText())
-					&& Pattern.matches("^[0-9]+$",
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
 							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2"))
 									.getText())
-					&& Pattern.matches("^[0-9]+$",
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
 							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow3"))
 									.getText())
-					&& Pattern.matches("^[0-9]+$", context.getDriver()
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$", context.getDriver()
 							.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText())) {
 
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
@@ -1801,13 +1862,8 @@ public class webAuditReportPage extends webAppHelper {
 
 	@Then("User sees the Social Activity > Twitter SubSection is correct")
 	public void userSeesTheSocialActivityTwitterSubSectionIsCorrect() {
+
 		// Step Definition
-		context.getWait().until(
-				ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@id='social-activity-section']//h3)[1]")));
-
-		context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-				context.getDriver().findElement(By.xpath("(//div[@id='social-activity-section']//h3)[1]")));
-
 		try {
 
 			if (context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText()
@@ -1822,30 +1878,43 @@ public class webAuditReportPage extends webAppHelper {
 
 			}
 
-			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-z]+$",
-					context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText())
+			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+$",
+					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
 							.equals("Looking Good")
-					&& Pattern.matches("^[0-9]+.[0-9]+[A-Z]?$",
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
 							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1"))
 									.getText())
-					&& Pattern.matches("^[0-9]+$",
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
 							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
 									.getText())
-					&& Pattern.matches("^[0-9]+$",
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
 							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow3"))
 									.getText())
-					&& Pattern.matches("^[0-9]+$", context.getDriver()
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$", context.getDriver()
 							.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText())) {
 
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Social Activity > Facebook SubSection is correct").pass("PASSED");
+						"User sees the Social Activity > Twitter SubSection is correct").pass("PASSED");
 
 			}
 
 			else {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Social Activity > Twitter SubSection is correct").fail("FAILED");
+						"User sees the Social Activity > Twitter SubSection is correct").fail("FAILED - TRY: "
+						+ "<br"
+						+ "Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText()
+						+ "<br"
+						+ "Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
+						+ "<br"
+						+ "Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText()
+						+ "<br"
+						+ "Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText()
+						+ "<br"
+						+ "Actual-Average EngageMent: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText()
+						+ "<br"
+						+ "Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText()
+						);
 			}
 
 		}
@@ -1859,7 +1928,21 @@ public class webAuditReportPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Social Activity > Twitter SubSection is correct")
-						.fail("FAILED: " + e.getMessage());
+						.fail("FAILED - CATCH: "
+						+ "<br"
+						+ "Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText()
+						+ "<br"
+						+ "Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
+						+ "<br"
+						+ "Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText()
+						+ "<br"
+						+ "Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText()
+						+ "<br"
+						+ "Actual-Average EngageMent: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText()
+						+ "<br"
+						+ "Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText() 
+						+ "<br"
+						+ "Error Message: " + e.getMessage());
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
