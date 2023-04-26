@@ -9,8 +9,7 @@ Feature: SEOR > Agency Tools > WebAudit
   #And User click on the login button
   #Then User is successfully login
   #When User navigates to "https://account.seoreseller.com/pro/audits"
-  #And User generates a WebAuditReport  
-
+  #And User generates a WebAuditReport
   @WebAuditReportSummary
   Scenario Outline: Generate WebAudit Report and validate Summary section
     Given User navigates to "<loginUrl>" using "<browser>"
@@ -57,6 +56,7 @@ Feature: SEOR > Agency Tools > WebAudit
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
     Then User sees a new tab is open redering the WebAuditReport
+    And User scroll to Security Section
     And User sees the Security Section > SSL SubSection is correct
     And User sees the Security Section > Malware SubSection is correct
     And User sees the Security Section > HTTPS SubSection is correct
@@ -133,6 +133,7 @@ Feature: SEOR > Agency Tools > WebAudit
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
     Then User sees a new tab is open redering the WebAuditReport
+    And User scroll to Paid Traffic Section
     And User sees the Paid Traffic > Estimated Traffic SubSection is correct
     And User sees the Paid Traffic > Keyword Detected SubSection is correct
     And User sees the Paid Traffic > Average Position SubSection is correct
@@ -152,13 +153,14 @@ Feature: SEOR > Agency Tools > WebAudit
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
     Then User sees a new tab is open redering the WebAuditReport
+    And User scroll to Social Activity Section
     And User sees the Social Activity > Facebook SubSection is correct
     And User sees the Social Activity > Twitter SubSection is correct
 
     Examples: 
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
-      
+
   @GenerateWebAuditReport
   Scenario Outline: Generate WebAudit Report
     Given User navigates to "<loginUrl>" using "<browser>"
