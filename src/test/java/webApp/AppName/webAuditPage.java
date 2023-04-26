@@ -39,10 +39,12 @@ public class webAuditPage extends webAppHelper {
 	@When("User generates a WebAuditReport")
 	public void userGeneratesAWebAuditReport() throws Throwable {
 
+		// Step Definition
+		String url = webAuditURLService.RetrieveFromPRD();
+		System.out.println("URL from SERVICE:" + url);
+
 		try {
 			// Step Definition
-			String url = webAuditURLService.RetrieveFromPRD();
-			System.out.println("URL from SERVICE:" + url);
 			context.getDriver().findElement(urlWebAudit_inputfield).sendKeys(url);
 			Thread.sleep(2000);
 			context.getDriver().findElement(urlWebAudit_button).click();
@@ -76,7 +78,7 @@ public class webAuditPage extends webAppHelper {
 
 						// Extent Report
 						context.getExtentTestScenario()
-								.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport")
+								.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport for" + url)
 								.pass("PASSED");
 
 						// exit the loop
@@ -99,7 +101,7 @@ public class webAuditPage extends webAppHelper {
 			// Extent Report
 			try {
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport")
+						.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport for" + url)
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
