@@ -76,6 +76,7 @@ Feature: SEOR > Agency Tools > WebAudit
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
     Then User sees a new tab is open redering the WebAuditReport
+    And User scroll to Organic Traffic Section
     And User sees the Organic Traffic > Technical SEO > Sitemap SubSection is correct
     And User sees the Organic Traffic > Technical SEO > Robot SubSection is correct
     And User sees the Organic Traffic > Technical SEO > Redirection SubSection is correct
@@ -94,6 +95,7 @@ Feature: SEOR > Agency Tools > WebAudit
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
     Then User sees a new tab is open redering the WebAuditReport
+    And User scroll to Organic Traffic Section
     And User sees the Organic Traffic > OnPage SEO > Title SubSection is correct
     And User sees the Organic Traffic > OnPage SEO > Description SubSection is correct
     And User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct
@@ -113,6 +115,7 @@ Feature: SEOR > Agency Tools > WebAudit
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
     Then User sees a new tab is open redering the WebAuditReport
+    And User scroll to Organic Traffic Section
     And User sees the Organic Traffic > OffPage SEO > Backlinks SubSection is correct
     And User sees the Organic Traffic > OffPage SEO > MOZ Domain Authority SubSection is correct
     And User sees the Organic Traffic > OffPage SEO > MOZ Page Authority SubSection is correct

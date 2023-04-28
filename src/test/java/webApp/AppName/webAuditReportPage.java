@@ -553,15 +553,14 @@ public class webAuditReportPage extends webAppHelper {
 
 		String subSectionAnchor;
 
-		if (context.getDriver().findElement(By.xpath("//div[@id='security-section']/div/div[4]/div[2]/p")).getText()
-				.contains("HTTPS")) {
-			subSectionAnchor = "HTTPS";
-		} else {
-			subSectionAnchor = "HTTP";
-		}
-
 		try {
 			// Step Definition
+			if (context.getDriver().findElement(By.xpath("//div[@id='security-section']/div/div[4]/div[2]/p")).getText()
+					.contains("HTTPS")) {
+				subSectionAnchor = "HTTPS";
+			} else {
+				subSectionAnchor = "HTTP";
+			}
 
 			// validate verbiage against actual
 			try {
@@ -688,6 +687,40 @@ public class webAuditReportPage extends webAppHelper {
 			}
 		}
 
+	}
+	
+	@Then("User scroll to Organic Traffic Section")
+	public void userScrollToOrganicTrafficSection() {
+
+		try {
+			// document zooming
+			context.getDriver().executeScript("document.body.style.zoom = '0.45'");
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(SectionElemenFinder("security")));
+
+			// scroll to pixel
+			// context.getDriver().executeScript("window.scrollBy(0,2000)");
+
+			// scroll to element
+			context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
+					context.getDriver().findElement(SectionElemenFinder("security")));
+
+			// Extent Report
+			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User scroll to Organic Traffic Section")
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User scroll to Organic Traffic Section")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 	@Then("User sees the Organic Traffic > Technical SEO > Sitemap SubSection is correct")
@@ -1366,8 +1399,8 @@ public class webAuditReportPage extends webAppHelper {
 			// scroll to element
 			context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
 					context.getDriver().findElement(SectionElemenFinder("paid")));
-			
-			//Thread.sleep(1000);
+
+			// Thread.sleep(1000);
 
 			// Extent Report
 			context.getExtentTestScenario()
@@ -1900,21 +1933,27 @@ public class webAuditReportPage extends webAppHelper {
 			}
 
 			else {
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Social Activity > Twitter SubSection is correct").fail("FAILED - TRY: "
-						+ "<br"
-						+ "Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText()
-						+ "<br"
-						+ "Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
-						+ "<br"
-						+ "Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText()
-						+ "<br"
-						+ "Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText()
-						+ "<br"
-						+ "Actual-Average EngageMent: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText()
-						+ "<br"
-						+ "Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText()
-						);
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Social Activity > Twitter SubSection is correct")
+						.fail("FAILED - TRY: "
+								+ "<br" + "Actual-URL: " + context.getDriver()
+										.findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText()
+								+ "<br" + "Actual-Verdict: " + context.getDriver()
+										.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
+								+ "<br" + "Actual-Follower: "
+								+ context.getDriver()
+										.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText()
+								+ "<br" + "Actual-Number of Tweets: "
+								+ context.getDriver()
+										.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText()
+								+ "<br" + "Actual-Average EngageMent: "
+								+ context.getDriver()
+										.findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText()
+								+ "<br" + "Actual-Number of Tweets: "
+								+ context.getDriver()
+										.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4"))
+										.getText());
 			}
 
 		}
@@ -1929,20 +1968,23 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Social Activity > Twitter SubSection is correct")
 						.fail("FAILED - CATCH: "
-						+ "<br"
-						+ "Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText()
-						+ "<br"
-						+ "Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
-						+ "<br"
-						+ "Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText()
-						+ "<br"
-						+ "Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText()
-						+ "<br"
-						+ "Actual-Average EngageMent: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText()
-						+ "<br"
-						+ "Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText() 
-						+ "<br"
-						+ "Error Message: " + e.getMessage());
+								+ "<br" + "Actual-URL: " + context.getDriver()
+										.findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText()
+								+ "<br" + "Actual-Verdict: " + context.getDriver()
+										.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
+								+ "<br" + "Actual-Follower: "
+								+ context.getDriver()
+										.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText()
+								+ "<br" + "Actual-Number of Tweets: "
+								+ context.getDriver()
+										.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText()
+								+ "<br" + "Actual-Average EngageMent: "
+								+ context.getDriver()
+										.findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText()
+								+ "<br" + "Actual-Number of Tweets: "
+								+ context.getDriver()
+										.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText()
+								+ "<br" + "Error Message: " + e.getMessage());
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
