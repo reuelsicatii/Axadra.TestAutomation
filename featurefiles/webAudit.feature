@@ -19,7 +19,7 @@ Feature: SEOR > Agency Tools > WebAudit
     Then User is successfully login
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
-    Then User sees a new tab is open redering the WebAuditReport
+    Then User sees a new tab is open rendering the WebAuditReport
     And User sees the Summary Section > Grades SubSection is correct
     And User sees the Summary Section > WebSite Score SubSection is correct
     And User sees the Summary Section > Verdict Table SubSection is correct
@@ -37,7 +37,7 @@ Feature: SEOR > Agency Tools > WebAudit
     Then User is successfully login
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
-    Then User sees a new tab is open redering the WebAuditReport
+    Then User sees a new tab is open rendering the WebAuditReport
     And User sees the Usability Section > Mobile Friendliness SubSection is correct
     And User sees the Usability Section > Google Analytics Found SubSection is correct
     And User sees the Usability Section > Page Speed Insight SubSection is correct
@@ -55,7 +55,7 @@ Feature: SEOR > Agency Tools > WebAudit
     Then User is successfully login
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
-    Then User sees a new tab is open redering the WebAuditReport
+    Then User sees a new tab is open rendering the WebAuditReport
     And User scroll to Security Section
     And User sees the Security Section > SSL SubSection is correct
     And User sees the Security Section > Malware SubSection is correct
@@ -75,7 +75,7 @@ Feature: SEOR > Agency Tools > WebAudit
     Then User is successfully login
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
-    Then User sees a new tab is open redering the WebAuditReport
+    Then User sees a new tab is open rendering the WebAuditReport
     And User scroll to Organic Traffic Section
     And User sees the Organic Traffic > Technical SEO > Sitemap SubSection is correct
     And User sees the Organic Traffic > Technical SEO > Robot SubSection is correct
@@ -94,7 +94,7 @@ Feature: SEOR > Agency Tools > WebAudit
     Then User is successfully login
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
-    Then User sees a new tab is open redering the WebAuditReport
+    Then User sees a new tab is open rendering the WebAuditReport
     And User scroll to Organic Traffic Section
     And User sees the Organic Traffic > OnPage SEO > Title SubSection is correct
     And User sees the Organic Traffic > OnPage SEO > Description SubSection is correct
@@ -114,7 +114,7 @@ Feature: SEOR > Agency Tools > WebAudit
     Then User is successfully login
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
-    Then User sees a new tab is open redering the WebAuditReport
+    Then User sees a new tab is open rendering the WebAuditReport
     And User scroll to Organic Traffic Section
     And User sees the Organic Traffic > OffPage SEO > Backlinks SubSection is correct
     And User sees the Organic Traffic > OffPage SEO > MOZ Domain Authority SubSection is correct
@@ -135,7 +135,7 @@ Feature: SEOR > Agency Tools > WebAudit
     Then User is successfully login
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
-    Then User sees a new tab is open redering the WebAuditReport
+    Then User sees a new tab is open rendering the WebAuditReport
     And User scroll to Paid Traffic Section
     And User sees the Paid Traffic > Estimated Traffic SubSection is correct
     And User sees the Paid Traffic > Keyword Detected SubSection is correct
@@ -155,7 +155,7 @@ Feature: SEOR > Agency Tools > WebAudit
     Then User is successfully login
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent WebAuditReport
-    Then User sees a new tab is open redering the WebAuditReport
+    Then User sees a new tab is open rendering the WebAuditReport
     And User scroll to Social Activity Section
     And User sees the Social Activity > Facebook SubSection is correct
     And User sees the Social Activity > Twitter SubSection is correct

@@ -140,7 +140,7 @@ public class webAuditPage extends webAppHelper {
 		}
 	}
 
-	@Then("User sees a new tab is open redering the WebAuditReport")
+	@Then("User sees a new tab is open rendering the WebAuditReport")
 	public void userSeesANewTabIsOpenRederingTheWebAuditReport() {
 
 		try {
