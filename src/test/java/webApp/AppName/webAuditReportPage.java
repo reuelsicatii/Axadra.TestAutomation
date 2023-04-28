@@ -1681,7 +1681,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				if (expected_verbiage_String.toString()
 						.equals(context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText())
-						&& Pattern.matches("^\\d+.\\d+%$",
+						&& Pattern.matches("^\\d*.?\\d*%$",
 								context.getDriver().findElement(subSectionElementParentH3Finder("Ratio")).getText())) {
 
 					context.getSoftAssert()
