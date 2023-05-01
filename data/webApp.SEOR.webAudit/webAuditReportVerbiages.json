@@ -40,7 +40,7 @@
             "N/A": "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again."
         },
         "HTTPS": {
-            "Looking Good": "Your website accepts HTTP and HTTPS connections and redirects all connections to HTTPS.",
+            "Looking Good": "Your website accepts HTTP and HTTPS connections and redirects all connections to HTTPS",
             "Critical": [
                 "Your website accepts HTTP and HTTPS connections and redirects all connections to HTTPS.",
                 "Your website is considered not secure by Google Chrome because of HTTP Connections.",
