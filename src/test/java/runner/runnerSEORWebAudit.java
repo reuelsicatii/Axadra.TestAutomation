@@ -29,7 +29,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 
 	)
 
-public class runnerWebApp extends AbstractTestNGCucumberTests {	
+public class runnerSEORWebAudit extends AbstractTestNGCucumberTests {	
 	
 	
 	// Running Cucumber - Parallel Test
