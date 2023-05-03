@@ -1,4 +1,4 @@
-package webApp.AppName;
+package webApp.SEOR;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;

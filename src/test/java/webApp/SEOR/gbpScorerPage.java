@@ -1,8 +1,9 @@
-package webApp.AppName;
+package webApp.SEOR;
 
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.GherkinKeyword;
@@ -11,45 +12,53 @@ import helper.webAppContextDriver;
 import helper.webAppHelper;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import testAuto.Service.WebAuditURLService;
+import testAuto.Service.GbpScorerService;
 
-public class webAuditPage extends webAppHelper {
+public class gbpScorerPage extends webAppHelper {
 
-	static WebAuditURLService webAuditURLService = new WebAuditURLService();
+	GbpScorerService gbpScorerService = new GbpScorerService();
 
 	// Page Elements
 	// ==========================================
-	// By recent_WebAuditReport =
-	// By.xpath("//table[@id='webaudit-table']//tbody//i[first()]");
-	By recent_WebAuditReport = By.xpath("//table[@id='webaudit-table']//tbody//i[@class='fa fa-external-link-alt'][1]");
-	By urlWebAudit_inputfield = By.xpath("//input[@id='audit-url']");
-	By urlWebAudit_button = By.xpath("//button[contains(text(),'Run Audit')]");
+
+	By businessNameGbpScorer_inputfield = By.xpath("//input[@id='business']");
+	By businessNameGbpScorer_suggestionList = By.xpath("(//div[@id='business-suggestions-wrapper']//span)[1]");
+	By businessNameGbpScorer_button = By.xpath("//button[contains(text(),'Run Audit')]");
+	By recent_GbpScorerReport = By.xpath("(//table[@id='lar-table']//tbody//i[@class='fa fa-external-link-alt'])[1]");
+
 
 	// Declare Driver Instance
 	// ==========================================
 	private webAppContextDriver context;
 
-	public webAuditPage(webAppContextDriver context) {
+	public gbpScorerPage(webAppContextDriver context) {
 		super();
 		this.context = context;
 	}
 
 	// Page Step Definition
 	// =================================================
-	@When("User generates a WebAuditReport")
-	public void userGeneratesAWebAuditReport() throws Throwable {
+	@When("User generates a GbpScorerReport")
+	public void userGeneratesAGbpScorerReport() throws Throwable {
 
 		// Step Definition
-		String url = webAuditURLService.RetrieveFromPRD();
-		System.out.println("URL from SERVICE:" + url);
+		String BusinessName = gbpScorerService.RetrieveBusinessNameFrom("PROD_REPORTBUILDER");
+		System.out.println("URL from SERVICE:" + BusinessName);
 
 		try {
 			// Step Definition
-			context.getDriver().findElement(urlWebAudit_inputfield).sendKeys(url);
+			context.getDriver().findElement(businessNameGbpScorer_inputfield).sendKeys(BusinessName);
 			Thread.sleep(2000);
-			context.getDriver().findElement(urlWebAudit_button).click();
+			
+			context.getWait().until(ExpectedConditions
+					.presenceOfElementLocated(businessNameGbpScorer_suggestionList));			
+			context.getDriver().findElement(businessNameGbpScorer_suggestionList).click();
+			           
+			context.getWait().until(ExpectedConditions
+					.elementToBeClickable(businessNameGbpScorer_button));	
+			context.getDriver().findElement(businessNameGbpScorer_button).click();
 
-			// Check WebAudit Report is generated
+			// Check GBP Scorer Report is generated
 			// ==================================================
 
 			int x = 0;
@@ -61,9 +70,9 @@ public class webAuditPage extends webAppHelper {
 
 						// Extent Report
 						context.getExtentTestScenario()
-								.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport")
-								.fail("FAILED: Not able to generate WebAudit Report for " + url + "<br>"
-										+ "WebAudit Report generation, waiting for " + x + "sec");
+								.createNode(new GherkinKeyword("When"), "User generates a GbpScorerReport")
+								.fail("FAILED: Not able to generate GbpScorer Report for " + BusinessName + "<br>"
+										+ "GbpScorer Report generation, waiting for " + x + "sec");
 
 						// exit the loop
 						System.out.println("Exiting whileloop");
@@ -73,12 +82,12 @@ public class webAuditPage extends webAppHelper {
 
 					else if (context.getDriver()
 							.findElement(By.xpath(
-									"(//table[@id='webaudit-table']//tbody//a[contains(text(), '" + url + "')])[1]"))
+									"(//table[@id='lar-table']//tbody//a[contains(text(), '" + BusinessName + "')])[1]"))
 							.isDisplayed()) {
 
 						// Extent Report
 						context.getExtentTestScenario()
-								.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport for" + url)
+								.createNode(new GherkinKeyword("When"), "User generates a GbpScorerReport for " + BusinessName)
 								.pass("PASSED");
 
 						// exit the loop
@@ -91,7 +100,7 @@ public class webAuditPage extends webAppHelper {
 
 					Thread.sleep(10000);
 					x = x + 10;
-					System.out.println("WebAudit Report generation, waiting for " + x + "sec");
+					System.out.println("GbpScorer Report generation, waiting for " + x + "sec");
 				}
 
 			}
@@ -101,7 +110,7 @@ public class webAuditPage extends webAppHelper {
 			// Extent Report
 			try {
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport for" + url)
+						.createNode(new GherkinKeyword("When"), "User generates a GbpScorerReport for " + BusinessName)
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -111,15 +120,15 @@ public class webAuditPage extends webAppHelper {
 
 	}
 
-	@When("User clicks the most recent WebAuditReport")
-	public void userClicksTheMostRecentWebAuditReport() {
+	@When("User clicks the most recent GBPScorer Report")
+	public void userClicksTheMostRecentGBPScorerReport() {
 
 		try {
 			// Step Definition
-			context.getWait().until(ExpectedConditions.presenceOfElementLocated(recent_WebAuditReport));
-			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-					context.getDriver().findElement(urlWebAudit_button));
-			context.getDriver().findElement(recent_WebAuditReport).click();
+			//context.getWait().until(ExpectedConditions.presenceOfElementLocated(recent_WebAuditReport));
+			//context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+			//		context.getDriver().findElement(urlWebAudit_button));
+			//context.getDriver().findElement(recent_WebAuditReport).click();
 
 			// Extent Report
 			context.getExtentTestScenario()
@@ -140,8 +149,8 @@ public class webAuditPage extends webAppHelper {
 		}
 	}
 
-	@Then("User sees a new tab is open rendering the WebAuditReport")
-	public void userSeesANewTabIsOpenRederingTheWebAuditReport() {
+	@Then("User sees a new tab is open rendering the GBPScorer Report")
+	public void userSeesANewTabIsOpenRederingTheGbpScorerReport() {
 
 		try {
 			// Step Definition

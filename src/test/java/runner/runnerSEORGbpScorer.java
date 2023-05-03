@@ -12,14 +12,13 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/webAudit.feature"},
+		features = {"featurefiles/gbpScorer.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
 		glue = { "webApp.SEOR"},
-		tags =  "@SEOR_AgencyTools_WebAudit",
-		plugin =  {
-				
+		tags =  "@GenerateGbpScorerReport",
+		plugin =  {				
 				"pretty",
 				"html:reports/results.html",
 				"json:reports/results.json",
@@ -29,7 +28,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 
 	)
 
-public class runnerSEORWebAudit extends AbstractTestNGCucumberTests {	
+public class runnerSEORGbpScorer extends AbstractTestNGCucumberTests {	
 	
 	
 	// Running Cucumber - Parallel Test

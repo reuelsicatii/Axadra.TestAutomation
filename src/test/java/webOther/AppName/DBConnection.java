@@ -9,11 +9,28 @@ import java.util.Random;
 
 import org.testng.annotations.Test;
 
+import testAuto.Service.GbpScorerService;
+import testAuto.Service.WebAuditService;
+
 public class DBConnection {
 
+	WebAuditService webAuditService = new WebAuditService();
+	GbpScorerService gbpScorerService = new GbpScorerService();
+
 	@Test
-	public void main() throws SQLException {
-		
+	public void main() throws Throwable {
+
+		// Step Definition
+		//String url = webAuditService.RetrieveURLFrom("PROD_CENTRAL");
+		//System.out.println("URL from SERVICE:" + url);
+
+		// Step Definition
+		String BusinessName = gbpScorerService.RetrieveBusinessNameFrom("PROD_REPORTBUILDER");
+		System.out.println("BusinessName from SERVICE:" + BusinessName);
+
+	}
+
+	public void retrieveFrom() throws SQLException {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -21,7 +38,6 @@ public class DBConnection {
 			e.printStackTrace();
 			return;
 		}
-
 
 		Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://10.10.2.208:3306/central?autoReconnect=true&useSSL=false&useTimezone=true&serverTimezone=UTC",
@@ -60,7 +76,6 @@ public class DBConnection {
 		} else {
 			System.out.println("Failed to CONNECT to Database");
 		}
-
 	}
 
 }

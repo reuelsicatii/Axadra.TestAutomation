@@ -1,4 +1,4 @@
-package webApp.AppName;
+package webApp.SEOR;
 
 import java.io.File;
 import java.io.IOException;

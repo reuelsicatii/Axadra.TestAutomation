@@ -1,4 +1,4 @@
-package webApp.AppName;
+package webApp.SEOR;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

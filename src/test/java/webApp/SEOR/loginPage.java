@@ -1,4 +1,4 @@
-package webApp.AppName;
+package webApp.SEOR;
 
 import static org.testng.Assert.assertEquals;
 
