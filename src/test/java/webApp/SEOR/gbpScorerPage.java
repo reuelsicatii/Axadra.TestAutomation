@@ -125,10 +125,10 @@ public class gbpScorerPage extends webAppHelper {
 
 		try {
 			// Step Definition
-			//context.getWait().until(ExpectedConditions.presenceOfElementLocated(recent_WebAuditReport));
-			//context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-			//		context.getDriver().findElement(urlWebAudit_button));
-			//context.getDriver().findElement(recent_WebAuditReport).click();
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(recent_GbpScorerReport));
+			context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
+					context.getDriver().findElement(recent_GbpScorerReport));
+			context.getDriver().findElement(recent_GbpScorerReport).click();
 
 			// Extent Report
 			context.getExtentTestScenario()
@@ -156,6 +156,11 @@ public class gbpScorerPage extends webAppHelper {
 			// Step Definition
 			ArrayList<String> newTb = new ArrayList<String>(context.getDriver().getWindowHandles());
 			context.getDriver().switchTo().window(newTb.get(1));
+			
+			
+			// Test Purposes - control REPORT generation
+			//context.getDriver().get("https://myreports.app/reports/view/99172ac3-70eb-4781-b305-a725673b1e55");
+			
 
 			// Extent Report
 			context.getExtentTestScenario()

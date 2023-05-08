@@ -146,26 +146,25 @@ Feature: SEOR > Agency Tools > WebAudit
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
 
-  @WebAuditReportSocialActivity
-  Scenario Outline: Generate WebAudit Report and validate Social Activity
+  @GbpScorerReportRecentReview
+  Scenario Outline: Generate GBPScorer Report and validate Recent Review
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "reuel+01@axadra.com"
     And User enter the password as "asdasdasd"
     And User click on the login button
     Then User is successfully login
     When User navigates to "<webAuditUrl>"
-    And User clicks the most recent WebAuditReport
-    Then User sees a new tab is open rendering the WebAuditReport
-    And User scroll to Social Activity Section
-    And User sees the Social Activity > Facebook SubSection is correct
-    And User sees the Social Activity > Twitter SubSection is correct
+    And User clicks the most recent GBPScorer Report
+    Then User sees a new tab is open rendering the GBPScorer Report
+    And User scroll to Recent Review Section
+    And User sees the Recent Review Section is correct
 
     Examples: 
       | browser | loginUrl                              | webAuditUrl                                |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
 
   @GenerateGbpScorerReport
-  Scenario Outline: Generate WebAudit Report
+  Scenario Outline: Generate GBP Scorer Report
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "<username>"
     And User enter the password as "<password>"

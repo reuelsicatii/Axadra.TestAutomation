@@ -1958,9 +1958,7 @@ public class webAuditReportPage extends webAppHelper {
 
 		}
 
-		catch (
-
-		Exception e) {
+		catch (Exception e) {
 
 			try {
 
