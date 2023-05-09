@@ -26,7 +26,6 @@ public class gbpScorerPage extends webAppHelper {
 	By businessNameGbpScorer_button = By.xpath("//button[contains(text(),'Run Audit')]");
 	By recent_GbpScorerReport = By.xpath("(//table[@id='lar-table']//tbody//i[@class='fa fa-external-link-alt'])[1]");
 
-
 	// Declare Driver Instance
 	// ==========================================
 	private webAppContextDriver context;
@@ -49,13 +48,11 @@ public class gbpScorerPage extends webAppHelper {
 			// Step Definition
 			context.getDriver().findElement(businessNameGbpScorer_inputfield).sendKeys(BusinessName);
 			Thread.sleep(2000);
-			
-			context.getWait().until(ExpectedConditions
-					.presenceOfElementLocated(businessNameGbpScorer_suggestionList));			
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(businessNameGbpScorer_suggestionList));
 			context.getDriver().findElement(businessNameGbpScorer_suggestionList).click();
-			           
-			context.getWait().until(ExpectedConditions
-					.elementToBeClickable(businessNameGbpScorer_button));	
+
+			context.getWait().until(ExpectedConditions.elementToBeClickable(businessNameGbpScorer_button));
 			context.getDriver().findElement(businessNameGbpScorer_button).click();
 
 			// Check GBP Scorer Report is generated
@@ -80,15 +77,13 @@ public class gbpScorerPage extends webAppHelper {
 
 					}
 
-					else if (context.getDriver()
-							.findElement(By.xpath(
-									"(//table[@id='lar-table']//tbody//a[contains(text(), '" + BusinessName + "')])[1]"))
+					else if (context.getDriver().findElement(By
+							.xpath("(//table[@id='lar-table']//tbody//a[contains(text(), '" + BusinessName + "')])[1]"))
 							.isDisplayed()) {
 
 						// Extent Report
-						context.getExtentTestScenario()
-								.createNode(new GherkinKeyword("When"), "User generates a GbpScorerReport for " + BusinessName)
-								.pass("PASSED");
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User generates a GbpScorerReport for " + BusinessName).pass("PASSED");
 
 						// exit the loop
 						System.out.println("Exiting whileloop");
@@ -156,16 +151,35 @@ public class gbpScorerPage extends webAppHelper {
 			// Step Definition
 			ArrayList<String> newTb = new ArrayList<String>(context.getDriver().getWindowHandles());
 			context.getDriver().switchTo().window(newTb.get(1));
-			
-			
+
 			// Test Purposes - control REPORT generation
-			//context.getDriver().get("https://myreports.app/reports/view/99172ac3-70eb-4781-b305-a725673b1e55");
-			
+			// context.getDriver().get("https://myreports.app/reports/view/99172ac3-70eb-4781-b305-a725673b1e55");
+
+			int x = 0;
+			while (true) {
+
+				try {
+
+					System.out.println("...waiting for page to load");
+					Thread.sleep(10000);
+					
+					x = x + 10000;
+					if (x == 120000 || context.getDriver()
+							.findElement(By.xpath("//body//div[contains(@class, 'summary-section row')]")) != null) {
+						break;
+					}
+
+				} catch (Exception e) {
+					System.out.println("...hard reloading the page");
+					context.getDriver().executeScript("location.reload(true);");
+				}
+
+			}
 
 			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User sees a new tab is open redering the WebAuditReport")
-					.pass("PASSED");
+			Thread.sleep(2000);
+			context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+					"User sees a new tab is open rendering the GBPScorer Report").pass("PASSED");
 
 		} catch (Exception e) {
 
@@ -173,7 +187,7 @@ public class gbpScorerPage extends webAppHelper {
 			try {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"),
-								"User sees a new tab is open redering the WebAuditReport")
+								"User sees a new tab is open rendering the GBPScorer Report")
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
