@@ -105,6 +105,15 @@ public class webAppHelper {
 		
 		return json;
 	}
+	
+	public String getGbpScorerReportVerbiages() throws IOException {
+		// Object Declarations
+		// ==========================================
+		File file = new File(System.getProperty("user.dir") + "\\Data\\webApp.SEOR.gbpScorer\\gbpScorerReportVerbiages.json");	
+		String json = new String(Files.readAllBytes(file.toPath()));
+		
+		return json;
+	}
 
 
 }

@@ -153,28 +153,38 @@ public class gbpScorerPage extends webAppHelper {
 			context.getDriver().switchTo().window(newTb.get(1));
 
 			// Test Purposes - control REPORT generation
-			// context.getDriver().get("https://myreports.app/reports/view/99172ac3-70eb-4781-b305-a725673b1e55");
+			// Thread.sleep(5000);
+			// context.getDriver().get("https://myreports.app/reports/view/991d4cf7-4f45-452e-a96d-3ed772e833a7");
+
+			
+			
+			System.out.println("...starting to loop");
 
 			int x = 0;
 			while (true) {
 
+				System.out.println("...looping");
+
 				try {
 
 					System.out.println("...waiting for page to load");
-					Thread.sleep(10000);
-					
-					x = x + 10000;
-					if (x == 120000 || context.getDriver()
+
+					if (x == 2 || context.getDriver()
 							.findElement(By.xpath("//body//div[contains(@class, 'summary-section row')]")) != null) {
+						System.out.println("...exiting loop");
 						break;
 					}
 
 				} catch (Exception e) {
 					System.out.println("...hard reloading the page");
 					context.getDriver().executeScript("location.reload(true);");
+					Thread.sleep(60000);
+					x++;
 				}
 
 			}
+			
+			
 
 			// Extent Report
 			Thread.sleep(2000);

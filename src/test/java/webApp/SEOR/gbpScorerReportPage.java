@@ -1,10 +1,12 @@
 package webApp.SEOR;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.jayway.jsonpath.JsonPath;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
@@ -28,23 +30,22 @@ public class gbpScorerReportPage extends webAppHelper {
 
 	// Page Step Definition
 	// =================================================
-	@Then("User scroll to Similar Listing Section")
-	public void userScrollToSimilarListingSection() {
-
+	@Then("User scroll to {string} Section")
+	public void userScrollToSection(String SectioName) {
 		try {
 
 			// document zooming
 			// context.getDriver().executeScript("document.body.style.zoom = '0.75'");
 
 			context.getWait().until(ExpectedConditions
-					.presenceOfElementLocated(gbpScorerReportPageObject.sectionElementFinder("Similar Listings")));
+					.presenceOfElementLocated(gbpScorerReportPageObject.sectionElementFinder(SectioName)));
 
 			// scroll to pixel
 			// context.getDriver().executeScript("window.scrollBy(0,2000)");
 
 			// scroll to element
-			context.getDriver().executeScript("arguments[0].scrollIntoView(false);", context.getDriver()
-					.findElement(gbpScorerReportPageObject.sectionElementFinder("Similar Listings")));
+			context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
+					context.getDriver().findElement(gbpScorerReportPageObject.sectionElementFinder(SectioName)));
 
 			// Extent Report
 			context.getExtentTestScenario()
@@ -64,6 +65,171 @@ public class gbpScorerReportPage extends webAppHelper {
 		}
 	}
 
+	@Then("User sees the Google Review Score > Google Review SubSection is correct")
+	public void userSeesTheGoogleReviewScoreGoogleReviewSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Google Review Score']['Review Score']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Google Review Score", "Google Reviews", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Google Review Score",
+					"Google Reviews", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Review Score > Google Review SubSection is correct")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Review Score > Google Review SubSection is correct")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Google Review Score", "Google Reviews", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Review Score > Google Review SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Google Review Score > Ave Review SubSection is correct")
+	public void userSeesTheGoogleReviewScoreAveReviewSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Google Review Score']['Ave Review']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Google Review Score", "Ave reviews", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Google Review Score",
+					"Ave reviews", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Review Score > Ave Review SubSection is correct")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Review Score > Ave Review SubSection is correct")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Google Review Score", "Ave reviews", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Review Score > Ave Review SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Google Review Score > Owner Response SubSection is correct")
+	public void userSeesTheGoogleReviewScoreOwnerResponseSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Google Review Score']['Owner Response']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Google Review Score", "Owner response", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Google Review Score",
+					"Owner response", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Review Score > Owner Response SubSection is correct")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Review Score > Owner Response SubSection is correct")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Google Review Score", "Owner response", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Review Score > Owner Response SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
 	@Then("User sees the Similar Listing Section is correct")
 	public void userSeesTheSimilarListingSectionIsCorrect() {
 

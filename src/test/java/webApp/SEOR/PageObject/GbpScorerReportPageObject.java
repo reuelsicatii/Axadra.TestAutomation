@@ -43,19 +43,16 @@ public class GbpScorerReportPageObject {
 	// Sub Section - Element Finder
 	// ===================================
 
-	public By subSectionElementFinder(String SubSectionName, String SubSectionNameType) {
+	public By subSectionElementFinder(String SectionName, String SubSectionName, String SubSectionNameType) {
 
 		By element = null;
 		if (SubSectionNameType.matches("verdict")) {
 
-			element = By.xpath("//p[contains(text(), '" + SubSectionName + "')]//ancestor::div[2]//span");
+			element = By.xpath("//div//h5[contains(text(),'" + SectionName + "')]/ancestor::div[3]//div[contains(text(), '" + SubSectionName + "')]/following-sibling::div[1]/div");
 
 		} else if (SubSectionNameType.matches("verbiage")) {
-			element = By.xpath("//p[contains(text(), '" + SubSectionName
-					+ "')]//ancestor::div[2]//div[contains(@class, 'breakdown')]/p");
+			element = By.xpath("//div//h5[contains(text(),'" + SectionName + "')]/ancestor::div[3]//div[contains(text(), '" + SubSectionName + "')]/following-sibling::div[2]");
 
-		} else {
-			// Do Nothing
 		}
 
 		return element;

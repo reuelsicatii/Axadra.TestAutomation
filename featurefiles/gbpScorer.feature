@@ -28,6 +28,25 @@ Feature: SEOR > Agency Tools > WebAudit
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
 
+  @GbpScorerReportGoogleReviewScore
+  Scenario Outline: Generate GBPScorer Report and validate Google Review Score
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel+01@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<webAuditUrl>"
+    And User clicks the most recent GBPScorer Report
+    Then User sees a new tab is open rendering the GBPScorer Report
+    And User scroll to "Google Review Score" Section
+    And User sees the Google Review Score > Google Review SubSection is correct
+    And User sees the Google Review Score > Ave Review SubSection is correct
+    And User sees the Google Review Score > Owner Response SubSection is correct
+
+    Examples: 
+      | browser | loginUrl                              | webAuditUrl                                    |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
+
   @GbpScorerReportSimilarListing
   Scenario Outline: Generate GBPScorer Report and validate Similar Listing
     Given User navigates to "<loginUrl>" using "<browser>"
@@ -38,7 +57,7 @@ Feature: SEOR > Agency Tools > WebAudit
     When User navigates to "<webAuditUrl>"
     And User clicks the most recent GBPScorer Report
     Then User sees a new tab is open rendering the GBPScorer Report
-    And User scroll to Similar Listing Section
+    And User scroll to "Similar Listings" Section
     And User sees the Similar Listing Section is correct
 
     Examples: 

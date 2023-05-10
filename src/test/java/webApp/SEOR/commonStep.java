@@ -39,9 +39,9 @@ public class commonStep extends webAppHelper {
 		try {
 
 			context.setDriver(initializeBrowser(browserName));
-			context.setWait(initializeBrowserWait(context.getDriver(), 120));
-			context.getDriver().get(url);
+			context.setWait(initializeBrowserWait(context.getDriver(), 120));			
 			context.getDriver().manage().window().maximize();
+			context.getDriver().get(url);
 
 			// Extent Report
 			context.getExtentTestScenario()

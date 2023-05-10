@@ -1,0 +1,35 @@
+{
+	"Google Post Score": {
+		"Post Found": {
+			"Looking Good": "Number of Google post is optimized",
+			"For Improvement": "Google autmoatically  removes posts after 6 months. Regularly posting content ensures that you'll have a more attractive business profile that will improve your chances of earning a click.",
+			"Critical": "No google posts found"
+		},
+		"Minimum Post": {
+			"Looking Good": "More then 5 post found in last 30 days",
+			"For Improvement": "Post are found but only2 post in last 30 days",
+			"Critical": "No Post found in last 30 days"
+		},
+		"Images in Post": {
+			"Looking Good": "Images of the business/products present and optimized",
+			"Critical": "Images not present"
+		}
+	},
+	"Google Review Score": {
+		"Review Score": {
+			"Looking Good": "Reviews found, with review less than 3 months old",
+			"For Improvement": "Reviews found, no reviews in the last 3 months",
+			"Critical": "No reviews found; Reviews are vital to building trust with your customers. Encourage customers to leave detailed reviews on Google- reviews will drive more business your way"
+		},
+		"Ave Review": {
+			"Looking Good": "Average reviews 4.2 stars or higher",
+			"For Improvement": "Average reviews 3.1 to 4.1 stars",
+			"Critical": "Average reviews 3 stars or lower; Low to middling reviews possibly turn away potential customers, it's best to get in touch with your customers to find opportunities to improve customer experience"
+		},
+		"Owner Response": {
+			"Looking Good": "All reviews have owner responses",
+			"For Improvement": "Some reviews have replies by the owner",
+			"Critical": "No owner responses to reviews found"
+		}
+	}
+}
