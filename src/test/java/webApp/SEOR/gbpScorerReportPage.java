@@ -64,6 +64,169 @@ public class gbpScorerReportPage extends webAppHelper {
 			}
 		}
 	}
+	
+
+	@Then("User sees the Google Post Score > Post Found SubSection is correct")
+	public void userSeesTheGooglePostScorePostFoundSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Google Post Score']['Post Found']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Google Post Score", "posts found", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Google Post Score", "posts found", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Post Score > Post Found SubSection is correct")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Post Score > Post Found SubSection is correct")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Google Post Score", "posts found", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Post Score > Post Found SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Google Post Score > Minimum Post SubSection is correct")
+	public void userSeesTheGooglePostScoreMinimumPostSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Google Post Score']['Minimum Post']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Google Post Score", "Minimum 4 post", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Google Post Score", "Minimum 4 post", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Post Score > Minimum Post SubSection is correct")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Post Score > Minimum Post SubSection is correct")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Google Post Score", "Minimum 4 post", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Post Score > Minimum Post SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	@Then("User sees the Google Post Score > Images in Post SubSection is correct")
+	public void userSeesTheGooglePostScoreImagesInPostSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Google Post Score']['Images in Post']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Google Post Score", "Images of the business", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Google Post Score", "Images of the business", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Post Score > Images in Post SubSection is correct")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Post Score > Images in Post SubSection is correct")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Google Post Score", "Images of the business", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Google Post Score > Images in Post SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}	
 
 	@Then("User sees the Google Review Score > Google Review SubSection is correct")
 	public void userSeesTheGoogleReviewScoreGoogleReviewSubSectionIsCorrect() throws IOException {

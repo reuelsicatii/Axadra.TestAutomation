@@ -28,6 +28,26 @@ Feature: SEOR > Agency Tools > WebAudit
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
 
+@GbpScorerReportGooglePostScore
+  Scenario Outline: Generate GBPScorer Report and validate Google Post Score
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel+01@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<webAuditUrl>"
+    And User clicks the most recent GBPScorer Report
+    Then User sees a new tab is open rendering the GBPScorer Report
+    And User scroll to "Google Post Score" Section
+    And User sees the Google Post Score > Post Found SubSection is correct
+    And User sees the Google Post Score > Minimum Post SubSection is correct
+    And User sees the Google Post Score > Images in Post SubSection is correct
+
+    Examples: 
+      | browser | loginUrl                              | webAuditUrl                                    |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
+
+
   @GbpScorerReportGoogleReviewScore
   Scenario Outline: Generate GBPScorer Report and validate Google Review Score
     Given User navigates to "<loginUrl>" using "<browser>"
