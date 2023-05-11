@@ -41,7 +41,7 @@ Feature: SEOR > Agency Tools > WebAudit
     And User scroll to "Google Post Score" Section
     And User sees the Google Post Score > Post Found SubSection is correct
     And User sees the Google Post Score > Minimum Post SubSection is correct
-    And User sees the Google Post Score > Images in Post SubSection is correct
+    And User sees the Google Post Score > Images in Post SubSection is correct 
 
     Examples: 
       | browser | loginUrl                              | webAuditUrl                                    |
