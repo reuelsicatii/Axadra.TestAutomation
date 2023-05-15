@@ -1,4 +1,46 @@
 {
+	"Business Profile Score": {
+		"Phone Number Found": {
+			"Looking Good": "Phone number listed",
+			"Critical": "Phone number NOT listed; A working, updated phone number must be present in your profile to give potential customers a way to get in touch-- this is essential for getting leads"
+		},
+		"Hours in Operation": {
+			"Looking Good": "Hours in Operation specified",
+			"Critical": "Hours in Operation NOT specified; Listing your operating hours lets customers know if you're available or when is the best time to visit, or if you're open on holidays or your seasonal hours."
+		},
+		"Business Description": {
+			"Looking Good": "Business title and description are found",
+			"Critical": "Business title and description are NOT found; Business title and description to give customers useful information on your business services and products, including history of your business."
+		},
+		"Business Category": {
+			"Looking Good": "Business Categories are found.",
+			"Critical": "Business category NOT found; Categories help your describe your core business to customers; they must be as specific as possible, but representative of your main business"
+		},
+		"Services Offered": {
+			"Looking Good": "Business attributes further define servicability options for your customers",
+			"Critical": "Business attributes are NOT found"
+		},
+		"Payment Option": {
+			"Looking Good": "Payment option found",
+			"Critical": "No Payment option found"
+		},
+		"URLDomain": {
+			"Looking Good": "URL and Domain is found",
+			"Critical": "No URL/Domain found; The website represents your individual business location"
+		},
+		"Google Business Profile Verified": {
+			"Looking Good": "Google Business Profile is Verified",
+			"Critical": "Google Business Profile is NOT Verified"
+		},
+		"Business Logo Found": {
+			"Looking Good": "Business logo present",
+			"Critical": "Business logo NOT found"
+		},
+		"Minimum 3 business photos": {
+			"Looking Good": "Number of Business Photos are acceptable",
+			"Critical": "Number of Business Photos are below acceptable; Business photos summarize the business and what it can do for its customers including photos of exterior and interior of your business location and your products/goods"
+		}
+	},
 	"Google Post Score": {
 		"Post Found": {
 			"Looking Good": "Number of Google post is optimized",

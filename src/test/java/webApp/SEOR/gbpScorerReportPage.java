@@ -65,7 +65,546 @@ public class gbpScorerReportPage extends webAppHelper {
 		}
 	}
 	
+	@Then("User sees the Business Profile Score > Phone Number Found SubSection is correct")
+	public void userSeesTheBusinessProfilePhoneNumberFoundSubSectionIsCorrect() throws IOException {
 
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Business Profile Score']['Phone Number Found']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Business Profile Score", "Phone Number Found", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "Phone Number Found", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Phone Number Found SubSection is correct  ")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Phone Number Found SubSection is correct  ")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Business Profile Score", "Phone Number Found", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Phone Number Found SubSection is correct  ")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Business Profile Score > Hours in Operation SubSection is correct")
+	public void userSeesTheBusinessProfileScoreHoursInOperationSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Business Profile Score']['Hours in Operation']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Business Profile Score", "Hours in Operation", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "Hours in Operation", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Hours in Operation SubSection is correct  ")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Hours in Operation SubSection is correct  ")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Business Profile Score", "Hours in Operation", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Hours in Operation SubSection is correct  ")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Business Profile Score > Business Description SubSection is correct")
+	public void userSeesTheBusinessProfileScoreBusinessDescriptionSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Business Profile Score']['Business Description']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Business Profile Score", "Business Description", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "Business Description", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Business Description SubSection is correct  ")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Business Description SubSection is correct  ")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Business Profile Score", "Business Description", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Business Description SubSection is correct  ")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Business Profile Score > Business Category SubSection is correct")
+	public void userSeesTheBusinessProfileScoreBusinessCategorySubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Business Profile Score']['Business Category']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Business Profile Score", "Business Category", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "Business Category", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Business Category SubSection is correct  ")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Business Category SubSection is correct  ")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Business Profile Score", "Business Category", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Business Category SubSection is correct  ")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Business Profile Score > Services Offered SubSection is correct")
+	public void userSeesTheBusinessProfileScoreServicesOfferedSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Business Profile Score']['Services Offered']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Business Profile Score", "Services Offered", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "Services Offered", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Services Offered SubSection is correct  ")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Services Offered SubSection is correct  ")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Business Profile Score", "Services Offered", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Services Offered SubSection is correct  ")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Business Profile Score > Payment Option SubSection is correct")
+	public void userSeesTheBusinessProfileScorePaymentOptionSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Business Profile Score']['Payment Option']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Business Profile Score", "Payment Option", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "Payment Option", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Payment Option SubSection is correct ")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Payment Option SubSection is correct ")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Business Profile Score", "Payment Option", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Payment Option SubSection is correct ")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Business Profile Score > URLDomain SubSection is correct")
+	public void userSeesTheBusinessProfileScoreURLDomainSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Business Profile Score']['URLDomain']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Business Profile Score", "URL", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "URL", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > URL/Domain SubSection is correct ")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > URL/Domain SubSection is correct ")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Business Profile Score", "URL", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > URL/Domain SubSection is correct ")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Business Profile Score > Google Business Profile Verified SubSection is correct")
+	public void userSeesTheBusinessProfileScoreGoogleBusinessProfileVerifiedSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Business Profile Score']['Google Business Profile Verified']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Business Profile Score", "Google Business Profile Verified", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "Google Business Profile Verified", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Google Business Profile Verified SubSection is correct")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Google Business Profile Verified SubSection is correct")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Business Profile Score", "Google Business Profile Verified", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Google Business Profile Verified SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Business Profile Score > Business Logo Found SubSection is correct")
+	public void userSeesTheBusinessProfileScoreBusinessLogoFoundSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Business Profile Score']['Business Logo Found']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Business Profile Score", "Business Logo Found", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "Business Logo Found", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Business Logo Found SubSection is correct")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Business Logo Found SubSection is correct")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Business Profile Score", "Business Logo Found", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Business Logo Found SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Business Profile Score > Minimum 3 business photos SubSection is correct")
+	public void userSeesTheBusinessProfileScoreMinimumBusinessPhotosSubSectionIsCorrect() throws IOException {
+
+		try {
+			// Step Definition
+			String expected_verbiage = JsonPath
+					.read(getGbpScorerReportVerbiages(),
+							"$.['Business Profile Score']['Minimum 3 business photos']['"
+									+ context.getDriver()
+											.findElement(gbpScorerReportPageObject.subSectionElementFinder(
+													"Business Profile Score", "Minimum 3 business photos", "verdict"))
+											.getText()
+									+ "']");
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "Minimum 3 business photos", "verbiage")).getText().contains(expected_verbiage)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Minimum 3 business photos SubSection is correct")
+						.pass("PASSED");
+			}
+
+			else {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Minimum 3 business photos SubSection is correct")
+						.fail("FAILED" 
+								+ "<br>" 
+								+ "Expected - verbiage: " 
+								+ expected_verbiage 
+								+ "<br>"
+								+ "Actual - verbiage: "
+								+ context.getDriver().findElement(gbpScorerReportPageObject
+										.subSectionElementFinder("Business Profile Score", "Minimum 3 business photos", "verbiage"))
+										.getText());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Business Profile Score > Minimum 3 business photos SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
 	@Then("User sees the Google Post Score > Post Found SubSection is correct")
 	public void userSeesTheGooglePostScorePostFoundSubSectionIsCorrect() throws IOException {
 

@@ -28,6 +28,32 @@ Feature: SEOR > Agency Tools > WebAudit
       | browser | loginUrl                              | webAuditUrl                                |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/audits |
 
+@GbpScorerReportBusinessProfileScore
+  Scenario Outline: Generate GBPScorer Report and validate Business Profile Score
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel+01@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<webAuditUrl>"
+    And User clicks the most recent GBPScorer Report
+    Then User sees a new tab is open rendering the GBPScorer Report
+    And User scroll to "Google Post Score" Section
+    And User sees the Business Profile Score > Phone Number Found SubSection is correct
+    And User sees the Business Profile Score > Hours in Operation SubSection is correct
+    And User sees the Business Profile Score > Business Description SubSection is correct 
+    And User sees the Business Profile Score > Business Category SubSection is correct
+    And User sees the Business Profile Score > Services Offered SubSection is correct 
+    And User sees the Business Profile Score > Payment Option SubSection is correct
+    And User sees the Business Profile Score > URLDomain SubSection is correct 
+    And User sees the Business Profile Score > Google Business Profile Verified SubSection is correct
+    And User sees the Business Profile Score > Business Logo Found SubSection is correct
+    And User sees the Business Profile Score > Minimum 3 business photos SubSection is correct  
+
+    Examples: 
+      | browser | loginUrl                              | webAuditUrl                                    |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
+
 @GbpScorerReportGooglePostScore
   Scenario Outline: Generate GBPScorer Report and validate Google Post Score
     Given User navigates to "<loginUrl>" using "<browser>"
