@@ -1,8 +1,22 @@
 package webApp.SEOR.PageObject;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import helper.webAppContextDriver;
 
 public class GbpScorerReportPageObject {
+
+	// Page Elements - Summary Chart Section
+	// ==========================================
+	public By summaryChartSection = By.xpath("//div[contains(@class, 'summary-section-chart')]");
+	public By summaryChartSection_profileScore = By.xpath("//h5[text()='Profile Score']/following-sibling::div[1]//h2");
+	public By summaryChartSection_postScore = By.xpath("//h5[text()='Post Score']/following-sibling::div[1]//h2");
+	public By summaryChartSection_reviewScore = By.xpath("//h5[text()='Review Score']/following-sibling::div[1]//h2");
+
+	
 
 	// Page Elements - Recent Review Section
 	// ==========================================
@@ -42,60 +56,39 @@ public class GbpScorerReportPageObject {
 
 	// Sub Section - Element Finder
 	// ===================================
-
 	public By subSectionElementFinder(String SectionName, String SubSectionName, String SubSectionNameType) {
 
-		By element = null;
+		By elementBy = null;
 		if (SubSectionNameType.matches("verdict")) {
 
-			element = By.xpath("//div//h5[contains(text(),'" + SectionName + "')]/ancestor::div[3]//div[contains(text(), '" + SubSectionName + "')]/following-sibling::div[1]/div");
+			elementBy = By
+					.xpath("//div//h5[contains(text(),'" + SectionName + "')]/ancestor::div[3]//div[contains(text(), '"
+							+ SubSectionName + "')]/following-sibling::div[1]/div");
 
 		} else if (SubSectionNameType.matches("verbiage")) {
-			element = By.xpath("//div//h5[contains(text(),'" + SectionName + "')]/ancestor::div[3]//div[contains(text(), '" + SubSectionName + "')]/following-sibling::div[2]");
+			elementBy = By
+					.xpath("//div//h5[contains(text(),'" + SectionName + "')]/ancestor::div[3]//div[contains(text(), '"
+							+ SubSectionName + "')]/following-sibling::div[2]");
+
+		}
+		else if (SubSectionNameType.matches("verdicts")) {
+			elementBy = By
+					.xpath("//div//h5[contains(text(),'"+ SectionName + "')]/ancestor::div[3]/div[2]/div[2]/div/div[2]");
+
+		}
+		else if (SubSectionNameType.matches("rating")) {
+			elementBy = By
+					.xpath("//div//h5[contains(text(),'" + SectionName + "')]/ancestor::div[3]/div[2]//h2");
 
 		}
 
-		return element;
+		return elementBy;
 
 	}
 
 	public By subSectionElementParentH3Finder(String SubSectionName) {
 
 		return By.xpath("//p[contains(text(), '" + SubSectionName + "')]//parent::div/h3");
-
-	}
-
-	public By subSectionSocialElementFinder(String SubSectionName, String SubSectionNameType) {
-
-		By element = null;
-		if (SubSectionNameType.matches("verdict")) {
-
-			element = By.xpath("//div[@id='" + SubSectionName + "']/div[2]/div[1]");
-
-		} else if (SubSectionNameType.matches("verbiage")) {
-			element = By.xpath("//div[@id='" + SubSectionName + "']/div[2]/div[2]");
-
-		} else if (SubSectionNameType.matches("verbiagerow1")) {
-			element = By.xpath("(//div[@id='" + SubSectionName + "']/div[2]/div[2]//h3)[1]");
-
-		} else if (SubSectionNameType.matches("verbiagerow2")) {
-			element = By.xpath("(//div[@id='" + SubSectionName + "']/div[2]/div[2]//h3)[2]");
-
-		} else if (SubSectionNameType.matches("verbiagerow3")) {
-			element = By.xpath("(//div[@id='" + SubSectionName + "']/div[2]/div[2]//h3)[3]");
-
-		} else if (SubSectionNameType.matches("verbiagerow4")) {
-			element = By.xpath("(//div[@id='" + SubSectionName + "']/div[2]/div[2]//h3)[4]");
-
-		}
-
-		return element;
-
-	}
-
-	public By subSectionSocialElementParentH3Finder(String SubSectionName, String colNumber) {
-
-		return By.xpath("(//div[@id='" + SubSectionName + "']//div[@class='row']/div)[" + colNumber + "]");
 
 	}
 
