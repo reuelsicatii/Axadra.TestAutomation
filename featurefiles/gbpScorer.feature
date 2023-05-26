@@ -25,8 +25,27 @@ Feature: SEOR > Agency Tools > WebAudit
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report | reuel+01@axadra.com      | asdasdasd       |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
 
+  @GbpScorerReportSummarySection
+  Scenario Outline: Generate GBPScorer Report and validate Summary Section
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel+01@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<webAuditUrl>"
+    And User clicks the most recent GBPScorer Report
+    Then User sees a new tab is open rendering the GBPScorer Report
+    And User scroll to Summary Chart Section
+    Then User sees the Summary > Detail SubSection is correct
+    And User sees the Summary > Score SubSection is correct
+    And User sees the Summary > Map SubSection is correct
+
+    Examples: 
+      | browser | loginUrl                              | webAuditUrl                                    |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
+
   @GbpScorerReportSummarySectionChart
-  Scenario Outline: Generate GBPScorer Report and validate Business Profile Score
+  Scenario Outline: Generate GBPScorer Report and validate Summary Section Chart
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "reuel+01@axadra.com"
     And User enter the password as "asdasdasd"

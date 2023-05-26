@@ -17,7 +17,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
 		glue = { "webApp.SEOR"},
-		tags =  "@GbpScorerReportRecentReview or @GenerateGbpScorerReport or @GbpScorerReportSimilarListing or @GbpScorerReportGoogleReviewScore or @GbpScorerReportGooglePostScore or @GbpScorerReportBusinessProfileScore",
+		tags =  "@SEOR_AgencyTools_GbpScorer",
 		plugin =  {				
 				"pretty",
 				"html:reports/results.html",

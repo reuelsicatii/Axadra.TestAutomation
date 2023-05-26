@@ -8,15 +8,21 @@ import org.openqa.selenium.WebElement;
 import helper.webAppContextDriver;
 
 public class GbpScorerReportPageObject {
+	
+	// Page Elements - Summary Chart Section
+	// ==========================================
+	public By summarySection_BusinessName = By.xpath("//div[@class='summary-section row']//td[text()='Business Name']/following-sibling::td");
+	public By summarySection_BusinessAddress = By.xpath("//div[@class='summary-section row']//td[text()='Business Address']/following-sibling::td");
+	public By summarySection_BusinessCategory = By.xpath("//div[@class='summary-section row']//td[text()='Business Category']/following-sibling::td");
+	public By summarySection_Score = By.xpath("//div[@class='summary-section row']//h2");
+	public By summarySection_Map = By.xpath("//div[@class='summary-section row']//iframe");
 
 	// Page Elements - Summary Chart Section
 	// ==========================================
 	public By summaryChartSection = By.xpath("//div[contains(@class, 'summary-section-chart')]");
 	public By summaryChartSection_profileScore = By.xpath("//h5[text()='Profile Score']/following-sibling::div[1]//h2");
 	public By summaryChartSection_postScore = By.xpath("//h5[text()='Post Score']/following-sibling::div[1]//h2");
-	public By summaryChartSection_reviewScore = By.xpath("//h5[text()='Review Score']/following-sibling::div[1]//h2");
-
-	
+	public By summaryChartSection_reviewScore = By.xpath("//h5[text()='Review Score']/following-sibling::div[1]//h2");	
 
 	// Page Elements - Recent Review Section
 	// ==========================================

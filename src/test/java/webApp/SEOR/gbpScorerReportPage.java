@@ -32,6 +32,165 @@ public class gbpScorerReportPage extends webAppHelper {
 
 	// Page Step Definition
 	// =================================================
+	@Then("User sees the Summary > Detail SubSection is correct")
+	public void userSeesTheSummaryDetailSubSectionIsCorrect() throws IOException {
+
+		try {			
+			
+			if (!context.getDriver().findElement(gbpScorerReportPageObject.summarySection_BusinessName).getText().isEmpty() && 
+					!context.getDriver().findElement(gbpScorerReportPageObject.summarySection_BusinessAddress).getText().isEmpty() && 
+					!context.getDriver().findElement(gbpScorerReportPageObject.summarySection_BusinessCategory).getText().isEmpty()) {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Summary > Detail SubSection is correct").pass("PASSED"
+								+ "<br>" 							
+								+ "Actual - Business Name : "
+								+ context.getDriver().findElement(
+										gbpScorerReportPageObject.summarySection_BusinessName).getText()
+								+ "<br>" 							
+								+ "Actual - Business Address : "
+								+ context.getDriver().findElement(
+										gbpScorerReportPageObject.summarySection_BusinessAddress).getText()
+								+ "<br>" 							
+								+ "Actual - Business Category : "
+								+ context.getDriver().findElement(
+										gbpScorerReportPageObject.summarySection_BusinessCategory).getText()
+										);
+			}
+
+			else {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Summary > Detail SubSection is correct").fail("FAILED" 
+										+ "<br>" 							
+										+ "Actual - Business Name : "
+										+ context.getDriver().findElement(
+												gbpScorerReportPageObject.summarySection_BusinessName).getText()
+										+ "<br>" 							
+										+ "Actual - Business Address : "
+										+ context.getDriver().findElement(
+												gbpScorerReportPageObject.summarySection_BusinessAddress).getText()
+										+ "<br>" 							
+										+ "Actual - Business Category : "
+										+ context.getDriver().findElement(
+												gbpScorerReportPageObject.summarySection_BusinessCategory).getText()
+												);
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Summary > Detail SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Summary > Score SubSection is correct")
+	public void userSeesTheSummaryScoreSubSectionIsCorrect() throws IOException {
+
+		try {
+			
+			
+			double expectedScore = Math.round
+					(
+						(( 
+						  Double.parseDouble(context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_profileScore).getText().replace("%", "")) 
+						+ Double.parseDouble(context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_postScore).getText().replace("%", ""))
+						+ Double.parseDouble(context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_reviewScore).getText().replace("%", ""))
+						)/3)
+					);
+			
+			
+			double actualScore = Double.parseDouble(context.getDriver().findElement(gbpScorerReportPageObject.summarySection_Score).getText().replace("%", ""));
+			
+			
+			if ( expectedScore == actualScore) {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Summary > Score SubSection is correct").pass("PASSED"
+								+ "<br>" 							
+								+ "Expected - Score : " + expectedScore
+								+ "<br>" 							
+								+ "Actual - Score : " + actualScore
+										);
+			}
+
+			else {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Summary > Score SubSection is correct").fail("FAILED" 
+								+ "<br>" 							
+								+ "Expected - Score : " + expectedScore
+								+ "<br>" 							
+								+ "Actual - Score : " + actualScore
+										);
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Summary > Score SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
+	@Then("User sees the Summary > Map SubSection is correct")
+	public void userSeesTheSummaryMapSubSectionIsCorrect() throws IOException {
+
+		try {
+						
+			if (context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_profileScore).getSize().getHeight() != 0) {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Summary > Map SubSection is correct").pass("PASSED"
+								+ "<br>" 							
+								+ "Actual - Map Dimension : " 
+								+ context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_profileScore).getSize().toString()
+										);
+			}
+
+			else {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User sees the Summary > Map SubSection is correct").fail("FAILED" 
+								+ "<br>" 							
+								+ "Actual - Map Dimension : " 
+								+ context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_profileScore).getSize().toString()
+										);
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Summary > Map SubSection is correct")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+	
 	@Then("User scroll to Summary Chart Section")
 	public void userScrollToSummaryChartSection() {
 
