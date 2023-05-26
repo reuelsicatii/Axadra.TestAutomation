@@ -314,7 +314,7 @@ public class gbpScorerReportPage extends webAppHelper {
 					postScore = postScore + 50;
 				} 
 				
-				else if (i == 0 && verdicts.get(i).getText().equals("For Improvements")) {
+				else if (i == 0 && verdicts.get(i).getText().equals("For Improvement")) {
 					postScore = postScore + 25;
 				} 
 				
@@ -322,7 +322,7 @@ public class gbpScorerReportPage extends webAppHelper {
 					postScore = postScore + 30;
 				} 
 				
-				else if (i == 1 && verdicts.get(i).getText().equals("For Improvements")) {
+				else if (i == 1 && verdicts.get(i).getText().equals("For Improvement")) {
 					postScore = postScore + 15;
 				} 
 				
@@ -403,7 +403,7 @@ public class gbpScorerReportPage extends webAppHelper {
 					reviewScore = reviewScore + 50;
 				} 
 				
-				else if (i == 0 && verdicts.get(i).getText().equals("For Improvements")) {
+				else if (i == 0 && verdicts.get(i).getText().equals("For Improvement")) {
 					reviewScore = reviewScore + 25;
 				} 
 				
@@ -411,7 +411,7 @@ public class gbpScorerReportPage extends webAppHelper {
 					reviewScore = reviewScore + 30;
 				} 
 				
-				else if (i == 1 && verdicts.get(i).getText().equals("For Improvements")) {
+				else if (i == 1 && verdicts.get(i).getText().equals("For Improvement")) {
 					reviewScore = reviewScore + 15;
 				} 
 				
@@ -419,7 +419,7 @@ public class gbpScorerReportPage extends webAppHelper {
 					reviewScore = reviewScore + 20;
 				}		
 				
-				else if (i == 2 && verdicts.get(i).getText().equals("For Improvements")) {
+				else if (i == 2 && verdicts.get(i).getText().equals("For Improvement")) {
 					reviewScore = reviewScore + 10;
 				}	
 				
