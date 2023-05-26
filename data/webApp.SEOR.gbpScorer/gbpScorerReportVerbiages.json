@@ -43,13 +43,13 @@
 	},
 	"Google Post Score": {
 		"Post Found": {
-			"Looking Good": "Number of Google post is optimized",
+			"Looking Good": "Google post content optimized",
 			"For Improvement": "Google posts unoptimized (phone stuffing or other content that violates GBP content policies found)",
 			"Critical": "No google posts found"
 		},
 		"Minimum Post": {
 			"Looking Good": "More then 5 post found in last 30 days",
-			"For Improvement": "Post are found but only2 post in last 30 days",
+			"For Improvement": "Post are found but only less than 3 posts in last 30 days",
 			"Critical": "No Post found in last 30 days"
 		},
 		"Images in Post": {
