@@ -860,34 +860,34 @@ public class webAuditReportPage extends webAppHelper {
 					context.getDriver().findElement(subSectionElementFinder("redirection", "verdict")));
 
 			context.getWait()
-					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Title", "verdict")));
+					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("itle", "verdict")));
 
 			try {
 				String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
 						"$.['Organic Traffic']['On-Page SEO']['Title']['"
-								+ context.getDriver().findElement(subSectionElementFinder("Title", "verdict")).getText()
+								+ context.getDriver().findElement(subSectionElementFinder("itle", "verdict")).getText()
 								+ "']");
 
 				// validate verbiage against actual
 				context.getSoftAssert()
-						.assertEquals(context.getDriver().findElement(subSectionElementFinder("Title", "verbiage"))
+						.assertEquals(context.getDriver().findElement(subSectionElementFinder("itle", "verbiage"))
 								.getText().contains(expected_verbiage), true);
 
 			} catch (Exception e) {
 				JSONArray expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
 						"$.['Organic Traffic']['On-Page SEO']['Title']['"
-								+ context.getDriver().findElement(subSectionElementFinder("Title", "verdict")).getText()
+								+ context.getDriver().findElement(subSectionElementFinder("itle", "verdict")).getText()
 								+ "']");
 
 				// validate verbiage against actual
 				for (int i = 0; i < expected_verbiage.size(); i++) {
 
 					if (expected_verbiage.get(i).toString().equals(
-							context.getDriver().findElement(subSectionElementFinder("Title", "verbiage")).getText()))
+							context.getDriver().findElement(subSectionElementFinder("itle", "verbiage")).getText()))
 						;
 					{
 						context.getSoftAssert().assertEquals(
-								context.getDriver().findElement(subSectionElementFinder("Title", "verbiage")).getText()
+								context.getDriver().findElement(subSectionElementFinder("itle", "verbiage")).getText()
 										.contains(expected_verbiage.get(i).toString()),
 								true);
 
