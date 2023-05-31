@@ -1,6 +1,7 @@
 package webApp.SEOR;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.apache.commons.lang3.StringUtils;
@@ -11,10 +12,10 @@ import com.aventstack.extentreports.GherkinKeyword;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import testAuto.Service.LeadFinderService;
 import webApp.SEOR.PageObject.LeadFinderSearchHistoryPageObject;
+import webApp.SEOR.PageObject.LeadFinderSearchResultPageObject;
 
 public class leadFinderPage extends webAppHelper {
 
@@ -25,6 +26,7 @@ public class leadFinderPage extends webAppHelper {
 	// Page Object
 	// ==========================================
 	LeadFinderSearchHistoryPageObject leadFinderSearchHistoryPageObject = new LeadFinderSearchHistoryPageObject();
+	LeadFinderSearchResultPageObject leadFinderSearchResultPageObject = new LeadFinderSearchResultPageObject();
 
 	// Declare Driver Instance
 	// ==========================================
@@ -38,7 +40,7 @@ public class leadFinderPage extends webAppHelper {
 	// Page Step Definition
 	// =================================================
 	@When("User generates Leads")
-	public void userGeneratesAGbpScorerReport() throws Throwable {
+	public void userGeneratesLeads() throws Throwable {
 
 		// Step Definition
 		HashMap<String, String> searchDetails = leadFinderService.RetrieveKeywordLocationFrom("PROD_CENTRAL");
@@ -56,28 +58,32 @@ public class leadFinderPage extends webAppHelper {
 		try {
 			// Step Definition
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.keyword_inputfield)
+					// .sendKeys("Real Estate");
 					.sendKeys(searchDetails.get("keyword"));
 			Thread.sleep(2000);
 
 			context.getWait().until(ExpectedConditions
 					.presenceOfElementLocated(leadFinderSearchHistoryPageObject.keyword_suggestionList));
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.keyword_suggestionList).click();
+			Thread.sleep(2000);
 
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.location_inputfield)
+					// .sendKeys("Dubai - United Arab Emirates");
 					.sendKeys(searchDetails.get("location"));
 			Thread.sleep(2000);
 
 			context.getWait().until(ExpectedConditions
 					.presenceOfElementLocated(leadFinderSearchHistoryPageObject.location_suggestionList));
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.location_suggestionList).click();
+			Thread.sleep(2000);
 
 			context.getWait()
 					.until(ExpectedConditions.elementToBeClickable(leadFinderSearchHistoryPageObject.findLeads_button));
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.findLeads_button).click();
+			Thread.sleep(5000);
 
 			// Check Lead is generated
 			// ==================================================
-
 			int x = 0;
 			while (true) {
 
@@ -97,15 +103,71 @@ public class leadFinderPage extends webAppHelper {
 
 					}
 
-					else if (context.getDriver()
-							.findElement(By.xpath(
-									"//h2[text()='" + finalKeyword + "in " + searchDetails.get("location") + "']"))
+					else if (context.getDriver().findElement(leadFinderSearchHistoryPageObject.findLeads_button)
 							.isDisplayed()) {
 
-						// Extent Report
-						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-								"User generates a Leads for " + finalKeyword + "in " + searchDetails.get("location"))
-								.pass("PASSED");
+						Thread.sleep(20000);
+						System.out.println("...hard reloading the page");
+						context.getDriver().executeScript("location.reload(true);");
+						Thread.sleep(10000);
+
+						try {
+
+							context.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
+									leadFinderSearchResultPageObject.leadGeneratorResult_tableRow));
+
+							if (context.getDriver()
+									.findElements(leadFinderSearchResultPageObject.leadGeneratorResult_tableRow)
+									.size() >= 2) {
+
+								// Extent Report
+								context.getExtentTestScenario()
+										.createNode(new GherkinKeyword("When"),
+												"User generates a Leads for " + finalKeyword + "in "
+														+ searchDetails.get("location"))
+										.pass("PASSED: Redirected to RESULT PAGE");
+							}
+
+							else {
+
+								// Extent Report
+								context.getExtentTestScenario()
+										.createNode(new GherkinKeyword("When"), "User generates a Leads for "
+												+ finalKeyword + "in " + searchDetails.get("location"))
+										.fail("FAILED: No Leads Found");
+							}
+
+						} catch (Exception e) {
+
+							context.getWait().until(ExpectedConditions.visibilityOfElementLocated(
+									leadFinderSearchResultPageObject.searchLeadStatus_span));
+							if (context.getDriver().findElement(leadFinderSearchResultPageObject.searchLeadStatus_span)
+									.getText().contains("EXPIRED")) {
+
+								// Extent Report
+								context.getExtentTestScenario()
+										.createNode(new GherkinKeyword("When"),
+												"User generates a Leads for " + finalKeyword + "in "
+														+ searchDetails.get("location"))
+										.fail("FAILED: Status is EXPIRED");
+							}
+
+							else if (context.getDriver()
+									.findElement(leadFinderSearchResultPageObject.searchLeadStatus_span).getText()
+									.contains("COMPLETED")) {
+
+								// Extent Report
+								context.getExtentTestScenario()
+										.createNode(new GherkinKeyword("When"),
+												"User generates a Leads for " + finalKeyword + "in "
+														+ searchDetails.get("location"))
+										.pass("PASSED: Status is COMPLETED however not redirected to RESULT PAGE");
+
+								context.getDriver().findElement(leadFinderSearchResultPageObject.searchLeadResult_link)
+										.click();
+
+							}
+						}
 
 						// exit the loop
 						System.out.println("Exiting whileloop");
@@ -118,6 +180,7 @@ public class leadFinderPage extends webAppHelper {
 					Thread.sleep(10000);
 					x = x + 10;
 					System.out.println("Lead Finder generation, waiting for " + x + "sec");
+
 				}
 
 			}
@@ -138,95 +201,116 @@ public class leadFinderPage extends webAppHelper {
 
 	}
 
-	@When("User clicks the most recent GBPScorer Reportasd")
-	public void userClicksTheMostRecentGBPScorerReportasd() {
+	@When("User save all leads to new list")
+	public void userSaveAllLeadsToNewList() {
+
+		String newListName = new SimpleDateFormat("yyMMdd_HHmmss").format(new Date()).toString();
 
 		try {
-			/*
-			 * // Step Definition
-			 * context.getWait().until(ExpectedConditions.presenceOfElementLocated(
-			 * recent_GbpScorerReport));
-			 * context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
-			 * context.getDriver().findElement(recent_GbpScorerReport));
-			 * context.getDriver().findElement(recent_GbpScorerReport).click();
-			 */
 
-			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User clicks the most recent WebAuditReport")
-					.pass("PASSED");
-
-		} catch (Exception e) {
-
-			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User clicks the most recent WebAuditReport")
-						.fail("FAILED: " + e.getMessage());
-			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-	}
+				if (context.getDriver().findElements(leadFinderSearchResultPageObject.leadGeneratorResult_tableRow)
+						.size() <= 1) {
 
-	@Then("User sees a new tab is open rendering the GBPScorer Reportasd")
-	public void userSeesANewTabIsOpenRederingTheGbpScorerReportasd() {
-
-		try {
-			// Step Definition
-			ArrayList<String> newTb = new ArrayList<String>(context.getDriver().getWindowHandles());
-			context.getDriver().switchTo().window(newTb.get(1));
-
-			// Test Purposes - control REPORT generation
-			// Thread.sleep(5000);
-			// context.getDriver().get("https://myreports.app/reports/view/991d4cf7-4f45-452e-a96d-3ed772e833a7");
-
-			System.out.println("...starting to loop");
-
-			int x = 0;
-			while (true) {
-
-				System.out.println("...looping");
-
-				try {
-
-					System.out.println("...waiting for page to load");
-
-					if (x == 2 || context.getDriver()
-							.findElement(By.xpath("//body//div[contains(@class, 'summary-section row')]")) != null) {
-						System.out.println("...exiting loop");
-						break;
-					}
-
-				} catch (Exception e) {
-					System.out.println("...hard reloading the page");
-					context.getDriver().executeScript("location.reload(true);");
-					Thread.sleep(60000);
-					x++;
+					// Extent Report
+					context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User generates a Leads")
+							.fail("FAILED: No Leads Found");
 				}
 
-			}
+				else if (context.getDriver().findElements(leadFinderSearchResultPageObject.leadGeneratorResult_tableRow)
+						.size() >= 2) {
 
-			// Extent Report
-			Thread.sleep(2000);
-			context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-					"User sees a new tab is open rendering the GBPScorer Report").pass("PASSED");
+					Integer allLeadsCount = context.getDriver()
+							.findElements(leadFinderSearchResultPageObject.leadGeneratorResult_tableRow).size();
+
+					// click SaveAll button
+					context.getWait().until(ExpectedConditions
+							.visibilityOfElementLocated(leadFinderSearchResultPageObject.saveAll_button));
+					context.getDriver().findElement(leadFinderSearchResultPageObject.saveAll_button).click();
+					Thread.sleep(5000);
+
+					// click SaveAll dropdown
+					context.getWait().until(ExpectedConditions
+							.visibilityOfElementLocated(leadFinderSearchResultPageObject.saveAll_dropdown));
+					context.getDriver().findElement(leadFinderSearchResultPageObject.saveAll_dropdown).click();
+					Thread.sleep(5000);
+
+					// click Add New List Option
+					context.getWait().until(ExpectedConditions
+							.visibilityOfElementLocated(leadFinderSearchResultPageObject.addNewList_option));
+					context.getDriver().findElement(leadFinderSearchResultPageObject.addNewList_option).click();
+					Thread.sleep(5000);
+
+					// Input New List Name
+					context.getWait().until(ExpectedConditions
+							.visibilityOfElementLocated(leadFinderSearchResultPageObject.addNewListName_textfield));
+					context.getDriver().findElement(leadFinderSearchResultPageObject.addNewListName_textfield)
+							.sendKeys(newListName);
+					Thread.sleep(5000);
+
+					// click Add New List button
+					context.getWait().until(ExpectedConditions
+							.visibilityOfElementLocated(leadFinderSearchResultPageObject.addNewList_button));
+					context.getDriver().findElement(leadFinderSearchResultPageObject.addNewList_button).click();
+					Thread.sleep(5000);
+
+					// click List tab
+					context.getWait().until(
+							ExpectedConditions.visibilityOfElementLocated(leadFinderSearchResultPageObject.list_link));
+					context.getDriver().findElement(leadFinderSearchResultPageObject.list_link).click();
+					Thread.sleep(5000);
+
+					context.getWait().until(ExpectedConditions.visibilityOfElementLocated(
+							leadFinderSearchResultPageObject.listName_link(newListName, allLeadsCount.toString())));
+
+					if (context.getDriver().findElement(
+							leadFinderSearchResultPageObject.listName_link(newListName, allLeadsCount.toString()))
+							.isDisplayed()) {
+
+						// Extent Report
+						context.getExtentTestScenario()
+								.createNode(new GherkinKeyword("When"), "User save all leads to new list")
+								.pass("PASSED: Leads are save");
+					}
+
+					else {
+						// Extent Report
+						context.getExtentTestScenario()
+								.createNode(new GherkinKeyword("When"), "User save all leads to new list")
+								.fail("FAILED: Leads are NOT save");
+					}
+
+				}
+
+			} catch (Exception e) {
+				if (context.getDriver().findElement(leadFinderSearchResultPageObject.searchLeadStatus_span).getText()
+						.contains("EXPIRED")) {
+
+					// Extent Report
+					context.getExtentTestScenario()
+							.createNode(new GherkinKeyword("When"), "User save all leads to new list")
+							.fail("FAILED: Status is EXPIRED");
+				}
+
+				else {
+					// Extent Report
+					context.getExtentTestScenario()
+							.createNode(new GherkinKeyword("When"), "User save all leads to new list").fail("FAILED");
+				}
+			}
 
 		} catch (Exception e) {
 
 			// Extent Report
 			try {
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"),
-								"User sees a new tab is open rendering the GBPScorer Report")
+						.createNode(new GherkinKeyword("When"), "User save all leads to new list")
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
-
 	}
 
 }

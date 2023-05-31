@@ -11,11 +11,13 @@ public class LeadFinderSearchHistoryPageObject {
 	
 	// Lead Finder - Search
 	// ==========================================
+	public By leadGeneratorHistory_tableRow = By.xpath("//table[@id='lead-generator-history-table']//tbody/tr");
 	public By keyword_inputfield = By.xpath("//div[@class='tab-content']//input[@id='keyword']");
 	public By keyword_suggestionList = By.xpath("//div[@class='tab-content']//div[@id='keyword-suggestions-wrapper']//div[1]");
 	public By location_inputfield = By.xpath("//div[@class='tab-content']//input[@id='location']");
 	public By location_suggestionList = By.xpath("//div[@class='tab-content']//div[@id='location-suggestions-wrapper']//div[1]");
 	public By findLeads_button = By.xpath("//input[@id='generate-lead']");
+	public By processing_button = By.xpath("//button[contains(text(), 'Processing')]");
 
 	
 

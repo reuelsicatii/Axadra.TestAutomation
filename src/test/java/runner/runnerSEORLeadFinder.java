@@ -17,7 +17,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
 		glue = { "webApp.SEOR"},
-		tags =  "@GenerateLead",
+		tags =  "@SEOR_AgencyTools_LeadFinder",
 		plugin =  {				
 				"pretty",
 				"html:reports/results.html",
