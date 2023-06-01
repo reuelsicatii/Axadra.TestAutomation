@@ -58,8 +58,8 @@ public class leadFinderPage extends webAppHelper {
 		try {
 			// Step Definition
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.keyword_inputfield)
-					// .sendKeys("DENTISTS");
-					.sendKeys(searchDetails.get("keyword"));
+					.sendKeys("Home Office");
+					//.sendKeys(searchDetails.get("keyword"));
 			Thread.sleep(2000);
 
 			context.getWait().until(
@@ -68,8 +68,8 @@ public class leadFinderPage extends webAppHelper {
 			Thread.sleep(2000);
 
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.location_inputfield)
-					// .sendKeys("Singapore");
-					.sendKeys(searchDetails.get("location"));
+					.sendKeys("Bangko, Merangin Regency, Jambi, Indonesia");
+					//.sendKeys(searchDetails.get("location"));
 			Thread.sleep(2000);
 
 			context.getWait().until(
@@ -90,7 +90,7 @@ public class leadFinderPage extends webAppHelper {
 			while (true) {
 				try {
 
-					if (y >= 420) {
+					if (y >= 30) {
 
 						// Extent Report
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User request a process to generate Leads")
