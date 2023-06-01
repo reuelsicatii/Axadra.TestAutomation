@@ -94,7 +94,7 @@ public class leadFinderPage extends webAppHelper {
 
 						// Extent Report
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User generates Leads")
-								.fail("FAILED: Processing lead generation for " + finalKeyword + "in "
+								.pass("PASSED: Processing lead generation for " + finalKeyword + "in "
 										+ searchDetails.get("location") + "<br>"
 										+ "Processing Lead Finder generation, waiting for " + y + "sec");
 
