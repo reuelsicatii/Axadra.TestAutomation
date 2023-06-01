@@ -93,7 +93,7 @@ public class leadFinderPage extends webAppHelper {
 					if (y >= 420) {
 
 						// Extent Report
-						context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User generates Leads")
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User request a process to generate Leads")
 								.fail("FAILED: Processing lead generation for " + finalKeyword + "in "
 										+ searchDetails.get("location") + "<br>"
 										+ "Processing Lead Finder generation, waiting for " + y + " sec has exceeded");
@@ -108,7 +108,7 @@ public class leadFinderPage extends webAppHelper {
 							.isDisplayed()) {
 
 						// Extent Report
-						context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User generates Leads")
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User request a process to generate Leads")
 								.pass("PASSED: Processing lead generation for " + finalKeyword + "in "
 										+ searchDetails.get("location") + "<br>"
 										+ "Processing Lead Finder generation, started in " + y + "sec");
