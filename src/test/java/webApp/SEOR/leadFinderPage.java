@@ -94,9 +94,9 @@ public class leadFinderPage extends webAppHelper {
 
 						// Extent Report
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User generates Leads")
-								.pass("PASSED: Processing lead generation for " + finalKeyword + "in "
+								.fail("FAILED: Processing lead generation for " + finalKeyword + "in "
 										+ searchDetails.get("location") + "<br>"
-										+ "Processing Lead Finder generation, waiting for " + y + "sec");
+										+ "Processing Lead Finder generation, waiting for " + y + " sec has exceeded");
 
 						// exit the loop
 						System.out.println("Exiting whileloop");
@@ -109,7 +109,7 @@ public class leadFinderPage extends webAppHelper {
 
 						// Extent Report
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User generates Leads")
-								.fail("PASSED: Processing lead generation for " + finalKeyword + "in "
+								.pass("PASSED: Processing lead generation for " + finalKeyword + "in "
 										+ searchDetails.get("location") + "<br>"
 										+ "Processing Lead Finder generation, started in " + y + "sec");
 
