@@ -58,29 +58,74 @@ public class leadFinderPage extends webAppHelper {
 		try {
 			// Step Definition
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.keyword_inputfield)
-					// .sendKeys("Real Estate");
+					// .sendKeys("DENTISTS");
 					.sendKeys(searchDetails.get("keyword"));
 			Thread.sleep(2000);
 
-			context.getWait().until(ExpectedConditions
-					.presenceOfElementLocated(leadFinderSearchHistoryPageObject.keyword_suggestionList));
+			context.getWait().until(
+					ExpectedConditions.elementToBeClickable(leadFinderSearchHistoryPageObject.keyword_suggestionList));
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.keyword_suggestionList).click();
 			Thread.sleep(2000);
 
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.location_inputfield)
-					// .sendKeys("Dubai - United Arab Emirates");
+					// .sendKeys("Singapore");
 					.sendKeys(searchDetails.get("location"));
 			Thread.sleep(2000);
 
-			context.getWait().until(ExpectedConditions
-					.presenceOfElementLocated(leadFinderSearchHistoryPageObject.location_suggestionList));
+			context.getWait().until(
+					ExpectedConditions.elementToBeClickable(leadFinderSearchHistoryPageObject.location_suggestionList));
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.location_suggestionList).click();
 			Thread.sleep(2000);
 
 			context.getWait()
 					.until(ExpectedConditions.elementToBeClickable(leadFinderSearchHistoryPageObject.findLeads_button));
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.findLeads_button).click();
-			Thread.sleep(5000);
+			Thread.sleep(2000);
+
+			// Waiting for Lead Finder to process request
+			// ==================================================
+			System.out.println("Waiting for Lead Finder to process request");
+
+			int y = 0;
+			while (true) {
+				try {
+
+					if (y >= 420) {
+
+						// Extent Report
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User generates Leads")
+								.fail("FAILED: Processing lead generation for " + finalKeyword + "in "
+										+ searchDetails.get("location") + "<br>"
+										+ "Processing Lead Finder generation, waiting for " + y + "sec");
+
+						// exit the loop
+						System.out.println("Exiting whileloop");
+						break;
+
+					}
+
+					else if (context.getDriver().findElement(leadFinderSearchHistoryPageObject.processing_button)
+							.isDisplayed()) {
+
+						// Extent Report
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User generates Leads")
+								.fail("PASSED: Processing lead generation for " + finalKeyword + "in "
+										+ searchDetails.get("location") + "<br>"
+										+ "Processing Lead Finder generation, started in " + y + "sec");
+
+						// exit the loop
+						System.out.println("Exiting whileloop");
+						break;
+
+					}
+
+				} catch (Exception e) {
+					Thread.sleep(10000);
+					y = y + 10;
+					System.out.println("Processing Lead Finder generation, waiting for " + y + "sec");
+				}
+
+			}
 
 			// Check Lead is generated
 			// ==================================================
@@ -208,7 +253,11 @@ public class leadFinderPage extends webAppHelper {
 
 		try {
 
+			System.out.println("TRY 01 -- User save all leads to new list");
+
 			try {
+				System.out.println("TRY 02 -- User save all leads to new list");
+
 				if (context.getDriver().findElements(leadFinderSearchResultPageObject.leadGeneratorResult_tableRow)
 						.size() <= 1) {
 
@@ -283,6 +332,9 @@ public class leadFinderPage extends webAppHelper {
 				}
 
 			} catch (Exception e) {
+
+				System.out.println("CATCH 02 -- User save all leads to new list");
+
 				if (context.getDriver().findElement(leadFinderSearchResultPageObject.searchLeadStatus_span).getText()
 						.contains("EXPIRED")) {
 
@@ -300,6 +352,8 @@ public class leadFinderPage extends webAppHelper {
 			}
 
 		} catch (Exception e) {
+
+			System.out.println("CATCH 01 -- User save all leads to new list");
 
 			// Extent Report
 			try {
