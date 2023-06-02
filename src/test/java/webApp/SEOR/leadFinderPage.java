@@ -58,8 +58,8 @@ public class leadFinderPage extends webAppHelper {
 		try {
 			// Step Definition
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.keyword_inputfield)
-					.sendKeys("Home Office");
-					//.sendKeys(searchDetails.get("keyword"));
+					//.sendKeys("Home Office");
+					.sendKeys(searchDetails.get("keyword"));
 			Thread.sleep(2000);
 
 			context.getWait().until(
@@ -68,8 +68,8 @@ public class leadFinderPage extends webAppHelper {
 			Thread.sleep(2000);
 
 			context.getDriver().findElement(leadFinderSearchHistoryPageObject.location_inputfield)
-					.sendKeys("Bangko, Merangin Regency, Jambi, Indonesia");
-					//.sendKeys(searchDetails.get("location"));
+					//.sendKeys("Bangko, Merangin Regency, Jambi, Indonesia");
+					.sendKeys(searchDetails.get("location"));
 			Thread.sleep(2000);
 
 			context.getWait().until(
