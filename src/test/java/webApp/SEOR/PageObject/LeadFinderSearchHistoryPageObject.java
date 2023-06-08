@@ -17,7 +17,10 @@ public class LeadFinderSearchHistoryPageObject {
 	public By location_inputfield = By.xpath("//div[@class='tab-content']//input[@id='location']");
 	public By location_suggestionList = By.xpath("//div[@class='tab-content']//div[@id='location-suggestions-wrapper']//div[1]");
 	public By findLeads_button = By.xpath("//input[@id='generate-lead']");
-	public By processing_button = By.xpath("//button[contains(text(), 'Processing')]");
+	public By processing_button = By.xpath("//button[contains(text(), 'Processing')]");	
+	public By listOfName_links = By.xpath("//div[@id='leads-group-container']//li/a");
+	public By tableRow_dropdown = By.xpath("//select[@name='lead-generator-history-table_length']");
+	public By tableRowValue100_dropdown = By.xpath("(//select[@name='lead-generator-history-table_length']/option)[4]");
 
 	
 
