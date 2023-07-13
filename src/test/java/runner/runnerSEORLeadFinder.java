@@ -12,7 +12,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/leadFinder.feature"},
+		features = {"featurefiles/seorLeadFinder.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				

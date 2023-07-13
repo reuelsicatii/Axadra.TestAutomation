@@ -12,12 +12,13 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/seorGbpScorer.feature"},
+		features = {"featurefiles/compCampaignSeo.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
-		glue = { "webApp.SEOR"},
-		tags =  "@SEOR_AgencyTools_GbpScorer",
+		glue = { "webApp.COMP"},
+		tags =  "@Add_And_Remove_Single_Keyword_From_Trash_Button or @Add_And_Remove_Single_Keyword_From_Remove_Button",
+		//tags =  "@Add_And_Remove_Single_Keyword_From_Trash_Button",
 		plugin =  {				
 				"pretty",
 				"html:reports/results.html",
@@ -28,7 +29,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 
 	)
 
-public class runnerSEORGbpScorer extends AbstractTestNGCucumberTests {	
+public class runnerCOMPCampaignSeo extends AbstractTestNGCucumberTests {	
 	
 	
 	// Running Cucumber - Parallel Test

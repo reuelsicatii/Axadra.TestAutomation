@@ -12,7 +12,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/webAudit.feature"},
+		features = {"featurefiles/seorWebAudit.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
