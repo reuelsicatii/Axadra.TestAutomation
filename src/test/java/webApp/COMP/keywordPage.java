@@ -88,8 +88,9 @@ public class keywordPage extends webAppHelper {
 	public void userAddASingle(String keyword) throws ClassNotFoundException {
 
 		try {
-
+			
 			// Click Add Button
+			Thread.sleep(5000);
 			context.getWait().until(ExpectedConditions.visibilityOf(context.getDriver().findElement(add_button)));
 			context.getDriver().findElement(add_button).click();
 
@@ -118,7 +119,8 @@ public class keywordPage extends webAppHelper {
 			Thread.sleep(3000);
 
 			// Click Save Button
-			context.getWait().until(ExpectedConditions.visibilityOf(context.getDriver().findElement(save_button)));
+			Thread.sleep(3000);
+			context.getWait().until(ExpectedConditions.elementToBeClickable(context.getDriver().findElement(save_button)));
 			context.getDriver().findElement(save_button).click();
 
 			// Keyword Successfully added Modal
