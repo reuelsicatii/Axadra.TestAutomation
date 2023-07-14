@@ -6,11 +6,15 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.groovy.parser.antlr4.GroovyParser.IfElseStatementContext;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
@@ -88,7 +92,7 @@ public class keywordPage extends webAppHelper {
 	public void userAddASingle(String keyword) throws ClassNotFoundException {
 
 		try {
-			
+
 			// Click Add Button
 			Thread.sleep(5000);
 			context.getWait().until(ExpectedConditions.visibilityOf(context.getDriver().findElement(add_button)));
@@ -120,7 +124,8 @@ public class keywordPage extends webAppHelper {
 
 			// Click Save Button
 			Thread.sleep(3000);
-			context.getWait().until(ExpectedConditions.elementToBeClickable(context.getDriver().findElement(save_button)));
+			context.getWait()
+					.until(ExpectedConditions.elementToBeClickable(context.getDriver().findElement(save_button)));
 			context.getDriver().findElement(save_button).click();
 
 			// Keyword Successfully added Modal
@@ -149,6 +154,84 @@ public class keywordPage extends webAppHelper {
 			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a single " + keyword)
 					.fail("FAILED: " + e.getMessage());
 		}
+	}
+
+	@Given("User add a multiple {string}")
+	public void userAddAMultiple(String string) throws ClassNotFoundException {
+
+		List<String> keywords = Arrays.asList(string.split(","));
+
+		try {
+
+			// Click Add Button
+			Thread.sleep(5000);
+			context.getWait().until(ExpectedConditions.visibilityOf(context.getDriver().findElement(add_button)));
+			context.getDriver().findElement(add_button).click();
+
+			// Populate Keywords TextArea
+			context.getWait()
+					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(keywords_textarea)));
+			context.getDriver().findElement(keywords_textarea).click();
+
+			for (int i = 0; i < keywords.size(); i++) {
+
+				context.getDriver().findElement(keywords_textarea).sendKeys(keywords.get(i));
+				context.getDriver().findElement(keywords_textarea).sendKeys(Keys.RETURN);
+				Thread.sleep(2000);
+
+			}
+
+			// Select from DropDown - Search Engine,Tagging and GeoType
+			searchEngineElementFinder().selectByVisibleText("www.google.com");
+			keywordTaggingElementFinder().selectByVisibleText("Tracked");
+			geoTargetTypeElementFinder().selectByVisibleText("State");
+
+			// Populate and Select - GeoLocation
+			context.getDriver().findElement(geoTarget_dropdown).click();
+			context.getWait()
+					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(geoTarget_textField)));
+			context.getDriver().findElement(geoTarget_textField).sendKeys("Washington");
+
+			Thread.sleep(3000);
+
+			context.getWait().until(ExpectedConditions.visibilityOf(context.getDriver().findElement(geoTarget_list)));
+			context.getDriver().findElement(geoTarget_list).click();
+
+			Thread.sleep(3000);
+
+			// Click Save Button
+			Thread.sleep(3000);
+			context.getWait()
+					.until(ExpectedConditions.elementToBeClickable(context.getDriver().findElement(save_button)));
+			context.getDriver().findElement(save_button).click();
+
+			// Keyword Successfully added Modal
+			context.getWait()
+					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(successMessage_modal)));
+
+			if (context.getDriver().findElement(successMessage_modal).getText()
+					.contains("Keywords were added to the campaign.")) {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a multiple " + string)
+						.pass("PASSED");
+			}
+
+			else {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a multiple " + string)
+						.fail("FAILED");
+
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a multiple " + string)
+					.fail("FAILED: " + e.getMessage());
+		}
+
 	}
 
 	@Given("User close success message modal")
@@ -189,9 +272,6 @@ public class keywordPage extends webAppHelper {
 
 			// Search for Keyword Index and click delete button
 			for (int i = 0; i < context.getDriver().findElements(keywordColumn_table).size(); i++) {
-
-				System.out.println("User remove a single '" + keyword + "' from Trash button");
-				System.out.println(context.getDriver().findElements(keywordColumn_table).get(i).getText());
 
 				if (context.getDriver().findElements(keywordColumn_table).get(i).getText().contains(keyword)) {
 					context.getDriver().findElement(By.xpath("(//table)[1]//tbody/tr[" + (i + 1) + "]//button[1]"))
@@ -267,7 +347,8 @@ public class keywordPage extends webAppHelper {
 			for (int i = 0; i < context.getDriver().findElements(keywordColumn_table).size(); i++) {
 
 				if (context.getDriver().findElements(keywordColumn_table).get(i).getText().contains(keyword)) {
-					context.getDriver().findElement(By.xpath("(//table)[1]//tbody/tr[" + (i + 1) + "]//input[1]")).click();
+					context.getDriver().findElement(By.xpath("(//table)[1]//tbody/tr[" + (i + 1) + "]//input[1]"))
+							.click();
 					Thread.sleep(2000);
 					context.getDriver().findElement(By.xpath("//button[text()='Remove']")).click();
 					context.getWait().until(ExpectedConditions
@@ -318,7 +399,202 @@ public class keywordPage extends webAppHelper {
 			// Extent Report
 			try {
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User enter the password as " + keyword)
+						.createNode(new GherkinKeyword("When"),
+								"User remove a single '" + keyword + "' from Remove button")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User remove a multiple {string} from Trash button")
+	public void userRemoveAMultipleFromTrashButton(String string) throws IOException {
+
+		try {
+
+			List<String> keywords = Arrays.asList(string.split(","));
+
+			// Hard Reload Page
+			Thread.sleep(5000);
+			context.getDriver().executeScript("location.reload(true);");
+			Thread.sleep(5000);
+
+			// Search for Keyword Index and tick checkbox
+			for (int j = 0; j < keywords.size(); j++) {
+
+				for (int i = 0; i < context.getDriver().findElements(keywordColumn_table).size(); i++) {
+
+					if (context.getDriver().findElements(keywordColumn_table).get(i).getText()
+							.contains(keywords.get(j))) {
+						context.getDriver().findElement(By.xpath("(//table)[1]//tbody/tr[" + (i + 1) + "]//button[1]"))
+								.click();
+						Thread.sleep(2000);
+						context.getWait().until(ExpectedConditions.visibilityOf(
+								context.getDriver().findElement(By.xpath("(//button[text()='Delete'])[2]"))));
+						context.getDriver().findElement(By.xpath("(//button[text()='Delete'])[2]")).click();
+						context.getDriver().executeScript("location.reload(true);");
+						Thread.sleep(5000);
+
+					}
+				}
+
+			}
+
+			// Hard Reload Page
+			Thread.sleep(5000);
+			context.getDriver().executeScript("location.reload(true);");
+			Thread.sleep(5000);
+
+			// Validate keyword no longer exist
+			boolean keywordExist = true;
+			while (keywordExist) {
+
+				for (int j = 0; j < keywords.size(); j++) {
+					for (int i = 0; i < context.getDriver().findElements(keywordColumn_table).size(); i++) {
+
+						if (context.getDriver().findElements(keywordColumn_table).get(i).getText()
+								.contains(keywords.get(j))) {
+
+							// Extent Report
+							context.getExtentTestScenario()
+									.createNode(new GherkinKeyword("When"),
+											"User remove a multiple '" + keywords.get(j) + "' from Remove button")
+									.fail("FAILED");
+							keywordExist = false;
+							break;
+
+						}
+
+					}
+
+					if (keywordExist) {
+						// Extent Report
+						context.getExtentTestScenario()
+								.createNode(new GherkinKeyword("When"),
+										"User remove a multiple '" + keywords.get(j) + "' from Remove button")
+								.pass("PASSED");
+
+					}
+
+				}
+
+				// Exit While Loop
+				break;
+
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User remove a multiple '" + string + "' from Remove button")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User remove a multiple {string} from Remove button")
+	public void userRemoveAMultipleFromRemoveButton(String string) throws IOException {
+
+		try {
+
+			List<String> keywords = Arrays.asList(string.split(","));
+
+			// Hard Reload Page
+			Thread.sleep(5000);
+			context.getDriver().executeScript("location.reload(true);");
+			Thread.sleep(5000);
+
+			// Search for Keyword Index and tick checkbox
+			for (int j = 0; j < keywords.size(); j++) {
+
+				for (int i = 0; i < context.getDriver().findElements(keywordColumn_table).size(); i++) {
+
+					if (context.getDriver().findElements(keywordColumn_table).get(i).getText()
+							.contains(keywords.get(j))) {
+						context.getDriver().findElement(By.xpath("(//table)[1]//tbody/tr[" + (i + 1) + "]//input[1]"))
+								.click();
+						Thread.sleep(2000);
+
+					}
+				}
+
+			}
+
+			// Search for selected checkbox and delete keywords
+			for (int i = 0; i < context.getDriver().findElements(keywordColumn_table).size(); i++) {
+
+				if (context.getDriver().findElement(By.xpath("(//table)[1]//tbody/tr[" + (i + 1) + "]//input[1]"))
+						.isSelected()) {
+
+					Thread.sleep(3000);
+					context.getDriver().findElement(By.xpath("//button[text()='Remove']")).click();
+					context.getWait().until(ExpectedConditions
+							.visibilityOf(context.getDriver().findElement(By.xpath("(//button[text()='Delete'])[2]"))));
+					context.getDriver().findElement(By.xpath("(//button[text()='Delete'])[2]")).click();
+
+					break;
+
+				}
+			}
+
+			// Hard Reload Page
+			Thread.sleep(5000);
+			context.getDriver().executeScript("location.reload(true);");
+			Thread.sleep(5000);
+
+			// Validate keyword no longer exist
+			boolean keywordExist = true;
+			while (keywordExist) {
+
+				for (int j = 0; j < keywords.size(); j++) {
+					for (int i = 0; i < context.getDriver().findElements(keywordColumn_table).size(); i++) {
+
+						if (context.getDriver().findElements(keywordColumn_table).get(i).getText()
+								.contains(keywords.get(j))) {
+
+							// Extent Report
+							context.getExtentTestScenario()
+									.createNode(new GherkinKeyword("When"),
+											"User remove a multiple '" + keywords.get(j) + "' from Remove button")
+									.fail("FAILED");
+							keywordExist = false;
+							break;
+
+						}
+
+					}
+
+					if (keywordExist) {
+						// Extent Report
+						context.getExtentTestScenario()
+								.createNode(new GherkinKeyword("When"),
+										"User remove a multiple '" + keywords.get(j) + "' from Remove button")
+								.pass("PASSED");
+
+					}
+
+				}
+
+				// Exit While Loop
+				break;
+
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User remove a multiple '" + string + "' from Remove button")
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
