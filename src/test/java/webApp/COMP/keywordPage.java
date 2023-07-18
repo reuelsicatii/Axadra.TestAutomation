@@ -42,9 +42,10 @@ public class keywordPage extends webAppHelper {
 	By geoTarget_textField = By.xpath("//div[@id='select2-drop']//input");
 	By geoTarget_list = By.xpath("//div[@id='select2-drop']//li[1]/div");
 	By save_button = By.xpath("//form[@id='form-add-keywords']//button[text()='Save']");
-	By successMessage_modal = By.xpath("//div[@id='dialog-modal']//p");
+	By addKeyword_modalMessage = By.xpath("//div[@id='dialog-modal']//p");
 	By close_modalButton = By.xpath("//div[@id='dialog-modal']//div[@class='modal-header']/button");
 	By keywordColumn_table = By.xpath("(//table)[1]//tbody/tr/td[6]/span");
+	By duplicateKeyword_modalMessage = By.xpath("//div[@class='modal-body']/div[@class='bootbox-body' and text()='Duplicate keyword']");
 
 	// Search Engine - Element Finder
 	// ===================================
@@ -128,25 +129,9 @@ public class keywordPage extends webAppHelper {
 					.until(ExpectedConditions.elementToBeClickable(context.getDriver().findElement(save_button)));
 			context.getDriver().findElement(save_button).click();
 
-			// Keyword Successfully added Modal
-			context.getWait()
-					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(successMessage_modal)));
-
-			if (context.getDriver().findElement(successMessage_modal).getText()
-					.contains("Keywords were added to the campaign.")) {
-
-				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a single " + keyword)
-						.pass("PASSED");
-			}
-
-			else {
-
-				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a single " + keyword)
-						.fail("FAILED");
-
-			}
+			// Extent Report
+			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a single " + keyword)
+					.pass("PASSED");
 
 		} catch (Exception e) {
 
@@ -205,25 +190,9 @@ public class keywordPage extends webAppHelper {
 					.until(ExpectedConditions.elementToBeClickable(context.getDriver().findElement(save_button)));
 			context.getDriver().findElement(save_button).click();
 
-			// Keyword Successfully added Modal
-			context.getWait()
-					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(successMessage_modal)));
-
-			if (context.getDriver().findElement(successMessage_modal).getText()
-					.contains("Keywords were added to the campaign.")) {
-
-				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a multiple " + string)
-						.pass("PASSED");
-			}
-
-			else {
-
-				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a multiple " + string)
-						.fail("FAILED");
-
-			}
+			// Extent Report
+			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a multiple " + string)
+					.pass("PASSED");
 
 		} catch (Exception e) {
 
@@ -234,17 +203,90 @@ public class keywordPage extends webAppHelper {
 
 	}
 
-	@Given("User close success message modal")
-	public void userCloseSuccessMessageModal() throws IOException {
+	@Given("User see Add Keyword modal")
+	public void userSeeAddKeywordModal() throws IOException {
+
+		try {
+			// Keyword Successfully added Modal
+			context.getWait()
+					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(addKeyword_modalMessage)));
+
+			if (context.getDriver().findElement(addKeyword_modalMessage).getText()
+					.contains("Keywords were added to the campaign.")) {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User see Add Keyword modal")
+						.pass("PASSED");
+			}
+
+			else {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User see Add Keyword modal")
+						.fail("FAILED");
+
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User see Add Keyword modal")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@Given("User close Add Keyword modal")
+	public void userCloseAddKeywordModal() throws IOException {
 
 		try {
 			// Step Definition
 			context.getDriver().findElement(close_modalButton).click();
-			;
 
 			// Extent Report
-			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User close success message modal")
+			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User close Add Keyword modal")
 					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User close Add Keyword modal")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@Given("User see Duplicate Keyword modal")
+	public void userSeeDuplicateKeywordModal() throws IOException {
+
+		try {
+			// Duplicate Keyword Modal
+			context.getWait()
+					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(duplicateKeyword_modalMessage)));
+
+			if (context.getDriver().findElement(duplicateKeyword_modalMessage).getText()
+					.contains("Duplicate keyword")) {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User see Duplicate Keyword modal")
+						.pass("PASSED");
+			}
+
+			else {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User see Duplicate Keyword modal")
+						.fail("FAILED");
+
+			}
 
 		} catch (Exception e) {
 

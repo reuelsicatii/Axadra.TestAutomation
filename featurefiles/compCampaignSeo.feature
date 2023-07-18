@@ -20,7 +20,8 @@ Feature: COMP > Partner > Campaign > SEO
     When User navigates to "<campaignKeywordUrl>"
     And User remove a single "<keyword>" from Trash button
     And User add a single "<keyword>"
-    And User close success message modal
+    And User see Add Keyword modal
+    And User close Add Keyword modal
     And User remove a single "<keyword>" from Trash button
 
     Examples: 
@@ -38,7 +39,8 @@ Feature: COMP > Partner > Campaign > SEO
     When User navigates to "<campaignKeywordUrl>"
     And User remove a single "<keyword>" from Remove button
     And User add a single "<keyword>"
-    And User close success message modal
+    And User see Add Keyword modal
+    And User close Add Keyword modal
     And User remove a single "<keyword>" from Remove button
 
     Examples: 
@@ -56,14 +58,14 @@ Feature: COMP > Partner > Campaign > SEO
     When User navigates to "<campaignKeywordUrl>"
     And User remove a multiple "<keyword>" from Trash button
     And User add a multiple "<keyword>"
-    And User close success message modal
+    And User see Add Keyword modal
+    And User close Add Keyword modal
     And User remove a multiple "<keyword>" from Trash button
 
     Examples: 
       | browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword                                                     |
       | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | ba real estate,bb real estate,bc real estate,bd real estate |
-  
-  
+
   @Add_And_Remove_Multiple_Keyword_From_Remove_Button
   Scenario Outline: Add and Remove Multiple Keyword from Remove button
     Given User navigates to "<loginUrl>" using "<browser>"
@@ -74,9 +76,40 @@ Feature: COMP > Partner > Campaign > SEO
     When User navigates to "<campaignKeywordUrl>"
     And User remove a multiple "<keyword>" from Remove button
     And User add a multiple "<keyword>"
-    And User close success message modal
+    And User see Add Keyword modal
+    And User close Add Keyword modal
     And User remove a multiple "<keyword>" from Remove button
 
     Examples: 
       | browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword                                                     |
       | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | aa real estate,ab real estate,ac real estate,ad real estate |
+
+  @Add_Single_Duplicate_Keyword
+  Scenario Outline: Add Single Duplicate Keyword
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<campaignKeywordUrl>"
+    And User add a single "<keyword>"
+    And User see Duplicate Keyword modal
+
+    Examples: 
+      | browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword               |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | duplicate real estate |
+
+  @Add_Mulitple_Duplicate_Keyword
+  Scenario Outline: Add Multiple Duplicate Keyword
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<campaignKeywordUrl>"
+    And User add a multiple "<keyword>"
+    And User see Duplicate Keyword modal
+
+    Examples: 
+      | browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword                                        |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | duplicate real estate, duplicate real estate 1 |
