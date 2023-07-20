@@ -9,13 +9,17 @@ import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.NoSuchElementException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.Scenario;
@@ -83,8 +87,20 @@ public class webAppHelper {
 
 	}
 
+	@SuppressWarnings("rawtypes")
+	public FluentWait initializeFluentWait(RemoteWebDriver driver) throws MalformedURLException {
+
+		FluentWait<RemoteWebDriver> fluentWait = new FluentWait<>(driver)
+				.withTimeout(Duration.ofSeconds(30))
+				.pollingEvery(Duration.ofMillis(500))
+				.ignoring(org.openqa.selenium.NoSuchElementException.class);
+
+		return fluentWait;
+
+	}
+
 	public void getScreenshot(RemoteWebDriver driver, Scenario scenario) throws IOException {
-		
+
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_hhmmssa");
 		String timeStamp = sdf.format(date);
@@ -93,27 +109,27 @@ public class webAppHelper {
 
 		File SrcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(SrcFile, new File(DestFile));
-		
-	}
 
+	}
 
 	public String getWebAuditReportVerbiages() throws IOException {
 		// Object Declarations
 		// ==========================================
-		File file = new File(System.getProperty("user.dir") + "\\Data\\webApp.SEOR.webAudit\\webAuditReportVerbiages.json");	
+		File file = new File(
+				System.getProperty("user.dir") + "\\Data\\webApp.SEOR.webAudit\\webAuditReportVerbiages.json");
 		String json = new String(Files.readAllBytes(file.toPath()));
-		
-		return json;
-	}
-	
-	public String getGbpScorerReportVerbiages() throws IOException {
-		// Object Declarations
-		// ==========================================
-		File file = new File(System.getProperty("user.dir") + "\\Data\\webApp.SEOR.gbpScorer\\gbpScorerReportVerbiages.json");	
-		String json = new String(Files.readAllBytes(file.toPath()));
-		
+
 		return json;
 	}
 
+	public String getGbpScorerReportVerbiages() throws IOException {
+		// Object Declarations
+		// ==========================================
+		File file = new File(
+				System.getProperty("user.dir") + "\\Data\\webApp.SEOR.gbpScorer\\gbpScorerReportVerbiages.json");
+		String json = new String(Files.readAllBytes(file.toPath()));
+
+		return json;
+	}
 
 }

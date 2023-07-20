@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.aventstack.extentreports.GherkinKeyword;
 
@@ -39,7 +40,8 @@ public class commonStep extends webAppHelper {
 		try {
 
 			context.setDriver(initializeBrowser(browserName));
-			context.setWait(initializeBrowserWait(context.getDriver(), 120));			
+			context.setWait(initializeBrowserWait(context.getDriver(), 120));		
+			context.setFluentWait(initializeFluentWait(context.getDriver()));
 			context.getDriver().manage().window().maximize();
 			context.getDriver().get(url);
 

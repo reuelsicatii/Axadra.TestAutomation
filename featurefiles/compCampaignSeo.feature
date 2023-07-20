@@ -113,3 +113,21 @@ Feature: COMP > Partner > Campaign > SEO
     Examples: 
       | browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword                                        |
       | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | duplicate real estate, duplicate real estate 1 |
+
+  @KeywordCount_Between_Keyword_And_Summary_And_Trend
+  Scenario Outline: KeywordCount Between Keyword And Summary And Trend
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<campaignKeywordUrl>"
+    And User compares KeywordCount over Keyword "<campaignKeywordUrl>"
+    #When User navigates to "<campaignTrendUrl>"
+    #And User compares KeywordCount over Trend "<campaignTrendUrl>"
+    #When User navigates to "<campaignSummaryUrl>"
+    #And User compares KeywordCount over Summary "<campaignSummaryUrl>"
+
+    Examples: 
+      | browser | loginUrl                           | campaignKeywordUrl                                                        | campaignTrendUrl                                                     | campaignSummaryUrl                                                               |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/keywords | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/seo | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/ranking_summary |

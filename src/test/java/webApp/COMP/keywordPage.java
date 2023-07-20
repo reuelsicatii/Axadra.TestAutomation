@@ -45,7 +45,10 @@ public class keywordPage extends webAppHelper {
 	By addKeyword_modalMessage = By.xpath("//div[@id='dialog-modal']//p");
 	By close_modalButton = By.xpath("//div[@id='dialog-modal']//div[@class='modal-header']/button");
 	By keywordColumn_table = By.xpath("(//table)[1]//tbody/tr/td[6]/span");
-	By duplicateKeyword_modalMessage = By.xpath("//div[@class='modal-body']/div[@class='bootbox-body' and text()='Duplicate keyword']");
+	By duplicateKeyword_modalMessage = By
+			.xpath("//div[@class='modal-body']/div[@class='bootbox-body' and text()='Duplicate keyword']");
+
+	By keywordCountEntries_span = By.xpath("//div[@id='keywords-table_wrapper']//span[3]");
 
 	// Search Engine - Element Finder
 	// ===================================
@@ -72,6 +75,17 @@ public class keywordPage extends webAppHelper {
 	private Select geoTargetTypeElementFinder() {
 
 		Select element = new Select(context.getDriver().findElement(By.xpath("//select[@id='geoSearchType']")));
+
+		return element;
+
+	}
+
+	// Keyword Table Row Dropdown - Element Finder
+	// ===================================
+	private Select keywordTableRowDropDownElementFinder() {
+
+		Select element = new Select(
+				context.getDriver().findElement(By.xpath("//select[@name='keywords-table_length']")));
 
 		return element;
 
@@ -269,22 +283,22 @@ public class keywordPage extends webAppHelper {
 
 		try {
 			// Duplicate Keyword Modal
-			context.getWait()
-					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(duplicateKeyword_modalMessage)));
+			context.getWait().until(
+					ExpectedConditions.visibilityOf(context.getDriver().findElement(duplicateKeyword_modalMessage)));
 
 			if (context.getDriver().findElement(duplicateKeyword_modalMessage).getText()
 					.contains("Duplicate keyword")) {
 
 				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User see Duplicate Keyword modal")
-						.pass("PASSED");
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User see Duplicate Keyword modal").pass("PASSED");
 			}
 
 			else {
 
 				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User see Duplicate Keyword modal")
-						.fail("FAILED");
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User see Duplicate Keyword modal").fail("FAILED");
 
 			}
 
@@ -643,6 +657,80 @@ public class keywordPage extends webAppHelper {
 				e1.printStackTrace();
 			}
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Then("User compares KeywordCount over Keyword {string}")
+	public void userComparesKeywordCountOverKeyword(String string) {
+
+		try {
+
+			context.getFluentWait()
+					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(keywordCountEntries_span)));
+			keywordTableRowDropDownElementFinder().selectByVisibleText("100");
+
+			// wait for table to load - no anchor
+			Thread.sleep(10000);
+
+			Integer keywordCountRow = 0;
+			for (int i = 2; i < context.getDriver().findElements(By.xpath("//div[@id='keywords-table_wrapper']//li"))
+					.size(); i++) {
+
+				// Click on next active button
+				// ====================================
+				if (i > 2) {
+
+					System.out.println("Click :" + i + "--" + context.getDriver()
+							.findElement(By.xpath("//div[@id='keywords-table_wrapper']//li[" + i + "]/a")).getText());
+
+					context.getDriver().findElement(By.xpath("//div[@id='keywords-table_wrapper']//li[" + i + "]/a"))
+							.click();
+
+					// wait for table to load - no anchor
+					Thread.sleep(10000);
+
+				}
+
+				context.getFluentWait().until(ExpectedConditions.visibilityOf(
+						context.getDriver().findElement(By.xpath("//table[@id='keywords-table']/tbody/tr[last()]"))));
+
+				keywordCountRow = keywordCountRow
+						+ context.getDriver().findElements(By.xpath("//table[@id='keywords-table']/tbody/tr")).size();
+
+				System.out.println("Keyword Count Row:" + i + "--" + keywordCountRow);
+
+			}
+
+			if (keywordCountRow.toString().contains(context.getDriver().findElement(keywordCountEntries_span).getText())) {
+
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User compares KeywordCount over Keyword " + string)
+						.pass("PASSED: " + "<br>" + "Keyword Count Entries: "
+								+ context.getDriver().findElement(keywordCountEntries_span).getText() + "<br>"
+								+ "Keyword Count Row: " + keywordCountRow.toString());
+
+			} else {
+
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User compares KeywordCount over Keyword " + string)
+						.fail("FAILED: " + "<br>" + "Keyword Count Entries: "
+								+ context.getDriver().findElement(keywordCountEntries_span).getText() + "<br>"
+								+ "Keyword Count Row: " + keywordCountRow.toString());
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User compares KeywordCount over Keyword" + string)
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
 	}
 
 }

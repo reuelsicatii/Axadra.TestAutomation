@@ -3,6 +3,7 @@ package helper;
 import java.io.File;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
@@ -14,6 +15,7 @@ public class webAppContextDriver {
 
 	private RemoteWebDriver driver;
 	private WebDriverWait wait;
+	private FluentWait fluentWait;
 	private Scenario scenario;
 	private SoftAssert softAssert;
 	private ExtentTest extentTestFeature;
@@ -58,6 +60,16 @@ public class webAppContextDriver {
 
 	public void setWait(WebDriverWait wait) {
 		this.wait = wait;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public FluentWait getFluentWait() {
+		return fluentWait;
+	}
+
+	@SuppressWarnings("rawtypes")
+	public void setFluentWait(FluentWait fluentWait) {
+		this.fluentWait = fluentWait;
 	}
 
 	public SoftAssert getSoftAssert() {
