@@ -665,6 +665,9 @@ public class keywordPage extends webAppHelper {
 
 		try {
 
+			// wait for table to load - no anchor
+			Thread.sleep(10000);
+
 			context.getFluentWait()
 					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(keywordCountEntries_span)));
 			keywordTableRowDropDownElementFinder().selectByVisibleText("100");
@@ -701,7 +704,8 @@ public class keywordPage extends webAppHelper {
 
 			}
 
-			if (keywordCountRow.toString().contains(context.getDriver().findElement(keywordCountEntries_span).getText())) {
+			if (keywordCountRow.toString()
+					.contains(context.getDriver().findElement(keywordCountEntries_span).getText())) {
 
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User compares KeywordCount over Keyword " + string)

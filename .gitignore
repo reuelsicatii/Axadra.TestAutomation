@@ -13,31 +13,13 @@
 *.war
 *.ear
 
-# virtual machine crash logs, 
-# see http://www.java.com/en/download/help/error_hotspot.xml
-# ============================================================
-hs_err_pid*
-target/
-logs/
-/.idea/
-*.iml
-
+# Folders #
 # ==================
-local.log
 reports/
 screenshots/
-.gradle
-gradle
-build
-
-# Eclipse generated
-# ==================
+drivers/*
 .classpath
 .project
-.settings
-test-output
-
-# screenshot
-# ==================
-screeshots/
-*D04TestAutomation03RemoteRepo05SEORseorapptestautomationscreenshotsGener*
+.settings/
+target/
+test-output/
