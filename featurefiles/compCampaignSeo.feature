@@ -132,14 +132,40 @@ Feature: COMP > Partner > Campaign > SEO
       | browser | loginUrl                           | campaignKeywordUrl                                                        | campaignTrendUrl                                                     | campaignSummaryUrl                                                               |
       | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/keywords | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/seo | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/ranking_summary |
 
-  @KeywordEntries_Against_Keyword_And_Summary_And_Trend
-  Scenario Outline: KeywordEntries against Keyword And Summary And Trend
+  @KeywordEntries_Against_Keyword_vs_Summary_vs_Trend
+  Scenario Outline: KeywordEntries against Keyword vs Summary vs Trend
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "reuel@axadra.com"
     And User enter the password as "asdasdasd"
     And User click on the login button
     Then User is successfully login
     And User compares Count Entries against "<campaignKeywordUrl>" vs "<campaignTrendUrl>" vs "<campaignSummaryUrl>"
+
+    Examples: 
+      | browser | loginUrl                           | campaignKeywordUrl                                                        | campaignTrendUrl                                                     | campaignSummaryUrl                                                               |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/keywords | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/seo | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/ranking_summary |
+
+  @KeywordTracked_Against_Keyword_vs_Summary_vs_Trend
+  Scenario Outline: Keyword Tracked against Keyword vs Summary vs Trend
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    And User compares Count Tracked against "<campaignKeywordUrl>" vs "<campaignTrendUrl>" vs "<campaignSummaryUrl>"
+
+    Examples: 
+      | browser | loginUrl                           | campaignKeywordUrl                                                        | campaignTrendUrl                                                     | campaignSummaryUrl                                                               |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/keywords | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/seo | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/ranking_summary |
+
+  @KeywordTargeted_Against_Keyword_vs_Summary_vs_Trend
+  Scenario Outline: Keyword Targeted against Keyword vs Summary vs Trend
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    And User compares Count Targeted against "<campaignKeywordUrl>" vs "<campaignTrendUrl>" vs "<campaignSummaryUrl>"
 
     Examples: 
       | browser | loginUrl                           | campaignKeywordUrl                                                        | campaignTrendUrl                                                     | campaignSummaryUrl                                                               |
