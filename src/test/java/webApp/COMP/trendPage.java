@@ -89,7 +89,7 @@ public class trendPage extends webAppHelper {
 
 			context.getFluentWait()
 					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(keywordCountEntries_span)));
-			keywordTableRowDropDownElementFinder().selectByVisibleText("100");
+			trendTableRowDropDownElementFinder().selectByVisibleText("100");
 
 			// wait for table to load - no anchor
 			Thread.sleep(10000);
