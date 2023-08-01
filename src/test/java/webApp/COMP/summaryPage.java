@@ -635,9 +635,10 @@ public class summaryPage extends webAppHelper {
 			// compare keyword and possition
 			context.getExtentTestScenario()
 					.createNode("User compares Keyword and Position against CPS > Summary Page vs CPS > Trend Page vs SRS > Ranking Page" 
-							+ "<br>" + "Summary Page Size: " + summaryPageKeywordPosition.size() 
-							+ "<br>" + "Trend Page Size: " + trendPageKeywordPosition.size() 
-							+ "<br>" + "Ranking Page Size: " + rankingPageKeywordPosition.size()
+							+ "<br>" + "Campaign URL: " + summaryPage.replace("/ranking_summary", "")
+							+ "<br>" + "Summary Page Keyword Count: " + summaryPageKeywordPosition.size() 
+							+ "<br>" + "Trend Page Keyword Count: " + trendPageKeywordPosition.size() 
+							+ "<br>" + "Ranking Page Keyword Count: " + rankingPageKeywordPosition.size()
 
 					);
 			int summ = 1;
