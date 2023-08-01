@@ -170,3 +170,22 @@ Feature: COMP > Partner > Campaign > SEO
     Examples: 
       | browser | loginUrl                           | campaignKeywordUrl                                                        | campaignTrendUrl                                                     | campaignSummaryUrl                                                               |
       | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/keywords | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/seo | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/ranking_summary |
+
+  @KeywordPosition_Against_Summary_vs_Trend_vs_Ranking
+  Scenario Outline: Keyword Position against Summary vs Trend vs Ranking
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    And User compares Keyword Position against "<campaignSummaryUrl>" vs "<campaignTrendUrl>" vs "<campaignRankingUrl>"
+
+    Examples: 
+      | browser | loginUrl                           | campaignSummaryUrl                                                               | campaignTrendUrl                                                     | campaignRankingUrl                                           |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/seo | https://account.seoreseller.com/campaigns/34246/seo/rankings |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/seo | https://account.seoreseller.com/campaigns/34246/seo/rankings |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/31442/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/31442/seo | https://account.seoreseller.com/campaigns/31442/seo/rankings |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/32851/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/32851/seo | https://account.seoreseller.com/campaigns/32851/seo/rankings |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/36243/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/36243/seo | https://account.seoreseller.com/campaigns/36243/seo/rankings |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/32327/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/32327/seo | https://account.seoreseller.com/campaigns/32327/seo/rankings |
+      | chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/25298/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/25298/seo | https://account.seoreseller.com/campaigns/25298/seo/rankings |
