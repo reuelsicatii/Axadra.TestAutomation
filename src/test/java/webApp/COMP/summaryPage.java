@@ -686,7 +686,7 @@ public class summaryPage extends webAppHelper {
 											+ summaryPageKeywordPositionset.getKey() + " -- "
 											+ summaryPageKeywordPositionset.getValue() + "<br>" + "Trend Page: "
 											+ trendPageKeywordPositionset.getKey() + " -- "
-											+ trendPageKeywordPositionset.getValue() + "<br>" + "Summary Page: "
+											+ trendPageKeywordPositionset.getValue() + "<br>" + "Ranking Page: "
 											+ rankingPageKeywordPositionset.getKey() + " -- "
 											+ rankingPageKeywordPositionset.getValue());
 
