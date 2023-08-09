@@ -1,5 +1,5 @@
-@SEOR_AgencyTools_GbpScorer
-Feature: SEOR > Agency Tools > WebAudit
+@SEOR_Campaign_Seo_Keywords
+Feature: SEOR > Partner > Campaign > SEO
 
   Background: 
 
@@ -10,153 +10,122 @@ Feature: SEOR > Agency Tools > WebAudit
   #Then User is successfully login
   #When User navigates to "https://account.seoreseller.com/pro/audits"
   #And User generates a WebAuditReport
-  @GenerateGbpScorerReport
-  Scenario Outline: Generate GBP Scorer Report
+  @Add_And_Remove_Single_Keyword_From_Delete_Button
+  Scenario Outline: Add and Remove Single Keyword from Delete button
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "<username>"
     And User enter the password as "<password>"
     And User click on the login button
     Then User is successfully login
-    When User navigates to "<gbpScorerUrl>"
-    And User generates a GbpScorerReport
+    When User navigates to "<campaignKeywordUrl>"
+    And User remove a single "<keyword>" from Delete button
+    And User add a single "<keyword>"
+    And User remove a single "<keyword>" from Delete button
 
     Examples: 
-      | browser | loginUrl                              | gbpScorerUrl                                   | username                 | password        |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report | reuel+01@axadra.com      | asdasdasd       |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report | clayton@truelogic.com.ph | aGXYwqhPeAV4j7J |
-
-  @GbpScorerReportSummarySection
-  Scenario Outline: Generate GBPScorer Report and validate Summary Section
-    Given User navigates to "<loginUrl>" using "<browser>"
-    And User enter the username as "reuel+01@axadra.com"
-    And User enter the password as "asdasdasd"
-    And User click on the login button
-    Then User is successfully login
-    When User navigates to "<webAuditUrl>"
-    And User clicks the most recent GBPScorer Report
-    Then User sees a new tab is open rendering the GBPScorer Report
-    And User scroll to Summary Chart Section
-    Then User sees the Summary > Detail SubSection is correct
-    And User sees the Summary > Score SubSection is correct
-    And User sees the Summary > Map SubSection is correct
-
-    Examples: 
-      | browser | loginUrl                              | webAuditUrl                                    |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
-
-  @GbpScorerReportSummarySectionChart
-  Scenario Outline: Generate GBPScorer Report and validate Summary Section Chart
-    Given User navigates to "<loginUrl>" using "<browser>"
-    And User enter the username as "reuel+01@axadra.com"
-    And User enter the password as "asdasdasd"
-    And User click on the login button
-    Then User is successfully login
-    When User navigates to "<webAuditUrl>"
-    And User clicks the most recent GBPScorer Report
-    Then User sees a new tab is open rendering the GBPScorer Report
-    And User scroll to Summary Chart Section
-    Then User sees the Summary Chart > Profile Score SubSection is correct
-    And User sees the Summary Chart > Post Score SubSection is correct
-    And User sees the Summary Chart > Review Score SubSection is correct
-
-    Examples: 
-      | browser | loginUrl                              | webAuditUrl                                    |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
-
-  @GbpScorerReportBusinessProfileScore
-  Scenario Outline: Generate GBPScorer Report and validate Business Profile Score
-    Given User navigates to "<loginUrl>" using "<browser>"
-    And User enter the username as "reuel+01@axadra.com"
-    And User enter the password as "asdasdasd"
-    And User click on the login button
-    Then User is successfully login
-    When User navigates to "<webAuditUrl>"
-    And User clicks the most recent GBPScorer Report
-    Then User sees a new tab is open rendering the GBPScorer Report
-    And User scroll to "Google Post Score" Section
-    Then User sees the Business Profile Score > Phone Number Found SubSection is correct
-    And User sees the Business Profile Score > Hours in Operation SubSection is correct
-    And User sees the Business Profile Score > Business Description SubSection is correct
-    And User sees the Business Profile Score > Business Category SubSection is correct
-    And User sees the Business Profile Score > Services Offered SubSection is correct
-    And User sees the Business Profile Score > Payment Option SubSection is correct
-    And User sees the Business Profile Score > URLDomain SubSection is correct
-    And User sees the Business Profile Score > Google Business Profile Verified SubSection is correct
-    And User sees the Business Profile Score > Business Logo Found SubSection is correct
-    And User sees the Business Profile Score > Minimum 3 business photos SubSection is correct
-
-    Examples: 
-      | browser | loginUrl                              | webAuditUrl                                    |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
-
-  @GbpScorerReportGooglePostScore
-  Scenario Outline: Generate GBPScorer Report and validate Google Post Score
-    Given User navigates to "<loginUrl>" using "<browser>"
-    And User enter the username as "reuel+01@axadra.com"
-    And User enter the password as "asdasdasd"
-    And User click on the login button
-    Then User is successfully login
-    When User navigates to "<webAuditUrl>"
-    And User clicks the most recent GBPScorer Report
-    Then User sees a new tab is open rendering the GBPScorer Report
-    And User scroll to "Google Post Score" Section
-    Then User sees the Google Post Score > Post Found SubSection is correct
-    And User sees the Google Post Score > Minimum Post SubSection is correct
-    And User sees the Google Post Score > Images in Post SubSection is correct
-
-    Examples: 
-      | browser | loginUrl                              | webAuditUrl                                    |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
-
-  @GbpScorerReportGoogleReviewScore
-  Scenario Outline: Generate GBPScorer Report and validate Google Review Score
-    Given User navigates to "<loginUrl>" using "<browser>"
-    And User enter the username as "reuel+01@axadra.com"
-    And User enter the password as "asdasdasd"
-    And User click on the login button
-    Then User is successfully login
-    When User navigates to "<webAuditUrl>"
-    And User clicks the most recent GBPScorer Report
-    Then User sees a new tab is open rendering the GBPScorer Report
-    And User scroll to "Google Review Score" Section
-    And User sees the Google Review Score > Google Review SubSection is correct
-    And User sees the Google Review Score > Ave Review SubSection is correct
-    And User sees the Google Review Score > Owner Response SubSection is correct
-
-    Examples: 
-      | browser | loginUrl                              | webAuditUrl                                    |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
-
-  @GbpScorerReportSimilarListing
-  Scenario Outline: Generate GBPScorer Report and validate Similar Listing
-    Given User navigates to "<loginUrl>" using "<browser>"
-    And User enter the username as "reuel+01@axadra.com"
-    And User enter the password as "asdasdasd"
-    And User click on the login button
-    Then User is successfully login
-    When User navigates to "<webAuditUrl>"
-    And User clicks the most recent GBPScorer Report
-    Then User sees a new tab is open rendering the GBPScorer Report
-    And User scroll to "Similar Listings" Section
-    Then User sees the Similar Listing Section is correct
-
-    Examples: 
-      | browser | loginUrl                              | webAuditUrl                                    |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
-
-  @GbpScorerReportRecentReview
-  Scenario Outline: Generate GBPScorer Report and validate Recent Review
-    Given User navigates to "<loginUrl>" using "<browser>"
-    And User enter the username as "reuel+01@axadra.com"
-    And User enter the password as "asdasdasd"
-    And User click on the login button
-    Then User is successfully login
-    When User navigates to "<webAuditUrl>"
-    And User clicks the most recent GBPScorer Report
-    Then User sees a new tab is open rendering the GBPScorer Report
-    And User scroll to Recent Review Section
-    Then User sees the Recent Review Section is correct
-
-    Examples: 
-      | browser | loginUrl                              | webAuditUrl                                    |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/gbp-report |
+      | browser | loginUrl                              | campaignKeywordUrl                                           | username            | password  | keyword                            |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/campaigns/28082/seo/rankings | reuel+01@axadra.com | asdasdasd | srsaa real estate agent green lake |
+  #@Add_And_Remove_Single_Keyword_From_Remove_Button
+  #Scenario Outline: Add and Remove Single Keyword from Remove button
+    #Given User navigates to "<loginUrl>" using "<browser>"
+    #And User enter the username as "<username>"
+    #And User enter the password as "<password>"
+    #And User click on the login button
+    #Then User is successfully login
+    #When User navigates to "<campaignKeywordUrl>"
+    #And User remove a single "<keyword>" from Remove button
+    #And User add a single "<keyword>"
+    #And User see Add Keyword modal
+    #And User close Add Keyword modal
+    #And User remove a single "<keyword>" from Remove button
+#
+    #Examples: 
+      #| browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword                         |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | ac real estate agent green lake |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | ad real estate agent green lake |
+#
+  #@Add_And_Remove_Multiple_Keyword_From_Trash_Button
+  #Scenario Outline: Add and Remove Multiple Keyword from Trash button
+    #Given User navigates to "<loginUrl>" using "<browser>"
+    #And User enter the username as "<username>"
+    #And User enter the password as "<password>"
+    #And User click on the login button
+    #Then User is successfully login
+    #When User navigates to "<campaignKeywordUrl>"
+    #And User remove a multiple "<keyword>" from Trash button
+    #And User add a multiple "<keyword>"
+    #And User see Add Keyword modal
+    #And User close Add Keyword modal
+    #And User remove a multiple "<keyword>" from Trash button
+#
+    #Examples: 
+      #| browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword                                                     |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | ba real estate,bb real estate,bc real estate,bd real estate |
+#
+  #@Add_And_Remove_Multiple_Keyword_From_Remove_Button
+  #Scenario Outline: Add and Remove Multiple Keyword from Remove button
+    #Given User navigates to "<loginUrl>" using "<browser>"
+    #And User enter the username as "<username>"
+    #And User enter the password as "<password>"
+    #And User click on the login button
+    #Then User is successfully login
+    #When User navigates to "<campaignKeywordUrl>"
+    #And User remove a multiple "<keyword>" from Remove button
+    #And User add a multiple "<keyword>"
+    #And User see Add Keyword modal
+    #And User close Add Keyword modal
+    #And User remove a multiple "<keyword>" from Remove button
+#
+    #Examples: 
+      #| browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword                                                     |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | aa real estate,ab real estate,ac real estate,ad real estate |
+#
+  #@Add_Single_DupOutline: Add Single Duplilicate_Keyword
+  #Scenario cate Keyword
+    #Given User navigates to "<loginUrl>" using "<browser>"
+    #And User enter the username as "<username>"
+    #And User enter the password as "<password>"
+    #And User click on the login button
+    #Then User is successfully login
+    #When User navigates to "<campaignKeywordUrl>"
+    #And User add a single "<keyword>"
+    #And User see Duplicate Keyword modal
+#
+    #Examples: 
+      #| browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword               |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | duplicate real estate |
+#
+  #@Add_Mulitple_Duplicate_Keyword
+  #Scenario Outline: Add Multiple Duplicate Keyword
+    #Given User navigates to "<loginUrl>" using "<browser>"
+    #And User enter the username as "<username>"
+    #And User enter the password as "<password>"
+    #And User click on the login button
+    #Then User is successfully login
+    #When User navigates to "<campaignKeywordUrl>"
+    #And User add a multiple "<keyword>"
+    #And User see Duplicate Keyword modal
+#
+    #Examples: 
+      #| browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword                                        |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | duplicate real estate, duplicate real estate 1 |
+#
+  #
+  #@KeywordPosition_Against_Summary_vs_Trend_vs_Ranking
+  #Scenario Outline: Keyword Position against Summary vs Trend vs Ranking
+    #Given User navigates to "<loginUrl>" using "<browser>"
+    #And User enter the username as "reuel@axadra.com"
+    #And User enter the password as "asdasdasd"
+    #And User click on the login button
+    #Then User is successfully login
+    #And User compares Keyword Position against "<campaignSummaryUrl>" vs "<campaignTrendUrl>" vs "<campaignRankingUrl>"
+#
+    #Examples: 
+      #| browser | loginUrl                           | campaignSummaryUrl                                                               | campaignTrendUrl                                                     | campaignRankingUrl                                           |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/seo | https://account.seoreseller.com/campaigns/34246/seo/rankings |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/34246/seo | https://account.seoreseller.com/campaigns/34246/seo/rankings |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/31442/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/31442/seo | https://account.seoreseller.com/campaigns/31442/seo/rankings |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/32851/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/32851/seo | https://account.seoreseller.com/campaigns/32851/seo/rankings |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/36243/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/36243/seo | https://account.seoreseller.com/campaigns/36243/seo/rankings |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/32327/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/32327/seo | https://account.seoreseller.com/campaigns/32327/seo/rankings |
+      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/5703/project/25298/ranking_summary | https://compass.trendup.asia/clients/bucket/1/5703/project/25298/seo | https://account.seoreseller.com/campaigns/25298/seo/rankings |
