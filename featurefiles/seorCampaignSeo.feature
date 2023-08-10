@@ -25,43 +25,22 @@ Feature: SEOR > Partner > Campaign > SEO
     Examples: 
       | browser | loginUrl                              | campaignKeywordUrl                                           | username            | password  | keyword                            |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/campaigns/28082/seo/rankings | reuel+01@axadra.com | asdasdasd | srsaa real estate agent green lake |
-  #@Add_And_Remove_Single_Keyword_From_Remove_Button
-  #Scenario Outline: Add and Remove Single Keyword from Remove button
-    #Given User navigates to "<loginUrl>" using "<browser>"
-    #And User enter the username as "<username>"
-    #And User enter the password as "<password>"
-    #And User click on the login button
-    #Then User is successfully login
-    #When User navigates to "<campaignKeywordUrl>"
-    #And User remove a single "<keyword>" from Remove button
-    #And User add a single "<keyword>"
-    #And User see Add Keyword modal
-    #And User close Add Keyword modal
-    #And User remove a single "<keyword>" from Remove button
-#
-    #Examples: 
-      #| browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword                         |
-      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | ac real estate agent green lake |
-      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | ad real estate agent green lake |
-#
-  #@Add_And_Remove_Multiple_Keyword_From_Trash_Button
-  #Scenario Outline: Add and Remove Multiple Keyword from Trash button
-    #Given User navigates to "<loginUrl>" using "<browser>"
-    #And User enter the username as "<username>"
-    #And User enter the password as "<password>"
-    #And User click on the login button
-    #Then User is successfully login
-    #When User navigates to "<campaignKeywordUrl>"
-    #And User remove a multiple "<keyword>" from Trash button
-    #And User add a multiple "<keyword>"
-    #And User see Add Keyword modal
-    #And User close Add Keyword modal
-    #And User remove a multiple "<keyword>" from Trash button
-#
-    #Examples: 
-      #| browser | loginUrl                           | campaignKeywordUrl                                                         | username         | password  | keyword                                                     |
-      #| chrome  | https://compass.trendup.asia/login | https://compass.trendup.asia/clients/bucket/1/35505/project/37031/keywords | reuel@axadra.com | asdasdasd | ba real estate,bb real estate,bc real estate,bd real estate |
-#
+
+  @Add_And_Remove_Multiple_Keyword_From_Delete_Button
+  Scenario Outline: Add and Remove Multiple Keyword from Trash button
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<campaignKeywordUrl>"
+    And User remove a multiple "<keyword>" from Delete button
+    And User add a multiple "<keyword>"
+    And User remove a multiple "<keyword>" from Delete button
+
+    Examples: 
+      | browser | loginUrl                              | campaignKeywordUrl                                           | username            | password  | keyword                                                     |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/campaigns/28082/seo/rankings | reuel+01@axadra.com | asdasdasd | ba real estate,bb real estate,bc real estate,bd real estate |
   #@Add_And_Remove_Multiple_Keyword_From_Remove_Button
   #Scenario Outline: Add and Remove Multiple Keyword from Remove button
     #Given User navigates to "<loginUrl>" using "<browser>"
