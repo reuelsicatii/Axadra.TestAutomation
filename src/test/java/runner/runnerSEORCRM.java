@@ -12,16 +12,14 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/dummy2.feature"},
+		features = {"featurefiles/seorCrm.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
 		glue = { "webApp.SEOR"},
-		tags =  "@TestCode",
-		plugin =  {
-				
+		tags =  "@SEOR_AgencyTools_Crm",
+		plugin =  {				
 				"pretty",
-				//"html:reports/results" + new SimpleDateFormat("yyyyMMdd_hhmmssa").format(new Date()) + ".html",
 				"html:reports/results.html",
 				"json:reports/results.json",
 				"junit:reports/results.xml"
@@ -30,7 +28,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 
 	)
 
-public class runnerDummy2 extends AbstractTestNGCucumberTests {	
+public class runnerSEORCRM extends AbstractTestNGCucumberTests {	
 	
 	
 	// Running Cucumber - Parallel Test

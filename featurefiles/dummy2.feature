@@ -3,24 +3,15 @@ Feature: Dummy
   Background: #Precondition
 
   @TestCode
-  Scenario Outline: WebAuditReportSummary
-    Given Test HardAssert01 "<bool01>" "<bool02>" "<bool03>"
-    When Test HardAssert02 "<bool01>" "<bool02>" "<bool03>"
+  Scenario Outline: Add and Remove Single Keyword from Delete button
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<crmURL>"
+    And User adds contacts through file upload
 
     Examples: 
-      | bool01 | bool02 | bool03 |
-      | true   | true   | true   |
-      | true   | false  | true   |
-      | true   | true   | false  |
-
-  @TestCode
-  Scenario Outline: WebAuditReportSummary
-    Given Test SoftAsset01 "<bool01>" "<bool02>" "<bool03>"
-    When Test SoftAsset02 "<bool01>" "<bool02>" "<bool03>"
-    When Test SoftAsset03
-
-    Examples: 
-      | bool01 | bool02 | bool03 |
-      | false  | true   | true   |
-      | true   | false  | true   |
-      | true   | true   | false  |
+      | browser | loginUrl                              | crmURL                                   | username            | password  |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd |
