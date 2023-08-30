@@ -43,12 +43,15 @@ public class commonStep extends webAppHelper {
 			context.setFluentWait(initializeFluentWait(context.getDriver()));
 			context.getDriver().manage().window().maximize();
 			context.getDriver().get(url);
+			
+			// no anchor over table
+			Thread.sleep(5000);
 
 			try {
 
 				// Test Server Browser -- NextRoll Inc Privacy
 				context.getDriver().findElement(By.xpath(
-						"//div[@id='adroll_consent_banner_container']//div[@class='adroll_consent_close_icon']")).click();
+						"//div[@id='adroll_consent_banner_container']//div[text()='Decline All']")).click();
 
 			} catch (Exception e) {
 				e.printStackTrace();
