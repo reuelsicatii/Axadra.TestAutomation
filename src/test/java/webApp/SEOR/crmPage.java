@@ -25,6 +25,16 @@ public class crmPage extends webAppHelper {
 	By uploadFile_textArea = By.xpath("(//div[@id='add-new-contact-modal']//input)[4]");
 	By okaySuccess_button = By.xpath("//div[@id='create-contact-alert-success']//button[text()='OKAY']");
 
+	By companyColumn_tableDropdown = By.xpath("(//div[@class='table-row'])[1]/div[2]/div[1]");
+	By valueCompanyColumn_tableDropdown = By
+			.xpath("(//div[@class='table-row'])[1]/div[2]/div[1]/div[2]/div[text()='Company']");
+	By phoneColumn_tableDropdown = By.xpath("(//div[@class='table-row'])[1]/div[5]/div[1]");
+	By valuePhoneColumn_tableDropdown = By
+			.xpath("(//div[@class='table-row'])[1]/div[5]/div[1]/div[2]/div[text()='Phone']");
+	By import_button = By.xpath("//button[@id='import-contact-btn']");
+	By proceed1_button = By.xpath("//button[text()='Proceed']");
+	By proceed2_button = By.xpath("//button[text()='PROCEED']");
+
 	// Declare Driver Instance
 	// ==========================================
 	private webAppContextDriver context;
@@ -199,8 +209,50 @@ public class crmPage extends webAppHelper {
 		}
 	}
 
+	@When("User saves a contact from file with {string}")
+	public void userSavesAContactFromFileWith(String companyName) throws Throwable {
+
+		try {
+
+			// no anchor over table
+			Thread.sleep(10000);
+
+			for (int i = 1; i < context.getDriver().findElements(By.xpath("//table[@id='crm-contacts-table']/tbody/tr"))
+					.size() + 1; i++) {
+
+				if (context.getDriver()
+						.findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[2]")).getText()
+						.contains(companyName)) {
+					
+					context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+							context.getDriver().findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[2]")));
+
+					// Extent Report
+					context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+							"User saves a contact from file with " + companyName).pass("PASSED");
+					
+					break;
+
+				}
+
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User saves a contact from file with " + companyName)
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
 	@When("User saves a contact with {string} {string} {string}")
-	public void userSavesAContact(String websiteURL, String companyName, String emailAddress) throws Throwable {
+	public void userSavesAContact(String companyName, String emailAddress, String websiteURL) throws Throwable {
 
 		try {
 
@@ -212,13 +264,16 @@ public class crmPage extends webAppHelper {
 
 				if (context.getDriver()
 						.findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[2]")).getText()
-						.contains(websiteURL)
+						.contains(companyName)
 						&& context.getDriver()
 								.findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[4]"))
-								.getText().contains(companyName)
+								.getText().contains(emailAddress)
 						&& context.getDriver()
 								.findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[5]"))
-								.getText().contains(emailAddress)) {
+								.getText().contains(websiteURL)) {
+					
+					context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+							context.getDriver().findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[2]")));
 
 					// Extent Report
 					context.getExtentTestScenario()
@@ -237,6 +292,118 @@ public class crmPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"),
 								"User saves a contact with " + websiteURL + " " + companyName + " " + emailAddress)
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User uploads a file to the uploadFile textArea with {string}")
+	public void userUploadsAFileToTheUploadFileTextArea(String FileName) throws Throwable {
+
+		try {
+
+			switch (FileName) {
+			case "crm_exportfile_csv.csv":
+				crmService.updateCSVFileRecord("original_crm_exportfile_csv.csv", "crm_exportfile_csv.csv");
+				break;
+			case "crm_exportfile_txt.txt":
+				crmService.updateTXTFileRecord("original_crm_exportfile_txt.txt", "crm_exportfile_txt.txt");
+				break;
+			case "crm_exportfile_xls.xls":
+				crmService.updateXLSFileRecord("crm_exportfile_xls.xls");
+				break;
+			case "crm_exportfile_xlsx.xlsx":
+				crmService.updateXLSXFileRecord("crm_exportfile_xlsx.xlsx");
+				break;
+			default:
+				System.out.println("Invalid FileName.");
+			}
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(uploadFile_textArea));
+			context.getDriver().findElement(uploadFile_textArea)
+					.sendKeys(System.getProperty("user.dir") + "\\data\\webApp.SEOR.crm\\" + FileName);
+
+			// no anchor over table
+			Thread.sleep(10000);
+
+			// choose Company over Company Column
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(companyColumn_tableDropdown));
+			context.getDriver().findElement(companyColumn_tableDropdown).click();
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(valueCompanyColumn_tableDropdown));
+			context.getDriver().findElement(valueCompanyColumn_tableDropdown).click();
+
+			// no anchor over table
+			Thread.sleep(5000);
+
+			// choose Phone over Phone Column
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(phoneColumn_tableDropdown));
+			context.getDriver().findElement(phoneColumn_tableDropdown).click();
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(valuePhoneColumn_tableDropdown));
+			context.getDriver().findElement(valuePhoneColumn_tableDropdown).click();
+
+			// no anchor over table
+			Thread.sleep(5000);
+
+			// click Import button
+			context.getWait().until(ExpectedConditions.visibilityOf(context.getDriver().findElement(import_button)));
+			context.getDriver().findElement(import_button).click();
+
+			// no anchor over table
+			Thread.sleep(10000);
+
+			// check if element is displayed
+			if (FileName.contains("crm_exportfile_csv") || FileName.contains("crm_exportfile_txt")
+					|| FileName.contains("crm_exportfile_xls") || FileName.contains("crm_exportfile_xlsx")) {
+				context.getWait()
+						.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(proceed1_button)));
+				context.getDriver().findElement(proceed1_button).click();
+			}
+
+			// Extent Report
+			context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+					"User uploads a file to the uploadFile textArea with " + FileName).pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User uploads a file to the uploadFile textArea with " + FileName)
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User clicks on the proceedSuccess button")
+	public void userClicksOnTheProceedSuccessButton() throws Throwable {
+
+		try {
+
+			// no anchor over table
+			Thread.sleep(15000);
+
+			context.getWait().until(ExpectedConditions.visibilityOf(context.getDriver().findElement(proceed2_button)));
+			context.getDriver().findElement(proceed2_button).click();
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User clicks on the proceedSuccess button").pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User clicks on the proceedSuccess button")
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
