@@ -35,6 +35,11 @@ public class crmPage extends webAppHelper {
 	By proceed1_button = By.xpath("//button[text()='Proceed']");
 	By proceed2_button = By.xpath("//button[text()='PROCEED']");
 
+	//By row_tableCheckboxn = By.xpath("//table[@id='crm-contacts-table']//tbody/tr[1]//input[@type='checkbox']");
+	By row_tableCheckboxn = By.xpath("(//table[@id='crm-contacts-table']//tbody/tr[1]//span)[1]");	
+	By delete_tableButton = By.xpath("//div[@id='selection-details']//button[text()='Delete']");
+	By deletContact_modalButton = By.xpath("//button[text() ='Yes, delete contacts']");
+
 	// Declare Driver Instance
 	// ==========================================
 	private webAppContextDriver context;
@@ -223,14 +228,14 @@ public class crmPage extends webAppHelper {
 				if (context.getDriver()
 						.findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[2]")).getText()
 						.contains(companyName)) {
-					
-					context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-							context.getDriver().findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[2]")));
+
+					context.getDriver().executeScript("arguments[0].scrollIntoView(true);", context.getDriver()
+							.findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[2]")));
 
 					// Extent Report
 					context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 							"User saves a contact from file with " + companyName).pass("PASSED");
-					
+
 					break;
 
 				}
@@ -271,9 +276,9 @@ public class crmPage extends webAppHelper {
 						&& context.getDriver()
 								.findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[5]"))
 								.getText().contains(websiteURL)) {
-					
-					context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-							context.getDriver().findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[2]")));
+
+					context.getDriver().executeScript("arguments[0].scrollIntoView(true);", context.getDriver()
+							.findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[2]")));
 
 					// Extent Report
 					context.getExtentTestScenario()
@@ -404,6 +409,88 @@ public class crmPage extends webAppHelper {
 			try {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User clicks on the proceedSuccess button")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User delete single contact")
+	public void userDeleteSingleContact() throws Throwable {
+
+		try {
+
+			// no anchor over table
+			Thread.sleep(5000);
+
+			// get Company Name
+			String companyName = context.getDriver()
+					.findElement(By.xpath("//table[@id='crm-contacts-table']//tbody/tr[1]/td[2]/div")).getText();
+
+			String emailAddress = context.getDriver()
+					.findElement(By.xpath("//table[@id='crm-contacts-table']//tbody/tr[1]/td[4]/div")).getText();
+
+			context.getWait()
+					.until(ExpectedConditions.presenceOfElementLocated(row_tableCheckboxn));
+			context.getDriver().findElement(row_tableCheckboxn).click();
+			// context.getDriver().executeScript("arguments[0].click();",
+			// 		context.getDriver().findElement(row_tableCheckboxn));
+
+			context.getWait()
+					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(delete_tableButton)));
+			context.getDriver().findElement(delete_tableButton).click();
+
+			context.getWait()
+					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(deletContact_modalButton)));
+			context.getDriver().findElement(deletContact_modalButton).click();
+			
+			Thread.sleep(5000);
+			System.out.println("...hard reloading the page");
+			context.getDriver().executeScript("location.reload(true);");
+			Thread.sleep(5000);
+
+			while (true) {
+				for (int i = 1; i < context.getDriver()
+						.findElements(By.xpath("//table[@id='crm-contacts-table']/tbody/tr")).size() + 1; i++) {
+
+					if (context.getDriver()
+							.findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[2]"))
+							.getText().contains(companyName)
+							&& context.getDriver()
+									.findElement(
+											By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[4]"))
+									.getText().contains(emailAddress)) {
+
+						context.getDriver().executeScript("arguments[0].scrollIntoView(true);", context.getDriver()
+								.findElement(By.xpath("//table[@id='crm-contacts-table']/tbody/tr[" + i + "]/td[2]")));
+
+						// Extent Report
+						context.getExtentTestScenario()
+								.createNode(new GherkinKeyword("When"), "User delete single contact" + "<br>"
+										+ "Company Name: " + companyName + "<br>" + "Email Address: " + emailAddress)
+								.fail("FAILED");
+
+						break;
+
+					}
+
+				}
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User delete single contact"
+						+ "<br>" + "Company Name: " + companyName + "<br>" + "Email Address: " + emailAddress)
+						.pass("PASSED");
+				break;
+
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User delete single contact")
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
