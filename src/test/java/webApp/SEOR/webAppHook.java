@@ -14,7 +14,6 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.GherkinKeyword;
 import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import helper.webAppContextDriver;
@@ -44,6 +43,7 @@ public class webAppHook extends webAppHelper {
 
 	private static ExtentSparkReporter extentSparkReporter;
 	private static ExtentReports extentReports = new ExtentReports();
+	private static String scenarioName;
 
 	@BeforeAll
 	public static void beforeALl() throws ClassNotFoundException {
@@ -51,20 +51,12 @@ public class webAppHook extends webAppHelper {
 		System.out.println("Im in a BeforeAll Scenario");
 		System.out.println("BeforeScenario - Thread ID" + Thread.currentThread().getId());
 
-		// Define Extent Report
-		// ====================================================
-		/*
-		 * extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir")
-		 * + "/reports/extentReport" + new SimpleDateFormat("_yyMMdd_HHmmss").format(new
-		 * Date()) + ".html"); extentReports.attachReporter(extentSparkReporter);
-		 */
-
-		// Define Extent Report XAMPP htdocs Folder - Image not resolving
+		// Define Extent Report XAMPP htdocs Folder
 		// ==============================================================================
-		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/SEORESELLER_TestSuite"
-				+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".html");
-		extentReports.attachReporter(extentSparkReporter);
-
+		// extentSparkReporter = new
+		// ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/SEORESELLER_TestSuite/"
+		// + new SimpleDateFormat("yyMMdd_HHmmss").format(new Date()) + ".html");
+		// extentReports.attachReporter(extentSparkReporter);
 	}
 
 	@Before
@@ -75,6 +67,7 @@ public class webAppHook extends webAppHelper {
 
 		// Set SoftAssert
 		context.setSoftAssert();
+		scenarioName = scenario.getSourceTagNames().toArray()[0].toString().replace("@", "");
 
 		// Set Feature Name
 		featureExtentTest = extentReports
@@ -125,7 +118,7 @@ public class webAppHook extends webAppHelper {
 			 * MediaEntityBuilder.createScreenCaptureFromPath(DestFile).build());
 			 * 
 			 */
-			
+
 			Random generator = new Random();
 			int randomIndex = generator.nextInt(2000);
 			Thread.sleep(randomIndex);
@@ -135,12 +128,10 @@ public class webAppHook extends webAppHelper {
 			// XAMPP htdocs Folder - Image not resolving
 			// ====================================================
 			DestFile = "C:/xampp/htdocs/AutomationProject/screenshots/"
-					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_"
-					+ date + ".png";
+					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_" + date + ".png";
 
 			SrcImage = "/AutomationProject/screenshots/"
-					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_"
-					+ date + ".png";
+					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_" + date + ".png";
 
 			context.setSrcFile(((TakesScreenshot) context.getDriver()).getScreenshotAs(OutputType.FILE));
 
@@ -155,8 +146,9 @@ public class webAppHook extends webAppHelper {
 					context.getScenario().getStatus().toString());
 
 			// Attached Screenshot to Extent Report
-			context.getExtentTestScenario().createNode(" ======================================== ")
-					.info("Captured Screenshot: ", MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
+			context.getExtentTestScenario().createNode(" ======================================== ").info(
+					"Captured Screenshot: ",
+					MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
 
 		} catch (Exception e) {
 			// Extent Report
@@ -180,6 +172,12 @@ public class webAppHook extends webAppHelper {
 	public static void afterAll() {
 
 		System.out.println("Im in a After Scenario");
+
+		// Create Extent Report over XAMPP htdocs Folder
+		// ==============================================================================
+		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/SEORESELLER/"
+				+ scenarioName + new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".html");
+		extentReports.attachReporter(extentSparkReporter);
 		extentReports.flush();
 
 	}

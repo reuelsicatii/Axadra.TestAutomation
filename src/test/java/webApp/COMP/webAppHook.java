@@ -44,6 +44,7 @@ public class webAppHook extends webAppHelper {
 
 	private static ExtentSparkReporter extentSparkReporter;
 	private static ExtentReports extentReports = new ExtentReports();
+	private static String scenarioName;
 
 	@BeforeAll
 	public static void beforeALl() throws ClassNotFoundException {
@@ -51,19 +52,11 @@ public class webAppHook extends webAppHelper {
 		System.out.println("Im in a BeforeAll Scenario");
 		System.out.println("BeforeScenario - Thread ID" + Thread.currentThread().getId());
 
-		// Define Extent Report
-		// ====================================================
-		/*
-		 * extentSparkReporter = new ExtentSparkReporter(System.getProperty("user.dir")
-		 * + "/reports/extentReport" + new SimpleDateFormat("_yyMMdd_HHmmss").format(new
-		 * Date()) + ".html"); extentReports.attachReporter(extentSparkReporter);
-		 */
-
 		// Define Extent Report XAMPP htdocs Folder - Image not resolving
 		// ==============================================================================
-		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/COMPASS_TestSuite"
-				+ new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".html");
-		extentReports.attachReporter(extentSparkReporter);
+		// extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/COMPASS_TestSuite/"
+		//		+ new SimpleDateFormat("yyMMdd_HHmmss").format(new Date()) + ".html");
+		// extentReports.attachReporter(extentSparkReporter);
 
 	}
 
@@ -75,6 +68,7 @@ public class webAppHook extends webAppHelper {
 
 		// Set SoftAssert
 		context.setSoftAssert();
+		scenarioName = scenario.getSourceTagNames().toArray()[0].toString().replace("@", "");
 
 		// Set Feature Name
 		featureExtentTest = extentReports
@@ -180,6 +174,11 @@ public class webAppHook extends webAppHelper {
 	public static void afterAll() {
 
 		System.out.println("Im in a After Scenario");
+		// Create Extent Report over XAMPP htdocs Folder
+		// ==============================================================================
+		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/COMPASS/"
+				+ scenarioName + new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".html");
+		extentReports.attachReporter(extentSparkReporter);
 		extentReports.flush();
 
 	}

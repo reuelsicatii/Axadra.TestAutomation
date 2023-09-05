@@ -10,8 +10,6 @@ Feature: SEOR > Agency Tools > WebAudit
   #Then User is successfully login
   #When User navigates to "https://account.seoreseller.com/pro/audits"
   #And User generates a WebAuditReport
-  
-  
   @DeleteSingleContact
   Scenario Outline: Delete Single Contact
     Given User navigates to "<loginUrl>" using "<browser>"
@@ -25,6 +23,23 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | crmURL                                   | username            | password  |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd |
+
+  @DeleteMultipleContact
+  Scenario Outline: Delete Single Contact
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<crmURL>"
+    And User delete "<multiple>" contact
+
+    Examples: 
+      | browser | loginUrl                              | crmURL                                   | username            | password  | multiple |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd |       10 |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd |       25 |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd |       50 |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd |      100 |
 
   @AddContactUsingForm
   Scenario Outline: Add Contact using Form

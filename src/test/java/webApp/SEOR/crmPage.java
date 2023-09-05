@@ -1,15 +1,18 @@
 package webApp.SEOR;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import com.aventstack.extentreports.GherkinKeyword;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
-import testAuto.Service.CrmService;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import testAuto.Service.CrmService;
 
 public class crmPage extends webAppHelper {
 
@@ -35,10 +38,20 @@ public class crmPage extends webAppHelper {
 	By proceed1_button = By.xpath("//button[text()='Proceed']");
 	By proceed2_button = By.xpath("//button[text()='PROCEED']");
 
-	//By row_tableCheckboxn = By.xpath("//table[@id='crm-contacts-table']//tbody/tr[1]//input[@type='checkbox']");
-	By row_tableCheckboxn = By.xpath("(//table[@id='crm-contacts-table']//tbody/tr[1]//span)[1]");	
+	By row_tableCheckboxn = By.xpath("(//table[@id='crm-contacts-table']//tbody/tr[1]//span)[1]");
+	By rowHeader_tableCheckboxn = By.xpath("(//table[@id='crm-contacts-table']//thead/tr//span)[1]");
 	By delete_tableButton = By.xpath("//div[@id='selection-details']//button[text()='Delete']");
 	By deletContact_modalButton = By.xpath("//button[text() ='Yes, delete contacts']");
+
+	// Contact TableRow DropwDown - Element Finder
+	// ===================================
+	private Select contactTableRowDropDownElementFinder() {
+
+		Select element = new Select(
+				context.getDriver().findElement(By.xpath("//select[@name='crm-contacts-table_length']")));
+		return element;
+
+	}
 
 	// Declare Driver Instance
 	// ==========================================
@@ -432,11 +445,10 @@ public class crmPage extends webAppHelper {
 			String emailAddress = context.getDriver()
 					.findElement(By.xpath("//table[@id='crm-contacts-table']//tbody/tr[1]/td[4]/div")).getText();
 
-			context.getWait()
-					.until(ExpectedConditions.presenceOfElementLocated(row_tableCheckboxn));
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(row_tableCheckboxn));
 			context.getDriver().findElement(row_tableCheckboxn).click();
 			// context.getDriver().executeScript("arguments[0].click();",
-			// 		context.getDriver().findElement(row_tableCheckboxn));
+			// context.getDriver().findElement(row_tableCheckboxn));
 
 			context.getWait()
 					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(delete_tableButton)));
@@ -445,7 +457,7 @@ public class crmPage extends webAppHelper {
 			context.getWait()
 					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(deletContact_modalButton)));
 			context.getDriver().findElement(deletContact_modalButton).click();
-			
+
 			Thread.sleep(5000);
 			System.out.println("...hard reloading the page");
 			context.getDriver().executeScript("location.reload(true);");
@@ -491,6 +503,135 @@ public class crmPage extends webAppHelper {
 			// Extent Report
 			try {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User delete single contact")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User delete {string} contact")
+	public void userDeleteSingleContact(String tableRowValue) throws Throwable {
+
+		try {
+
+			// Select from DropDown - Table Row
+			contactTableRowDropDownElementFinder().selectByVisibleText(tableRowValue);
+
+			// no anchor over table
+			Thread.sleep(5000);
+
+			// Loop through Table row - Get Keyword and its position
+			LinkedHashMap<String, String> contactCompanyEmailBefore = new LinkedHashMap<String, String>();
+			for (int b = 1; b < context.getDriver().findElements(By.xpath("//table[@id='crm-contacts-table']/tbody/tr"))
+					.size() + 1; b++) {
+
+				contactCompanyEmailBefore.put(
+						context.getDriver()
+								.findElement(
+										By.xpath("//table[@id='crm-contacts-table']//tbody/tr[" + b + "]/td[2]/div"))
+								.getText(),
+						context.getDriver()
+								.findElement(
+										By.xpath("//table[@id='crm-contacts-table']//tbody/tr[" + b + "]/td[4]/div"))
+								.getText());
+
+			}
+
+			// Iterating HashMap through for loop
+			for (Map.Entry<String, String> set : contactCompanyEmailBefore.entrySet()) {
+
+				// Printing all elements of a Map
+				System.out.println("contactCompanyEmailBefore " + set.getKey() + " = " + set.getValue());
+			}
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(addContact_button));
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(rowHeader_tableCheckboxn));
+			context.getDriver().findElement(rowHeader_tableCheckboxn).click();
+
+			context.getWait()
+					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(delete_tableButton)));
+			context.getDriver().findElement(delete_tableButton).click();
+
+			context.getWait()
+					.until(ExpectedConditions.visibilityOf(context.getDriver().findElement(deletContact_modalButton)));
+			context.getDriver().findElement(deletContact_modalButton).click();
+
+			Thread.sleep(5000);
+			System.out.println("...hard reloading the page");
+			context.getDriver().executeScript("location.reload(true);");
+			Thread.sleep(5000);
+
+			// Select from DropDown - Table Row
+			contactTableRowDropDownElementFinder().selectByVisibleText(tableRowValue);
+
+			// no anchor over table
+			Thread.sleep(5000);
+
+			// Loop through Table row - Get Keyword and its position
+			LinkedHashMap<String, String> contactCompanyEmailAfter = new LinkedHashMap<String, String>();
+			for (int a = 1; a < context.getDriver().findElements(By.xpath("//table[@id='crm-contacts-table']/tbody/tr"))
+					.size() + 1; a++) {
+
+				contactCompanyEmailAfter.put(
+						context.getDriver()
+								.findElement(
+										By.xpath("//table[@id='crm-contacts-table']//tbody/tr[" + a + "]/td[2]/div"))
+								.getText(),
+						context.getDriver()
+								.findElement(
+										By.xpath("//table[@id='crm-contacts-table']//tbody/tr[" + a + "]/td[4]/div"))
+								.getText());
+
+			}
+
+			// Iterating HashMap through for loop
+			for (Map.Entry<String, String> set : contactCompanyEmailAfter.entrySet()) {
+
+				// Printing all elements of a Map
+				System.out.println("contactCompanyEmailBefore " + set.getKey() + " = " + set.getValue());
+			}
+
+			// Validating through delete contacts
+			boolean multiContactsDeleted = true;
+			for (Map.Entry<String, String> contactCompanyEmailBeforeset : contactCompanyEmailBefore.entrySet()) {
+				for (Map.Entry<String, String> contactCompanyEmailAfterset : contactCompanyEmailAfter.entrySet()) {
+
+					if (contactCompanyEmailAfterset.getKey().equals(contactCompanyEmailBeforeset.getKey())
+							&& contactCompanyEmailAfterset.getValue().equals(contactCompanyEmailBeforeset.getValue())) {
+
+						// Extent Report
+						context.getExtentTestScenario()
+								.createNode(new GherkinKeyword("When"),
+										"User delete " + tableRowValue + " contacts" 
+												+ "<br>" 
+												+ "Company Name: " + contactCompanyEmailAfterset.getKey() 
+												+ "<br>" 
+												+ "Email Address: " + contactCompanyEmailAfterset.getValue())
+								.fail("FAILED");
+
+						multiContactsDeleted = false;
+						break;
+
+					}
+				}
+			}
+
+			if (multiContactsDeleted) {
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User delete " + tableRowValue + " contacts")
+						.pass("PASSED");
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User delete " + tableRowValue + " contacts")
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
