@@ -175,8 +175,8 @@ public class webAppHook extends webAppHelper {
 
 		// Create Extent Report over XAMPP htdocs Folder
 		// ==============================================================================
-		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/SEORESELLER/"
-				+ scenarioName + new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".html");
+		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/"
+				+ scenarioName + "/" + new SimpleDateFormat("yyMMdd_HHmmss").format(new Date()) + ".html");
 		extentReports.attachReporter(extentSparkReporter);
 		extentReports.flush();
 
