@@ -25,7 +25,7 @@ Feature: SEOR > Agency Tools > WebAudit
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd |
 
   @DeleteMultipleContact
-  Scenario Outline: Delete Single Contact
+  Scenario Outline: Delete Multiple Contact
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "<username>"
     And User enter the password as "<password>"

@@ -72,13 +72,19 @@ public class webAppHook extends webAppHelper {
 		// Set Feature Name
 		featureExtentTest = extentReports
 				.createTest(new GherkinKeyword("Feature"),
-						"Feature Name: " + scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + " - "
-								+ scenario.getName() + " - " + scenario.getLine(),
-						" Scenario Name: " + scenario.getName());
+						"Feature Name: " + scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") 
+						+ "<br>"
+						+ " Scenario Name: " + scenario.getName() 
+						+ "<br>"
+						+ "TestCase ID: " + scenario.getLine(),
+						"<br><br><br>"
+						+ " Scenario Name: " + scenario.getName());
 
 		// Set Test Scenario and Case Name
 		scenarioExtentTest = featureExtentTest.createNode(new GherkinKeyword("Scenario"),
-				"TestCase ID: " + scenario.getLine(), scenario.getId());
+				" Scenario Name: " + scenario.getName()
+				+ "<br>" 
+				+ "TestCase ID: " + scenario.getLine(), scenario.getId());
 		context.setExtentTestScenario(scenarioExtentTest);
 
 	}
@@ -175,8 +181,8 @@ public class webAppHook extends webAppHelper {
 
 		// Create Extent Report over XAMPP htdocs Folder
 		// ==============================================================================
-		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/"
-				+ scenarioName + "/" + new SimpleDateFormat("yyMMdd_HHmmss").format(new Date()) + ".html");
+		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/" + scenarioName + "/"
+				+ new SimpleDateFormat("yyMMdd_HHmmss").format(new Date()) + ".html");
 		extentReports.attachReporter(extentSparkReporter);
 		extentReports.flush();
 
