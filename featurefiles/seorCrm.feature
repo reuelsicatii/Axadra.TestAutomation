@@ -10,8 +10,9 @@ Feature: SEOR > Agency Tools > WebAudit
   #Then User is successfully login
   #When User navigates to "https://account.seoreseller.com/pro/audits"
   #And User generates a WebAuditReport
-  @DeleteSingleContact
-  Scenario Outline: Delete Single Contact
+  
+  @DeleteSingleContactOverCRM
+  Scenario Outline: Delete Single Contact over CRM
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "<username>"
     And User enter the password as "<password>"
@@ -23,9 +24,24 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | crmURL                                   | username            | password  |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd |
+      
+@DeleteSingleContactOverCRMContactDetails
+  Scenario Outline: Delete Single Contact over CRM > Contact Details
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<crmURL>"
+    And User delete single contact over contact details
 
-  @DeleteMultipleContact
-  Scenario Outline: Delete Multiple Contact
+    Examples: 
+      | browser | loginUrl                              | crmURL                                   | username            | password  |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd |
+
+
+  @DeleteMultipleContactOverCRM
+  Scenario Outline: Delete Multiple Contact over CRM
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "<username>"
     And User enter the password as "<password>"
