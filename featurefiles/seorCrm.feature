@@ -10,7 +10,6 @@ Feature: SEOR > Agency Tools > WebAudit
   #Then User is successfully login
   #When User navigates to "https://account.seoreseller.com/pro/audits"
   #And User generates a WebAuditReport
-  
   @DeleteSingleContactOverCRM
   Scenario Outline: Delete Single Contact over CRM
     Given User navigates to "<loginUrl>" using "<browser>"
@@ -24,8 +23,8 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | crmURL                                   | username            | password  |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd |
-      
-@DeleteSingleContactOverCRMContactDetails
+
+  @DeleteSingleContactOverCRMContactDetails
   Scenario Outline: Delete Single Contact over CRM > Contact Details
     Given User navigates to "<loginUrl>" using "<browser>"
     And User enter the username as "<username>"
@@ -38,7 +37,6 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | crmURL                                   | username            | password  |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd |
-
 
   @DeleteMultipleContactOverCRM
   Scenario Outline: Delete Multiple Contact over CRM
@@ -74,8 +72,8 @@ Feature: SEOR > Agency Tools > WebAudit
     Then User saves a contact with "<companyName>" "<emailAddress>" "<websiteURL>"
 
     Examples: 
-      | browser | loginUrl                              | crmURL                                   | username            | password  | websiteURL   | companyName  | emailAddress   |
-      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd | www.test.com | test company | test@gmail.com |
+      | browser | loginUrl                              | crmURL                                   | username            | password  | websiteURL | companyName  | emailAddress   |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd | test.com   | test company | test@gmail.com |
 
   @AddContactUsingUploadFile
   Scenario Outline: Add Contact using Upload File
@@ -96,3 +94,24 @@ Feature: SEOR > Agency Tools > WebAudit
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd | crm_exportfile_txt.txt   | _txt        |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd | crm_exportfile_xls.xls   | _xls        |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel+01@axadra.com | asdasdasd | crm_exportfile_xlsx.xlsx | _xlsx       |
+
+  @UpdateContactWebSiteOverCRMContactDetails
+  Scenario Outline: Update Contact WebSite over CRM > Contact Details 
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<crmURL>"
+    And User clicks on the addContact button
+    And User populates websiteURL textfield with "<websiteURL>"
+    And User populates companyName textfield with "<companyName>"
+    And User populates emailAddress textfield with "<emailAddress>"
+    And User clicks on the createContact button
+    And User clicks on the okaySuccess button
+    Then User saves a contact with "<companyName>" "<emailAddress>" "<websiteURL>"
+    When User updates websiteURL textfield with "<websiteURL>"
+
+    Examples: 
+      | browser | loginUrl                              | crmURL                                   | username         | password  | websiteURL | companyName  | emailAddress   |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel@axadra.com | asdasdasd | test.com   | test company | test@gmail.com |

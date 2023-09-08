@@ -96,7 +96,7 @@ public class crmPage extends webAppHelper {
 		try {
 			context.getWait().until(ExpectedConditions.visibilityOfElementLocated(websiteURL_textfield));
 			context.getDriver().findElement(websiteURL_textfield)
-					.sendKeys(crmService.generateRandomString(8) + websiteURL);
+					.sendKeys("www." + crmService.generateRandomString(8) + websiteURL);
 
 			// Extent Report
 			context.getExtentTestScenario()
@@ -298,6 +298,8 @@ public class crmPage extends webAppHelper {
 							.createNode(new GherkinKeyword("When"),
 									"User saves a contact with " + websiteURL + " " + companyName + " " + emailAddress)
 							.pass("PASSED");
+					
+					break;
 
 				}
 

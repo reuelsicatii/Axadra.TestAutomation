@@ -20,9 +20,17 @@ public class crmContactPage extends webAppHelper {
 
 	// Page Elements
 	// ==========================================
+	By addContact_button = By.xpath("//div[@id='contacts-container']//button[text()='Add a contact']");
+
 	By rowContactDetails_tableLink = By.xpath("(//table[@id='crm-contacts-table']//tbody/tr[1]//a)[1]");
 	By delete_sectionButton = By.xpath("//div[@id='contact-details-container']//button[text()='Delete']");
 	By deletContact_modalButton = By.xpath("(//button[text()='Delete'])[2]");
+
+	By edit_sectionButton = By.xpath("//div[@id='contact-details-container']//img[contains(@src, 'edit')]");
+	By website_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='website']");
+	By saveChange_sectionButton = By.xpath("//form[@id='business-contact-form']//button[text()='Save Changes']");
+	By website_sectionlabel = By
+			.xpath("//div[@id='contact-details-container']//div[contains(@class, 'contact-website-container')]");
 
 	// Declare Driver Instance
 	// ==========================================
@@ -121,6 +129,73 @@ public class crmContactPage extends webAppHelper {
 			try {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User delete single contact over contact details")
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User updates websiteURL textfield with {string}")
+	public void userPopulatesWebsiteURLTextfield(String websiteURL) throws Throwable {
+
+		String updatedWebsiteURL = null;
+
+		try {
+
+			// no anchor
+			Thread.sleep(5000);
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(addContact_button));
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(rowContactDetails_tableLink));
+			context.getDriver().findElement(rowContactDetails_tableLink).click();
+
+			// no anchor
+			Thread.sleep(5000);
+
+			context.getWait().until(ExpectedConditions.visibilityOfElementLocated(edit_sectionButton));
+			context.getDriver().findElement(edit_sectionButton).click();
+
+			// no anchor
+			Thread.sleep(2000);
+
+			updatedWebsiteURL = "http://upd." + crmService.generateRandomString(8) + websiteURL;
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(website_sectionTextfield));
+			context.getDriver().findElement(website_sectionTextfield).clear();
+			context.getDriver().findElement(website_sectionTextfield).sendKeys(updatedWebsiteURL);
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(saveChange_sectionButton));
+			context.getWait().until(ExpectedConditions.visibilityOfElementLocated(saveChange_sectionButton));
+			context.getDriver().findElement(saveChange_sectionButton).click();
+
+			// no anchor
+			Thread.sleep(5000);
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(delete_sectionButton));
+
+			if (context.getDriver().findElement(website_sectionlabel).getText().contains(updatedWebsiteURL)) {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User updates websiteURL textfield with " + updatedWebsiteURL).pass("PASSED");
+
+			} else {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+						"User updates websiteURL textfield with " + updatedWebsiteURL).fail("FAILED");
+
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User updates websiteURL textfield with " + updatedWebsiteURL)
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
