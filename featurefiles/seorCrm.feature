@@ -169,3 +169,84 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | crmURL                                   | username         | password  | websiteURL | companyName | emailAddress    |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel@axadra.com | asdasdasd | url.com    | company     | email@gmail.com |
+
+  @PopulateContactPhoneOverCRMContactDetailsBusinessInfo
+  Scenario Outline: Update Contact Phone over CRM > Contact Details > Business Info
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<crmURL>"
+    And User clicks on the addContact button
+    And User populates websiteURL textfield with "<websiteURL>"
+    And User populates companyName textfield with "<companyName>"
+    And User populates emailAddress textfield with "<emailAddress>"
+    And User clicks on the createContact button
+    And User clicks on the okaySuccess button
+    Then User saves a contact with "<companyName>" "<emailAddress>" "<websiteURL>"
+    When User clicks on the contactDetails link
+    And User clicks on the editContact button
+    And User populates phone textfield with "<phone>"
+    And User clicks on the saveChanges button
+    Then User confirms "<phone>" is updated successfully
+
+    Examples: 
+      | browser | loginUrl                              | crmURL                                   | username         | password  | phone          | websiteURL | companyName | emailAddress    |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel@axadra.com | asdasdasd | (808) 123-4567 | url.com    | company     | email@gmail.com |
+
+  @PopulateContactAddressOverCRMContactDetailsBusinessInfo
+  Scenario Outline: Update Contact Address over CRM > Contact Details > Business Info
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<crmURL>"
+    And User clicks on the addContact button
+    And User populates websiteURL textfield with "<websiteURL>"
+    And User populates companyName textfield with "<companyName>"
+    And User populates emailAddress textfield with "<emailAddress>"
+    And User clicks on the createContact button
+    And User clicks on the okaySuccess button
+    Then User saves a contact with "<companyName>" "<emailAddress>" "<websiteURL>"
+    When User clicks on the contactDetails link
+    And User clicks on the editContact button
+    And User populates address textfield with "<address>"
+    And User clicks on the saveChanges button
+    Then User confirms "<address>" is updated successfully
+
+    Examples: 
+      | browser | loginUrl                              | crmURL                                   | username         | password  | address                                                   | websiteURL | companyName | emailAddress    |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel@axadra.com | asdasdasd | 3700 S Western Ave, Los Angeles, CA, 90018, United States | url.com    | company     | email@gmail.com |
+
+  @PopulateContactSocialMediaOverCRMContactDetailsBusinessInfo
+  Scenario Outline: Update Contact Social Media over CRM > Contact Details > Business Info
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<crmURL>"
+    And User clicks on the addContact button
+    And User populates websiteURL textfield with "<websiteURL>"
+    And User populates companyName textfield with "<companyName>"
+    And User populates emailAddress textfield with "<emailAddress>"
+    And User clicks on the createContact button
+    And User clicks on the okaySuccess button
+    Then User saves a contact with "<companyName>" "<emailAddress>" "<websiteURL>"
+    When User clicks on the contactDetails link
+    And User clicks on the editContact button
+    And User populates facebook textfield with "<facebook>"
+    And User populates instagram textfield with "<instagram>"
+    And User populates twitter textfield with "<twitter>"
+    And User populates linkedin textfield with "<linkedin>"
+    And User clicks on the saveChanges button
+    Then User confirms "<facebook>" is updated successfully
+    And User confirms "<instagram>" is updated successfully
+    And User confirms "<twitter>" is updated successfully
+    And User confirms "<linkedin>" is updated successfully
+
+    Examples: 
+      | browser | loginUrl                              | crmURL                                   | username         | password  | facebook                                 | instagram                              | twitter                             | linkedin                              | websiteURL | companyName | emailAddress    |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel@axadra.com | asdasdasd | https://www.facebook.com/bestseoreseller | https://www.instagram.com/seoreseller/ | https://twitter.com/bestseoreseller | https://www.linkedin.com/seoreseller/ | url.com    | company     | email@gmail.com |

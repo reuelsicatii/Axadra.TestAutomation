@@ -27,17 +27,33 @@ public class crmContactPage extends webAppHelper {
 	By deletContact_modalButton = By.xpath("(//button[text()='Delete'])[2]");
 
 	By edit_sectionButton = By.xpath("//div[@id='contact-details-container']//img[contains(@src, 'edit')]");
-	
+
 	By website_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='website']");
 	By emailAddress_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='email']");
 	By company_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='company']");
-	
+	By phone_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='phone_1']");
+
+	By street_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='street']");
+	By city_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='city']");
+	By state_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='state']");
+	By zip_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='zip']");
+
+	By facebook_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='facebook']");
+	By instagram_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='instagram']");
+	By twitter_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='twitter']");
+	By linkedin_sectionTextfield = By.xpath("//form[@id='business-contact-form']//input[@name='linkedin']");
+
 	By saveChange_sectionButton = By.xpath("//form[@id='business-contact-form']//button[text()='Save Changes']");
-	
+
 	By website_sectionlabel = By
 			.xpath("//div[@id='contact-details-container']//div[contains(@class, 'contact-website-container')]");
 	By email_sectionlabel = By
 			.xpath("//div[@id='contact-details-container']//div[contains(@class, 'contact-email-container')]");
+	By phone_sectionlabel = By
+			.xpath("//div[@id='contact-details-container']//div[contains(@class, 'contact-phone-container')]");
+	By address_sectionlabel = By
+			.xpath("//div[@id='contact-details-container']//div[contains(@class, 'contact-location-container')]");
+
 	By company_sectionlabel = By.xpath("//div[@id='contact-details-container']//h4[contains(@class, 'business-name')]");
 
 	// Declare Driver Instance
@@ -51,9 +67,11 @@ public class crmContactPage extends webAppHelper {
 
 	// Data Elements
 	// ==========================================
-	String updatedWebsiteURL = null;
-	String updatedEmailAddress = null;
-	String updatedCompany = null;
+	String updatedWebsiteURL = "";
+	String updatedEmailAddress = "";
+	String updatedCompany = "";
+	String updatedPhone = "";
+	String[] updatedAddress = new String[] {};
 
 	// Page Step Definition
 	// =================================================
@@ -214,7 +232,7 @@ public class crmContactPage extends webAppHelper {
 	}
 
 	@When("User updates websiteURL textfield with {string}")
-	public void userPopulatesWebsiteURLTextfield(String websiteURL) throws Throwable {
+	public void userUpdatesWebsiteURLTextfield(String websiteURL) throws Throwable {
 
 		try {
 
@@ -246,7 +264,7 @@ public class crmContactPage extends webAppHelper {
 	}
 
 	@When("User updates emailAddress textfield with {string}")
-	public void userPopulatesEmailAddressTextfield(String emailAddress) throws Throwable {
+	public void userUpdatesEmailAddressTextfield(String emailAddress) throws Throwable {
 
 		try {
 
@@ -276,10 +294,9 @@ public class crmContactPage extends webAppHelper {
 			}
 		}
 	}
-	
-	
+
 	@When("User updates company textfield with {string}")
-	public void userPopulatesCompanyTextfield(String company) throws Throwable {
+	public void userUpdatesCompanyTextfield(String company) throws Throwable {
 
 		try {
 
@@ -292,16 +309,216 @@ public class crmContactPage extends webAppHelper {
 			context.getDriver().findElement(company_sectionTextfield).sendKeys(updatedCompany);
 
 			// Extent Report
-			context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-					"User updates company textfield with " + updatedCompany).pass("PASSED");
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User updates company textfield with " + updatedCompany)
+					.pass("PASSED");
 
 		} catch (Exception e) {
 
 			// Extent Report
 			try {
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"),
-								"User updates company textfield with " + updatedCompany)
+						.createNode(new GherkinKeyword("When"), "User updates company textfield with " + updatedCompany)
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User populates phone textfield with {string}")
+	public void userPopulatesPhoneTextfield(String phone) throws Throwable {
+
+		try {
+
+			// no anchor
+			Thread.sleep(2000);
+
+			updatedPhone = crmService.generateRandomPhoneNumber();
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(phone_sectionTextfield));
+			context.getDriver().findElement(phone_sectionTextfield).clear();
+			context.getDriver().findElement(phone_sectionTextfield).sendKeys(updatedPhone);
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User populates phone textfield with " + updatedPhone)
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User populates phone textfield with " + updatedPhone)
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User populates address textfield with {string}")
+	public void userPopulatesAddressTextfield(String address) throws Throwable {
+
+		try {
+
+			// no anchor
+			Thread.sleep(2000);
+
+			updatedAddress = address.split(",");
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(street_sectionTextfield));
+			context.getDriver().findElement(street_sectionTextfield).clear();
+			context.getDriver().findElement(street_sectionTextfield).sendKeys(updatedAddress[0]);
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(city_sectionTextfield));
+			context.getDriver().findElement(city_sectionTextfield).clear();
+			context.getDriver().findElement(city_sectionTextfield).sendKeys(updatedAddress[1]);
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(state_sectionTextfield));
+			context.getDriver().findElement(state_sectionTextfield).clear();
+			context.getDriver().findElement(state_sectionTextfield).sendKeys(updatedAddress[2]);
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(zip_sectionTextfield));
+			context.getDriver().findElement(zip_sectionTextfield).clear();
+			context.getDriver().findElement(zip_sectionTextfield).sendKeys(updatedAddress[3]);
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User populates phone textfield with " + updatedPhone)
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User populates phone textfield with " + updatedPhone)
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User populates facebook textfield with {string}")
+	public void userPopulatesFacebookTextfield(String facebook) throws Throwable {
+
+		try {
+
+			// no anchor
+			Thread.sleep(2000);
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(facebook_sectionTextfield));
+			context.getDriver().findElement(facebook_sectionTextfield).clear();
+			context.getDriver().findElement(facebook_sectionTextfield).sendKeys(facebook);
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User populates facebook textfield with " + facebook)
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User populates facebook textfield with " + facebook)
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User populates instagram textfield with {string}")
+	public void userPopulatesInstagramTextfield(String instagram) throws Throwable {
+
+		try {
+
+			// no anchor
+			Thread.sleep(2000);
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(instagram_sectionTextfield));
+			context.getDriver().findElement(instagram_sectionTextfield).clear();
+			context.getDriver().findElement(instagram_sectionTextfield).sendKeys(instagram);
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User populates instagram textfield with " + instagram)
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User populates instagram textfield with " + instagram)
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User populates twitter textfield with {string}")
+	public void userPopulatesTwitterTextfield(String twitter) throws Throwable {
+
+		try {
+
+			// no anchor
+			Thread.sleep(2000);
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(twitter_sectionTextfield));
+			context.getDriver().findElement(twitter_sectionTextfield).clear();
+			context.getDriver().findElement(twitter_sectionTextfield).sendKeys(twitter);
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User populates twitter textfield with " + twitter)
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User populates twitter textfield with " + twitter)
+						.fail("FAILED: " + e.getMessage());
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User populates linkedin textfield with {string}")
+	public void userPopulatesLinkedin_sectionTextfieldTextfield(String linkedin) throws Throwable {
+
+		try {
+
+			// no anchor
+			Thread.sleep(2000);
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(linkedin_sectionTextfield));
+			context.getDriver().findElement(linkedin_sectionTextfield).clear();
+			context.getDriver().findElement(linkedin_sectionTextfield).sendKeys(linkedin);
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User populates linkedin textfield with " + linkedin)
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User populates linkedin textfield with " + linkedin)
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -395,6 +612,79 @@ public class crmContactPage extends webAppHelper {
 
 			}
 
+			else if (label.contains("808")
+					&& context.getDriver().findElement(phone_sectionlabel).getText().contains(updatedPhone)) {
+
+				System.out.println(label);
+				System.out.println(context.getDriver().findElement(phone_sectionlabel).getText());
+				System.out.println(updatedPhone);
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User populates phone textfield with " + updatedPhone + " is updated successfully")
+						.pass("PASSED");
+
+			}
+
+			else if (label.contains("3700 S Western Ave")
+					&& context.getDriver().findElement(address_sectionlabel).getText().contains(updatedAddress[0])) {
+
+				System.out.println(label);
+				System.out.println(context.getDriver().findElement(address_sectionlabel).getText());
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User populates address textfield with " + label + " is updated successfully")
+						.pass("PASSED");
+
+			}
+
+			else if (label.contains("facebook") && context.getDriver().findElement(By.xpath(
+					"(//div[@id='contact-details-container']//div[contains(@class, 'contact-social-networks')]/a)[1]"))
+					.getAttribute("href").contains(label)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User populates facebook textfield with " + label + " is updated successfully")
+						.pass("PASSED");
+			}
+
+			else if (label.contains("instagram") && context.getDriver().findElement(By.xpath(
+					"(//div[@id='contact-details-container']//div[contains(@class, 'contact-social-networks')]/a)[2]"))
+					.getAttribute("href").contains(label)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User populates instagram textfield with " + label + " is updated successfully")
+						.pass("PASSED");
+			}
+
+			else if (label.contains("twitter") && context.getDriver().findElement(By.xpath(
+					"(//div[@id='contact-details-container']//div[contains(@class, 'contact-social-networks')]/a)[3]"))
+					.getAttribute("href").contains(label)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User populates twitter textfield with " + label + " is updated successfully")
+						.pass("PASSED");
+			}
+
+			else if (label.contains("linkedin") && context.getDriver().findElement(By.xpath(
+					"(//div[@id='contact-details-container']//div[contains(@class, 'contact-social-networks')]/a)[4]"))
+					.getAttribute("href").contains(label)) {
+
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User populates linkedin textfield with " + label + " is updated successfully")
+						.pass("PASSED");
+			}
+
 			else {
 
 				// Extent Report
@@ -409,8 +699,9 @@ public class crmContactPage extends webAppHelper {
 
 			// Extent Report
 			try {
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User updates websiteURL textfield with " + updatedWebsiteURL + "is updated successfully")
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User updates textfield with " + label + " is NOT updated successfully")
 						.fail("FAILED: " + e.getMessage());
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
