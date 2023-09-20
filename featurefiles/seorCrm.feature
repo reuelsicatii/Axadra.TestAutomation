@@ -250,3 +250,25 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | crmURL                                   | username         | password  | facebook                                 | instagram                              | twitter                             | linkedin                              | websiteURL | companyName | emailAddress    |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel@axadra.com | asdasdasd | https://www.facebook.com/bestseoreseller | https://www.instagram.com/seoreseller/ | https://twitter.com/bestseoreseller | https://www.linkedin.com/seoreseller/ | url.com    | company     | email@gmail.com |
+
+  @AddContactOverCRMContactDetailsYourContact
+  Scenario Outline: Add Contact over CRM > Contact Details > Business Info > Your Contacts
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "<username>"
+    And User enter the password as "<password>"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<crmURL>"
+    And User clicks on the addContact button
+    And User populates websiteURL textfield with "<websiteURL>"
+    And User populates companyName textfield with "<companyName>"
+    And User populates emailAddress textfield with "<emailAddress>"
+    And User clicks on the createContact button
+    And User clicks on the okaySuccess button
+    Then User saves a contact with "<companyName>" "<emailAddress>" "<websiteURL>"
+    When User clicks on the contactDetails link
+    And User adds a contact over CRMContactDetailsBusinessInfoYourContact
+
+    Examples: 
+      | browser | loginUrl                              | crmURL                                   | username         | password  | facebook                                 | instagram                              | twitter                             | linkedin                              | websiteURL | companyName | emailAddress    |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel@axadra.com | asdasdasd | https://www.facebook.com/bestseoreseller | https://www.instagram.com/seoreseller/ | https://twitter.com/bestseoreseller | https://www.linkedin.com/seoreseller/ | url.com    | company     | email@gmail.com |

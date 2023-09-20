@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 import com.jayway.jsonpath.JsonPath;
 
 import helper.webAppContextDriver;
@@ -35,46 +36,44 @@ public class gbpScorerReportPage extends webAppHelper {
 	@Then("User sees the Summary > Detail SubSection is correct")
 	public void userSeesTheSummaryDetailSubSectionIsCorrect() throws IOException {
 
-		try {			
-			
-			if (!context.getDriver().findElement(gbpScorerReportPageObject.summarySection_BusinessName).getText().isEmpty() && 
-					!context.getDriver().findElement(gbpScorerReportPageObject.summarySection_BusinessAddress).getText().isEmpty() && 
-					!context.getDriver().findElement(gbpScorerReportPageObject.summarySection_BusinessCategory).getText().isEmpty()) {
+		try {
+
+			if (!context.getDriver().findElement(gbpScorerReportPageObject.summarySection_BusinessName).getText()
+					.isEmpty()
+					&& !context.getDriver().findElement(gbpScorerReportPageObject.summarySection_BusinessAddress)
+							.getText().isEmpty()
+					&& !context.getDriver().findElement(gbpScorerReportPageObject.summarySection_BusinessCategory)
+							.getText().isEmpty()) {
 
 				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Summary > Detail SubSection is correct").pass("PASSED"
-								+ "<br>" 							
-								+ "Actual - Business Name : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.summarySection_BusinessName).getText()
-								+ "<br>" 							
-								+ "Actual - Business Address : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.summarySection_BusinessAddress).getText()
-								+ "<br>" 							
-								+ "Actual - Business Category : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.summarySection_BusinessCategory).getText()
-										);
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User sees the Summary > Detail SubSection is correct")
+						.pass("PASSED"
+								+ "<br>" + "Actual - Business Name : " + context.getDriver()
+										.findElement(gbpScorerReportPageObject.summarySection_BusinessName).getText()
+								+ "<br>" + "Actual - Business Address : "
+								+ context.getDriver()
+										.findElement(gbpScorerReportPageObject.summarySection_BusinessAddress).getText()
+								+ "<br>" + "Actual - Business Category : "
+								+ context.getDriver()
+										.findElement(gbpScorerReportPageObject.summarySection_BusinessCategory)
+										.getText());
 			}
 
 			else {
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Summary > Detail SubSection is correct").fail("FAILED" 
-										+ "<br>" 							
-										+ "Actual - Business Name : "
-										+ context.getDriver().findElement(
-												gbpScorerReportPageObject.summarySection_BusinessName).getText()
-										+ "<br>" 							
-										+ "Actual - Business Address : "
-										+ context.getDriver().findElement(
-												gbpScorerReportPageObject.summarySection_BusinessAddress).getText()
-										+ "<br>" 							
-										+ "Actual - Business Category : "
-										+ context.getDriver().findElement(
-												gbpScorerReportPageObject.summarySection_BusinessCategory).getText()
-												);
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User sees the Summary > Detail SubSection is correct")
+						.fail("FAILED"
+								+ "<br>" + "Actual - Business Name : " + context.getDriver()
+										.findElement(gbpScorerReportPageObject.summarySection_BusinessName).getText()
+								+ "<br>" + "Actual - Business Address : "
+								+ context.getDriver()
+										.findElement(gbpScorerReportPageObject.summarySection_BusinessAddress).getText()
+								+ "<br>" + "Actual - Business Category : "
+								+ context.getDriver()
+										.findElement(gbpScorerReportPageObject.summarySection_BusinessCategory)
+										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -82,9 +81,9 @@ public class gbpScorerReportPage extends webAppHelper {
 			// Extent Report
 			try {
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"),
-								"User sees the Summary > Detail SubSection is correct")
+						.createNode(new GherkinKeyword("When"), "User sees the Summary > Detail SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -92,46 +91,40 @@ public class gbpScorerReportPage extends webAppHelper {
 		}
 
 	}
-	
+
 	@Then("User sees the Summary > Score SubSection is correct")
 	public void userSeesTheSummaryScoreSubSectionIsCorrect() throws IOException {
 
 		try {
-			
-			
-			double expectedScore = Math.round
-					(
-						(( 
-						  Double.parseDouble(context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_profileScore).getText().replace("%", "")) 
-						+ Double.parseDouble(context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_postScore).getText().replace("%", ""))
-						+ Double.parseDouble(context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_reviewScore).getText().replace("%", ""))
-						)/3)
-					);
-			
-			
-			double actualScore = Double.parseDouble(context.getDriver().findElement(gbpScorerReportPageObject.summarySection_Score).getText().replace("%", ""));
-			
-			
-			if ( expectedScore == actualScore) {
+
+			double expectedScore = Math.round(((Double.parseDouble(context.getDriver()
+					.findElement(gbpScorerReportPageObject.summaryChartSection_profileScore).getText().replace("%", ""))
+					+ Double.parseDouble(
+							context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_postScore)
+									.getText().replace("%", ""))
+					+ Double.parseDouble(
+							context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_reviewScore)
+									.getText().replace("%", "")))
+					/ 3));
+
+			double actualScore = Double.parseDouble(context.getDriver()
+					.findElement(gbpScorerReportPageObject.summarySection_Score).getText().replace("%", ""));
+
+			if (expectedScore == actualScore) {
 
 				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Summary > Score SubSection is correct").pass("PASSED"
-								+ "<br>" 							
-								+ "Expected - Score : " + expectedScore
-								+ "<br>" 							
-								+ "Actual - Score : " + actualScore
-										);
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User sees the Summary > Score SubSection is correct")
+						.pass("PASSED" + "<br>" + "Expected - Score : " + expectedScore + "<br>" + "Actual - Score : "
+								+ actualScore);
 			}
 
 			else {
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Summary > Score SubSection is correct").fail("FAILED" 
-								+ "<br>" 							
-								+ "Expected - Score : " + expectedScore
-								+ "<br>" 							
-								+ "Actual - Score : " + actualScore
-										);
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User sees the Summary > Score SubSection is correct")
+						.fail("FAILED" + "<br>" + "Expected - Score : " + expectedScore + "<br>" + "Actual - Score : "
+								+ actualScore);
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -139,9 +132,9 @@ public class gbpScorerReportPage extends webAppHelper {
 			// Extent Report
 			try {
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"),
-								"User sees the Summary > Score SubSection is correct")
+						.createNode(new GherkinKeyword("When"), "User sees the Summary > Score SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -149,30 +142,32 @@ public class gbpScorerReportPage extends webAppHelper {
 		}
 
 	}
-	
+
 	@Then("User sees the Summary > Map SubSection is correct")
 	public void userSeesTheSummaryMapSubSectionIsCorrect() throws IOException {
 
 		try {
-						
-			if (context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_profileScore).getSize().getHeight() != 0) {
+
+			if (context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_profileScore).getSize()
+					.getHeight() != 0) {
 
 				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Summary > Map SubSection is correct").pass("PASSED"
-								+ "<br>" 							
-								+ "Actual - Map Dimension : " 
-								+ context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_profileScore).getSize().toString()
-										);
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User sees the Summary > Map SubSection is correct")
+						.pass("PASSED" + "<br>" + "Actual - Map Dimension : "
+								+ context.getDriver()
+										.findElement(gbpScorerReportPageObject.summaryChartSection_profileScore)
+										.getSize().toString());
 			}
 
 			else {
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Summary > Map SubSection is correct").fail("FAILED" 
-								+ "<br>" 							
-								+ "Actual - Map Dimension : " 
-								+ context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_profileScore).getSize().toString()
-										);
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User sees the Summary > Map SubSection is correct")
+						.fail("FAILED" + "<br>" + "Actual - Map Dimension : "
+								+ context.getDriver()
+										.findElement(gbpScorerReportPageObject.summaryChartSection_profileScore)
+										.getSize().toString());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -180,9 +175,9 @@ public class gbpScorerReportPage extends webAppHelper {
 			// Extent Report
 			try {
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"),
-								"User sees the Summary > Map SubSection is correct")
+						.createNode(new GherkinKeyword("When"), "User sees the Summary > Map SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -190,7 +185,7 @@ public class gbpScorerReportPage extends webAppHelper {
 		}
 
 	}
-	
+
 	@Then("User scroll to Summary Chart Section")
 	public void userScrollToSummaryChartSection() {
 
@@ -220,6 +215,7 @@ public class gbpScorerReportPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User scroll to Summary Chart Section")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -232,8 +228,8 @@ public class gbpScorerReportPage extends webAppHelper {
 
 		try {
 			// Step Definition
-			List<WebElement> verdicts = context.getDriver()
-					.findElements(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "All", "verdicts"));
+			List<WebElement> verdicts = context.getDriver().findElements(
+					gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "All", "verdicts"));
 
 			Integer profileScore = 0;
 			for (int i = 0; i < verdicts.size(); i++) {
@@ -243,41 +239,40 @@ public class gbpScorerReportPage extends webAppHelper {
 				} else {
 					profileScore = profileScore + 0;
 				}
-				
-				//System.out.println(profileScore);
+
+				// System.out.println(profileScore);
 			}
-			
+
 			if (context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_profileScore).getText()
 					.contains(profileScore.toString())
-					&& context.getDriver()
-							.findElement(gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "All", "rating")).getText()
-							.contains(profileScore.toString())) {
+					&& context
+							.getDriver().findElement(gbpScorerReportPageObject
+									.subSectionElementFinder("Business Profile Score", "All", "rating"))
+							.getText().contains(profileScore.toString())) {
 
 				// Extent Report
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Summary Chart > Profile Score SubSection is correct").pass("PASSED"
-								+ "<br>" + "Expected - Computation: "
-								+ profileScore.toString() + "%" + "<br>"
-								+ "Actual - Computation - Summary Chart : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.summaryChartSection_profileScore).getText()
-								+ "<br>" + "Actual - Computation - Google Profile Score : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "All", "rating"))
-										.getText());
+						"User sees the Summary Chart > Profile Score SubSection is correct").pass(
+								"PASSED" + "<br>" + "Expected - Computation: " + profileScore.toString() + "%" + "<br>"
+										+ "Actual - Computation - Summary Chart : "
+										+ context.getDriver().findElement(
+												gbpScorerReportPageObject.summaryChartSection_profileScore).getText()
+										+ "<br>" + "Actual - Computation - Google Profile Score : "
+										+ context.getDriver().findElement(gbpScorerReportPageObject
+												.subSectionElementFinder("Business Profile Score", "All", "rating"))
+												.getText());
 			}
 
 			else {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 						"User sees the Summary Chart > Profile Score SubSection is correct").fail(
-								"FAILED" + "<br>" + "Expected - Computation: "
-										+ profileScore.toString() + "%" + "<br>"
+								"FAILED" + "<br>" + "Expected - Computation: " + profileScore.toString() + "%" + "<br>"
 										+ "Actual - Computation - Summary Chart : "
 										+ context.getDriver().findElement(
 												gbpScorerReportPageObject.summaryChartSection_profileScore).getText()
 										+ "<br>" + "Actual - Computation - Google Profile Score : "
-										+ context.getDriver().findElement(
-												gbpScorerReportPageObject.subSectionElementFinder("Business Profile Score", "All", "rating"))
+										+ context.getDriver().findElement(gbpScorerReportPageObject
+												.subSectionElementFinder("Business Profile Score", "All", "rating"))
 												.getText()
 
 				);
@@ -291,6 +286,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Summary Chart > Profile Score SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -304,71 +300,73 @@ public class gbpScorerReportPage extends webAppHelper {
 
 		try {
 			// Step Definition
-			List<WebElement> verdicts = context.getDriver()
-					.findElements(gbpScorerReportPageObject.subSectionElementFinder("Google Post Score", "All", "verdicts"));
+			List<WebElement> verdicts = context.getDriver().findElements(
+					gbpScorerReportPageObject.subSectionElementFinder("Google Post Score", "All", "verdicts"));
 
 			Integer postScore = 0;
 			for (int i = 0; i < verdicts.size(); i++) {
 
 				if (i == 0 && verdicts.get(i).getText().equals("Looking Good")) {
 					postScore = postScore + 50;
-				} 
-				
+				}
+
 				else if (i == 0 && verdicts.get(i).getText().equals("For Improvement")) {
 					postScore = postScore + 25;
-				} 
-				
+				}
+
 				else if (i == 1 && verdicts.get(i).getText().equals("Looking Good")) {
 					postScore = postScore + 30;
-				} 
-				
+				}
+
 				else if (i == 1 && verdicts.get(i).getText().equals("For Improvement")) {
 					postScore = postScore + 15;
-				} 
-				
+				}
+
 				else if (i == 2 && verdicts.get(i).getText().equals("Looking Good")) {
 					postScore = postScore + 20;
-				}				
-				
+				}
+
 				else {
 					postScore = postScore + 0;
 				}
-				
-				//System.out.println(profileScore);
+
+				// System.out.println(profileScore);
 			}
-			
+
 			if (context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_postScore).getText()
 					.contains(postScore.toString())
-					&& context.getDriver()
-							.findElement(gbpScorerReportPageObject.subSectionElementFinder("Google Post Score", "All", "rating")).getText()
-							.contains(postScore.toString())) {
+					&& context
+							.getDriver().findElement(gbpScorerReportPageObject
+									.subSectionElementFinder("Google Post Score", "All", "rating"))
+							.getText().contains(postScore.toString())) {
 
 				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Summary Chart > Post Score SubSection is correct").pass("PASSED"
-								+ "<br>" + "Expected - Computation: "
-								+ postScore.toString() + "%" + "<br>"
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Summary Chart > Post Score SubSection is correct")
+						.pass("PASSED" + "<br>" + "Expected - Computation: " + postScore.toString() + "%" + "<br>"
 								+ "Actual - Computation - Summary Chart : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.summaryChartSection_postScore).getText()
+								+ context.getDriver()
+										.findElement(gbpScorerReportPageObject.summaryChartSection_postScore).getText()
 								+ "<br>" + "Actual - Computation - Google Post Score : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.subSectionElementFinder("Google Post Score", "All", "rating"))
+								+ context.getDriver()
+										.findElement(gbpScorerReportPageObject
+												.subSectionElementFinder("Google Post Score", "All", "rating"))
 										.getText());
 			}
 
 			else {
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Summary Chart > Post Score SubSection is correct").fail(
-								"FAILED" 
-								+ "<br>" + "Expected - Computation: "
-								+ postScore.toString() + "%" + "<br>"
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User sees the Summary Chart > Post Score SubSection is correct")
+						.fail("FAILED" + "<br>" + "Expected - Computation: " + postScore.toString() + "%" + "<br>"
 								+ "Actual - Computation - Summary Chart : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.summaryChartSection_postScore).getText()
+								+ context.getDriver()
+										.findElement(gbpScorerReportPageObject.summaryChartSection_postScore).getText()
 								+ "<br>" + "Actual - Computation - Google Post Score : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.subSectionElementFinder("Google Post Score", "All", "rating"))
+								+ context.getDriver()
+										.findElement(gbpScorerReportPageObject
+												.subSectionElementFinder("Google Post Score", "All", "rating"))
 										.getText());
 			}
 
@@ -380,6 +378,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Summary Chart > Post Score SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -393,76 +392,74 @@ public class gbpScorerReportPage extends webAppHelper {
 
 		try {
 			// Step Definition
-			List<WebElement> verdicts = context.getDriver()
-					.findElements(gbpScorerReportPageObject.subSectionElementFinder("Google Review Score", "All", "verdicts"));
+			List<WebElement> verdicts = context.getDriver().findElements(
+					gbpScorerReportPageObject.subSectionElementFinder("Google Review Score", "All", "verdicts"));
 
 			Integer reviewScore = 0;
 			for (int i = 0; i < verdicts.size(); i++) {
 
 				if (i == 0 && verdicts.get(i).getText().equals("Looking Good")) {
 					reviewScore = reviewScore + 50;
-				} 
-				
+				}
+
 				else if (i == 0 && verdicts.get(i).getText().equals("For Improvement")) {
 					reviewScore = reviewScore + 25;
-				} 
-				
+				}
+
 				else if (i == 1 && verdicts.get(i).getText().equals("Looking Good")) {
 					reviewScore = reviewScore + 30;
-				} 
-				
+				}
+
 				else if (i == 1 && verdicts.get(i).getText().equals("For Improvement")) {
 					reviewScore = reviewScore + 15;
-				} 
-				
+				}
+
 				else if (i == 2 && verdicts.get(i).getText().equals("Looking Good")) {
 					reviewScore = reviewScore + 20;
-				}		
-				
+				}
+
 				else if (i == 2 && verdicts.get(i).getText().equals("For Improvement")) {
 					reviewScore = reviewScore + 10;
-				}	
-				
+				}
+
 				else {
 					reviewScore = reviewScore + 0;
 				}
-				
-				//System.out.println(profileScore);
+
+				// System.out.println(profileScore);
 			}
-			
+
 			if (context.getDriver().findElement(gbpScorerReportPageObject.summaryChartSection_reviewScore).getText()
 					.contains(reviewScore.toString())
-					&& context.getDriver()
-							.findElement(gbpScorerReportPageObject.subSectionElementFinder("Google Review Score", "All", "rating")).getText()
-							.contains(reviewScore.toString())) {
+					&& context
+							.getDriver().findElement(gbpScorerReportPageObject
+									.subSectionElementFinder("Google Review Score", "All", "rating"))
+							.getText().contains(reviewScore.toString())) {
 
 				// Extent Report
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-						"User sees the Summary Chart > Review Score SubSection is correct").pass("PASSED"
-								+ "<br>" + "Expected - Computation: "
-								+ reviewScore.toString() + "%" + "<br>"
-								+ "Actual - Computation - Summary Chart : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.summaryChartSection_reviewScore).getText()
-								+ "<br>" + "Actual - Computation - Google Post Score : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.subSectionElementFinder("Google Review Score", "All", "rating"))
-										.getText());
+						"User sees the Summary Chart > Review Score SubSection is correct").pass(
+								"PASSED" + "<br>" + "Expected - Computation: " + reviewScore.toString() + "%" + "<br>"
+										+ "Actual - Computation - Summary Chart : "
+										+ context.getDriver().findElement(
+												gbpScorerReportPageObject.summaryChartSection_reviewScore).getText()
+										+ "<br>" + "Actual - Computation - Google Post Score : "
+										+ context.getDriver().findElement(gbpScorerReportPageObject
+												.subSectionElementFinder("Google Review Score", "All", "rating"))
+												.getText());
 			}
 
 			else {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 						"User sees the Summary Chart > Review Score SubSection is correct").fail(
-								"FAILED" 
-								+ "<br>" + "Expected - Computation: "
-								+ reviewScore.toString() + "%" + "<br>"
-								+ "Actual - Computation - Summary Chart : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.summaryChartSection_reviewScore).getText()
-								+ "<br>" + "Actual - Computation - Google Post Score : "
-								+ context.getDriver().findElement(
-										gbpScorerReportPageObject.subSectionElementFinder("Google Review Score", "All", "rating"))
-										.getText());
+								"FAILED" + "<br>" + "Expected - Computation: " + reviewScore.toString() + "%" + "<br>"
+										+ "Actual - Computation - Summary Chart : "
+										+ context.getDriver().findElement(
+												gbpScorerReportPageObject.summaryChartSection_reviewScore).getText()
+										+ "<br>" + "Actual - Computation - Google Post Score : "
+										+ context.getDriver().findElement(gbpScorerReportPageObject
+												.subSectionElementFinder("Google Review Score", "All", "rating"))
+												.getText());
 			}
 
 		} catch (Exception e) {
@@ -473,6 +470,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Summary Chart > Review Score SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -480,7 +478,7 @@ public class gbpScorerReportPage extends webAppHelper {
 		}
 
 	}
-	
+
 	@Then("User scroll to {string} Section")
 	public void userScrollToSection(String SectioName) {
 		try {
@@ -509,6 +507,7 @@ public class gbpScorerReportPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User scroll to Similar Listing Section")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -559,6 +558,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Business Profile Score > Phone Number Found SubSection is correct  ")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -610,6 +610,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Business Profile Score > Hours in Operation SubSection is correct  ")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -652,6 +653,7 @@ public class gbpScorerReportPage extends webAppHelper {
 										.findElement(gbpScorerReportPageObject.subSectionElementFinder(
 												"Business Profile Score", "Business Description", "verbiage"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -662,6 +664,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Business Profile Score > Business Description SubSection is correct  ")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -713,6 +716,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Business Profile Score > Business Category SubSection is correct  ")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -765,6 +769,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Business Profile Score > Services Offered SubSection is correct  ")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -806,6 +811,7 @@ public class gbpScorerReportPage extends webAppHelper {
 								+ "Actual - verbiage: "
 								+ context.getDriver().findElement(gbpScorerReportPageObject.subSectionElementFinder(
 										"Business Profile Score", "Payment Option", "verbiage")).getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -816,6 +822,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Business Profile Score > Payment Option SubSection is correct ")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -857,6 +864,7 @@ public class gbpScorerReportPage extends webAppHelper {
 										.findElement(gbpScorerReportPageObject
 												.subSectionElementFinder("Business Profile Score", "URL", "verbiage"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -867,6 +875,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Business Profile Score > URL/Domain SubSection is correct ")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -907,6 +916,7 @@ public class gbpScorerReportPage extends webAppHelper {
 												"Business Profile Score", "Google Business Profile Verified",
 												"verbiage"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -916,6 +926,7 @@ public class gbpScorerReportPage extends webAppHelper {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 						"User sees the Business Profile Score > Google Business Profile Verified SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -958,6 +969,7 @@ public class gbpScorerReportPage extends webAppHelper {
 										.findElement(gbpScorerReportPageObject.subSectionElementFinder(
 												"Business Profile Score", "Business Logo Found", "verbiage"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -968,6 +980,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Business Profile Score > Business Logo Found SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1008,6 +1021,7 @@ public class gbpScorerReportPage extends webAppHelper {
 										.findElement(gbpScorerReportPageObject.subSectionElementFinder(
 												"Business Profile Score", "Minimum 3 business photos", "verbiage"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -1017,6 +1031,7 @@ public class gbpScorerReportPage extends webAppHelper {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 						"User sees the Business Profile Score > Minimum 3 business photos SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1055,6 +1070,7 @@ public class gbpScorerReportPage extends webAppHelper {
 								+ context.getDriver().findElement(gbpScorerReportPageObject
 										.subSectionElementFinder("Google Post Score", "posts found", "verbiage"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -1065,6 +1081,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Google Post Score > Post Found SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1104,6 +1121,7 @@ public class gbpScorerReportPage extends webAppHelper {
 								+ context.getDriver().findElement(gbpScorerReportPageObject
 										.subSectionElementFinder("Google Post Score", "Minimum 4 post", "verbiage"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -1114,6 +1132,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Google Post Score > Minimum Post SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1165,6 +1184,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Google Post Score > Images in Post SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1206,6 +1226,7 @@ public class gbpScorerReportPage extends webAppHelper {
 								+ context.getDriver().findElement(gbpScorerReportPageObject
 										.subSectionElementFinder("Google Review Score", "Google Reviews", "verbiage"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -1216,6 +1237,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Google Review Score > Google Review SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1254,6 +1276,7 @@ public class gbpScorerReportPage extends webAppHelper {
 								+ context.getDriver().findElement(gbpScorerReportPageObject
 										.subSectionElementFinder("Google Review Score", "Ave reviews", "verbiage"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -1264,6 +1287,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Google Review Score > Ave Review SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1305,6 +1329,7 @@ public class gbpScorerReportPage extends webAppHelper {
 								+ context.getDriver().findElement(gbpScorerReportPageObject
 										.subSectionElementFinder("Google Review Score", "Owner response", "verbiage"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -1315,6 +1340,7 @@ public class gbpScorerReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Google Review Score > Owner Response SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1368,6 +1394,7 @@ public class gbpScorerReportPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User sees the Similar Listing Section is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1418,6 +1445,7 @@ public class gbpScorerReportPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User scroll to Recent Review Section")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1502,6 +1530,7 @@ public class gbpScorerReportPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User sees the Recent Review Section is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

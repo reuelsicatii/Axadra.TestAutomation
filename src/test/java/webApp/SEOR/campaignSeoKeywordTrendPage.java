@@ -1,34 +1,18 @@
 package webApp.SEOR;
 
-import static org.testng.Assert.assertEquals;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
-import io.cucumber.java.Scenario;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class campaignSeoKeywordTrendPage extends webAppHelper {
@@ -284,6 +268,7 @@ public class campaignSeoKeywordTrendPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User compares Count Tracked against Keyword Page vs Summary Page vs Trend Page")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
@@ -83,6 +84,7 @@ public class crmPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User clicks on the addContact button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -111,6 +113,7 @@ public class crmPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User populates websiteURL textfield with " + websiteURL)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -140,6 +143,7 @@ public class crmPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User populates companyName textfield with " + companyName)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -168,6 +172,7 @@ public class crmPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User populates emailAddress textfield with " + emailAddress)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -194,6 +199,7 @@ public class crmPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User clicks on the createContact button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -220,6 +226,7 @@ public class crmPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User clicks on the okaySucess button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -262,6 +269,7 @@ public class crmPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User saves a contact from file with " + companyName)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -298,7 +306,7 @@ public class crmPage extends webAppHelper {
 							.createNode(new GherkinKeyword("When"),
 									"User saves a contact with " + websiteURL + " " + companyName + " " + emailAddress)
 							.pass("PASSED");
-					
+
 					break;
 
 				}
@@ -313,6 +321,7 @@ public class crmPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User saves a contact with " + websiteURL + " " + companyName + " " + emailAddress)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -396,6 +405,7 @@ public class crmPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User uploads a file to the uploadFile textArea with " + FileName)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -425,6 +435,7 @@ public class crmPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User clicks on the proceedSuccess button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -485,6 +496,7 @@ public class crmPage extends webAppHelper {
 								.createNode(new GherkinKeyword("When"), "User delete single contact" + "<br>"
 										+ "Company Name: " + companyName + "<br>" + "Email Address: " + emailAddress)
 								.fail("FAILED");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 						break;
 
@@ -506,6 +518,7 @@ public class crmPage extends webAppHelper {
 			try {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User delete single contact")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -607,12 +620,11 @@ public class crmPage extends webAppHelper {
 						// Extent Report
 						context.getExtentTestScenario()
 								.createNode(new GherkinKeyword("When"),
-										"User delete " + tableRowValue + " contacts" 
-												+ "<br>" 
-												+ "Company Name: " + contactCompanyEmailAfterset.getKey() 
-												+ "<br>" 
-												+ "Email Address: " + contactCompanyEmailAfterset.getValue())
+										"User delete " + tableRowValue + " contacts" + "<br>" + "Company Name: "
+												+ contactCompanyEmailAfterset.getKey() + "<br>" + "Email Address: "
+												+ contactCompanyEmailAfterset.getValue())
 								.fail("FAILED");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 						multiContactsDeleted = false;
 						break;
@@ -635,6 +647,7 @@ public class crmPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User delete " + tableRowValue + " contacts")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

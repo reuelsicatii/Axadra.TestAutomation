@@ -3,10 +3,10 @@ package webApp.SEOR;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
@@ -70,6 +70,7 @@ public class gbpScorerPage extends webAppHelper {
 								.createNode(new GherkinKeyword("When"), "User generates a GbpScorerReport")
 								.fail("FAILED: Not able to generate GbpScorer Report for " + BusinessName + "<br>"
 										+ "GbpScorer Report generation, waiting for " + x + "sec");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 						// exit the loop
 						System.out.println("Exiting whileloop");
@@ -107,6 +108,7 @@ public class gbpScorerPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User generates a GbpScorerReport for " + BusinessName)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -137,6 +139,7 @@ public class gbpScorerPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User clicks the most recent WebAuditReport")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -156,8 +159,6 @@ public class gbpScorerPage extends webAppHelper {
 			// Thread.sleep(5000);
 			// context.getDriver().get("https://myreports.app/reports/view/991d4cf7-4f45-452e-a96d-3ed772e833a7");
 
-			
-			
 			System.out.println("...starting to loop");
 
 			int x = 0;
@@ -183,8 +184,6 @@ public class gbpScorerPage extends webAppHelper {
 				}
 
 			}
-			
-			
 
 			// Extent Report
 			Thread.sleep(2000);
@@ -199,6 +198,7 @@ public class gbpScorerPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees a new tab is open rendering the GBPScorer Report")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

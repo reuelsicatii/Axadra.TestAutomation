@@ -1,15 +1,13 @@
 package webApp.SEOR;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.GherkinKeyword;
-import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
 import com.jayway.jsonpath.JsonPath;
 
 import helper.webAppContextDriver;
@@ -171,6 +169,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Summary Section > Grades SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -205,6 +204,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Summary Section > WebSite Score SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -259,6 +259,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Summary Section > Verdict Table SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -303,6 +304,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Usability Section > Mobile Friendliness SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -388,6 +390,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Usability Section > Google Analytics Found SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -442,6 +445,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Usability Section > Page Speed Insight SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -477,6 +481,7 @@ public class webAuditReportPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User scroll to Security Section")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -508,6 +513,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Security Section > SSL SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -540,6 +546,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Security Section > Malware SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -592,6 +599,7 @@ public class webAuditReportPage extends webAppHelper {
 							.fail("FAILED: " + "<br>" + "Actual - verbiage: " + context.getDriver()
 									.findElement(subSectionElementFinder(subSectionAnchor, "verbiage")).getText()
 									+ "<br>" + "Expected - verbiage: " + expected_verbiage);
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 				}
 
@@ -635,6 +643,7 @@ public class webAuditReportPage extends webAppHelper {
 							.fail("FAILED: " + "<br>" + "Actual - verbiage: " + context.getDriver()
 									.findElement(subSectionElementFinder(subSectionAnchor, "verbiage")).getText()
 									+ "<br>" + "Expected - verbiage: " + expected_verbiage);
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 				}
 
@@ -648,6 +657,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Security Section > HTTPS SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -681,6 +691,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Security Section > Blacklisted SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -688,7 +699,7 @@ public class webAuditReportPage extends webAppHelper {
 		}
 
 	}
-	
+
 	@Then("User scroll to Organic Traffic Section")
 	public void userScrollToOrganicTrafficSection() {
 
@@ -706,8 +717,8 @@ public class webAuditReportPage extends webAppHelper {
 					context.getDriver().findElement(SectionElemenFinder("security")));
 
 			// Extent Report
-			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User scroll to Organic Traffic Section")
-					.pass("PASSED");
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User scroll to Organic Traffic Section").pass("PASSED");
 
 		} catch (Exception e) {
 
@@ -716,6 +727,7 @@ public class webAuditReportPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User scroll to Organic Traffic Section")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -758,6 +770,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > Technical SEO > Sitemap SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -801,6 +814,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > Technical SEO > Robot SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -843,6 +857,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > Technical SEO > Redirection SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -869,9 +884,9 @@ public class webAuditReportPage extends webAppHelper {
 								+ "']");
 
 				// validate verbiage against actual
-				context.getSoftAssert()
-						.assertEquals(context.getDriver().findElement(subSectionElementFinder("itle", "verbiage"))
-								.getText().contains(expected_verbiage), true);
+				context.getSoftAssert().assertEquals(context.getDriver()
+						.findElement(subSectionElementFinder("itle", "verbiage")).getText().contains(expected_verbiage),
+						true);
 
 			} catch (Exception e) {
 				JSONArray expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
@@ -908,6 +923,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > OnPage SEO > Title SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -978,6 +994,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > OnPage SEO > Description SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1049,6 +1066,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1112,6 +1130,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > OnPage SEO > Images SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1156,6 +1175,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > OnPage SEO > Backlinks SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1198,6 +1218,7 @@ public class webAuditReportPage extends webAppHelper {
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > OnPage SEO > MOZ Domain Authority SubSection is correct")
 								.fail("FAILED: MOZ Domain Authority count is NULL and/or MOZ Domain Authority verbiage is incorrect");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 					}
 
 				}
@@ -1210,6 +1231,7 @@ public class webAuditReportPage extends webAppHelper {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 						"User sees the Organic Traffic > OnPage SEO > MOZ Domain Authority SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1252,6 +1274,7 @@ public class webAuditReportPage extends webAppHelper {
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > OnPage SEO > MOZ Page Authority SubSection is correct")
 								.fail("FAILED: MOZ Page Authority count is NULL and/or MOZ Page Authority verbiage is incorrect");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 					}
 
 				}
@@ -1265,6 +1288,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > OnPage SEO > MOZ Page Authority SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1307,6 +1331,7 @@ public class webAuditReportPage extends webAppHelper {
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > OnPage SEO > Majestic Citation Flow SubSection is correct")
 								.fail("FAILED: Majestic Citation Flow count is NULL and/or Majestic Citation Flow verbiage is incorrect");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 					}
 
 				}
@@ -1319,6 +1344,7 @@ public class webAuditReportPage extends webAppHelper {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 						"User sees the Organic Traffic > OnPage SEO > Majestic Citation Flow SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1364,6 +1390,7 @@ public class webAuditReportPage extends webAppHelper {
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 								"User sees the Organic Traffic > OnPage SEO > Majestic Trust Flow SubSection is correct")
 								.fail("FAILED: Majestic Trust Flow count is NULL and/or Majestic Trust Flow verbiage is incorrect");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 					}
 
 				}
@@ -1376,6 +1403,7 @@ public class webAuditReportPage extends webAppHelper {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 						"User sees the Organic Traffic > OnPage SEO > Majestic Trust Flow SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1413,6 +1441,7 @@ public class webAuditReportPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User scroll to Paid Traffic Section")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1456,6 +1485,7 @@ public class webAuditReportPage extends webAppHelper {
 								+ "<br>" + "Expected - verbiage: " + expected_verbiage + "<br>" + "Actual - count: "
 								+ context.getDriver().findElement(subSectionElementParentH3Finder("Estimated"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -1466,6 +1496,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Paid Traffic > Estimated Traffic SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1516,6 +1547,7 @@ public class webAuditReportPage extends webAppHelper {
 								+ "<br>" + "Expected - verbiage: " + expected_verbiage + "<br>" + "Actual - count: "
 								+ context.getDriver().findElement(subSectionElementParentH3Finder("Keywords"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -1526,6 +1558,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Paid Traffic > Keyword Detected SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1586,6 +1619,7 @@ public class webAuditReportPage extends webAppHelper {
 									+ "<br>" + "Expected - verbiage: " + expected_verbiage_String + "<br>"
 									+ "Actual - count: " + context.getDriver()
 											.findElement(subSectionElementParentH3Finder("Position")).getText());
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 				}
 
@@ -1643,6 +1677,7 @@ public class webAuditReportPage extends webAppHelper {
 									+ "<br>" + "Expected - verbiage: " + expected_verbiage_JSON + "<br>"
 									+ "Actual - count: " + context.getDriver()
 											.findElement(subSectionElementParentH3Finder("Position")).getText());
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
 				}
 
 			}
@@ -1656,6 +1691,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Paid Traffic > Average Position SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1714,6 +1750,7 @@ public class webAuditReportPage extends webAppHelper {
 									+ "<br>" + "Expected - verbiage: " + expected_verbiage_String + "<br>"
 									+ "Actual - count: " + context.getDriver()
 											.findElement(subSectionElementParentH3Finder("Ratio")).getText());
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 				}
 
@@ -1769,6 +1806,7 @@ public class webAuditReportPage extends webAppHelper {
 									+ "Actual - count: " + context.getDriver()
 											.findElement(subSectionElementParentH3Finder("Ratio")).getText()
 									+ "<br>" + "Exception Message: " + e.getMessage());
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 				}
 
@@ -1784,6 +1822,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Paid Traffic > SEMvsSEO Ratio SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -1820,6 +1859,7 @@ public class webAuditReportPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User scroll to Social Activity Section")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1870,6 +1910,7 @@ public class webAuditReportPage extends webAppHelper {
 			else {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 						"User sees the Social Activity > Facebook SubSection is correct").fail("FAILED");
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		}
@@ -1884,6 +1925,7 @@ public class webAuditReportPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees the Social Activity > Facebook SubSection is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -1954,6 +1996,7 @@ public class webAuditReportPage extends webAppHelper {
 								+ context.getDriver()
 										.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4"))
 										.getText());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		}
@@ -1983,6 +2026,7 @@ public class webAuditReportPage extends webAppHelper {
 								+ context.getDriver()
 										.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText()
 								+ "<br" + "Error Message: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block

@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class commonStep extends webAppHelper {
@@ -43,15 +43,17 @@ public class commonStep extends webAppHelper {
 			context.setFluentWait(initializeFluentWait(context.getDriver()));
 			context.getDriver().manage().window().maximize();
 			context.getDriver().get(url);
-			
+
 			// no anchor over table
 			Thread.sleep(5000);
 
 			try {
 
 				// Test Server Browser -- NextRoll Inc Privacy
-				context.getDriver().findElement(By.xpath(
-						"//div[@id='adroll_consent_banner_container']//div[text()='Decline All']")).click();
+				context.getDriver()
+						.findElement(
+								By.xpath("//div[@id='adroll_consent_banner_container']//div[text()='Decline All']"))
+						.click();
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -69,6 +71,7 @@ public class commonStep extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("Given"), "User navigates to " + url + " using" + browserName)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -93,6 +96,7 @@ public class commonStep extends webAppHelper {
 				// Extent Report
 				context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "User navigates to " + url)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -118,6 +122,7 @@ public class commonStep extends webAppHelper {
 				// Extent Report
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User switch to new tab")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -145,6 +150,7 @@ public class commonStep extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User switch back to previous tab")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

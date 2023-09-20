@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
@@ -21,7 +22,8 @@ public class webAuditPage extends webAppHelper {
 	// ==========================================
 	// By recent_WebAuditReport =
 	// By.xpath("//table[@id='webaudit-table']//tbody//i[first()]");
-	By recent_WebAuditReport = By.xpath("(//table[@id='webaudit-table']//tbody//i[@class='fa fa-external-link-alt'])[1]");
+	By recent_WebAuditReport = By
+			.xpath("(//table[@id='webaudit-table']//tbody//i[@class='fa fa-external-link-alt'])[1]");
 	By urlWebAudit_inputfield = By.xpath("//input[@id='audit-url']");
 	By urlWebAudit_button = By.xpath("//button[contains(text(),'Run Audit')]");
 
@@ -64,6 +66,7 @@ public class webAuditPage extends webAppHelper {
 								.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport")
 								.fail("FAILED: Not able to generate WebAudit Report for " + url + "<br>"
 										+ "WebAudit Report generation, waiting for " + x + "sec");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 						// exit the loop
 						System.out.println("Exiting whileloop");
@@ -103,6 +106,7 @@ public class webAuditPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport for " + url)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -133,6 +137,7 @@ public class webAuditPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User clicks the most recent WebAuditReport")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -161,6 +166,7 @@ public class webAuditPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User sees a new tab is open redering the WebAuditReport")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

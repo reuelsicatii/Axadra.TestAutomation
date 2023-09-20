@@ -1,31 +1,18 @@
 package webApp.SEOR;
 
-import static org.testng.Assert.assertEquals;
-
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
-import io.cucumber.java.Scenario;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class campaignSeoKeywordRankingPage extends webAppHelper {
@@ -187,6 +174,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("Then"), "User remove a \'" + keyword + "\' from Delete button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -330,6 +318,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("Then"), "User remove a \'" + string + "\' from Delete button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -435,6 +424,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 					context.getExtentTestScenario()
 							.createNode(new GherkinKeyword("When"), "User add a \"" + keyword + "\" keyword")
 							.fail("FAILED: ");
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 				}
 
@@ -450,6 +440,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("Then"), "User add a \"" + keyword + "\" keyword")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -562,6 +553,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 						// Extent Report
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 								"User add a \"" + keywords.get(j) + "\" keyword").fail("FAILED: ");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 					}
 				}
@@ -578,6 +570,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("Then"), "User add a \"" + string + "\" keyword")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

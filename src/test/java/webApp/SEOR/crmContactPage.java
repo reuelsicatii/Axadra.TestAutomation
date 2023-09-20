@@ -1,13 +1,10 @@
 package webApp.SEOR;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
@@ -55,6 +52,13 @@ public class crmContactPage extends webAppHelper {
 			.xpath("//div[@id='contact-details-container']//div[contains(@class, 'contact-location-container')]");
 
 	By company_sectionlabel = By.xpath("//div[@id='contact-details-container']//h4[contains(@class, 'business-name')]");
+
+	By addNewContact_sectionbutton = By.xpath("//button[contains(text(), 'Add New Contact')]");
+	By firstName_Modaltextfield = By.xpath("//input[@id='clFirstname']");
+	By lastName_Modaltextfield = By.xpath("//input[@id='clLastname']");
+	By email_Modaltextfield = By.xpath("//input[@id='clEmail']");
+	By phone_Modaltextfield = By.xpath("//input[@id='clPhone']");
+	By save_Modalbutton = By.xpath("//div[@class='modal-dialog']//button[contains(text(), 'Save')]");
 
 	// Declare Driver Instance
 	// ==========================================
@@ -139,6 +143,7 @@ public class crmContactPage extends webAppHelper {
 												+ companyName + "<br>" + "Email Address: " + emailAddress + "<br>"
 												+ "Contact Details URL: " + deletedContactURL)
 								.fail("FAILED");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 						break;
 
@@ -162,6 +167,7 @@ public class crmContactPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User delete single contact over contact details")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -192,6 +198,7 @@ public class crmContactPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User clicks on the contact details link")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -224,6 +231,7 @@ public class crmContactPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User clicks on the edit contact button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -256,6 +264,7 @@ public class crmContactPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User updates websiteURL textfield with " + updatedWebsiteURL)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -288,6 +297,7 @@ public class crmContactPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User updates emailAddress textfield with " + updatedEmailAddress)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -320,6 +330,7 @@ public class crmContactPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User updates company textfield with " + updatedCompany)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -352,6 +363,7 @@ public class crmContactPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User populates phone textfield with " + updatedPhone)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -396,6 +408,7 @@ public class crmContactPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User populates phone textfield with " + updatedPhone)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -427,6 +440,7 @@ public class crmContactPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User populates facebook textfield with " + facebook)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -458,6 +472,7 @@ public class crmContactPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User populates instagram textfield with " + instagram)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -489,6 +504,7 @@ public class crmContactPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User populates twitter textfield with " + twitter)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -520,6 +536,7 @@ public class crmContactPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User populates linkedin textfield with " + linkedin)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -551,6 +568,7 @@ public class crmContactPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User clicks on the saveChanges button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -690,6 +708,7 @@ public class crmContactPage extends webAppHelper {
 				// Extent Report
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User updates NOT successfully")
 						.fail("FAILED");
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 			}
 
@@ -703,6 +722,84 @@ public class crmContactPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User updates textfield with " + label + " is NOT updated successfully")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@When("User adds a contact over CRMContactDetailsBusinessInfoYourContact")
+	public void userAddsAContactOverCRMContactDetailsBusinessInfoYourContact() throws Throwable {
+
+		try {
+
+			// no anchor
+			Thread.sleep(2000);
+
+			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+					context.getDriver().findElement(addNewContact_sectionbutton));
+			context.getWait().until(ExpectedConditions.visibilityOfElementLocated(addNewContact_sectionbutton));
+			context.getDriver().findElement(addNewContact_sectionbutton).click();
+
+			// no anchor
+			Thread.sleep(3000);
+
+			String phone = crmService.generateRandomPhoneNumber();
+
+			context.getDriver().findElement(firstName_Modaltextfield).sendKeys(crmService.generateRandomString(8));
+			context.getDriver().findElement(lastName_Modaltextfield).sendKeys(crmService.generateRandomString(8));
+			context.getDriver().findElement(email_Modaltextfield)
+					.sendKeys(crmService.generateRandomString(8) + "@gmail.com");
+			context.getDriver().findElement(phone_Modaltextfield).sendKeys(phone);
+			context.getDriver().findElement(save_Modalbutton).click();
+			
+			// no anchor
+			Thread.sleep(5000);
+
+			boolean verdict = true;
+			while (true) {
+
+				for (int i = 1; i < context.getDriver()
+						.findElements(By.xpath("//div[contains(@class, 'business-contact-list-container')]//tr")).size()
+						+ 1; i++) {
+
+					if (context.getDriver()
+							.findElement(By.xpath(
+									"//div[contains(@class, 'business-contact-list-container')]//tr[" + i + "]/td[4]"))
+							.getText().contains(phone)) {
+						// Extent Report
+						context.getExtentTestScenario()
+								.createNode(new GherkinKeyword("When"),
+										"User adds a contact over CRMContactDetailsBusinessInfoYourContact")
+								.pass("PASSED");
+
+						verdict = false;
+						break;
+
+					}
+				}
+
+				// Extent Report
+				if (verdict) {
+					context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+							"User adds a contact over CRMContactDetailsBusinessInfoYourContact").fail("FAILED");
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				}
+				break;
+
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User adds a contact over CRMContactDetailsBusinessInfoYourContact")
+						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

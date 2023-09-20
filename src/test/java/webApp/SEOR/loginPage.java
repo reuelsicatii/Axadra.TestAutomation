@@ -2,23 +2,16 @@ package webApp.SEOR;
 
 import static org.testng.Assert.assertEquals;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -31,7 +24,7 @@ public class loginPage extends webAppHelper {
 	By password_textfield = By.xpath("//input[@name='account_password']");
 	By login_button = By.xpath("//button[text()='Sign In']");
 	By welcome_message = By.xpath("//h2[contains(text(), 'Welcome to your dashboard!')]");
-	
+
 	// COMP - Page Elements
 	// ==========================================
 	By compassUsername_textfield = By.xpath("//input[@id='identity']");
@@ -68,6 +61,7 @@ public class loginPage extends webAppHelper {
 			context.getExtentTestScenario()
 					.createNode(new GherkinKeyword("When"), "User enter the username as " + username)
 					.fail("FAILED: " + e.getMessage());
+			context.getExtentTestScenario().log(Status.FAIL, "Failed");
 		}
 	}
 
@@ -89,6 +83,7 @@ public class loginPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User enter the password as " + password)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -114,6 +109,7 @@ public class loginPage extends webAppHelper {
 			try {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User click on the login button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -140,6 +136,7 @@ public class loginPage extends webAppHelper {
 			try {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -156,7 +153,8 @@ public class loginPage extends webAppHelper {
 
 			// Extent Report
 			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User enter the Compass > username as " + username).pass("PASSED");
+					.createNode(new GherkinKeyword("When"), "User enter the Compass > username as " + username)
+					.pass("PASSED");
 
 		} catch (Exception e) {
 
@@ -164,6 +162,7 @@ public class loginPage extends webAppHelper {
 			context.getExtentTestScenario()
 					.createNode(new GherkinKeyword("When"), "User enter the Compass > username as " + username)
 					.fail("FAILED: " + e.getMessage());
+			context.getExtentTestScenario().log(Status.FAIL, "Failed");
 		}
 	}
 
@@ -176,7 +175,8 @@ public class loginPage extends webAppHelper {
 
 			// Extent Report
 			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User enter the Compass > password as " + password).pass("PASSED");
+					.createNode(new GherkinKeyword("When"), "User enter the Compass > password as " + password)
+					.pass("PASSED");
 
 		} catch (Exception e) {
 
@@ -185,6 +185,7 @@ public class loginPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User enter the Compass > password as " + password)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -201,15 +202,17 @@ public class loginPage extends webAppHelper {
 			context.getDriver().findElement(compassLogin_button).click();
 
 			// Extent Report
-			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User click on the Compass > login button")
-					.pass("PASSED");
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User click on the Compass > login button").pass("PASSED");
 
 		} catch (Exception e) {
 
 			// Extent Report
 			try {
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User click on the Compass > login button")
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User click on the Compass > login button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -227,15 +230,17 @@ public class loginPage extends webAppHelper {
 			assertEquals(context.getDriver().findElement(compassWelcome_message).isDisplayed(), true);
 
 			// Extent Report
-			context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login on Compass")
-					.pass("PASSED");
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("Then"), "User is successfully login on Compass").pass("PASSED");
 
 		} catch (Exception e) {
 
 			// Extent Report
 			try {
-				context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login on Compass")
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("Then"), "User is successfully login on Compass")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

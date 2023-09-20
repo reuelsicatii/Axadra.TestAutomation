@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
@@ -99,6 +100,7 @@ public class leadFinderPage extends webAppHelper {
 								.fail("FAILED: Processing lead generation for " + finalKeyword + "in "
 										+ searchDetails.get("location") + "<br>"
 										+ "Processing Lead Finder generation, waiting for " + y + " sec has exceeded");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 						// exit the loop
 						System.out.println("Exiting whileloop");
@@ -144,6 +146,7 @@ public class leadFinderPage extends webAppHelper {
 								.fail("FAILED: Not able to generate Leads for " + finalKeyword + "in "
 										+ searchDetails.get("location") + "<br>"
 										+ "Lead Finder generation, waiting for " + x + " sec");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 						// exit the loop
 						System.out.println("Exiting whileloop");
@@ -183,6 +186,7 @@ public class leadFinderPage extends webAppHelper {
 										.createNode(new GherkinKeyword("When"), "User generates a Leads for "
 												+ finalKeyword + "in " + searchDetails.get("location"))
 										.fail("FAILED: No Leads Found");
+								context.getExtentTestScenario().log(Status.FAIL, "Failed");
 							}
 
 						} catch (Exception e) {
@@ -198,6 +202,7 @@ public class leadFinderPage extends webAppHelper {
 												"User generates a Leads for " + finalKeyword + "in "
 														+ searchDetails.get("location"))
 										.fail("FAILED: Status is EXPIRED");
+								context.getExtentTestScenario().log(Status.FAIL, "Failed");
 							}
 
 							else if (context.getDriver()
@@ -241,6 +246,7 @@ public class leadFinderPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User generates Leads for " + finalKeyword + "in " + searchDetails.get("location"))
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -267,6 +273,7 @@ public class leadFinderPage extends webAppHelper {
 					// Extent Report
 					context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User generates a Leads")
 							.fail("FAILED: No Leads Found");
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
 				}
 
 				else if (context.getDriver().findElements(leadFinderSearchResultPageObject.leadGeneratorResult_tableRow)
@@ -330,6 +337,7 @@ public class leadFinderPage extends webAppHelper {
 						context.getExtentTestScenario()
 								.createNode(new GherkinKeyword("When"), "User save all leads to new list")
 								.fail("FAILED: Leads are NOT save");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 					}
 
 				}
@@ -345,12 +353,14 @@ public class leadFinderPage extends webAppHelper {
 					context.getExtentTestScenario()
 							.createNode(new GherkinKeyword("When"), "User save all leads to new list")
 							.fail("FAILED: Status is EXPIRED");
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
 				}
 
 				else {
 					// Extent Report
 					context.getExtentTestScenario()
 							.createNode(new GherkinKeyword("When"), "User save all leads to new list").fail("FAILED");
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
 				}
 			}
 
@@ -363,6 +373,7 @@ public class leadFinderPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User save all leads to new list")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -456,6 +467,7 @@ public class leadFinderPage extends webAppHelper {
 										+ context.getDriver().findElements(
 												leadFinderSearchResultPageObject.leadGeneratorGroupLeads_tableRow)
 												.size());
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 					}
 
 				}
@@ -497,6 +509,7 @@ public class leadFinderPage extends webAppHelper {
 										+ context.getDriver().findElements(
 												leadFinderSearchResultPageObject.leadGeneratorGroupLeads_tableRow)
 												.size());
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 					}
 
 				}
@@ -521,7 +534,7 @@ public class leadFinderPage extends webAppHelper {
 
 						System.out.println("Wait for Lead List table after clicking pagination");
 						Thread.sleep(10000);
-						
+
 						context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
 								context.getDriver().findElement(leadFinderSearchResultPageObject.tableRow_dropdown));
 
@@ -530,8 +543,7 @@ public class leadFinderPage extends webAppHelper {
 								.size());
 
 						tableRowCount = tableRowCount + context.getDriver()
-								.findElements(leadFinderSearchResultPageObject.leadGeneratorGroupLeads_tableRow)
-								.size();
+								.findElements(leadFinderSearchResultPageObject.leadGeneratorGroupLeads_tableRow).size();
 
 						System.out.println("Total Table Row Count: " + tableRowCount);
 
@@ -559,8 +571,8 @@ public class leadFinderPage extends webAppHelper {
 								.fail("FAILED: " + listName + " does not have the same count as the table. " + "<br>"
 										+ "Expected - ListName Count: "
 										+ listName.substring(listName.length() - 4, listName.length() - 1) + "<br>"
-										+ "Actual - TableRow Count: "
-										+ tableRowCount);
+										+ "Actual - TableRow Count: " + tableRowCount);
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 					}
 
 				}
@@ -576,6 +588,7 @@ public class leadFinderPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User sees List Lead count is correct")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
