@@ -190,7 +190,7 @@ public class webAppHook extends webAppHelper {
 
 		
 		// Get the counts of failed test steps
-		long  failedTestSteps = extentReports.getReport().getTestList().stream()
+		long  failedTestScenario = extentReports.getReport().getTestList().stream()
                 .filter(extentTest -> extentTest.getStatus() == Status.FAIL)
                 .count();
 
@@ -204,7 +204,7 @@ public class webAppHook extends webAppHelper {
 				+ "\\n ===================== "
 				+ "\\n Feature Name: " + scenarioName 
 				+ "\\n Report Link: http://automation-report.cloud/AutomationProject/reports/"+ scenarioName +"/"+ date +".html"
-				+ "\\n Test Steps - FAILED: "+ failedTestSteps +" \"}";
+				+ "\\n Test Case - FAILED: "+ failedTestScenario +" \"}";
 
         RequestBody requestBody = RequestBody.create(jsonPayload, MediaType.get("application/json"));
         Request request = new Request.Builder()

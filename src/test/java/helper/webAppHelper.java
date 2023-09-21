@@ -9,14 +9,12 @@ import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
-import java.util.NoSuchElementException;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -49,6 +47,13 @@ public class webAppHelper {
 
 		if (GetPropertValue("data/TestProperties.xml", "Grid").equalsIgnoreCase("Browser")) {
 			if (browserName.equalsIgnoreCase("chrome")) {
+				
+				// this option os for the pop-up blocker in PROD
+				ChromeOptions options = new ChromeOptions();
+		        options.addArguments("--load-extension=" + "C:\\Users\\Admin\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\cjpalhdlnbpafiamejdnhcphjbkeiagm\\1.52.0_0");		        
+		        dc.setCapability(ChromeOptions.CAPABILITY, options);
+		        
+		        
 				dc.setBrowserName("chrome");
 
 			} else if (browserName.equalsIgnoreCase("firefox")) {
