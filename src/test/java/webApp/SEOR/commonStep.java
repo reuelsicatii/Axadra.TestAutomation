@@ -50,8 +50,7 @@ public class commonStep extends webAppHelper {
 			try {
 
 				// Test Server Browser -- NextRoll Inc Privacy
-				context.getDriver()
-						.findElement(
+				context.getDriver().findElement(
 								By.xpath("//div[@id='adroll_consent_banner_container']//div[text()='Decline All']"))
 						.click();
 
@@ -61,7 +60,7 @@ public class commonStep extends webAppHelper {
 
 			// Extent Report
 			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("Given"), "User navigates to " + url + " using" + browserName)
+					.createNode(new GherkinKeyword("Given"), "User navigates to " + url + " using " + browserName)
 					.pass("PASSED");
 
 		} catch (Exception e) {
@@ -69,7 +68,7 @@ public class commonStep extends webAppHelper {
 			try {
 				// Extent Report
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("Given"), "User navigates to " + url + " using" + browserName)
+						.createNode(new GherkinKeyword("Given"), "User navigates to " + url + " using " + browserName)
 						.fail("FAILED: " + e.getMessage());
 				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {

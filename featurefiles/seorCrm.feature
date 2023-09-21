@@ -272,3 +272,5 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | crmURL                                   | username         | password  | facebook                                 | instagram                              | twitter                             | linkedin                              | websiteURL | companyName | emailAddress    |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/crm/ | reuel@axadra.com | asdasdasd | https://www.facebook.com/bestseoreseller | https://www.instagram.com/seoreseller/ | https://twitter.com/bestseoreseller | https://www.linkedin.com/seoreseller/ | url.com    | company     | email@gmail.com |
+
+  

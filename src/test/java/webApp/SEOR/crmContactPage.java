@@ -54,6 +54,8 @@ public class crmContactPage extends webAppHelper {
 	By company_sectionlabel = By.xpath("//div[@id='contact-details-container']//h4[contains(@class, 'business-name')]");
 
 	By addNewContact_sectionbutton = By.xpath("//button[contains(text(), 'Add New Contact')]");
+	By editContact_sectionbutton = By.xpath("(//div[@class='business-contact-list-container']//button)[1]");
+	By deleteContact_sectionbutton = By.xpath("(//div[@class='business-contact-list-container']//button)[2]");
 	By firstName_Modaltextfield = By.xpath("//input[@id='clFirstname']");
 	By lastName_Modaltextfield = By.xpath("//input[@id='clLastname']");
 	By email_Modaltextfield = By.xpath("//input[@id='clEmail']");
@@ -754,7 +756,7 @@ public class crmContactPage extends webAppHelper {
 					.sendKeys(crmService.generateRandomString(8) + "@gmail.com");
 			context.getDriver().findElement(phone_Modaltextfield).sendKeys(phone);
 			context.getDriver().findElement(save_Modalbutton).click();
-			
+
 			// no anchor
 			Thread.sleep(5000);
 
