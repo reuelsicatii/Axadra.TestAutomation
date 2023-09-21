@@ -23,3 +23,4 @@ drivers/*
 .settings/
 target/
 test-output/
+data/webApp.SEOR.crm/*
