@@ -47,18 +47,17 @@ public class commonStep extends webAppHelper {
 			// no anchor over table
 			Thread.sleep(5000);
 
-			/*
-			 * REMOVE THIS STEP since we handle pops-up over pop-up blocker extension in PROD
-			 * 
-			 * try {
-			 * 
-			 * // Test Server Browser -- NextRoll Inc Privacy context.getDriver()
-			 * .findElement( By.
-			 * xpath("//div[@id='adroll_consent_banner_container']//div[text()='Decline All']"
-			 * )) .click();
-			 * 
-			 * } catch (Exception e) { e.printStackTrace(); }
-			 */
+			try {
+
+				// Test Server Browser -- NextRoll Inc Privacy
+				context.getDriver()
+						.findElement(
+								By.xpath("//div[@id='adroll_consent_banner_container']//div[text()='Decline All']"))
+						.click();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 			// Extent Report
 			context.getExtentTestScenario()
