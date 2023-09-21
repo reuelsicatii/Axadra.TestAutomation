@@ -48,7 +48,7 @@ public class webAppHelper {
 		if (GetPropertValue("data/TestProperties.xml", "Grid").equalsIgnoreCase("Browser")) {
 			if (browserName.equalsIgnoreCase("chrome")) {
 				
-				// this option os for the pop-up blocker in PROD
+				// this option is for the pop-up blocker in PROD
 				ChromeOptions options = new ChromeOptions();
 		        options.addArguments("--load-extension=" + "C:\\Users\\Admin\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\cjpalhdlnbpafiamejdnhcphjbkeiagm\\1.52.0_0");		        
 		        dc.setCapability(ChromeOptions.CAPABILITY, options);
