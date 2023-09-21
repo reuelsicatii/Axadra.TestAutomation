@@ -431,7 +431,8 @@ public class summaryPage extends webAppHelper {
 			// select 100 over dropdown
 			summaryTableRowDropDownElementFinder().selectByVisibleText("100");
 
-			// wait for table to load - no anchor Thread.sleep(10000);
+			// wait for table to load - no anchor 
+			Thread.sleep(10000);
 
 			for (int j = 2; j < context.getDriver()
 					.findElements(By.xpath("(//div[@id='rankings-summary-table_wrapper']//ul[1])[1]/li")).size(); j++) {
