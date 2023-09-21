@@ -2,23 +2,16 @@ package webApp.COMP;
 
 import static org.testng.Assert.assertEquals;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -61,6 +54,7 @@ public class loginPage extends webAppHelper {
 			context.getExtentTestScenario()
 					.createNode(new GherkinKeyword("When"), "User enter the username as " + username)
 					.fail("FAILED: " + e.getMessage());
+			context.getExtentTestScenario().log(Status.FAIL, "Failed");
 		}
 	}
 
@@ -82,6 +76,7 @@ public class loginPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User enter the password as " + password)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -107,6 +102,7 @@ public class loginPage extends webAppHelper {
 			try {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User click on the login button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -133,6 +129,7 @@ public class loginPage extends webAppHelper {
 			try {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

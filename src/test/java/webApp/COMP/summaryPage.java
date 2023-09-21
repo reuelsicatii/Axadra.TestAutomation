@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
@@ -137,6 +138,7 @@ public class summaryPage extends webAppHelper {
 						.fail("FAILED: " + "<br>" + "Keyword Count Entries: "
 								+ context.getDriver().findElement(keywordCountEntries_span).getText() + "<br>"
 								+ "Keyword Count Row: " + keywordCountRow.toString());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -146,6 +148,7 @@ public class summaryPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User compares KeywordCount over Summary" + string)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -206,6 +209,7 @@ public class summaryPage extends webAppHelper {
 						.fail("FAILED: " + "<br>" + "Keyword Count Entries: " + keywordCountEntries + "<br>"
 								+ "Trend Count Entries: " + trendCountEntries + "<br>" + "Summary Count Entries: "
 								+ summaryCountEntries);
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -216,6 +220,7 @@ public class summaryPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User compares Count Entries against Keyword vs Trend vs Summary")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -388,6 +393,7 @@ public class summaryPage extends webAppHelper {
 						.fail("FAILED: " + "<br>" + "Keyword Tracked Count Row: " + keywordTrackedCountRow.toString()
 								+ "<br>" + "Trend Tracked Count Row: " + trendTrackedCountRow.toString() + "<br>"
 								+ "Summary Tracked Count Row: " + summaryTrackedCountRow.toString());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -398,6 +404,7 @@ public class summaryPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User compares Count Tracked against Keyword Page vs Summary Page vs Trend Page")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -633,14 +640,14 @@ public class summaryPage extends webAppHelper {
 			}
 
 			// compare keyword and possition
-			context.getExtentTestScenario()
-					.createNode("User compares Keyword and Position against CPS > Summary Page vs CPS > Trend Page vs SRS > Ranking Page" 
-							+ "<br>" + "Campaign URL: " + summaryPage.replace("/ranking_summary", "")
-							+ "<br>" + "Summary Page Keyword Count: " + summaryPageKeywordPosition.size() 
-							+ "<br>" + "Trend Page Keyword Count: " + trendPageKeywordPosition.size() 
-							+ "<br>" + "Ranking Page Keyword Count: " + rankingPageKeywordPosition.size()
+			context.getExtentTestScenario().createNode(
+					"User compares Keyword and Position against CPS > Summary Page vs CPS > Trend Page vs SRS > Ranking Page"
+							+ "<br>" + "Campaign URL: " + summaryPage.replace("/ranking_summary", "") + "<br>"
+							+ "Summary Page Keyword Count: " + summaryPageKeywordPosition.size() + "<br>"
+							+ "Trend Page Keyword Count: " + trendPageKeywordPosition.size() + "<br>"
+							+ "Ranking Page Keyword Count: " + rankingPageKeywordPosition.size()
 
-					);
+			);
 			int summ = 1;
 			for (Map.Entry<String, String> summaryPageKeywordPositionset : summaryPageKeywordPosition.entrySet()) {
 
@@ -676,7 +683,8 @@ public class summaryPage extends webAppHelper {
 						}
 
 						else if (summaryPageKeywordPositionset.getKey().equals(trendPageKeywordPositionset.getKey())
-								&& summaryPageKeywordPositionset.getKey().equals(rankingPageKeywordPositionset.getKey())) {
+								&& summaryPageKeywordPositionset.getKey()
+										.equals(rankingPageKeywordPositionset.getKey())) {
 
 							context.getExtentTestScenario()
 									// .createNode("User compares Keyword and Position against Summary Page row " +
@@ -720,6 +728,7 @@ public class summaryPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User compares Count Tracked against Keyword Page vs Summary Page vs Trend Page")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

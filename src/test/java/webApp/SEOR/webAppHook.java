@@ -187,14 +187,11 @@ public class webAppHook extends webAppHelper {
 				+ date + ".html");
 		extentReports.attachReporter(extentSparkReporter);
 		extentReports.flush();
-
 		
 		// Get the counts of failed test steps
 		long  failedTestScenario = extentReports.getReport().getTestList().stream()
                 .filter(extentTest -> extentTest.getStatus() == Status.FAIL)
-                .count();
-
-		
+                .count();		
 		
 		// SLACK NOTIFICATION
 		OkHttpClient client = new OkHttpClient();

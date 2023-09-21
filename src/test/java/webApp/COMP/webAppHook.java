@@ -14,7 +14,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.GherkinKeyword;
 import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.markuputils.Markup;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import helper.webAppContextDriver;
@@ -26,6 +26,11 @@ import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.BeforeStep;
 import io.cucumber.java.Scenario;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class webAppHook extends webAppHelper {
 
@@ -54,8 +59,9 @@ public class webAppHook extends webAppHelper {
 
 		// Define Extent Report XAMPP htdocs Folder - Image not resolving
 		// ==============================================================================
-		// extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/COMPASS_TestSuite/"
-		//		+ new SimpleDateFormat("yyMMdd_HHmmss").format(new Date()) + ".html");
+		// extentSparkReporter = new
+		// ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/COMPASS_TestSuite/"
+		// + new SimpleDateFormat("yyMMdd_HHmmss").format(new Date()) + ".html");
 		// extentReports.attachReporter(extentSparkReporter);
 
 	}
@@ -71,21 +77,15 @@ public class webAppHook extends webAppHelper {
 		scenarioName = scenario.getSourceTagNames().toArray()[0].toString().replace("@", "");
 
 		// Set Feature Name
-		featureExtentTest = extentReports
-				.createTest(new GherkinKeyword("Feature"),
-						"Feature Name: " + scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") 
-						+ "<br>"
-						+ " Scenario Name: " + scenario.getName() 
-						+ "<br>"
-						+ "TestCase ID: " + scenario.getLine(),
-						"<br><br><br>"
-						+ " Scenario Name: " + scenario.getName());
+		featureExtentTest = extentReports.createTest(new GherkinKeyword("Feature"),
+				"Feature Name: " + scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "<br>"
+						+ " Scenario Name: " + scenario.getName() + "<br>" + "TestCase ID: " + scenario.getLine(),
+				"<br><br><br>" + " Scenario Name: " + scenario.getName());
 
 		// Set Test Scenario and Case Name
 		scenarioExtentTest = featureExtentTest.createNode(new GherkinKeyword("Scenario"),
-				" Scenario Name: " + scenario.getName()
-				+ "<br>" 
-				+ "TestCase ID: " + scenario.getLine(), scenario.getId());
+				" Scenario Name: " + scenario.getName() + "<br>" + "TestCase ID: " + scenario.getLine(),
+				scenario.getId());
 		context.setExtentTestScenario(scenarioExtentTest);
 
 	}
@@ -125,7 +125,7 @@ public class webAppHook extends webAppHelper {
 			 * MediaEntityBuilder.createScreenCaptureFromPath(DestFile).build());
 			 * 
 			 */
-			
+
 			Random generator = new Random();
 			int randomIndex = generator.nextInt(2000);
 			Thread.sleep(randomIndex);
@@ -135,12 +135,10 @@ public class webAppHook extends webAppHelper {
 			// XAMPP htdocs Folder - Image not resolving
 			// ====================================================
 			DestFile = "C:/xampp/htdocs/AutomationProject/screenshots/"
-					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_"
-					+ date + ".png";
+					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_" + date + ".png";
 
 			SrcImage = "/AutomationProject/screenshots/"
-					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_"
-					+ date + ".png";
+					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_" + date + ".png";
 
 			context.setSrcFile(((TakesScreenshot) context.getDriver()).getScreenshotAs(OutputType.FILE));
 
@@ -155,8 +153,9 @@ public class webAppHook extends webAppHelper {
 					context.getScenario().getStatus().toString());
 
 			// Attached Screenshot to Extent Report
-			context.getExtentTestScenario().createNode(" ======================================== ")
-					.info("Captured Screenshot: ", MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
+			context.getExtentTestScenario().createNode(" ======================================== ").info(
+					"Captured Screenshot: ",
+					MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
 
 		} catch (Exception e) {
 			// Extent Report
@@ -180,12 +179,42 @@ public class webAppHook extends webAppHelper {
 	public static void afterAll() {
 
 		System.out.println("Im in a After Scenario");
+
 		// Create Extent Report over XAMPP htdocs Folder
 		// ==============================================================================
-		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/"
-				+ scenarioName + "/" + new SimpleDateFormat("yyMMdd_HHmmss").format(new Date()) + ".html");
+		String date = new SimpleDateFormat("yyMMdd_HHmmss").format(new Date());
+		extentSparkReporter = new ExtentSparkReporter(
+				"C:/xampp/htdocs/AutomationProject/reports/" + scenarioName + "/" + date + ".html");
 		extentReports.attachReporter(extentSparkReporter);
 		extentReports.flush();
+
+		// Get the counts of failed test steps
+		long failedTestScenario = extentReports.getReport().getTestList().stream()
+				.filter(extentTest -> extentTest.getStatus() == Status.FAIL).count();
+
+		// SLACK NOTIFICATION
+		OkHttpClient client = new OkHttpClient();
+
+		// JSON payload as a string
+		String jsonPayload = "{\"text\": \" SELENIUM - Automation" + "\\n ===================== " + "\\n Feature Name: "
+				+ scenarioName + "\\n Report Link: http://automation-report.cloud/AutomationProject/reports/"
+				+ scenarioName + "/" + date + ".html" + "\\n Test Case - FAILED: " + failedTestScenario + " \"}";
+
+		RequestBody requestBody = RequestBody.create(jsonPayload, MediaType.get("application/json"));
+		Request request = new Request.Builder()
+				.url("https://hooks.slack.com//services/T94TNR6JX/B05TF33U3SM/GNYWxDN6wq8xP0P1Zsnov49a")
+				.post(requestBody).build();
+
+		try (Response response = client.newCall(request).execute()) {
+			if (response.isSuccessful()) {
+				String responseBody = response.body().string();
+				System.out.println("Response: " + responseBody);
+			} else {
+				System.err.println("Request failed with status code: " + response.code());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 

@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
@@ -139,6 +140,7 @@ public class keywordPage extends webAppHelper {
 			// Extent Report
 			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a single " + keyword)
 					.fail("FAILED: " + e.getMessage());
+			context.getExtentTestScenario().log(Status.FAIL, "Failed");
 		}
 	}
 
@@ -200,6 +202,7 @@ public class keywordPage extends webAppHelper {
 			// Extent Report
 			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User add a multiple " + string)
 					.fail("FAILED: " + e.getMessage());
+			context.getExtentTestScenario().log(Status.FAIL, "Failed");
 		}
 
 	}
@@ -225,7 +228,7 @@ public class keywordPage extends webAppHelper {
 				// Extent Report
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User see Add Keyword modal")
 						.fail("FAILED");
-
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -234,6 +237,7 @@ public class keywordPage extends webAppHelper {
 			try {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User see Add Keyword modal")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -258,6 +262,7 @@ public class keywordPage extends webAppHelper {
 			try {
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User close Add Keyword modal")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -286,6 +291,7 @@ public class keywordPage extends webAppHelper {
 				// Extent Report
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User see Duplicate Keyword modal").fail("FAILED");
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
 			}
 
@@ -296,6 +302,7 @@ public class keywordPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User close success message modal")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -342,6 +349,7 @@ public class keywordPage extends webAppHelper {
 						// Extent Report
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 								"User remove a single '" + keyword + "' from Trash button").fail("FAILED");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 						keywordExist = false;
 						break;
 
@@ -369,6 +377,7 @@ public class keywordPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User remove a single '" + keyword + "' from Trash button")
 						.fail("FAILED" + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -418,6 +427,7 @@ public class keywordPage extends webAppHelper {
 						// Extent Report
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 								"User remove a single '" + keyword + "' from Remove button").fail("FAILED");
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 						keywordExist = false;
 						break;
 
@@ -445,6 +455,7 @@ public class keywordPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User remove a single '" + keyword + "' from Remove button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -505,6 +516,7 @@ public class keywordPage extends webAppHelper {
 									.createNode(new GherkinKeyword("When"),
 											"User remove a multiple '" + keywords.get(j) + "' from Remove button")
 									.fail("FAILED");
+							context.getExtentTestScenario().log(Status.FAIL, "Failed");
 							keywordExist = false;
 							break;
 
@@ -536,6 +548,7 @@ public class keywordPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User remove a multiple '" + string + "' from Remove button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -608,6 +621,7 @@ public class keywordPage extends webAppHelper {
 									.createNode(new GherkinKeyword("When"),
 											"User remove a multiple '" + keywords.get(j) + "' from Remove button")
 									.fail("FAILED");
+							context.getExtentTestScenario().log(Status.FAIL, "Failed");
 							keywordExist = false;
 							break;
 
@@ -639,6 +653,7 @@ public class keywordPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User remove a multiple '" + string + "' from Remove button")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -707,6 +722,7 @@ public class keywordPage extends webAppHelper {
 						.fail("FAILED: " + "<br>" + "Keyword Count Entries: "
 								+ context.getDriver().findElement(keywordCountEntries_span).getText() + "<br>"
 								+ "Keyword Count Row: " + keywordCountRow.toString());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -716,6 +732,7 @@ public class keywordPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User compares KeywordCount over Keyword" + string)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

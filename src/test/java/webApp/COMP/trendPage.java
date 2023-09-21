@@ -1,32 +1,14 @@
 package webApp.COMP;
 
-import static org.testng.Assert.assertEquals;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.groovy.parser.antlr4.GroovyParser.IfElseStatementContext;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
 
 import helper.webAppContextDriver;
 import helper.webAppHelper;
-import io.cucumber.java.Scenario;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -143,6 +125,7 @@ public class trendPage extends webAppHelper {
 						.fail("FAILED: " + "<br>" + "Keyword Count Entries: "
 								+ context.getDriver().findElement(keywordCountEntries_span).getText() + "<br>"
 								+ "Keyword Count Row: " + keywordCountRow.toString());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -152,6 +135,7 @@ public class trendPage extends webAppHelper {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User compares KeywordCount over Trend" + string)
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -201,8 +185,9 @@ public class trendPage extends webAppHelper {
 				context.getFluentWait().until(ExpectedConditions.visibilityOf(
 						context.getDriver().findElement(By.xpath("//table[@id='keywords-table']/tbody/tr[last()]"))));
 
-				keywordTrackedCountRow = keywordTrackedCountRow + context.getDriver().findElements(By.xpath(
-						"//table[@id='keywords-table']/tbody/tr/td[3]//i[contains(@class, 'fa fa-bookmark ')]"))
+				keywordTrackedCountRow = keywordTrackedCountRow + context.getDriver()
+						.findElements(By.xpath(
+								"//table[@id='keywords-table']/tbody/tr/td[3]//i[contains(@class, 'fa fa-bookmark ')]"))
 						.size();
 
 				System.out.println("Keyword Tracked Count Row:" + i + "--" + keywordTrackedCountRow);
@@ -295,8 +280,8 @@ public class trendPage extends webAppHelper {
 						context.getDriver().findElement(By.xpath("//table[@id='rankings-table']/tbody/tr[last()]"))));
 
 				trendTrackedCountRow = trendTrackedCountRow + context.getDriver()
-						.findElements(By
-								.xpath("//table[@id='rankings-table']/tbody/tr/td[3]/div[contains(text(), 'Targeted')]"))
+						.findElements(By.xpath(
+								"//table[@id='rankings-table']/tbody/tr/td[3]/div[contains(text(), 'Targeted')]"))
 						.size();
 
 				System.out.println("Trend Tracked Count Row:" + k + "--" + trendTrackedCountRow);
@@ -325,6 +310,7 @@ public class trendPage extends webAppHelper {
 						.fail("FAILED: " + "<br>" + "Keyword Tracked Count Row: " + keywordTrackedCountRow.toString()
 								+ "<br>" + "Trend Tracked Count Row: " + trendTrackedCountRow.toString() + "<br>"
 								+ "Summary Tracked Count Row: " + summaryTrackedCountRow.toString());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			}
 
 		} catch (Exception e) {
@@ -335,6 +321,7 @@ public class trendPage extends webAppHelper {
 						.createNode(new GherkinKeyword("When"),
 								"User compares Count Tracked against Keyword Page vs Summary Page vs Trend Page")
 						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
