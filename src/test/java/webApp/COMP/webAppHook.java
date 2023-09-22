@@ -82,6 +82,9 @@ public class webAppHook extends webAppHelper {
 				"Feature Name: " + scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "<br>"
 						+ " Scenario Name: " + scenario.getName() + "<br>" + "TestCase ID: " + scenario.getLine(),
 				"<br><br><br>" + " Scenario Name: " + scenario.getName());
+		
+		// add scenario
+		testCaseCount++;
 
 		// Set Test Scenario and Case Name
 		scenarioExtentTest = featureExtentTest.createNode(new GherkinKeyword("Scenario"),
