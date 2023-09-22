@@ -50,6 +50,7 @@ public class webAppHook extends webAppHelper {
 	private static ExtentSparkReporter extentSparkReporter;
 	private static ExtentReports extentReports = new ExtentReports();
 	private static String scenarioName;
+	private static int testCaseCount = 0;
 
 	@BeforeAll
 	public static void beforeALl() throws ClassNotFoundException {
@@ -196,9 +197,11 @@ public class webAppHook extends webAppHelper {
 		OkHttpClient client = new OkHttpClient();
 
 		// JSON payload as a string
-		String jsonPayload = "{\"text\": \" SELENIUM - Automation" + "\\n ===================== " + "\\n Feature Name: "
-				+ scenarioName + "\\n Report Link: http://automation-report.cloud/AutomationProject/reports/"
-				+ scenarioName + "/" + date + ".html" + "\\n Test Case - FAILED: " + failedTestScenario + " \"}";
+		String jsonPayload = "{\"text\": \" SELENIUM - Automation" 
+				+ "\\n ===================== " 
+				+ "\\n Feature Name: " + scenarioName 
+				+ "\\n Report Link: http://automation-report.cloud/AutomationProject/reports/" + scenarioName + "/" + date + ".html" 
+				+ "\\n Test Case - FAILED: " + failedTestScenario + " of " + testCaseCount + " \"}";
 
 		RequestBody requestBody = RequestBody.create(jsonPayload, MediaType.get("application/json"));
 		Request request = new Request.Builder()
