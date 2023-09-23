@@ -12,7 +12,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/seorGbpScorer.feature"},
+		features = {"featurefiles/webApp/seorGbpScorer.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				

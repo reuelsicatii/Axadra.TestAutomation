@@ -12,7 +12,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/seorCampaignSeo.feature"},
+		features = {"featurefiles/webApp/seorCampaignSeo.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				

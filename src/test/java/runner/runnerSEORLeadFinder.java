@@ -12,12 +12,13 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/seorLeadFinder.feature"},
+		features = {"featurefiles/webApp/seorLeadFinder.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
 		glue = { "webApp.SEOR"},
-		tags =  "@GenerateLead or @ListLeadCount",
+		tags =  "@SEOR_AgencyTools_LeadFinder",
+		//tags =  "@GenerateLead or @ListLeadCount",
 		plugin =  {				
 				"pretty",
 				"html:reports/results.html",
