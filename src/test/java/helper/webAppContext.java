@@ -11,7 +11,7 @@ import com.aventstack.extentreports.ExtentTest;
 
 import io.cucumber.java.Scenario;
 
-public class webAppContextDriver {
+public class webAppContext {
 
 	private RemoteWebDriver driver;
 	private WebDriverWait wait;

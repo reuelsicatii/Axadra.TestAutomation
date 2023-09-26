@@ -10,7 +10,7 @@ import com.aventstack.extentreports.GherkinKeyword;
 import com.aventstack.extentreports.Status;
 import com.jayway.jsonpath.JsonPath;
 
-import helper.webAppContextDriver;
+import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.en.Then;
 import net.minidev.json.JSONArray;
@@ -19,9 +19,9 @@ public class webAuditReportPage extends webAppHelper {
 
 	// Declare Driver Instance
 	// ==========================================
-	private webAppContextDriver context;
+	private webAppContext context;
 
-	public webAuditReportPage(webAppContextDriver context) {
+	public webAuditReportPage(webAppContext context) {
 		super();
 		this.context = context;
 	}

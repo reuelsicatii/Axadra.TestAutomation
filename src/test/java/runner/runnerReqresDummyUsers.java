@@ -12,16 +12,15 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/dummy2.feature"},
+		features = {"featurefiles/webAPi/reqresDummyUsers.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
-		glue = { "webApp.SEOR"},
-		tags =  "@TestCode",
+		glue = { "webApi.ApiName"},
+		tags =  "@Reqres_Dummy_Users",
 		plugin =  {
 				
-				"pretty",
-				//"html:reports/results" + new SimpleDateFormat("yyyyMMdd_hhmmssa").format(new Date()) + ".html",
+				"pretty",				
 				"html:reports/results.html",
 				"json:reports/results.json",
 				"junit:reports/results.xml"
@@ -30,7 +29,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 
 	)
 
-public class runnerDummy2 extends AbstractTestNGCucumberTests {	
+public class runnerReqresDummyUsers extends AbstractTestNGCucumberTests {	
 	
 	
 	// Running Cucumber - Parallel Test

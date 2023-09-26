@@ -5,7 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import helper.webAppContextDriver;
+import helper.webAppContext;
 
 public class GbpScorerReportPageObject {
 	

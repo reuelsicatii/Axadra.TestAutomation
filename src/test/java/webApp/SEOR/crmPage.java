@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.aventstack.extentreports.GherkinKeyword;
 import com.aventstack.extentreports.Status;
 
-import helper.webAppContextDriver;
+import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.en.When;
 import testAuto.Service.CrmService;
@@ -56,9 +56,9 @@ public class crmPage extends webAppHelper {
 
 	// Declare Driver Instance
 	// ==========================================
-	private webAppContextDriver context;
+	private webAppContext context;
 
-	public crmPage(webAppContextDriver context) {
+	public crmPage(webAppContext context) {
 		super();
 		this.context = context;
 	}

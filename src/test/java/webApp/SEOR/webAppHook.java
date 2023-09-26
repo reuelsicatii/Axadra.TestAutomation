@@ -17,7 +17,7 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-import helper.webAppContextDriver;
+import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
@@ -37,13 +37,13 @@ public class webAppHook extends webAppHelper {
 
 	// Declare Driver Instance
 	// ==========================================
-	private webAppContextDriver context;
+	private webAppContext context;
 	private String DestFile, SrcImage;
 
 	private ExtentTest featureExtentTest;
 	private ExtentTest scenarioExtentTest;
 
-	public webAppHook(webAppContextDriver context) {
+	public webAppHook(webAppContext context) {
 		super();
 		this.context = context;
 	}

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.aventstack.extentreports.GherkinKeyword;
 import com.aventstack.extentreports.Status;
 
-import helper.webAppContextDriver;
+import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.en.When;
 
@@ -55,9 +55,9 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 
 	// Declare Driver Instance
 	// ==========================================
-	private webAppContextDriver context;
+	private webAppContext context;
 
-	public campaignSeoKeywordRankingPage(webAppContextDriver context) {
+	public campaignSeoKeywordRankingPage(webAppContext context) {
 		super();
 		this.context = context;
 	}

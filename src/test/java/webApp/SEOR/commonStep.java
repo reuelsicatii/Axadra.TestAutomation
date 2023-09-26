@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import com.aventstack.extentreports.GherkinKeyword;
 import com.aventstack.extentreports.Status;
 
-import helper.webAppContextDriver;
+import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -22,9 +22,9 @@ public class commonStep extends webAppHelper {
 
 	// Declare Driver Instance
 	// ==========================================
-	private webAppContextDriver context;
+	private webAppContext context;
 
-	public commonStep(webAppContextDriver context) {
+	public commonStep(webAppContext context) {
 		super();
 		this.context = context;
 	}

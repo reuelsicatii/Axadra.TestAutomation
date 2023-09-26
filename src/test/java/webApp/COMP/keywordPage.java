@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.aventstack.extentreports.GherkinKeyword;
 import com.aventstack.extentreports.Status;
 
-import helper.webAppContextDriver;
+import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -81,9 +81,9 @@ public class keywordPage extends webAppHelper {
 
 	// Declare Driver Instance
 	// ==========================================
-	private webAppContextDriver context;
+	private webAppContext context;
 
-	public keywordPage(webAppContextDriver context) {
+	public keywordPage(webAppContext context) {
 		super();
 		this.context = context;
 	}
