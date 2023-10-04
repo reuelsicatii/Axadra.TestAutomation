@@ -89,7 +89,7 @@ public class loginPage extends webAppHelper {
 
 		try {
 			// Step Definition
-			context.getWait().until(ExpectedConditions.presenceOfElementLocated(login_button));
+			context.getWait().until(ExpectedConditions.visibilityOfElementLocated(login_button));
 			context.getDriver().findElement(login_button).click();
 
 			// Extent Report
@@ -116,12 +116,18 @@ public class loginPage extends webAppHelper {
 
 		try {
 			// Step Definition
-			context.getWait().until(ExpectedConditions.presenceOfElementLocated(welcome_message));
-			assertEquals(context.getDriver().findElement(welcome_message).isDisplayed(), true);
+			context.getWait().until(ExpectedConditions.visibilityOfElementLocated(welcome_message));
 
-			// Extent Report
-			context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login")
-					.pass("PASSED");
+			if (context.getDriver().findElement(welcome_message).getText() != null) {
+
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login")
+						.pass("PASSED");
+			} else {
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login")
+						.fail("FAILED");
+			}
 
 		} catch (Exception e) {
 
