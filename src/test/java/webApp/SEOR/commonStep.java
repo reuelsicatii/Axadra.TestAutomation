@@ -31,6 +31,38 @@ public class commonStep extends webAppHelper {
 
 	// Page Step Definition
 	// =================================================
+	
+	@Given("User setup a {string}")
+	public void userSetupABrowser(String browserName)
+			throws MalformedURLException, ClassNotFoundException {
+
+		try {
+
+			context.setDriver(initializeBrowser(browserName));
+			context.setWait(initializeBrowserWait(context.getDriver(), 120));
+			context.setFluentWait(initializeFluentWait(context.getDriver()));
+			context.getDriver().manage().window().maximize();
+			
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("Given"), "User setup a " + browserName)
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			try {
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("Given"), "User setup a " + browserName)
+						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
 
 	@Given("User navigates to {string} using {string}")
 	public void userNavigatesToUsing(String url, String browserName)

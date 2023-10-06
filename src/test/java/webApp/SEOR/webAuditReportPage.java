@@ -1,6 +1,7 @@
 package webApp.SEOR;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
@@ -14,8 +15,13 @@ import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.en.Then;
 import net.minidev.json.JSONArray;
+import testAuto.Service.WebAuditService;
+import testAuto.Service.CommonService;
 
 public class webAuditReportPage extends webAppHelper {
+
+	WebAuditService webAuditService = new WebAuditService();
+	CommonService commonService = new CommonService();
 
 	// Declare Driver Instance
 	// ==========================================
@@ -1935,6 +1941,96 @@ public class webAuditReportPage extends webAppHelper {
 
 	}
 
+	@Then("User validates the Social Activity > Facebook SubSection > Data is pulled between {string} and {string}")
+	public void UservalidatestheSocialActivityFacebookSubSectionDataispulledbetween(String fromDate, String toDate)
+			throws Throwable {
+
+		try {
+			// Step Definition
+			List<String[]> reportList = webAuditService.RetrieveGeneratedReportsBetweenAndFrom(fromDate, toDate,
+					"PROD_CENTRAL");
+			String[][] reportListArray = reportList.toArray(new String[0][]);
+			String reportUrl, date_posted, websiteUrl = null;
+
+			for (int i = 0; i < reportListArray.length; i++) {
+				reportUrl = reportListArray[i][0];
+				date_posted = reportListArray[i][1];
+				websiteUrl = reportListArray[i][2];
+
+				context.getDriver().get(reportUrl);
+				Thread.sleep(10000);
+
+				// scroll to element
+				context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
+						context.getDriver().findElement(SectionElemenFinder("social")));
+				Thread.sleep(5000);
+
+				try {
+
+					if (context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1"))
+							.getText().equals("0")
+							|| context.getDriver()
+									.findElement(subSectionSocialElementFinder("facebook", "verbiagerow2"))
+									.getText().equals("0")) {
+
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Facebook SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+								.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
+										+ reportUrl + "<br>" + "Report Date: " + date_posted);
+
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
+
+					}
+
+					else {
+
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Facebook SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+								.pass("PASSED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
+										+ reportUrl + "<br>" + "Report Date: " + date_posted);
+
+					}
+
+				} catch (Exception e) {
+
+					System.err.println("Inner Catch" + reportUrl);
+
+					context.getExtentTestScenario()
+							.createNode(new GherkinKeyword("When"),
+									"User validates the Social Activity > Facebook SubSection > Data is pulled between "
+											+ fromDate + " and " + toDate)
+							.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
+									+ reportUrl + "<br>" + "Report Date: " + date_posted);
+
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
+
+				}
+
+				commonService.attachedScreenshotToReport(websiteUrl, context);
+			}
+
+		} catch (Exception e) {
+
+			System.err.println("Outer Catch");
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Facebook SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
 	@Then("User sees the Social Activity > Twitter SubSection is correct")
 	public void userSeesTheSocialActivityTwitterSubSectionIsCorrect() {
 
@@ -2033,6 +2129,95 @@ public class webAuditReportPage extends webAppHelper {
 				e1.printStackTrace();
 			}
 		}
+	}
+
+	@Then("User validates the Social Activity > Twitter SubSection > Data is pulled between {string} and {string}")
+	public void UservalidatestheSocialActivityTwitterSubSectionDataispulledbetween(String fromDate, String toDate)
+			throws Throwable {
+
+		try {
+			// Step Definition
+			List<String[]> reportList = webAuditService.RetrieveGeneratedReportsBetweenAndFrom(fromDate, toDate,
+					"PROD_CENTRAL");
+			String[][] reportListArray = reportList.toArray(new String[0][]);
+			String reportUrl, date_posted, websiteUrl = null;
+
+			for (int i = 0; i < reportListArray.length; i++) {
+				reportUrl = reportListArray[i][0];
+				date_posted = reportListArray[i][1];
+				websiteUrl = reportListArray[i][2];
+
+				context.getDriver().get(reportUrl);
+				Thread.sleep(10000);
+
+				// scroll to element
+				context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
+						context.getDriver().findElement(SectionElemenFinder("social")));
+				Thread.sleep(5000);
+
+				try {
+
+					if (context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1"))
+							.getText().equals("0")
+							|| context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
+									.getText().equals("0")) {
+
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+								.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
+										+ reportUrl + "<br>" + "Report Date: " + date_posted);
+
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
+
+					}
+
+					else {
+
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+								.pass("PASSED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
+										+ reportUrl + "<br>" + "Report Date: " + date_posted);
+
+					}
+
+				} catch (Exception e) {
+
+					System.err.println("Inner Catch" + reportUrl);
+
+					context.getExtentTestScenario()
+							.createNode(new GherkinKeyword("When"),
+									"User validates the Social Activity > Twitter SubSection > Data is pulled between "
+											+ fromDate + " and " + toDate)
+							.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
+									+ reportUrl + "<br>" + "Report Date: " + date_posted);
+
+					context.getExtentTestScenario().log(Status.FAIL, "Failed");
+
+				}
+
+				commonService.attachedScreenshotToReport(websiteUrl, context);
+			}
+
+		} catch (Exception e) {
+
+			System.err.println("Outer Catch");
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
 	}
 
 }
