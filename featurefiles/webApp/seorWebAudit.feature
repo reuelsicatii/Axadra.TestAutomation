@@ -171,10 +171,10 @@ Feature: SEOR > Agency Tools > WebAudit
 
     Examples: 
       | browser | fromDate            | toDate              |
-      | chrome  | 2023-09-01 19:34:51 | NOW                 |
-      | chrome  | 2023-06-01 00:00:00 | 2023-08-31 23:59:59 |
-      | chrome  | 2023-03-01 00:00:00 | 2023-05-31 23:59:59 |
-      | chrome  | 2023-01-01 00:00:00 | 2023-02-28 23:59:59 |
+      | chrome  | 2023-10-01 00:00:00 | NOW                 |
+      | chrome  | 2023-07-01 00:00:00 | 2023-09-30 23:59:59 |
+      | chrome  | 2023-04-01 00:00:00 | 2023-06-30 23:59:59 |
+      | chrome  | 2023-01-01 00:00:00 | 2023-03-31 23:59:59 |
 
   @WebAuditReportSocialActivityTwitterData
   Scenario Outline: Generate WebAudit Report and validate Social Activity > Twitter Data between "<fromDate>" and "<toDate>"
@@ -183,10 +183,10 @@ Feature: SEOR > Agency Tools > WebAudit
 
     Examples: 
       | browser | fromDate            | toDate              |
-      | chrome  | 2023-09-01 19:34:51 | NOW                 |
-      | chrome  | 2023-06-01 00:00:00 | 2023-08-31 23:59:59 |
-      | chrome  | 2023-03-01 00:00:00 | 2023-05-31 23:59:59 |
-      | chrome  | 2023-01-01 00:00:00 | 2023-02-28 23:59:59 |
+      | chrome  | 2023-10-01 00:00:00 | NOW                 |
+      | chrome  | 2023-07-01 00:00:00 | 2023-09-30 23:59:59 |
+      | chrome  | 2023-04-01 00:00:00 | 2023-06-30 23:59:59 |
+      | chrome  | 2023-01-01 00:00:00 | 2023-03-31 23:59:59 |
 
   @GenerateWebAuditReport
   Scenario Outline: Generate WebAudit Report
