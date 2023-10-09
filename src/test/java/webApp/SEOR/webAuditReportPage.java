@@ -99,6 +99,9 @@ public class webAuditReportPage extends webAppHelper {
 
 			element = By.xpath("//div[@id='" + SubSectionName + "']/div[2]/div[1]");
 
+		} else if (SubSectionNameType.matches("verbiageHeader")) {
+			element = By.xpath("//div[@id='" + SubSectionName + "']/div[1]/div[2]");
+
 		} else if (SubSectionNameType.matches("verbiage")) {
 			element = By.xpath("//div[@id='" + SubSectionName + "']/div[2]/div[2]");
 
@@ -1892,7 +1895,7 @@ public class webAuditReportPage extends webAppHelper {
 
 			}
 
-			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+$",
+			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText()
 							.equals("Looking Good")
@@ -1967,17 +1970,41 @@ public class webAuditReportPage extends webAppHelper {
 
 				try {
 
-					if (context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1"))
-							.getText().equals("0")
-							|| context.getDriver()
-									.findElement(subSectionSocialElementFinder("facebook", "verbiagerow2"))
-									.getText().equals("0")) {
+					if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiageHeader"))
+									.getText())
+							&& (context.getDriver()
+									.findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText()
+									.equals("0")
+									|| context.getDriver()
+											.findElement(subSectionSocialElementFinder("facebook", "verbiagerow2"))
+											.getText().equals("0"))) {
 
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 								"User validates the Social Activity > Facebook SubSection > Data is pulled between "
 										+ fromDate + " and " + toDate)
 								.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
 										+ reportUrl + "<br>" + "Report Date: " + date_posted);
+
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
+
+					}
+
+					else if (!Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiageHeader"))
+									.getText())
+							&& (context.getDriver()
+									.findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText()
+									.equals("0")
+									|| context.getDriver()
+											.findElement(subSectionSocialElementFinder("facebook", "verbiagerow2"))
+											.getText().equals("0"))) {
+
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Facebook SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+								.warning("WARNING: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>"
+										+ "Report Link: " + reportUrl + "<br>" + "Report Date: " + date_posted);
 
 						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
@@ -1997,14 +2024,27 @@ public class webAuditReportPage extends webAppHelper {
 
 					System.err.println("Inner Catch" + reportUrl);
 
-					context.getExtentTestScenario()
-							.createNode(new GherkinKeyword("When"),
-									"User validates the Social Activity > Facebook SubSection > Data is pulled between "
-											+ fromDate + " and " + toDate)
-							.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
-									+ reportUrl + "<br>" + "Report Date: " + date_posted);
+					if (context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiageHeader"))
+							.getText().equals("No Facebook detected")) {
 
-					context.getExtentTestScenario().log(Status.FAIL, "Failed");
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Facebook SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+								.warning("WARNING: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>"
+										+ "Report Link: " + reportUrl + "<br>" + "Report Date: " + date_posted);
+
+						context.getExtentTestScenario().log(Status.WARNING, "Failed");
+
+					} else {
+
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Facebook SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+								.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
+										+ reportUrl + "<br>" + "Report Date: " + date_posted);
+
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
+					}
 
 				}
 
@@ -2049,7 +2089,7 @@ public class webAuditReportPage extends webAppHelper {
 
 			}
 
-			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+$",
+			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
 							.equals("Looking Good")
@@ -2157,16 +2197,41 @@ public class webAuditReportPage extends webAppHelper {
 
 				try {
 
-					if (context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1"))
-							.getText().equals("0")
-							|| context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
-									.getText().equals("0")) {
+					if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiageHeader"))
+									.getText())
+							&& (context.getDriver()
+									.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText()
+									.equals("0")
+									|| context.getDriver()
+											.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
+											.getText().equals("0"))) {
 
 						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
 								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
 										+ fromDate + " and " + toDate)
 								.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
 										+ reportUrl + "<br>" + "Report Date: " + date_posted);
+
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
+
+					}
+
+					else if (!Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiageHeader"))
+									.getText())
+							&& (context.getDriver()
+									.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText()
+									.equals("0")
+									|| context.getDriver()
+											.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
+											.getText().equals("0"))) {
+
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+								.warning("WARNING: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>"
+										+ "Report Link: " + reportUrl + "<br>" + "Report Date: " + date_posted);
 
 						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
@@ -2186,14 +2251,27 @@ public class webAuditReportPage extends webAppHelper {
 
 					System.err.println("Inner Catch" + reportUrl);
 
-					context.getExtentTestScenario()
-							.createNode(new GherkinKeyword("When"),
-									"User validates the Social Activity > Twitter SubSection > Data is pulled between "
-											+ fromDate + " and " + toDate)
-							.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
-									+ reportUrl + "<br>" + "Report Date: " + date_posted);
+					if (context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiageHeader"))
+							.getText().equals("No Twitter detected")) {
 
-					context.getExtentTestScenario().log(Status.FAIL, "Failed");
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+								.warning("WARNING: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>"
+										+ "Report Link: " + reportUrl + "<br>" + "Report Date: " + date_posted);
+
+						context.getExtentTestScenario().log(Status.WARNING, "Failed");
+
+					} else {
+
+						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
+								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate)
+								.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
+										+ reportUrl + "<br>" + "Report Date: " + date_posted);
+
+						context.getExtentTestScenario().log(Status.FAIL, "Failed");
+					}
 
 				}
 

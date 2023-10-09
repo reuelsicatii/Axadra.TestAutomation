@@ -12,12 +12,12 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/webApp/seorWebAudit.feature"},
+		features = {"featurefiles/webApp/seorWebAuditSocialActivity.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
 		glue = { "webApp.SEOR"},
-		tags =  "@WebAuditReportSocialActivityTwitterData or @WebAuditReportSocialActivityFacebookData",
+		tags =  "@SEOR_AgencyTools_WebAudit_SocialActivity",
 		plugin =  {
 				
 				"pretty",
