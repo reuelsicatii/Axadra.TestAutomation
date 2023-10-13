@@ -161,7 +161,7 @@ public class proposalBuilder extends webAppHelper {
 			context.getDriver().switchTo().window(newTb.get(0));
 
 			// Add existing contact
-			context.getDriver().executeScript("$('#proposal-contacts').val('" + contactID + "').trigger('change');");			
+			context.getDriver().executeScript("$('#proposal-contacts').val('" + contactID + "').trigger('change');");
 
 			contactDetails.put("firstName", crmService.generateRandomString(6));
 			contactDetails.put("lastName", crmService.generateRandomString(6));
@@ -262,6 +262,8 @@ public class proposalBuilder extends webAppHelper {
 	public void userSeeSectionIsAddedToTheProposal(String productName) {
 		try {
 
+			context.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
+					By.xpath("//div[@class='proposal-editor-body']//h3[text()='" + productName + "']")));
 			if (context.getDriver()
 					.findElement(By.xpath("//div[@class='proposal-editor-body']//h3[text()='" + productName + "']"))
 					.getText() != null) {
@@ -319,35 +321,35 @@ public class proposalBuilder extends webAppHelper {
 			// sleep - no anchor
 			Thread.sleep(5000);
 
-			if (context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[2]/td[2]")).getText()
+			if (context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[2]")).getText()
 					.contains(contactDetails.get("firstName"))
-					&& context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[2]/td[3]"))
-							.getText().contains(contactDetails.get("productName"))) {
+					&& context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[3]"))
+							.getText().equals(contactDetails.get("productName"))) {
 
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User see the proposal is created").pass("PASSED:"
-						+ "<br>"
-						+ "Client Actual: " + context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[2]/td[2]")).getText()
-						+ "<br>"
-						+ "Client Expected: " + contactDetails.get("firstName") + " " + contactDetails.get("lastName")
-						+ "<br>"
-						+ "Products Actual: " + context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[2]/td[3]")).getText()
-						+ "<br>"
-						+ "Products Expected: " + contactDetails.get("productName"));
+						.createNode(new GherkinKeyword("When"), "User see the proposal is created")
+						.pass("PASSED:" + "<br>" + "Client Actual: "
+								+ context.getDriver()
+										.findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[2]")).getText()
+								+ "<br>" + "Client Expected: " + contactDetails.get("firstName") + " "
+								+ contactDetails.get("lastName") + "<br>" + "Products Actual: "
+								+ context.getDriver()
+										.findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[3]")).getText()
+								+ "<br>" + "Products Expected: " + contactDetails.get("productName"));
 			}
 
 			else {
 
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User see the proposal is created").fail("FAILED:"
-						+ "<br>"
-						+ "Client Actual: " + context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[2]")).getText()
-						+ "<br>"
-						+ "Client Expected: " + contactDetails.get("firstName") + " " + contactDetails.get("lastName")
-						+ "<br>"
-						+ "Products Actual: " + context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[3]")).getText()
-						+ "<br>"
-						+ "Products Expected: " + contactDetails.get("productName"));
+						.createNode(new GherkinKeyword("When"), "User see the proposal is created")
+						.fail("FAILED:" + "<br>" + "Client Actual: "
+								+ context.getDriver()
+										.findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[2]")).getText()
+								+ "<br>" + "Client Expected: " + contactDetails.get("firstName") + " "
+								+ contactDetails.get("lastName") + "<br>" + "Products Actual: "
+								+ context.getDriver()
+										.findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[3]")).getText()
+								+ "<br>" + "Products Expected: " + contactDetails.get("productName"));
 
 			}
 
