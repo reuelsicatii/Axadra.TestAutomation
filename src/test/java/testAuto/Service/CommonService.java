@@ -16,7 +16,7 @@ import helper.webAppContext;
 
 public class CommonService {
 
-	public void attachedScreenshotToReport(String url, webAppContext context)
+	public void attachedScreenshotToReport(String description, webAppContext context)
 			throws IOException, ClassNotFoundException {
 
 		String date = new SimpleDateFormat("_yyMMdd_HHmmssSSS").format(new Date());
@@ -24,7 +24,7 @@ public class CommonService {
 		// XAMPP htdocs Folder - Image not resolving
 		// ====================================================
 		String DestFile = "C:/xampp/htdocs/AutomationProject/screenshots/mockUp/" + date
-				+ url.replaceFirst("^https?://", "").replaceAll("\\.com$", "").replace("/", "") + ".png";
+				+ description.replaceFirst("^https?://", "").replaceAll("\\.com$", "").replace("/", "") + ".png";
 		context.setSrcFile(((TakesScreenshot) context.getDriver()).getScreenshotAs(OutputType.FILE));
 
 		// SrcFile = ((TakesScreenshot)
@@ -39,7 +39,7 @@ public class CommonService {
 
 		// Attached Screenshot to Extent Report
 		context.getExtentTestScenario().createNode(" ======================================== ").info(
-				"Captured Screenshot: ",
+				"Captured Screenshot: "+ description,
 				MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
 
 		/*
