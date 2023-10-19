@@ -35,9 +35,11 @@ public class proposalBuilder extends webAppHelper {
 	By proposalTitle_textfield = By.xpath("//input[@id='proposal-title']");
 	By selectAContact_textfield = By.xpath("//div[@id='proposal-main-container']//a[text()='Create a Proposal']");
 	By writeAContact_textfield = By.xpath("//div[@id='select2-drop']//input");
+	By addNewContact_link = By.xpath("(//a[text()='Add new contact'])[1]");
 	By firstContact_list = By.xpath("//div[@id='select2-drop']//ul/li[1]");
 	By firstNameProposal_textfield = By.xpath("//input[@id='proposal-first-name']");
 	By lastNameProposal_textfield = By.xpath("//input[@id='proposal-last-name']");
+	By emailAddressProposal_textfield = By.xpath("//input[@id='proposal-email']");
 	By companyProposal_textfield = By.xpath("//input[@id='proposal-company']");
 	By next_button = By.xpath("//button[@id='proposal-submit']");
 
@@ -173,6 +175,67 @@ public class proposalBuilder extends webAppHelper {
 			context.getDriver().findElement(firstNameProposal_textfield).sendKeys(contactDetails.get("firstName"));
 			context.getDriver().findElement(lastNameProposal_textfield).clear();
 			context.getDriver().findElement(lastNameProposal_textfield).sendKeys(contactDetails.get("lastName"));
+			context.getDriver().findElement(companyProposal_textfield).clear();
+			context.getDriver().findElement(companyProposal_textfield).sendKeys(contactDetails.get("company"));
+			commonService.attachedScreenshotToReport("Adding Existing Contact", context);
+
+			// click next button
+			context.getWait().until(ExpectedConditions.elementToBeClickable(next_button));
+			context.getDriver().findElement(next_button).click();
+
+			// handling incase changes were made to firstName, lastName and company
+			try {
+				context.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
+						By.xpath("//div[@class='modal-footer']//button[text()='Save changes']")));
+				commonService.attachedScreenshotToReport("Saving changes on Existing Contact", context);
+				context.getDriver().findElement(By.xpath("//div[@class='modal-footer']//button[text()='Save changes']"))
+						.click();
+
+				Thread.sleep(10000);
+
+			} catch (Exception e) {
+				System.err.println(e.getMessage());
+			}
+
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User add an existing contact to the Proposal")
+					.pass("PASSED:");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User add an existing contact to the Proposal")
+						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+	
+	@When("User add a new contact to the Proposal")
+	public void userAddANewContactToTheProposal() throws Throwable {
+		try {		
+
+			contactDetails.put("firstName", crmService.generateRandomString(6));
+			contactDetails.put("lastName", crmService.generateRandomString(6));
+			contactDetails.put("emailAdd", crmService.generateRandomString(6) + "@gmail.com");
+			contactDetails.put("company", crmService.generateRandomString(6) + " company");
+			
+			// click "Add new contact" link
+			context.getDriver().findElement(addNewContact_link).click();
+
+			// populate firstName, lastname, emailAdd and company
+			context.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(firstNameProposal_textfield));
+			context.getDriver().findElement(firstNameProposal_textfield).clear();
+			context.getDriver().findElement(firstNameProposal_textfield).sendKeys(contactDetails.get("firstName"));
+			context.getDriver().findElement(lastNameProposal_textfield).clear();
+			context.getDriver().findElement(lastNameProposal_textfield).sendKeys(contactDetails.get("lastName"));
+			context.getDriver().findElement(emailAddressProposal_textfield).clear();
+			context.getDriver().findElement(emailAddressProposal_textfield).sendKeys(contactDetails.get("emailAdd"));
 			context.getDriver().findElement(companyProposal_textfield).clear();
 			context.getDriver().findElement(companyProposal_textfield).sendKeys(contactDetails.get("company"));
 			commonService.attachedScreenshotToReport("Adding Existing Contact", context);
