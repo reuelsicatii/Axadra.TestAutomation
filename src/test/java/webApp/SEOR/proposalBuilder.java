@@ -234,12 +234,12 @@ public class proposalBuilder extends webAppHelper {
 			context.getDriver().findElement(firstNameProposal_textfield).sendKeys(contactDetails.get("firstName"));
 			context.getDriver().findElement(lastNameProposal_textfield).clear();
 			context.getDriver().findElement(lastNameProposal_textfield).sendKeys(contactDetails.get("lastName"));
-			commonService.attachedScreenshotToReport("Adding Existing Contact", context);
+			commonService.attachedScreenshotToReport("Adding New Contact", context);
 			context.getDriver().findElement(emailAddressProposal_textfield).clear();
 			context.getDriver().findElement(emailAddressProposal_textfield).sendKeys(contactDetails.get("emailAdd"));
 			context.getDriver().findElement(companyProposal_textfield).clear();
 			context.getDriver().findElement(companyProposal_textfield).sendKeys(contactDetails.get("company"));
-			commonService.attachedScreenshotToReport("Adding Existing Contact", context);
+			commonService.attachedScreenshotToReport("Adding New Contact", context);
 
 			// click next button
 			context.getWait().until(ExpectedConditions.elementToBeClickable(next_button));
