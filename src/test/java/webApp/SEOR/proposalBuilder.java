@@ -234,6 +234,7 @@ public class proposalBuilder extends webAppHelper {
 			context.getDriver().findElement(firstNameProposal_textfield).sendKeys(contactDetails.get("firstName"));
 			context.getDriver().findElement(lastNameProposal_textfield).clear();
 			context.getDriver().findElement(lastNameProposal_textfield).sendKeys(contactDetails.get("lastName"));
+			commonService.attachedScreenshotToReport("Adding Existing Contact", context);
 			context.getDriver().findElement(emailAddressProposal_textfield).clear();
 			context.getDriver().findElement(emailAddressProposal_textfield).sendKeys(contactDetails.get("emailAdd"));
 			context.getDriver().findElement(companyProposal_textfield).clear();
@@ -259,7 +260,7 @@ public class proposalBuilder extends webAppHelper {
 			}
 
 			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User add an existing contact to the Proposal")
+					.createNode(new GherkinKeyword("When"), "User add a new contact to the Proposal")
 					.pass("PASSED:");
 
 		} catch (Exception e) {
@@ -267,7 +268,7 @@ public class proposalBuilder extends webAppHelper {
 			// Extent Report
 			try {
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User add an existing contact to the Proposal")
+						.createNode(new GherkinKeyword("When"), "User add a new contact to the Proposal")
 						.fail("FAILED: " + e.getMessage());
 				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
