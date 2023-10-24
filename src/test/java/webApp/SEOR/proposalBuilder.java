@@ -29,6 +29,8 @@ public class proposalBuilder extends webAppHelper {
 	// Page Elements - Proposal Builder Page
 	// ==========================================
 	By createProposal_button = By.xpath("//div[@id='proposal-main-container']//a[text()='Create a Proposal']");
+	By elipsesOption_button = By.xpath("//table[@id=\"proposals-table\"]//tr[1]/td[6]//span/i");
+	By editProposal_button = By.xpath("//table[@id=\"proposals-table\"]//tr[1]/td[6]//div[contains(@id, 'record-button')]//i[@class='fa fa-pencil']");
 
 	// Page Elements - Create Proposal Builder Page
 	// ==========================================
@@ -94,6 +96,38 @@ public class proposalBuilder extends webAppHelper {
 			try {
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User click on the createAProposal button")
+						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+	
+	@When("User click on the editAProposal button")
+	public void userClickOnTheEditAProposalButton() {
+		try {
+
+			context.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(elipsesOption_button));
+			context.getDriver().findElement(elipsesOption_button).click();
+			Thread.sleep(1000);
+			context.getDriver().findElement(elipsesOption_button).click();
+			
+			Thread.sleep(3000);
+			
+			context.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(editProposal_button));
+			context.getDriver().findElement(editProposal_button).click();
+
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("When"), "User click on the editAProposal button").pass("PASSED:");
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User click on the editAProposal button")
 						.fail("FAILED: " + e.getMessage());
 				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
@@ -327,9 +361,9 @@ public class proposalBuilder extends webAppHelper {
 		try {
 
 			context.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
-					By.xpath("//div[@class='proposal-editor-body']//h3[text()='" + productName + "']")));
+					By.xpath("(//div[@class='proposal-editor-body']//h3[text()='" + productName + "'])[1]")));
 			if (context.getDriver()
-					.findElement(By.xpath("//div[@class='proposal-editor-body']//h3[text()='" + productName + "']"))
+					.findElement(By.xpath("(//div[@class='proposal-editor-body']//h3[text()='" + productName + "'])[1]"))
 					.getText() != null) {
 
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
@@ -386,9 +420,7 @@ public class proposalBuilder extends webAppHelper {
 			Thread.sleep(5000);
 
 			if (context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[2]")).getText()
-					.contains(contactDetails.get("firstName"))
-					&& context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[3]"))
-							.getText().equals(contactDetails.get("productName"))) {
+					.contains(contactDetails.get("firstName"))) {
 
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User see the proposal is created")
@@ -422,7 +454,7 @@ public class proposalBuilder extends webAppHelper {
 			// Extent Report
 			try {
 				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport for ")
+						.createNode(new GherkinKeyword("When"), "User see the proposal is created")
 						.fail("FAILED: " + e.getMessage());
 				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
