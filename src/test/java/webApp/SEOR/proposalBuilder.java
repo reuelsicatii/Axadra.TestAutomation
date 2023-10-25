@@ -30,7 +30,8 @@ public class proposalBuilder extends webAppHelper {
 	// ==========================================
 	By createProposal_button = By.xpath("//div[@id='proposal-main-container']//a[text()='Create a Proposal']");
 	By elipsesOption_button = By.xpath("//table[@id=\"proposals-table\"]//tr[1]/td[6]//span/i");
-	By editProposal_button = By.xpath("//table[@id=\"proposals-table\"]//tr[1]/td[6]//div[contains(@id, 'record-button')]//i[@class='fa fa-pencil']");
+	By editProposal_button = By.xpath(
+			"//table[@id=\"proposals-table\"]//tr[1]/td[6]//div[contains(@id, 'record-button')]//i[@class='fa fa-pencil']");
 
 	// Page Elements - Create Proposal Builder Page
 	// ==========================================
@@ -104,7 +105,7 @@ public class proposalBuilder extends webAppHelper {
 			}
 		}
 	}
-	
+
 	@When("User click on the editAProposal button")
 	public void userClickOnTheEditAProposalButton() {
 		try {
@@ -113,9 +114,9 @@ public class proposalBuilder extends webAppHelper {
 			context.getDriver().findElement(elipsesOption_button).click();
 			Thread.sleep(1000);
 			context.getDriver().findElement(elipsesOption_button).click();
-			
+
 			Thread.sleep(3000);
-			
+
 			context.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(editProposal_button));
 			context.getDriver().findElement(editProposal_button).click();
 
@@ -249,16 +250,16 @@ public class proposalBuilder extends webAppHelper {
 			}
 		}
 	}
-	
+
 	@When("User add a new contact to the Proposal")
 	public void userAddANewContactToTheProposal() throws Throwable {
-		try {		
+		try {
 
 			contactDetails.put("firstName", crmService.generateRandomString(6));
 			contactDetails.put("lastName", crmService.generateRandomString(6));
 			contactDetails.put("emailAdd", crmService.generateRandomString(6) + "@gmail.com");
 			contactDetails.put("company", crmService.generateRandomString(6) + " company");
-			
+
 			// click "Add new contact" link
 			context.getDriver().findElement(addNewContact_link).click();
 
@@ -294,8 +295,7 @@ public class proposalBuilder extends webAppHelper {
 			}
 
 			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User add a new contact to the Proposal")
-					.pass("PASSED:");
+					.createNode(new GherkinKeyword("When"), "User add a new contact to the Proposal").pass("PASSED:");
 
 		} catch (Exception e) {
 
@@ -363,7 +363,8 @@ public class proposalBuilder extends webAppHelper {
 			context.getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
 					By.xpath("(//div[@class='proposal-editor-body']//h3[text()='" + productName + "'])[1]")));
 			if (context.getDriver()
-					.findElement(By.xpath("(//div[@class='proposal-editor-body']//h3[text()='" + productName + "'])[1]"))
+					.findElement(
+							By.xpath("(//div[@class='proposal-editor-body']//h3[text()='" + productName + "'])[1]"))
 					.getText() != null) {
 
 				context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
@@ -418,34 +419,40 @@ public class proposalBuilder extends webAppHelper {
 
 			// sleep - no anchor
 			Thread.sleep(5000);
+			boolean failedStep = true;
+			for (int i = 0; i < context.getDriver().findElements(By.xpath("//table[@id='proposals-table']//tr")).size()
+					+ 1; i++) {
 
-			if (context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[2]")).getText()
-					.contains(contactDetails.get("firstName"))) {
+				if (context.getDriver()
+						.findElement(By.xpath("//table[@id='proposals-table']//tr[" + (i + 1) + "]/td[2]")).getText()
+						.contains(contactDetails.get("firstName"))) {
 
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User see the proposal is created")
-						.pass("PASSED:" + "<br>" + "Client Actual: "
-								+ context.getDriver()
-										.findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[2]")).getText()
-								+ "<br>" + "Client Expected: " + contactDetails.get("firstName") + " "
-								+ contactDetails.get("lastName") + "<br>" + "Products Actual: "
-								+ context.getDriver()
-										.findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[3]")).getText()
-								+ "<br>" + "Products Expected: " + contactDetails.get("productName"));
+					context.getExtentTestScenario()
+							.createNode(new GherkinKeyword("When"), "User see the proposal is created").pass("PASSED:"
+									+ "<br>" + "Client Actual: " + context.getDriver()
+											.findElement(By
+													.xpath("//table[@id='proposals-table']//tr[" + (i + 1) + "]/td[2]"))
+											.getText()
+									+ "<br>" + "Client Expected: " + contactDetails.get("firstName") + " "
+									+ contactDetails.get("lastName") + "<br>" + "Products Actual: "
+									+ context.getDriver()
+											.findElement(By
+													.xpath("//table[@id='proposals-table']//tr[" + (i + 1) + "]/td[3]"))
+											.getText()
+									+ "<br>" + "Products Expected: " + contactDetails.get("productName"));
+
+					failedStep = false;
+					break;
+				}
 			}
 
-			else {
+			if (failedStep) {
 
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("When"), "User see the proposal is created")
-						.fail("FAILED:" + "<br>" + "Client Actual: "
-								+ context.getDriver()
-										.findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[2]")).getText()
-								+ "<br>" + "Client Expected: " + contactDetails.get("firstName") + " "
-								+ contactDetails.get("lastName") + "<br>" + "Products Actual: "
-								+ context.getDriver()
-										.findElement(By.xpath("//table[@id='proposals-table']//tr[1]/td[3]")).getText()
-								+ "<br>" + "Products Expected: " + contactDetails.get("productName"));
+						.fail("FAILED:" + "<br>" + "Client Expected: " + contactDetails.get("firstName") + " "
+								+ contactDetails.get("lastName") + "<br>" + "Products Expected: "
+								+ contactDetails.get("productName"));
 
 			}
 
