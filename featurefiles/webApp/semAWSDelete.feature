@@ -3,8 +3,8 @@ Feature: Dummy
 
   Background: #Precondition
 
-  @DeleteBuckets
-  Scenario Outline: Delete Buckets between <from> and <to> links
+  @DeleteFiles
+  Scenario Outline: Delete Files between <from> and <to> links
     Given User navigates to "<loginUrl>" using "<browser>"
     And I copy the the href between <from> and <to> links
     When User navigates to "<awsURL>"
