@@ -82,6 +82,14 @@ public class semAWSPage extends webAppHelper {
 			context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "User SignIn Successfully")
 					.pass("PASSED: ");
 
+			try {
+				// Accept Cookies
+				context.getDriver().findElement(By.xpath("//button[@data-id='awsccc-cb-btn-accept']")).click();
+				commonService.attachedScreenshotToReport("Accepting Cookies", context);
+			} catch (Exception e) {
+				commonService.attachedScreenshotToReport("Failed to accept Cookies: " + e.getMessage(), context);
+			}
+
 		} catch (Exception e) {
 
 			try {
@@ -106,17 +114,6 @@ public class semAWSPage extends webAppHelper {
 				context.getDriver().get(awsLinks.get(i));
 				Thread.sleep(10000);
 				// context.getDriver().executeScript("document.body.style.zoom = '0.65'");
-
-				try {
-					// Accept Cookies
-					context.getDriver().findElement(By.xpath("//button[@data-id='awsccc-cb-btn-accept']")).click();
-					commonService.attachedScreenshotToReport("Accepting Cookies", context);
-				} catch (Exception e) {
-					commonService.attachedScreenshotToReport("Failed to accept Cookies: " + e.getMessage(), context);
-				}
-
-				// sleep
-				Thread.sleep(10000);
 
 				context.getWait().until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath("//button[@data-testid='delete-objects-button']")));
@@ -196,7 +193,7 @@ public class semAWSPage extends webAppHelper {
 
 					// click delete_button
 					context.getDriver().findElement(By.xpath("//button[@data-testid='delete-objects-button']")).click();
-					
+
 					// sleep
 					Thread.sleep(5000);
 
