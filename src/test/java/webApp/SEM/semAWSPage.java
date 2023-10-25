@@ -76,7 +76,7 @@ public class semAWSPage extends webAppHelper {
 
 		try {
 			context.getDriver().findElement(signIn_button).click();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 
 			// Extent Report
 			context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "User SignIn Successfully")
@@ -112,7 +112,7 @@ public class semAWSPage extends webAppHelper {
 			try {
 
 				context.getDriver().get(awsLinks.get(i));
-				Thread.sleep(10000);
+				Thread.sleep(5000);
 				// context.getDriver().executeScript("document.body.style.zoom = '0.65'");
 
 				context.getWait().until(ExpectedConditions
@@ -121,18 +121,18 @@ public class semAWSPage extends webAppHelper {
 				// Sort Files Descending
 				context.getDriver().findElement(By.xpath("(//div[@data-focus-id='sorting-control-LastModified'])[1]"))
 						.click();
-				Thread.sleep(5000);
+				Thread.sleep(3000);
 				context.getDriver().findElement(By.xpath("(//div[@data-focus-id='sorting-control-LastModified'])[1]"))
 						.click();
 
 				// sleep
-				Thread.sleep(5000);
+				Thread.sleep(3000);
 				commonService.attachedScreenshotToReport("Sorting Files", context);
 
 				// Select Files for Deletion
 				boolean DeleteFiles = false;
 				for (int j = 1; j < context.getDriver()
-						.findElements(By.xpath("//table[contains(@class, 'awsui_table')]//tr")).size() - 20; j++) {
+						.findElements(By.xpath("//table[contains(@class, 'awsui_table')]//tr")).size() / 2; j++) {
 
 					if (context.getDriver()
 							.findElement(By.xpath("//table[contains(@class, 'awsui_table')]//tr[" + j + "]/td[4]"))
@@ -167,7 +167,7 @@ public class semAWSPage extends webAppHelper {
 						}
 
 						// sleep
-						Thread.sleep(5000);
+						Thread.sleep(3000);
 
 						// click element
 						context.getDriver()
@@ -176,7 +176,7 @@ public class semAWSPage extends webAppHelper {
 								.click();
 
 						// sleep
-						Thread.sleep(5000);
+						Thread.sleep(3000);
 
 						DeleteFiles = true;
 
@@ -188,14 +188,14 @@ public class semAWSPage extends webAppHelper {
 				if (DeleteFiles) {
 
 					// sleep
-					Thread.sleep(5000);
+					Thread.sleep(3000);
 					commonService.attachedScreenshotToReport("Delete Files", context);
 
 					// click delete_button
 					context.getDriver().findElement(By.xpath("//button[@data-testid='delete-objects-button']")).click();
 
 					// sleep
-					Thread.sleep(5000);
+					Thread.sleep(3000);
 
 					// populate permanently_delete
 					context.getWait().until(ExpectedConditions
@@ -208,7 +208,7 @@ public class semAWSPage extends webAppHelper {
 							.sendKeys("permanently delete");
 
 					// sleep
-					Thread.sleep(5000);
+					Thread.sleep(3000);
 					commonService.attachedScreenshotToReport("Permanent Delete Files", context);
 
 					// click deleteObject_button
@@ -218,7 +218,7 @@ public class semAWSPage extends webAppHelper {
 					context.getExtentTestScenario()
 							.createNode(new GherkinKeyword("When"), "User delete the AWS Buckets")
 							.pass("PASSED:" + "<br>" + "Link: " + awsLinks.get(i));
-					Thread.sleep(5000);
+					Thread.sleep(3000);
 					commonService.attachedScreenshotToReport("Successful Deletion of Files", context);
 
 				}
@@ -228,7 +228,7 @@ public class semAWSPage extends webAppHelper {
 					context.getExtentTestScenario()
 							.createNode(new GherkinKeyword("When"), "User delete the AWS Buckets")
 							.pass("PASSED:" + "<br>" + "Link: " + awsLinks.get(i));
-					Thread.sleep(5000);
+					Thread.sleep(3000);
 					commonService.attachedScreenshotToReport("Nothing to Delete", context);
 
 				}
