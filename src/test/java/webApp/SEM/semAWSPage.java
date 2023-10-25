@@ -104,7 +104,7 @@ public class semAWSPage extends webAppHelper {
 			try {
 
 				context.getDriver().get(awsLinks.get(i));
-				Thread.sleep(3000);
+				Thread.sleep(10000);
 				// context.getDriver().executeScript("document.body.style.zoom = '0.65'");
 
 				try {
@@ -116,7 +116,7 @@ public class semAWSPage extends webAppHelper {
 				}
 
 				// sleep
-				Thread.sleep(5000);
+				Thread.sleep(10000);
 
 				context.getWait().until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath("//button[@data-testid='delete-objects-button']")));
@@ -124,7 +124,7 @@ public class semAWSPage extends webAppHelper {
 				// Sort Files Descending
 				context.getDriver().findElement(By.xpath("(//div[@data-focus-id='sorting-control-LastModified'])[1]"))
 						.click();
-				Thread.sleep(3000);
+				Thread.sleep(5000);
 				context.getDriver().findElement(By.xpath("(//div[@data-focus-id='sorting-control-LastModified'])[1]"))
 						.click();
 
@@ -170,7 +170,7 @@ public class semAWSPage extends webAppHelper {
 						}
 
 						// sleep
-						Thread.sleep(2000);
+						Thread.sleep(5000);
 
 						// click element
 						context.getDriver()
@@ -179,7 +179,7 @@ public class semAWSPage extends webAppHelper {
 								.click();
 
 						// sleep
-						Thread.sleep(2000);
+						Thread.sleep(5000);
 
 						DeleteFiles = true;
 
@@ -196,6 +196,9 @@ public class semAWSPage extends webAppHelper {
 
 					// click delete_button
 					context.getDriver().findElement(By.xpath("//button[@data-testid='delete-objects-button']")).click();
+					
+					// sleep
+					Thread.sleep(5000);
 
 					// populate permanently_delete
 					context.getWait().until(ExpectedConditions
