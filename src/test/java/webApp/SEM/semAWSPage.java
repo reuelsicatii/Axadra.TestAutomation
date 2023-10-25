@@ -115,6 +115,14 @@ public class semAWSPage extends webAppHelper {
 				Thread.sleep(5000);
 				// context.getDriver().executeScript("document.body.style.zoom = '0.65'");
 
+				try {
+					// Accept Cookies
+					context.getDriver().findElement(By.xpath("//button[@data-id='awsccc-cb-btn-accept']")).click();
+					commonService.attachedScreenshotToReport("Accepting Cookies", context);
+				} catch (Exception e) {
+					commonService.attachedScreenshotToReport("Failed to accept Cookies: " + e.getMessage(), context);
+				}
+
 				context.getWait().until(ExpectedConditions
 						.visibilityOfElementLocated(By.xpath("//button[@data-testid='delete-objects-button']")));
 
