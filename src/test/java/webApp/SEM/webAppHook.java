@@ -204,7 +204,7 @@ public class webAppHook extends webAppHelper {
 		String jsonPayload = "{\"text\": \" SELENIUM - Automation" 
 				+ "\\n ===================== "
 				+ "\\n Feature Name: " + scenarioName 
-				+ "\\n Report Link: http://localhost/AutomationProject/reports/"+ scenarioName +"/"+ date +".html"
+				+ "\\n Report Link: http://automation-report.cloud/AutomationProject/reports/"+ scenarioName +"/"+ date +".html"
 				+ "\\n Test Case - FAILED: "+ failedTestScenario +" of "+ testCaseCount + " \"}";
 
         RequestBody requestBody = RequestBody.create(jsonPayload, MediaType.get("application/json"));
