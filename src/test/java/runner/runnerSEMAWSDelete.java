@@ -17,7 +17,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
 		glue = { "webApp.SEM"},
-		tags =  "@DeleteBuckets",
+		tags =  "@DeleteFiles",
 		//tags =  "@Add_And_Remove_Single_Keyword_From_Trash_Button or @Add_And_Remove_Single_Keyword_From_Remove_Button",
 		plugin =  {				
 				"pretty",

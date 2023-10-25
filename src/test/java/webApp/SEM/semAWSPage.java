@@ -73,9 +73,27 @@ public class semAWSPage extends webAppHelper {
 
 	@When("User click the AWS SignIn button")
 	public void userClickTheAWSSignInButton() throws InterruptedException {
-		context.getDriver().findElement(signIn_button).click();
 
-		Thread.sleep(5000);
+		try {
+			context.getDriver().findElement(signIn_button).click();
+			Thread.sleep(5000);
+
+			// Extent Report
+			context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "User SignIn Successfully")
+					.fail("FAILED: ");
+
+		} catch (Exception e) {
+
+			try {
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "User SignIn Successfully")
+						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 	@When("User delete the AWS Buckets")
@@ -135,13 +153,11 @@ public class semAWSPage extends webAppHelper {
 											By.xpath("//table[contains(@class, 'awsui_table')]//tr[" + j + "]/td[4]"))
 									.getText().contains("October 25, 2023")) {
 
-						
 						if (j > 2) {
 
 							// scroll to view
-							context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
-									context.getDriver()
-											.findElement(By.xpath("//button[@data-testid='delete-objects-button']")));
+							context.getDriver().executeScript("arguments[0].scrollIntoView(true);", context.getDriver()
+									.findElement(By.xpath("//button[@data-testid='delete-objects-button']")));
 
 						}
 
