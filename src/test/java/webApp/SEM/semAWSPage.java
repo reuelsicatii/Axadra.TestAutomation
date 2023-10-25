@@ -80,7 +80,7 @@ public class semAWSPage extends webAppHelper {
 
 			// Extent Report
 			context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "User SignIn Successfully")
-					.fail("FAILED: ");
+					.pass("PASSED: ");
 
 		} catch (Exception e) {
 
@@ -106,6 +106,14 @@ public class semAWSPage extends webAppHelper {
 				context.getDriver().get(awsLinks.get(i));
 				Thread.sleep(3000);
 				// context.getDriver().executeScript("document.body.style.zoom = '0.65'");
+
+				try {
+					// Accept Cookies
+					context.getDriver().findElement(By.xpath("//button[@data-id='awsccc-cb-btn-accept']")).click();
+					commonService.attachedScreenshotToReport("Accepting Cookies", context);
+				} catch (Exception e) {
+					commonService.attachedScreenshotToReport("Failed to accept Cookies: " + e.getMessage(), context);
+				}
 
 				// sleep
 				Thread.sleep(5000);
@@ -192,6 +200,10 @@ public class semAWSPage extends webAppHelper {
 					// populate permanently_delete
 					context.getWait().until(ExpectedConditions
 							.visibilityOfElementLocated(By.xpath("(//input[@id='awsui-input-0'])[2]")));
+					// scroll to view
+					context.getDriver().executeScript("arguments[0].scrollIntoView(true);", context.getDriver()
+							.findElement(By.xpath("(//button[contains(@class, 'awsui-button')])[2]")));
+
 					context.getDriver().findElement(By.xpath("(//input[@id='awsui-input-0'])[2]"))
 							.sendKeys("permanently delete");
 
