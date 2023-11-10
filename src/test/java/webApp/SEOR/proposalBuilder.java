@@ -29,9 +29,11 @@ public class proposalBuilder extends webAppHelper {
 	// Page Elements - Proposal Builder Page
 	// ==========================================
 	By createProposal_button = By.xpath("//div[@id='proposal-main-container']//a[text()='Create a Proposal']");
-	By elipsesOption_button = By.xpath("//table[@id=\"proposals-table\"]//tr[1]/td[6]//span/i");
+	By elipsesOption_button = By.xpath("//table[@id='proposals-table']//tr[1]/td[6]//span/i");
 	By editProposal_button = By.xpath(
-			"//table[@id=\"proposals-table\"]//tr[1]/td[6]//div[contains(@id, 'record-button')]//i[@class='fa fa-pencil']");
+			"//table[@id='proposals-table']//tr[1]/td[6]//div[contains(@id, 'record-button')]//i[@class='fa fa-pencil']");
+	By delete_button = By.xpath("//div[@id='selection-details']//button[text()='Delete']");
+	By deleteModal_button = By.xpath("//div[@class='modal-footer']//button[text()='Delete']");
 
 	// Page Elements - Create Proposal Builder Page
 	// ==========================================
@@ -471,9 +473,91 @@ public class proposalBuilder extends webAppHelper {
 		}
 	}
 
-	private int contactDetails(String string) {
-		// TODO Auto-generated method stub
-		return 0;
+	@When("User deletes a proposal")
+	public void userDeletesAProposal() throws InterruptedException {
+
+		// sleep - no anchor
+		Thread.sleep(5000);
+
+		contactDetails.put("fullName",
+				context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[6]/td[2]")).getText());
+		contactDetails.put("productName",
+				context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[6]/td[3]")).getText());
+
+		context.getDriver().findElement(By.xpath("//table[@id='proposals-table']//tr[6]/td[1]//span")).click();
+
+		context.getWait().until(ExpectedConditions.visibilityOfElementLocated(delete_button));
+		context.getDriver().findElement(delete_button).click();
+
+		context.getWait().until(ExpectedConditions.visibilityOfElementLocated(deleteModal_button));
+		context.getDriver().findElement(deleteModal_button).click();
+
+	}
+
+	@Then("User see the proposal is deleted")
+	public void userSeeTheProposalIsDeleted() {
+		try {
+
+			// sleep - no anchor
+			Thread.sleep(5000);
+			boolean passedStep = true;
+			for (int i = 0; i < context.getDriver().findElements(By.xpath("//table[@id='proposals-table']//tbody/tr"))
+					.size(); i++) {
+
+				if (i > 8) {
+
+					// scroll to view
+					context.getDriver().executeScript("arguments[0].scrollIntoView(true);", context.getDriver()
+							.findElement(By.xpath("//table[@id='proposals-table']//tbody/tr[" + (i) + "]")));
+
+				}
+
+				if (context.getDriver()
+						.findElement(By.xpath("//table[@id='proposals-table']//tbody/tr[" + (i + 1) + "]/td[2]"))
+						.getText().contains(contactDetails.get("fullName"))) {
+
+					context.getExtentTestScenario()
+							.createNode(new GherkinKeyword("When"), "User see the proposal is deleted").fail("FAILED:"
+									+ "<br>" + "Client Actual: " + context.getDriver()
+											.findElement(By.xpath(
+													"//table[@id='proposals-table']//tbody/tr[" + (i + 1) + "]/td[2]"))
+											.getText()
+									+ "<br>" + "Client Expected: " + contactDetails.get("firstName") + " "
+									+ contactDetails.get("lastName") + "<br>" + "Products Actual: "
+									+ context.getDriver()
+											.findElement(By.xpath(
+													"//table[@id='proposals-table']//tbody/tr[" + (i + 1) + "]/td[3]"))
+											.getText()
+									+ "<br>" + "Products Expected: " + contactDetails.get("productName"));
+
+					passedStep = false;
+					break;
+				}
+			}
+
+			if (passedStep) {
+
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User see the proposal is deleted")
+						.pass("PASSED:" + "<br>" + "ClientName Deleted: " + contactDetails.get("fullName") + "<br>"
+								+ "Products Deleted: " + contactDetails.get("productName"));
+
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("When"), "User see the proposal is deleted")
+						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
 	}
 
 }

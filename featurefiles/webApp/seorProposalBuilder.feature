@@ -75,3 +75,18 @@ Feature: SEOR > Agency Tools > Proposal Builder
     Examples: 
       | browser | loginUrl                              | proposalBuilderURL                            | productCategory  | productName              |
       | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/proposals | Web Dev Packages | Basic Web Design Package |
+
+  @DeleteAProposal
+  Scenario Outline: Delete a Proposal
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "reuel@axadra.com"
+    And User enter the password as "asdasdasd"
+    And User click on the login button
+    Then User is successfully login
+    When User navigates to "<proposalBuilderURL>"
+    And User deletes a proposal
+    Then User see the proposal is deleted
+
+    Examples: 
+      | browser | loginUrl                              | proposalBuilderURL                            | productCategory  | productName              |
+      | chrome  | https://account.seoreseller.com/login | https://account.seoreseller.com/pro/proposals | Web Dev Packages | Basic Web Design Package |
