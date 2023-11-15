@@ -142,7 +142,7 @@ public class webApiHook extends webAppHelper {
 
 		// JSON payload as a string
 		String jsonPayload = "{\"text\": \" SELENIUM - Automation" + "\\n ===================== " + "\\n Feature Name: "
-				+ scenarioName + "\\n Report Link: http://localhost/AutomationProject/reports/"
+				+ scenarioName + "\\n Report Link: http://automation-report.cloud/AutomationProject/reports/"
 				+ scenarioName + "/" + date + ".html" + "\\n Test Case - FAILED: " + failedTestScenario + " of "
 				+ testCaseCount + " \"}";
 
