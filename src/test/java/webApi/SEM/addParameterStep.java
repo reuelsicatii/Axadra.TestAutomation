@@ -1,4 +1,4 @@
-package webApi.ApiName;
+package webApi.SEM;
 
 import java.net.MalformedURLException;
 

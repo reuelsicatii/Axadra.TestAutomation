@@ -1,0 +1,36 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Links Built - 422 - getAccount",
+	"type": "object",
+	"properties": {
+		"statusCode": {
+			"type": "number"
+		},
+		"response": {
+			"type": "object",
+			"properties": {
+				"error": {
+					"type": "object",
+					"properties": {
+						"accountId": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					},
+					"required": [
+						"accountId"
+					]
+				}
+			},
+			"required": [
+				"error"
+			]
+		}
+	},
+	"required": [
+		"statusCode",
+		"response"
+	]
+}

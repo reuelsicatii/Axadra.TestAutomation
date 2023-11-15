@@ -1,0 +1,18 @@
+{
+  "statusCode": 200,
+  "response": {
+    "data": {
+      "accountId": 7140,
+      "email": "chew@truelogic.com.ph",
+      "billingEmail": "ariel+20201124@axadra.com",
+      "firstName": "Rickson",
+      "lastName": "Chew",
+      "street": "9780 Jaka building",
+      "city": "makati city",
+      "state": "",
+      "country": "US",
+      "zip": "4105",
+      "phone": "2015555555"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Links Built - 200 - getAccount",
+  "type": "object",
+  "properties": {
+    "statusCode": {
+      "type": "number"
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "accountId": {
+              "type": "number"
+            },
+            "email": {
+              "type": "string"
+            },
+            "billingEmail": {
+              "type": "string"
+            },
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "street": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "zip": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "accountId",
+            "email",
+            "billingEmail",
+            "firstName",
+            "lastName",
+            "street",
+            "city",
+            "state",
+            "country",
+            "zip",
+            "phone"
+          ]
+        }
+      },
+      "required": [
+        "data"
+      ]
+    }
+  },
+  "required": [
+    "statusCode",
+    "response"
+  ]
+}

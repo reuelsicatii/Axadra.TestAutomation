@@ -12,12 +12,12 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 @CucumberOptions(
 		
 		
-		features = {"featurefiles/webAPi/reqresDummyUsers.feature"},
+		features = {"featurefiles/webApi/semLinksBuilt.feature"},
 		dryRun = !true,
 		snippets = SnippetType.CAMELCASE,
 		monochrome = true,				
-		glue = { "webApi.ApiName"},
-		tags =  "@Reqres_Dummy_Users",
+		glue = { "webApi.SEM"},
+		tags =  "@LinksBuilt",
 		plugin =  {
 				
 				"pretty",				
@@ -29,7 +29,7 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 
 	)
 
-public class runnerReqresDummyUsers extends AbstractTestNGCucumberTests {	
+public class runnerSEMLinksBuilt extends AbstractTestNGCucumberTests {	
 	
 	
 	// Running Cucumber - Parallel Test
