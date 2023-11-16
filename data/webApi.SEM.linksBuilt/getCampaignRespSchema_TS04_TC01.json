@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Links Built - 422 - getCampaign",
+  "type": "object",
+  "properties": {
+    "statusCode": {
+      "type": "number"
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "campaignId": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "campaignId"
+          ]
+        }
+      },
+      "required": [
+        "error"
+      ]
+    }
+  },
+  "required": [
+    "statusCode",
+    "response"
+  ]
+}

@@ -17,7 +17,7 @@ Feature: API > LinksBuilt
   #Then I validate response status against "<expectedStatus>"
   #And I validate response body against schema "<expectedSchemaBody>"
   #And I validate response body against raw "<expectedBody>"
- 
+  
   @getAccount200
   Scenario Outline: getAccount - 200 - /api/v1/semify/account/details?accountId=
     Given I set a request
@@ -47,3 +47,33 @@ Feature: API > LinksBuilt
     Examples: 
       | BaseURL                      | BasePath                       | accountId | method | expectedStatus | expectedSchemaBody                                                 | expectedBody                                                 |
       | http://dev.sync.accesshub.co | /api/v1/semify/account/details |           | GET    |            422 | \\data\\webApi.SEM.linksBuilt\\getAccountRespSchema_TS02_TC01.json | \\data\\webApi.SEM.linksBuilt\\getAccountResp_TS02_TC01.json |
+
+  @getCampaign200
+  Scenario Outline: getCampaign - 200 - /api/v1/semify/campaign/details?campaignId=
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add parameter Key as "campaignId" and Value as "<campaignId>"
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                      | BasePath                        | campaignId | method | expectedStatus | expectedSchemaBody                                                  | expectedBody                                                  |
+      | http://dev.sync.accesshub.co | /api/v1/semify/campaign/details |          2 | GET    |            200 | \\data\\webApi.SEM.linksBuilt\\getCampaignRespSchema_TS03_TC01.json | \\data\\webApi.SEM.linksBuilt\\getCampaignResp_TS03_TC01.json |
+
+  @getCampaign422
+  Scenario Outline: getCampaign - 422 - /api/v1/semify/campaign/details?campaignId=
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add parameter Key as "campaignId" and Value as "<campaignId>"
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                      | BasePath                        | campaignId | method | expectedStatus | expectedSchemaBody                                                  | expectedBody                                                  |
+      | http://dev.sync.accesshub.co | /api/v1/semify/campaign/details |            | GET    |            422 | \\data\\webApi.SEM.linksBuilt\\getCampaignRespSchema_TS04_TC01.json | \\data\\webApi.SEM.linksBuilt\\getCampaignResp_TS04_TC01.json |
