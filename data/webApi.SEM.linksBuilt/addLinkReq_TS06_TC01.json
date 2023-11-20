@@ -1,0 +1,10 @@
+{
+	"response": {
+		"error": {
+			"links[]": [
+				"The Links field is required."
+			]
+		}
+	},
+	"statusCode": 422
+}

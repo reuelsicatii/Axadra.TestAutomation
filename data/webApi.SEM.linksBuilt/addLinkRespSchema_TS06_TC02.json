@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Links Built - 422 - addLink",
+  "type": "object",
+  "properties": {
+    "response": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "project_id"
+          ]
+        }
+      },
+      "required": [
+        "error"
+      ]
+    },
+    "statusCode": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "response",
+    "statusCode"
+  ]
+}

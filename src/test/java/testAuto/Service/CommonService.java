@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.text.RandomStringGenerator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -58,6 +59,13 @@ public class CommonService {
 						"</div>\r\n" + 
 						"</div>");
 		*/
+	}
+	
+	public String generateRandomString(int length) throws Throwable {
+		RandomStringGenerator generator = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
+
+		return generator.generate(length);
+
 	}
 
 }
