@@ -17,6 +17,32 @@ Feature: API > LinksBuilt
   #Then I validate response status against "<expectedStatus>"
   #And I validate response body against schema "<expectedSchemaBody>"
   #And I validate response body against raw "<expectedBody>"
+  
+  
+  @sendOrder200
+  Scenario Outline: sendOrder - 200 - /api/seor/api.cfc?method=sendOrder
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add formBody Key as "SemSig" and Value as "SemSig"
+    And I add formBody Key as "resellerId" and Value as "7140"
+    And I add formBody Key as "campaignId" and Value as "1"
+    And I add formBody Key as "invoiceId" and Value as "dynamicNumber"
+    And I add formBody Key as "taskId" and Value as "dynamicNumber"
+    And I add formBody Key as "product" and Value as "tier 2"
+    And I add formBody Key as "targetURL" and Value as "dynamicURL"
+    And I add formBody Key as "targetAnchor" and Value as "dynamicKeyword"
+    And I add formBody Key as "buildMonthOne" and Value as "<buildMonthOne>"
+    And I add formBody Key as "specialInstructions" and Value as "<specialInstructions>"
+    And I add the formBody to the request
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                | BasePath                           | buildMonthOne | specialInstructions | method | expectedStatus | expectedSchemaBody                                                | expectedBody                                                |
+      | https://uat.semify.com | /api/seor/api.cfc?method=sendOrder |             0 | Tier1 - EMAT        | POST   |            200 | \\data\\webApi.SEM.linksBuilt\\sendOrderRespSchema_TS07_TC01.json | \\data\\webApi.SEM.linksBuilt\\sendOrderResp_TS07_TC01.json |
+
   @getAccount200
   Scenario Outline: getAccount - 200 - /api/v1/semify/account/details?accountId=
     Given I set a request
@@ -82,8 +108,8 @@ Feature: API > LinksBuilt
     Given I set a request
     And I set the baseURL to "<BaseURL>"
     And I set the basePath to "<BasePath>"
-    And I update the "<requestBody>" whose "links.url" field is "dynamicURL"
-    And I add the "<requestBody>" to the request
+    And I update the JSON "<requestBody>" whose "links.url" field is "dynamicURL"
+    And I add the JSON "<requestBody>" to the request
     And I build a "<method>" request
     Then I validate response status against "<expectedStatus>"
     And I validate response body against raw "<expectedBody>"
@@ -99,7 +125,7 @@ Feature: API > LinksBuilt
     Given I set a request
     And I set the baseURL to "<BaseURL>"
     And I set the basePath to "<BasePath>"
-    And I add the "<requestBody>" to the request
+    And I add the JSON "<requestBody>" to the request
     And I build a "<method>" request
     Then I validate response status against "<expectedStatus>"
     And I validate response body against raw "<expectedBody>"

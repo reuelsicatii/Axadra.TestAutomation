@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Links Built - 200 - sendOrder",
+  "type": "object",
+  "properties": {
+    "TASKIDCASEY": {
+      "type": "string"
+    },
+    "TASKID": {
+      "type": "string"
+    },
+    "INVOICEID": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "TASKIDCASEY",
+    "TASKID",
+    "INVOICEID"
+  ]
+}

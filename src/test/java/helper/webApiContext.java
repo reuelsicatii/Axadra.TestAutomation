@@ -1,16 +1,20 @@
 package helper;
 
+import java.io.File;
 import java.util.LinkedHashMap;
 
 import com.aventstack.extentreports.ExtentTest;
 
 import io.cucumber.java.Scenario;
+import okhttp3.FormBody;
 import okhttp3.Headers;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.FormBody.Builder;
 
 public class webApiContext {
 
@@ -25,6 +29,7 @@ public class webApiContext {
 	private String baseURL;
 	private String basePath;
 	private LinkedHashMap<String, String> baseParameter;
+	private Builder formBuilder;
 
 	private Headers responseHeader;
 	private String responseBody;
@@ -74,6 +79,14 @@ public class webApiContext {
 		this.baseParameter = baseParameter;
 	}
 
+	public Builder getFormBuilder() {
+		return formBuilder;
+	}
+
+	public void setFormBuilder(Builder formBuilder) {
+		this.formBuilder = formBuilder;
+	}
+
 	public Request getRequest() {
 		return request;
 	}
@@ -94,8 +107,12 @@ public class webApiContext {
 		return requestBody;
 	}
 
-	public void setRequestBody(String requestBody) {
+	public void setRequestBodyJSON(String requestBody) {
 		this.requestBody = RequestBody.create(requestBody, MediaType.get("application/json; charset=utf-8"));
+	}
+
+	public void setRequestBodyForm(RequestBody requestBody) {
+		this.requestBody = requestBody;
 	}
 
 	public Response getResponse() {

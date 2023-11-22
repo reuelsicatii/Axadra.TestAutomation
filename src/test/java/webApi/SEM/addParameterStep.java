@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
 
 import com.aventstack.extentreports.GherkinKeyword;
 import com.aventstack.extentreports.Status;
@@ -31,6 +32,71 @@ public class addParameterStep {
 
 	// Page Step Definition
 	// =================================================
+
+	@And("I add formBody Key as {string} and Value as {string}")
+	public void iAddFormBodyKeyAndValue(String key, String value) throws Throwable {
+
+		try {
+
+			if (value.equals("dynamicNumber")) {
+
+				context.getFormBuilder().add(key, commonService.generateNumber(1000000, 9999999).toString());
+
+			}
+
+			else if (value.equals("dynamicURL")) {
+				context.getFormBuilder().add(key, "https://www." + commonService.generateRandomString(6) + ".com/"
+						+ commonService.generateRandomString(10));
+
+			}
+
+			else if (value.equals("SemSig")) {
+
+				long epochTimestamp = (long) Math.ceil(System.currentTimeMillis() / 60000);
+				String epochTimestampString = epochTimestamp + "";
+				String input = "84479" + epochTimestampString + "6ca7b6b6aba867d";
+
+				// Create a MessageDigest instance with SHA-256 algorithm
+				MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+				// Get the byte representation of the input string
+				byte[] hashBytes = digest.digest(input.getBytes());
+
+				// Convert the byte array to a hexadecimal string
+				StringBuilder hexStringBuilder = new StringBuilder();
+				for (byte b : hashBytes) {
+					String hex = String.format("%02X", b);
+					hexStringBuilder.append(hex);
+				}
+
+				context.getFormBuilder().add(key, hexStringBuilder.toString().toLowerCase());
+
+			}
+
+			else {
+				context.getFormBuilder().add(key, value);
+			}
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("Given"), "I add formBody Key as " + key + " and Value as " + value)
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			try {
+				// Extent Report
+				context.getExtentTestScenario()
+						.createNode(new GherkinKeyword("Given"),
+								"I add formBody Key as " + key + " and Value as " + value)
+						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
 
 	@And("I add parameter Key as {string} and Value as {string}")
 	public void iAddParameterKeyAndValue(String key, String value)
@@ -89,13 +155,11 @@ public class addParameterStep {
 		}
 	}
 
-	@And("I update the {string} whose {string} field is {string}")
+	@And("I update the JSON {string} whose {string} field is {string}")
 	public void iUpdateTheRequestBodyWhoseFieldIs(String requestBodyPath, String requestBodyField,
 			String requestBodyValue) throws Throwable {
 
 		try {
-
-			System.err.println("iUpdateTheRequestBodyWhoseFieldIs -- 0");
 
 			// Read the existing JSON file
 			// ==========================================
@@ -196,14 +260,14 @@ public class addParameterStep {
 		}
 	}
 
-	@And("I add the {string} to the request")
+	@And("I add the JSON {string} to the request")
 	public void iAddTheRequestBodyToTheRequest(String requestBodyPath)
 			throws MalformedURLException, ClassNotFoundException {
 
 		try {
 
 			// Set requestBody JSON
-			context.setRequestBody(
+			context.setRequestBodyJSON(
 					new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir") + requestBodyPath)),
 							StandardCharsets.UTF_8));
 
@@ -218,6 +282,32 @@ public class addParameterStep {
 				// Extent Report
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("Given"), "I add " + requestBodyPath + " to the request")
+						.fail("FAILED: " + e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@And("I add the formBody to the request")
+	public void iAddTheFormBodyToTheRequest() throws MalformedURLException, ClassNotFoundException {
+
+		try {
+
+			// Set requestBody FORM
+			context.setRequestBodyForm(context.getFormBuilder().build());
+
+			// Extent Report
+			context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "I add formBody to the request")
+					.pass("PASSED");
+
+		} catch (Exception e) {
+
+			try {
+				// Extent Report
+				context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "I add formBody to the request")
 						.fail("FAILED: " + e.getMessage());
 				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
