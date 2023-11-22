@@ -6,14 +6,13 @@ import com.aventstack.extentreports.ExtentTest;
 
 import io.cucumber.java.Scenario;
 import okhttp3.Headers;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-
 public class webApiContext {
-
 
 	private OkHttpClient okHttpClient;
 	private Request.Builder requestBuilder;
@@ -22,21 +21,18 @@ public class webApiContext {
 	private Response response;
 
 	private String fullURL;
-	
 
 	private String baseURL;
 	private String basePath;
 	private LinkedHashMap<String, String> baseParameter;
-	
+
 	private Headers responseHeader;
 	private String responseBody;
 	private String responseMessage;
-	
 
 	private Scenario scenario;
 	private ExtentTest extentTestFeature;
 	private ExtentTest extentTestScenario;
-	
 
 	public Request.Builder getRequestBuilder() {
 		return requestBuilder;
@@ -53,7 +49,7 @@ public class webApiContext {
 	public void setFullURL(String fullURL) {
 		this.fullURL = fullURL;
 	}
-	
+
 	public String getBaseURL() {
 		return baseURL;
 	}
@@ -77,7 +73,7 @@ public class webApiContext {
 	public void setBaseParameter(LinkedHashMap<String, String> baseParameter) {
 		this.baseParameter = baseParameter;
 	}
-	
+
 	public Request getRequest() {
 		return request;
 	}
@@ -98,8 +94,8 @@ public class webApiContext {
 		return requestBody;
 	}
 
-	public void setRequestBody(RequestBody requestBody) {
-		this.requestBody = requestBody;
+	public void setRequestBody(String requestBody) {
+		this.requestBody = RequestBody.create(requestBody, MediaType.get("application/json; charset=utf-8"));
 	}
 
 	public Response getResponse() {
@@ -109,7 +105,7 @@ public class webApiContext {
 	public void setResponse(Response response) {
 		this.response = response;
 	}
-	
+
 	public Headers getResponseHeader() {
 		return responseHeader;
 	}

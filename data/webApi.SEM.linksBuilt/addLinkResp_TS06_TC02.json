@@ -1,10 +1,10 @@
-
-    "response": {
-	"error": {
-		"project_id": [
-			"The Project Id field is required."
-		]
-	}
-},
-    "statusCode": 422
+{
+	"response": {
+		"error": {
+			"project_id": [
+				"The Project Id field is required."
+			]
+		}
+	},
+	"statusCode": 422
 }
