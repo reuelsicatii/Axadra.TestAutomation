@@ -3,12 +3,21 @@
   "title": "Links Built - 422 - addLink",
   "type": "object",
   "properties": {
+    "statusCode": {
+      "type": "number"
+    },
     "response": {
       "type": "object",
       "properties": {
         "error": {
           "type": "object",
           "properties": {
+            "urls": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
             "project_id": {
               "type": "array",
               "items": {
@@ -17,6 +26,7 @@
             }
           },
           "required": [
+            "urls",
             "project_id"
           ]
         }
@@ -24,13 +34,10 @@
       "required": [
         "error"
       ]
-    },
-    "statusCode": {
-      "type": "number"
     }
   },
   "required": [
-    "response",
-    "statusCode"
+    "statusCode",
+    "response"
   ]
 }

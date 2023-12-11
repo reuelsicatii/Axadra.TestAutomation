@@ -1,10 +1,13 @@
 {
-	"response": {
-		"error": {
-			"links[]": [
-				"The Links field is required."
-			]
-		}
-	},
-	"statusCode": 422
+  "statusCode": 422,
+  "response": {
+    "error": {
+      "urls": [
+        "The urls field is required when links is not present."
+      ],
+      "project_id": [
+        "The project id field is required."
+      ]
+    }
+  }
 }
