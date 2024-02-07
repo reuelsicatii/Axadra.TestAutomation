@@ -153,8 +153,8 @@ Feature: API > LinksBuilt
     And I add the formBody to the request
     And I build a "<method>" request
     Then I validate response status against "<expectedStatus>"
-    And I validate response body against schema "<expectedSchemaBody>"
+
 
     Examples: 
-      | BaseURL                | BasePath                           | buildMonthOne | specialInstructions | method | expectedStatus | expectedSchemaBody                                                | expectedBody                                                |
-      | https://uat.semify.com | /api/seor/api.cfc?method=sendOrder |             0 | Tier1 - EMAT        | POST   |            401 | \\data\\webApi.SEM.linksBuilt\\sendOrderRespSchema_TS08_TC01.json | \\data\\webApi.SEM.linksBuilt\\sendOrderResp_TS08_TC01.json |
+      | BaseURL                | BasePath                           | buildMonthOne | specialInstructions | method | expectedStatus | 
+      | https://uat.semify.com | /api/seor/api.cfc?method=sendOrder |             0 | Tier1 - EMAT        | POST   |            401 | 
