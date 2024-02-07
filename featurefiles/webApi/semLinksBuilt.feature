@@ -32,7 +32,7 @@ Feature: API > LinksBuilt
 
     Examples: 
       | BaseURL                      | BasePath                       | accountId | method | expectedStatus | expectedSchemaBody                                                 | expectedBody                                                 |
-      | http://dev.sync.accesshub.co | /api/v1/semify/account/details |      7140 | GET    |            200 | \\data\\webApi.SEM.linksBuilt\\getAccountRespSchema_TS01_TC01.json | \\data\\webApi.SEM.linksBuilt\\getAccountResp_TS01_TC01.json |
+      | http://dev.sync.accesshub.co | /api/v1/semify/account/details |      7165 | GET    |            200 | \\data\\webApi.SEM.linksBuilt\\getAccountRespSchema_TS01_TC01.json | \\data\\webApi.SEM.linksBuilt\\getAccountResp_TS01_TC01.json |
 
   @getAccount422
   Scenario Outline: getAccount - 422 - /api/v1/semify/account/details?accountId=
