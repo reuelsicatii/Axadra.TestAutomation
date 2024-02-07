@@ -12,13 +12,13 @@
         "error": {
           "type": "object",
           "properties": {
-            "urls": {
+            "project_id": {
               "type": "array",
               "items": {
                 "type": "string"
               }
             },
-            "project_id": {
+            "links.0.url": {
               "type": "array",
               "items": {
                 "type": "string"
@@ -26,8 +26,8 @@
             }
           },
           "required": [
-            "urls",
-            "project_id"
+            "project_id",
+            "links.0.url"
           ]
         }
       },

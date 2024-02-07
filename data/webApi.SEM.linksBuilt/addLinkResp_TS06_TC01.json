@@ -2,11 +2,11 @@
   "statusCode": 422,
   "response": {
     "error": {
-      "urls": [
-        "The urls field is required when links is not present."
-      ],
       "project_id": [
         "The project id field is required."
+      ],
+      "links.0.url": [
+        "The links.0.url field is required."
       ]
     }
   }
