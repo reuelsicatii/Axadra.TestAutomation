@@ -1,10 +1,9 @@
 {
-	"response": {
-		"error": {
-			"links[]": [
-				"The Links field is required."
-			]
+	"links": [
+		{
+			"task_id": 13525,
+			"dr": 10
 		}
-	},
-	"statusCode": 422
+	],
+	"link_type_id": 11
 }
