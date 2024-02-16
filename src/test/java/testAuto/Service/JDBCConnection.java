@@ -61,7 +61,7 @@ public class JDBCConnection {
 
 			case "PROD_CENTRAL":
 				this.connection = DriverManager.getConnection(
-						"jdbc:mysql://central-db-compass-replica.cuz0vq3xjyt0.us-west-1.rds.amazonaws.com:3306/central?autoReconnect=true&useSSL=false&useTimezone=true&serverTimezone=UTC",
+						"jdbc:mysql://central-db-compass.cuz0vq3xjyt0.us-west-1.rds.amazonaws.com:3306/central?autoReconnect=true&useSSL=false&useTimezone=true&serverTimezone=UTC",
 						"jumer", "vC0%4yi@6ZJJ");
 				break;
 			case "PROD_REPORTBUILDER":
