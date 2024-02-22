@@ -40,22 +40,11 @@ public class CommonService {
 				context.getScenario().getStatus().toString());
 
 		// Attached Screenshot to Extent Report
-		context.getExtentTestScenario().createNode(" ======================================== ").info(
+		context.getExtentTestScenario().createNode("<hr>");
+		context.getExtentTestScenario().createNode(" ===================== Actual Result =================== ").info(
 				"Captured Screenshot: " + description,
 				MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
 
-		/*
-		 * context.getExtentTestScenario()
-		 * .createNode("<div class = \"step pass-bg\" style = \"background-color: white\">\r\n"
-		 * + "Captured ScreenShot" +"</div>")
-		 * .info("<div class = \"step pass-bg\" style = \"background-color: white\">\r\n"
-		 * + "<span>  ========================================  </span>\r\n" +
-		 * "<div class = \"row mb-3\">  \r\n" + "<div class = \"col-md-3\">\r\n" +
-		 * "<img \r\n" + "	 data - featherlight = \""+
-		 * DestFile.replace("C:/xampp/htdocs", "") + "\" \r\n" + "	 src = \"" +
-		 * DestFile.replace("C:/xampp/htdocs", "") +"\">\r\n" + "</div>\r\n" +
-		 * "</div>\r\n" + "</div>");
-		 */
 	}
 
 	public String generateRandomString(int length) throws Throwable {
