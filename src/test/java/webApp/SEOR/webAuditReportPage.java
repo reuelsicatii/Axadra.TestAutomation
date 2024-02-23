@@ -1,6 +1,7 @@
 package webApp.SEOR;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -15,13 +16,13 @@ import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.en.Then;
 import net.minidev.json.JSONArray;
-import testAuto.Service.WebAuditService;
 import testAuto.Service.CommonService;
+import testAuto.Service.ExtentReportService;
+import testAuto.Service.WebAuditService;
 
 public class webAuditReportPage extends webAppHelper {
 
-	WebAuditService webAuditService = new WebAuditService();
-	CommonService commonService = new CommonService();
+
 
 	// Declare Driver Instance
 	// ==========================================
@@ -31,6 +32,17 @@ public class webAuditReportPage extends webAppHelper {
 		super();
 		this.context = context;
 	}
+	
+	
+	// Declare Services
+	// ==========================================
+	WebAuditService webAuditService = new WebAuditService();
+	CommonService commonService = new CommonService();
+	ExtentReportService extentReportService = new ExtentReportService();
+	
+	// Declare Variables
+	// ==========================================
+	ArrayList<String> details = new ArrayList<String>();
 
 	// Page Elements
 	// ==========================================
@@ -2207,11 +2219,13 @@ public class webAuditReportPage extends webAppHelper {
 											.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
 											.getText().equals("0"))) {
 
-						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
-										+ fromDate + " and " + toDate)
-								.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
-										+ reportUrl + "<br>" + "Report Date: " + date_posted);
+						
+						details.clear();
+						details.add("WebSite Audited: " + websiteUrl);
+						details.add("Report Link: "+ reportUrl);
+						details.add("Report Date: " + date_posted);
+						extentReportService.insertFailedStep(context, "User validates the Social Activity > Twitter SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate, details);
 
 						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 
@@ -2227,23 +2241,29 @@ public class webAuditReportPage extends webAppHelper {
 											.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
 											.getText().equals("0"))) {
 
-						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
-										+ fromDate + " and " + toDate)
-								.warning("WARNING: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>"
-										+ "Report Link: " + reportUrl + "<br>" + "Report Date: " + date_posted);
+								
+						details.clear();
+						details.add("WebSite Audited: " + websiteUrl);
+						details.add("Report Link: "+ reportUrl);
+						details.add("Report Date: " + date_posted);
+						extentReportService.insertWarningStep(context, "User validates the Social Activity > Twitter SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate, details);
 
-						context.getExtentTestScenario().log(Status.FAIL, "Failed");
+						context.getExtentTestScenario().log(Status.WARNING, "Warning");
 
 					}
 
 					else {
 
-						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
-										+ fromDate + " and " + toDate)
-								.pass("PASSED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
-										+ reportUrl + "<br>" + "Report Date: " + date_posted);
+						
+						details.clear();
+						details.add("WebSite Audited: " + websiteUrl);
+						details.add("Report Link: "+ reportUrl);
+						details.add("Report Date: " + date_posted);
+						extentReportService.insertPassedStep(context, "User validates the Social Activity > Twitter SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate, details);
+						
+						context.getExtentTestScenario().log(Status.PASS, "Pass");
 
 					}
 
@@ -2252,23 +2272,25 @@ public class webAuditReportPage extends webAppHelper {
 					System.err.println("Inner Catch" + reportUrl);
 
 					if (context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiageHeader"))
-							.getText().equals("No Twitter detected")) {
-
-						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
-										+ fromDate + " and " + toDate)
-								.warning("WARNING: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>"
-										+ "Report Link: " + reportUrl + "<br>" + "Report Date: " + date_posted);
+							.getText().equals("No Twitter detected")) {						
+						
+						details.clear();
+						details.add("WebSite Audited: " + websiteUrl);
+						details.add("Report Link: "+ reportUrl);
+						details.add("Report Date: " + date_posted);
+						extentReportService.insertWarningStep(context, "User validates the Social Activity > Twitter SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate, details);
 
 						context.getExtentTestScenario().log(Status.WARNING, "Failed");
 
-					} else {
-
-						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
-										+ fromDate + " and " + toDate)
-								.fail("FAILED: " + "<br>" + "WebSite Audited: " + websiteUrl + "<br>" + "Report Link: "
-										+ reportUrl + "<br>" + "Report Date: " + date_posted);
+					} else {					
+						
+						details.clear();
+						details.add("WebSite Audited: " + websiteUrl);
+						details.add("Report Link: "+ reportUrl);
+						details.add("Report Date: " + date_posted);
+						extentReportService.insertFailedStep(context, "User validates the Social Activity > Twitter SubSection > Data is pulled between "
+										+ fromDate + " and " + toDate, details);
 
 						context.getExtentTestScenario().log(Status.FAIL, "Failed");
 					}
@@ -2284,12 +2306,15 @@ public class webAuditReportPage extends webAppHelper {
 
 			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"),
-								"User validates the Social Activity > Twitter SubSection > Data is pulled between "
-										+ fromDate + " and " + toDate)
-						.fail("FAILED: " + e.getMessage());
+							
+				
+				details.clear();
+				details.add( e.getMessage());
+				extentReportService.insertFailedStep(context, "User validates the Social Activity > Twitter SubSection > Data is pulled between "
+								+ fromDate + " and " + toDate, details);
+				
 				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

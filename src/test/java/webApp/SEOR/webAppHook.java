@@ -96,7 +96,7 @@ public class webAppHook extends webAppHelper {
 	public void beforeStep() throws IOException, ClassNotFoundException {
 		System.out.println("Im in a Before StepDefination");
 		
-		context.getExtentTestScenario().createNode("<hr>");
+		
 
 	}
 
@@ -137,6 +137,7 @@ public class webAppHook extends webAppHelper {
 			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), " ===================== Actual Result =================== ").info(
 					"Captured Screenshot: ",
 					MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
+			context.getExtentTestScenario().createNode("<hr>");
 
 		} catch (Exception e) {
 			// Extent Report
@@ -176,8 +177,9 @@ public class webAppHook extends webAppHelper {
 
 		// JSON payload as a string
 		String jsonPayload = "{\"text\": \" SELENIUM - Automation" + "\\n ===================== " + "\\n Feature Name: "
-				+ scenarioName + "\\n Report Link: http://automation-report.cloud/AutomationProject/reports/" + scenarioName + "/"
-				+ date + ".html" + "\\n Test Scenario - Status: " + extentReports.getReport().getStats().getParent()
+				+ scenarioName + "\\n Report Link: http://localhost/AutomationProject/reports/" + scenarioName + "/"
+				+ date + ".html" 
+				+ "\\n Test Scenario - Status: " + extentReports.getReport().getStats().getParent()
 				+ "\\n Test Case - Status: " + extentReports.getReport().getStats().getChild()
 				+ "\\n Test Step - Status: " + extentReports.getReport().getStats().getGrandchild() + " \"}";
 
