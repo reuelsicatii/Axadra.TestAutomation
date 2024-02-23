@@ -177,7 +177,7 @@ public class webAppHook extends webAppHelper {
 
 		// JSON payload as a string
 		String jsonPayload = "{\"text\": \" SELENIUM - Automation" + "\\n ===================== " + "\\n Feature Name: "
-				+ scenarioName + "\\n Report Link: http://localhost/AutomationProject/reports/" + scenarioName + "/"
+				+ scenarioName + "\\n Report Link: http://automation-report.cloud/AutomationProject/reports/" + scenarioName + "/"
 				+ date + ".html" 
 				+ "\\n Test Scenario - Status: " + extentReports.getReport().getStats().getParent()
 				+ "\\n Test Case - Status: " + extentReports.getReport().getStats().getChild()
