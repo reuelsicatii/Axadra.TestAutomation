@@ -16,7 +16,6 @@
 # Folders #
 # ==================
 reports/
-screenshots/
 drivers/*
 .classpath
 .project
