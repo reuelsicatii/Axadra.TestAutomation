@@ -15,6 +15,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import testAuto.Service.CommonService;
+import testAuto.Service.ExtentReportService;
 
 public class mockUpPage extends webAppHelper {
 
@@ -29,9 +30,19 @@ public class mockUpPage extends webAppHelper {
 		super();
 		this.context = context;
 	}
+	
 
-	// Service
-	CommonService commonService = new CommonService();
+	// Declare Services
+	// ==========================================
+	ExtentReportService extentReportService = new ExtentReportService();
+	
+	// Declare Variables
+	// ==========================================
+	ArrayList<String> details = new ArrayList<String>();
+	String pageURL = null;
+	String networkResponse = null;
+	Integer statuCode = null;
+	
 
 	// Page Step Definition
 	// =================================================
@@ -62,10 +73,8 @@ public class mockUpPage extends webAppHelper {
 
 			OkHttpClient client = new OkHttpClient();
 
-			for (int i = 0; i < urls.size(); i++) {
+			for (int i = 0; i < urls.size(); i++) {			
 				
-				String networkResponse = null;
-				Integer statuCode = null;
 
 				try {
 
@@ -76,6 +85,7 @@ public class mockUpPage extends webAppHelper {
 
 					Request request = new Request.Builder().url(urls.get(i)).get().build();
 					Response response = client.newCall(request).execute();
+					pageURL = urls.get(i);
 					networkResponse = response.networkResponse().toString();
 					statuCode = response.code();
 					response.close();
@@ -83,32 +93,54 @@ public class mockUpPage extends webAppHelper {
 					if (statuCode == 200) {
 
 						// Extent Report
-						context.getExtentTestScenario()
-								.createNode(new GherkinKeyword("When"),
-										"User loads " + urls.get(i) + " from " + category + " category")
-								.pass("PASSED " + "<br>" + "Network Respose: " + networkResponse);
-						commonService.attachedScreenshotToReport(urls.get(i), context);
+//						context.getExtentTestScenario()
+//								.createNode(new GherkinKeyword("When"),
+//										"User loads " + urls.get(i) + " from " + category + " category")
+//								.pass("PASSED " + "<br>" + "Network Respose: " + networkResponse);
+//						commonService.attachedScreenshotToReport(urls.get(i), context);
+						
+						details.clear();
+						details.add("Page URL: " + pageURL);
+						details.add("Status Code: " + statuCode);
+						details.add("Network Respose: " + networkResponse);
+						extentReportService.insertPassedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);
+						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+						context.getExtentTestScenario().log(Status.PASS, "PASSED");
 
 					}
 
 					else {
 
 						// Extent Report
-						context.getExtentTestScenario()
-								.createNode(new GherkinKeyword("When"),
-										"User loads " + urls.get(i) + " from " + category + " category")
-								.fail("FAILED " + "<br>" + "Network Respose: " + networkResponse);
-						commonService.attachedScreenshotToReport(urls.get(i), context);
+//						context.getExtentTestScenario()
+//								.createNode(new GherkinKeyword("When"),
+//										"User loads " + urls.get(i) + " from " + category + " category")
+//								.fail("FAILED " + "<br>" + "Network Respose: " + networkResponse);
+//						commonService.attachedScreenshotToReport(urls.get(i), context);
+						
+						details.clear();
+						details.add("Page URL: " + pageURL);
+						details.add("Status Code: " + statuCode);
+						details.add("Network Respose: " + networkResponse);
+						extentReportService.insertFailedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);
+						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 
 					}
 
 				} catch (Exception e) {
+					
 					// Extent Report
-					context.getExtentTestScenario()
-							.createNode(new GherkinKeyword("When"),
-									"User loads " + urls.get(i) + " from " + category + " category")
-							.fail("FAILED " + "<br>" + "Network Respose: " + networkResponse);
-					commonService.attachedScreenshotToReport(urls.get(i), context);
+					details.clear();
+					details.add("Page URL: " + pageURL);
+					details.add("Status Code: " + statuCode);
+					details.add("Network Respose: " + networkResponse);
+					extentReportService.insertFailedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);
+					extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				}
 			}
 
@@ -116,10 +148,16 @@ public class mockUpPage extends webAppHelper {
 
 			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User loads " + category + " category sites")
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				
+				details.clear();
+				details.add("Page URL: " + pageURL);
+				details.add("Status Code: " + statuCode);
+				details.add("Network Respose: " + networkResponse);
+				extentReportService.insertFailedStep(context, "User loads " +pageURL + " from " + category + " category", details);
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
