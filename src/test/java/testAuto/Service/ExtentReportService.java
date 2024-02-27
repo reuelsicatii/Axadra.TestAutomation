@@ -11,6 +11,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 import com.aventstack.extentreports.GherkinKeyword;
+import com.aventstack.extentreports.Status;
+
 import helper.webAppContext;
 
 public class ExtentReportService {
@@ -89,8 +91,7 @@ public class ExtentReportService {
 
 	}
 	
-	public void attachedScreenshotToReport(webAppContext context, String expectedResultURL)
-			throws IOException, ClassNotFoundException {
+	public void attachedScreenshotToReport(webAppContext context, String expectedResultURL) {
 		
 		try {
 
@@ -143,8 +144,15 @@ public class ExtentReportService {
 		
 		} catch (Exception e) {
 			// Extent Report
-			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), " ===================== Error Message =================== ")
-					.warning(e.getMessage());
+			try {
+				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), " ===================== Error Message =================== ")
+				.warning(e.getMessage());
+				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 		}
 
 	}

@@ -36,14 +36,41 @@ public class CommonService {
 		FileUtils.copyFile(context.getSrcFile(), new File(DestFile));
 
 		// Attaching screenshot to Cucumber Report
-		context.getScenario().attach(FileUtils.readFileToByteArray(context.getSrcFile()), "image/png",
-				context.getScenario().getStatus().toString());
+		// context.getScenario().attach(FileUtils.readFileToByteArray(context.getSrcFile()), "image/png",
+		// 		context.getScenario().getStatus().toString());
 
-		// Attached Screenshot to Extent Report
 		
-		context.getExtentTestScenario().createNode(" ===================== Actual Result =================== ").info(
-				"Captured Screenshot: " + description,
-				MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
+		// Attached Screenshot to Extent Report
+		// context.getExtentTestScenario().createNode(" ===================== Actual Result =================== ").info(
+		//		"Captured Screenshot: " + description,
+		//		MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
+		
+		
+		// Attached Screenshot to Extent Report
+		context.getExtentTestScenario().createNode(""
+				+ "<div style=\"display: flex;\">\r\n"
+				+ "        <div style=\"flex: 1;\r\n"
+				+ "            border: 1px solid #ccc;\r\n"
+				+ "            padding: 20px;\r\n"
+				+ "            background-color: #f0f0f0;\r\n"
+				+ "            max-width: 50%;\">\r\n"
+				+ "            <h2>Expected Result</h2>\r\n"
+				+ 			   "<img data-featherlight=\"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true\" src=\"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true\">\r\n"
+				+ "        </div>\r\n"
+				+ "        <div style=\"flex: 1;\r\n"
+				+ "            border: 1px solid #ccc;\r\n"
+				+ "            padding: 20px;\r\n"
+				+ "            background-color: #e0e0e0;\r\n"
+				+ "            max-width: 50%;\">\r\n"
+				+ "            <h2>Actual Result</h2>\r\n"
+				+ 			   "<img data-featherlight="
+				+			   "\"" + DestFile.replace("C:/xampp/htdocs", "") + "\""
+				+ 			   "src="
+				+				"\"" + DestFile.replace("C:/xampp/htdocs", "") + "\""
+				+				">\r\n"					
+				+ "        </div>\r\n"
+				+ "</div>");
+		
 		context.getExtentTestScenario().createNode("<hr>");
 
 	}
