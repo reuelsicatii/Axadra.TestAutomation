@@ -92,19 +92,12 @@ public class mockUpPage extends webAppHelper {
 
 					if (statuCode == 200) {
 
-						// Extent Report
-//						context.getExtentTestScenario()
-//								.createNode(new GherkinKeyword("When"),
-//										"User loads " + urls.get(i) + " from " + category + " category")
-//								.pass("PASSED " + "<br>" + "Network Respose: " + networkResponse);
-//						commonService.attachedScreenshotToReport(urls.get(i), context);
-						
+						// Extent Report				
 						details.clear();
 						details.add("Page URL: " + pageURL);
 						details.add("Status Code: " + statuCode);
 						details.add("Network Respose: " + networkResponse);
-						extentReportService.insertPassedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);
-						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						extentReportService.insertPassedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);						
 
 						context.getExtentTestScenario().log(Status.PASS, "PASSED");
 
@@ -113,18 +106,11 @@ public class mockUpPage extends webAppHelper {
 					else {
 
 						// Extent Report
-//						context.getExtentTestScenario()
-//								.createNode(new GherkinKeyword("When"),
-//										"User loads " + urls.get(i) + " from " + category + " category")
-//								.fail("FAILED " + "<br>" + "Network Respose: " + networkResponse);
-//						commonService.attachedScreenshotToReport(urls.get(i), context);
-						
 						details.clear();
 						details.add("Page URL: " + pageURL);
 						details.add("Status Code: " + statuCode);
 						details.add("Network Respose: " + networkResponse);
-						extentReportService.insertFailedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);
-						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						extentReportService.insertFailedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);						
 
 						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 
@@ -137,12 +123,14 @@ public class mockUpPage extends webAppHelper {
 					details.add("Page URL: " + pageURL);
 					details.add("Status Code: " + statuCode);
 					details.add("Network Respose: " + networkResponse);
-					extentReportService.insertFailedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);
-					extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+					extentReportService.insertFailedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);					
 
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				}
+				
 			}
+			
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
