@@ -17,7 +17,7 @@ Feature: SEOR > Agency Tools > WebAudit > Social Activity
 
     Examples: 
       | browser | fromDate            | toDate |
-      | chrome  | 2023-10-05 16:00:00 | NOW    |
+      | chrome  | 2024-02-26 00:00:00 | NOW    |
 
 		  #| chrome  | 2023-10-01 00:00:00 | NOW                 |
 		  #| chrome  | 2023-07-01 00:00:00 | 2023-09-30 23:59:59 |
@@ -31,7 +31,7 @@ Feature: SEOR > Agency Tools > WebAudit > Social Activity
 
     Examples: 
       | browser | fromDate            | toDate |
-      | chrome  | 2023-10-05 16:00:00 | NOW    |
+      | chrome  | 2024-02-26 00:00:00 | NOW    |
       
 	    #| chrome  | 2023-10-01 00:00:00 | NOW                 |
 	    #| chrome  | 2023-07-01 00:00:00 | 2023-09-30 23:59:59 |
