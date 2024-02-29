@@ -105,46 +105,6 @@ public class webAppHook extends webAppHelper {
 
 		System.out.println("Im in a AfterStep StepDefination");
 
-		try {
-
-			Random generator = new Random();
-			int randomIndex = generator.nextInt(2000);
-			Thread.sleep(randomIndex);
-
-			String date = new SimpleDateFormat("_yyMMdd_HHmmssSSS").format(new Date());
-
-			// XAMPP htdocs Folder - Image not resolving
-			// ====================================================
-			DestFile = "C:/xampp/htdocs/AutomationProject/screenshots/"
-					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_" + date + ".png";
-
-			SrcImage = "/AutomationProject/screenshots/"
-					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_" + date + ".png";
-
-			context.setSrcFile(((TakesScreenshot) context.getDriver()).getScreenshotAs(OutputType.FILE));
-
-			// SrcFile = ((TakesScreenshot)
-			// context.getDriver()).getScreenshotAs(OutputType.FILE);
-
-			// Generating and Copying Screenshot to DestFile
-			FileUtils.copyFile(context.getSrcFile(), new File(DestFile));
-
-			// Attaching screenshot to Cucumber Report
-			context.getScenario().attach(FileUtils.readFileToByteArray(context.getSrcFile()), "image/png",
-					context.getScenario().getStatus().toString());
-
-			// Attached Screenshot to Extent Report
-			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), " ===================== Actual Result =================== ").info(
-					"Captured Screenshot: ",
-					MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
-			context.getExtentTestScenario().createNode("<hr>");
-
-		} catch (Exception e) {
-			// Extent Report
-			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), " ===================== Error Message =================== ")
-					.warning(e.getMessage());
-		}
-
 	}
 
 	@After
@@ -177,7 +137,7 @@ public class webAppHook extends webAppHelper {
 
 		// JSON payload as a string
 		String jsonPayload = "{\"text\": \" SELENIUM - Automation" + "\\n ===================== " + "\\n Feature Name: "
-				+ scenarioName + "\\n Report Link: http://automation-report.cloud/AutomationProject/reports/" + scenarioName + "/"
+				+ scenarioName + "\\n Report Link: http://localhost/AutomationProject/reports/" + scenarioName + "/"
 				+ date + ".html" 
 				+ "\\n Test Scenario - Status: " + extentReports.getReport().getStats().getParent()
 				+ "\\n Test Case - Status: " + extentReports.getReport().getStats().getChild()
