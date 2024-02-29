@@ -94,9 +94,8 @@ public class webAppHook extends webAppHelper {
 
 	@BeforeStep
 	public void beforeStep() throws IOException, ClassNotFoundException {
+		
 		System.out.println("Im in a Before StepDefination");
-		
-		
 
 	}
 
