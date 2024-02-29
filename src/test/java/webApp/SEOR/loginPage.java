@@ -1,6 +1,7 @@
 package webApp.SEOR;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,6 +14,7 @@ import helper.webAppHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import testAuto.Service.ExtentReportService;
 
 public class loginPage extends webAppHelper {
 
@@ -38,6 +40,16 @@ public class loginPage extends webAppHelper {
 		super();
 		this.context = context;
 	}
+	
+	
+	// Declare Services
+	// ==========================================
+	ExtentReportService extentReportService = new ExtentReportService();
+	
+	// Declare Variables
+	// ==========================================
+	ArrayList<String> details = new ArrayList<String>();
+	
 
 	// Page Step Definition
 	// =================================================
@@ -49,17 +61,30 @@ public class loginPage extends webAppHelper {
 			// Step Definition
 			context.getDriver().findElement(username_textfield).sendKeys(username);
 
-			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User enter the username as " + username).pass("PASSED");
+			// Extent Report				
+			details.clear();
+			extentReportService.insertPassedStep(context, "User enter the username as " + username, details);				
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
-			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User enter the username as " + username)
-					.fail("FAILED: " + e.getMessage());
-			context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			try {
+				
+				// Extent Report				
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " +  e.getMessage());
+				extentReportService.insertFailedStep(context, "User enter the username as " + username, details);				
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -70,18 +95,26 @@ public class loginPage extends webAppHelper {
 			// Step Definition
 			context.getDriver().findElement(password_textfield).sendKeys(password);
 
-			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User enter the password as " + password).pass("PASSED");
+			// Extent Report				
+			details.clear();
+			extentReportService.insertPassedStep(context, "User enter the password as " + password, details);				
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
-			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User enter the password as " + password)
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				
+				// Extent Report				
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " +  e.getMessage());
+				extentReportService.insertFailedStep(context, "User enter the password as " + password, details);				
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -97,17 +130,26 @@ public class loginPage extends webAppHelper {
 			context.getWait().until(ExpectedConditions.presenceOfElementLocated(login_button));
 			context.getDriver().findElement(login_button).click();
 
-			// Extent Report
-			context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User click on the login button")
-					.pass("PASSED");
+			// Extent Report				
+			details.clear();
+			extentReportService.insertPassedStep(context, "User click on the login button", details);				
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
-			// Extent Report
 			try {
-				context.getExtentTestScenario().createNode(new GherkinKeyword("When"), "User click on the login button")
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				
+				// Extent Report				
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " +  e.getMessage());
+				extentReportService.insertFailedStep(context, "User click on the login button", details);				
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -124,23 +166,38 @@ public class loginPage extends webAppHelper {
 			context.getWait().until(ExpectedConditions.presenceOfElementLocated(welcome_message));
 
 			if (context.getDriver().findElement(welcome_message).getText() != null) {
-				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login")
-						.pass("PASSED");
+
+				// Extent Report				
+				details.clear();
+				extentReportService.insertPassedStep(context, "User is successfully login", details);				
+
+				context.getExtentTestScenario().log(Status.PASS, "PASSED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				
 			} else {
-				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login")
-						.fail("FAILED");
+				
+				// Extent Report				
+				details.clear();
+				extentReportService.insertFailedStep(context, "User is successfully login", details);				
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			}
 
 		} catch (Exception e) {
 
-			// Extent Report
 			try {
-				context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login")
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				
+				// Extent Report				
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " +  e.getMessage());
+				extentReportService.insertFailedStep(context, "User is successfully login", details);				
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -155,18 +212,30 @@ public class loginPage extends webAppHelper {
 			// Step Definition
 			context.getDriver().findElement(compassUsername_textfield).sendKeys(username);
 
-			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User enter the Compass > username as " + username)
-					.pass("PASSED");
+			// Extent Report				
+			details.clear();
+			extentReportService.insertPassedStep(context, "User enter the Compass > username as " + username, details);				
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
-			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User enter the Compass > username as " + username)
-					.fail("FAILED: " + e.getMessage());
-			context.getExtentTestScenario().log(Status.FAIL, "Failed");
+			try {
+				
+				// Extent Report				
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " +  e.getMessage());
+				extentReportService.insertFailedStep(context, "User enter the Compass > username as " + username, details);				
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -177,19 +246,26 @@ public class loginPage extends webAppHelper {
 			// Step Definition
 			context.getDriver().findElement(compassPassword_textfield).sendKeys(password);
 
-			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User enter the Compass > password as " + password)
-					.pass("PASSED");
+			// Extent Report				
+			details.clear();
+			extentReportService.insertPassedStep(context, "User enter the Compass > password as " + password, details);				
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
-			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User enter the Compass > password as " + password)
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				
+				// Extent Report				
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " +  e.getMessage());
+				extentReportService.insertFailedStep(context, "User enter the Compass > password as " + password, details);				
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -205,18 +281,26 @@ public class loginPage extends webAppHelper {
 			context.getWait().until(ExpectedConditions.presenceOfElementLocated(compassLogin_button));
 			context.getDriver().findElement(compassLogin_button).click();
 
-			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User click on the Compass > login button").pass("PASSED");
+			// Extent Report				
+			details.clear();
+			extentReportService.insertPassedStep(context, "User click on the Compass > login button", details);				
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
-			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User click on the Compass > login button")
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				
+				// Extent Report				
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " +  e.getMessage());
+				extentReportService.insertFailedStep(context, "User click on the Compass > login button", details);				
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -233,24 +317,38 @@ public class loginPage extends webAppHelper {
 			context.getWait().until(ExpectedConditions.presenceOfElementLocated(compassWelcome_message));
 
 			if (context.getDriver().findElement(compassWelcome_message).getText() != null) {
-				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login")
-						.pass("PASSED");
+
+				// Extent Report				
+				details.clear();
+				extentReportService.insertPassedStep(context, "User is successfully login", details);				
+
+				context.getExtentTestScenario().log(Status.PASS, "PASSED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				
 			} else {
-				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("Then"), "User is successfully login")
-						.fail("FAILED");
+
+				// Extent Report				
+				details.clear();
+				extentReportService.insertFailedStep(context, "User is successfully login", details);				
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			}
 
 		} catch (Exception e) {
 
-			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("Then"), "User is successfully login on Compass")
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				
+				// Extent Report				
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " +  e.getMessage());
+				extentReportService.insertFailedStep(context, "User is successfully login", details);				
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
