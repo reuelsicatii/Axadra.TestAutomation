@@ -100,6 +100,7 @@ public class mockUpPage extends webAppHelper {
 						extentReportService.insertPassedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);						
 
 						context.getExtentTestScenario().log(Status.PASS, "PASSED");
+						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 					}
 
@@ -113,6 +114,7 @@ public class mockUpPage extends webAppHelper {
 						extentReportService.insertFailedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);						
 
 						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 					}
 
@@ -126,11 +128,12 @@ public class mockUpPage extends webAppHelper {
 					extentReportService.insertFailedStep(context, "User loads " + urls.get(i) + " from " + category + " category", details);					
 
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+					extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 				}
 				
 			}
 			
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			
 
 		} catch (Exception e) {
 
@@ -145,6 +148,7 @@ public class mockUpPage extends webAppHelper {
 				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 				
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
