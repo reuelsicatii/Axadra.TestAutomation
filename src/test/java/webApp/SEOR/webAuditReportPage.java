@@ -3523,7 +3523,8 @@ public class webAuditReportPage extends webAppHelper {
 						details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "Failed");
-				"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/webAudit/UservalidatestheSocialActivityTwitterSubSectionDataispulledbetween.png?raw=true");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/webAudit/UservalidatestheSocialActivityTwitterSubSectionDataispulledbetween.png?raw=true");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
