@@ -3064,10 +3064,80 @@ public class webAuditReportPage extends webAppHelper {
 				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
 				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
 				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
-				extentReportService.insertPassedStep(context,
+				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Facebook SubSection is correct", details);
 				
-				context.getExtentTestScenario().log(Status.PASS, "PASSED");
+				context.getExtentTestScenario().log(Status.INFO, "WARNING");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+			}
+			
+			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
+					context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText())
+					&& context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText()
+							.equals("For Improvement")
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow3"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$", context.getDriver()
+							.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText())) {
+
+				
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());			
+				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
+				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
+				extentReportService.insertWarningStep(context,
+						"User sees the Social Activity > Facebook SubSection is correct", details);
+				
+				context.getExtentTestScenario().log(Status.INFO, "WARNINING");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+			}
+			
+			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
+					context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText())
+					&& context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText()
+							.equals("Critical")
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow3"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$", context.getDriver()
+							.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText())) {
+
+				
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());			
+				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
+				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
+				extentReportService.insertWarningStep(context,
+						"User sees the Social Activity > Facebook SubSection is correct", details);
+				
+				context.getExtentTestScenario().log(Status.INFO, "WARNINING");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
@@ -3328,10 +3398,146 @@ public class webAuditReportPage extends webAppHelper {
 				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
 				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
 				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
-				extentReportService.insertPassedStep(context,
+				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Twitter SubSection is correct", details);
 
-				context.getExtentTestScenario().log(Status.PASS, "PASSED");
+				context.getExtentTestScenario().log(Status.INFO, "WARNING");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+			}
+			
+			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
+					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
+					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
+							.equals("For Improvement")
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow3"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$", context.getDriver()
+							.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText())) {
+
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				extentReportService.insertWarningStep(context,
+						"User sees the Social Activity > Twitter SubSection is correct", details);
+
+				context.getExtentTestScenario().log(Status.INFO, "WARNING");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+			}
+			
+			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
+					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
+					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
+							.equals("Critical")
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow3"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$", context.getDriver()
+							.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText())) {
+
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				extentReportService.insertWarningStep(context,
+						"User sees the Social Activity > Twitter SubSection is correct", details);
+
+				context.getExtentTestScenario().log(Status.INFO, "WARNING");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+			}
+			
+			else if (!Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
+					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
+					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
+							.equals("Looking Good")
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow3"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$", context.getDriver()
+							.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText())) {
+
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				extentReportService.insertWarningStep(context,
+						"User sees the Social Activity > Twitter SubSection is correct", details);
+
+				context.getExtentTestScenario().log(Status.INFO, "WARNING");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+			}
+			
+			else if (!Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
+					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
+					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
+							.equals("For Improvement")
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$",
+							context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow3"))
+									.getText())
+					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$", context.getDriver()
+							.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText())) {
+
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				extentReportService.insertWarningStep(context,
+						"User sees the Social Activity > Twitter SubSection is correct", details);
+
+				context.getExtentTestScenario().log(Status.INFO, "WARNING");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
