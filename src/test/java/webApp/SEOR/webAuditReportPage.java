@@ -292,16 +292,24 @@ public class webAuditReportPage extends webAppHelper {
 			if (context.getDriver().findElement(summarySection_verdict_critical).isDisplayed() 
 					&& context.getDriver().findElement(summarySection_verdict_criticalScore).isDisplayed()
 					&& !context.getDriver().findElement(summarySection_verdict_criticalScore).getText().isEmpty()
+					
 					&& context.getDriver().findElement(summarySection_verdict_forImprovement).isDisplayed()
 					&& context.getDriver().findElement(summarySection_verdict_forImprovementScore).isDisplayed()
-					&& ! context.getDriver().findElement(summarySection_verdict_forImprovementScore).getText().isEmpty()
+					&& !context.getDriver().findElement(summarySection_verdict_forImprovementScore).getText().isEmpty()
+					
 					&& context.getDriver().findElement(summarySection_verdict_lookingGood).isDisplayed()
 					&& context.getDriver().findElement(summarySection_verdict_lookingGoodScore).isDisplayed()
-					&& context.getDriver().findElement(summarySection_verdict_lookingGoodScore).getText().isEmpty()) {
+					&& !context.getDriver().findElement(summarySection_verdict_lookingGoodScore).getText().isEmpty()) {
 				
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add(context.getDriver().findElement(summarySection_verdict_critical).getText() + " - " 
+				+ context.getDriver().findElement(summarySection_verdict_criticalScore).getText());
+				details.add(context.getDriver().findElement(summarySection_verdict_forImprovement).getText() + " - " 
+						+ context.getDriver().findElement(summarySection_verdict_forImprovementScore).getText());
+				details.add(context.getDriver().findElement(summarySection_verdict_lookingGood).getText() + " - " 
+						+ context.getDriver().findElement(summarySection_verdict_lookingGoodScore).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Summary Section > Verdict Table SubSection is correct", details);
 
@@ -317,6 +325,13 @@ public class webAuditReportPage extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add(context.getDriver().findElement(summarySection_verdict_critical).getText() + " - " 
+						+ context.getDriver().findElement(summarySection_verdict_criticalScore).getText());
+				details.add(context.getDriver().findElement(summarySection_verdict_forImprovement).getText() + " - " 
+						+ context.getDriver().findElement(summarySection_verdict_forImprovementScore).getText());
+				details.add(context.getDriver().findElement(summarySection_verdict_lookingGood).getText() + " - " 
+						+ context.getDriver().findElement(summarySection_verdict_lookingGoodScore).getText());
+						
 				extentReportService.insertFailedStep(context,
 						"User sees the Summary Section > Verdict Table SubSection is correct", details);
 
@@ -334,6 +349,12 @@ public class webAuditReportPage extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add(context.getDriver().findElement(summarySection_verdict_critical).getText() + " - " 
+						+ context.getDriver().findElement(summarySection_verdict_criticalScore).getText());
+						details.add(context.getDriver().findElement(summarySection_verdict_forImprovement).getText() + " - " 
+								+ context.getDriver().findElement(summarySection_verdict_forImprovementScore).getText());
+						details.add(context.getDriver().findElement(summarySection_verdict_lookingGood).getText() + " - " 
+								+ context.getDriver().findElement(summarySection_verdict_lookingGoodScore).getText());
 				details.add("Error Message: " + e.getMessage());
 				extentReportService.insertFailedStep(context,
 						"User sees the Summary Section > Verdict Table SubSection is correct", details);
