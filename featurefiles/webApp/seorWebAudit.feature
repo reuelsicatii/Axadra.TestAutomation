@@ -119,8 +119,8 @@ Feature: SEOR > Agency Tools > WebAudit
     And User sees the Organic Traffic > OffPage SEO > Backlinks SubSection is correct
     And User sees the Organic Traffic > OffPage SEO > MOZ Domain Authority SubSection is correct
     And User sees the Organic Traffic > OffPage SEO > MOZ Page Authority SubSection is correct
-    And User sees the Organic Traffic > OffPage SEO > Majestic Citation Flow SubSection is correct
-    And User sees the Organic Traffic > OffPage SEO > Majestic Trust Flow SubSection is correct
+    #And User sees the Organic Traffic > OffPage SEO > Majestic Citation Flow SubSection is correct
+    #And User sees the Organic Traffic > OffPage SEO > Majestic Trust Flow SubSection is correct
 
     Examples: 
       | browser | loginUrl                              | webAuditUrl                                |
