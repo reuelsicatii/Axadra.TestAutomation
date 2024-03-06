@@ -18,6 +18,7 @@ import io.cucumber.java.en.Then;
 import net.minidev.json.JSONArray;
 import testAuto.Service.CommonService;
 import testAuto.Service.ExtentReportService;
+import testAuto.Service.HttpReqService;
 import testAuto.Service.WebAuditService;
 
 public class webAuditReportPage extends webAppHelper {
@@ -35,6 +36,7 @@ public class webAuditReportPage extends webAppHelper {
 	// ==========================================
 	WebAuditService webAuditService = new WebAuditService();
 	CommonService commonService = new CommonService();
+	HttpReqService httpReqService = new HttpReqService();
 	ExtentReportService extentReportService = new ExtentReportService();
 
 	// Declare Variables
@@ -3209,6 +3211,7 @@ public class webAuditReportPage extends webAppHelper {
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());			
 				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
+				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
 				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
 				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
 				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
@@ -3244,6 +3247,7 @@ public class webAuditReportPage extends webAppHelper {
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());			
 				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
+				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
 				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
 				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
 				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
@@ -3279,6 +3283,7 @@ public class webAuditReportPage extends webAppHelper {
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());			
 				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
+				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
 				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
 				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
 				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
@@ -3299,6 +3304,7 @@ public class webAuditReportPage extends webAppHelper {
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
+				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
 				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
 				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
 				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
@@ -3323,6 +3329,7 @@ public class webAuditReportPage extends webAppHelper {
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
+				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
 				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
 				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
 				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
@@ -3498,6 +3505,8 @@ public class webAuditReportPage extends webAppHelper {
 		// Step Definition
 		try {
 
+			// Validate that "No Twitter detected"
+			// Validate that verdict and verbiage is correct
 			if (context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText()
 					.contains("No Twitter detected")
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
@@ -3523,6 +3532,9 @@ public class webAuditReportPage extends webAppHelper {
 
 			}
 
+			// For Verdict = Looking Good
+			// Validate the URL Pattern follows https://twitter.com/AlphaCharacter
+			// Validate that twitter data is either a number (ex. 3000) or a number with prefix (ex. 3K)
 			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
@@ -3557,6 +3569,9 @@ public class webAuditReportPage extends webAppHelper {
 
 			}
 			
+			// For Verdict = For Improvement
+			// Validate the URL Pattern follows https://twitter.com/AlphaCharacter
+			// Validate that twitter data is either a number (ex. 3000) or a number with prefix (ex. 3K)
 			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
@@ -3591,6 +3606,9 @@ public class webAuditReportPage extends webAppHelper {
 
 			}
 			
+			// For Verdict = Critical
+			// Validate the URL Pattern follows https://twitter.com/AlphaCharacter
+			// Validate that twitter data is either a number (ex. 3000) or a number with prefix (ex. 3K)
 			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
@@ -3625,6 +3643,9 @@ public class webAuditReportPage extends webAppHelper {
 
 			}
 			
+			// For Verdict = Looking Good
+			// Validate the URL Pattern do not follows https://twitter.com/AlphaCharacter
+			// Validate that twitter data is either a number (ex. 3000) or a number with prefix (ex. 3K)
 			else if (!Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
@@ -3653,12 +3674,15 @@ public class webAuditReportPage extends webAppHelper {
 				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Twitter SubSection is correct", details);
 
-				context.getExtentTestScenario().log(Status.INFO, "WARNING");
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			}
 			
+			// For Verdict = For Improvement
+			// Validate the URL Pattern do not follows https://twitter.com/AlphaCharacter
+			// Validate that twitter data is either a number (ex. 3000) or a number with prefix (ex. 3K)
 			else if (!Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
@@ -3687,7 +3711,7 @@ public class webAuditReportPage extends webAppHelper {
 				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Twitter SubSection is correct", details);
 
-				context.getExtentTestScenario().log(Status.INFO, "WARNING");
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
