@@ -1,11 +1,13 @@
 package testAuto.Service;
 
+import java.io.IOException;
+import java.util.regex.Pattern;
+
+import org.openqa.selenium.By;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.Headers;
-import okhttp3.ResponseBody;
-import java.io.IOException;
 
 public class HttpReqService {
 
@@ -15,34 +17,38 @@ public class HttpReqService {
 		Response response = null;
 		String URLStatus = null;
 
-		// Create a request object with the URL
-		Request request = new Request.Builder().url(URL).build();
+		if (URL.contains("http") || URL.contains("http")) {
 
-		try {
-			// Execute the request and get the response
-			response = client.newCall(request).execute();
+			// Create a request object with the URL
+			Request request = new Request.Builder().url(URL).build();
 
-			// Check if the response is successful
-			if (response.isSuccessful()) {
-				
-				URLStatus = Integer.toString(response.code());
-				
+			try {
+				// Execute the request and get the response
+				response = client.newCall(request).execute();
 
-			} else {
-				// Print the error message if the request was not successful
-				System.out.println("Error: " + response.code() + " " + response.message());
+				// Check if the response is successful
+				if (response.isSuccessful()) {
+
+					URLStatus = Integer.toString(response.code());
+
+				} else {
+
+					// Print the error message if the request was not successful
+					System.out.println("Error: " + response.code() + " " + response.message());
+
+				}
+			} catch (IOException e) {
+				// Print any exceptions that occur during the request
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			// Print any exceptions that occur during the request
-			e.printStackTrace();
+
 		}
 
-		System.out.println("==================HttpReqService: Header==================");
-		System.out.println(response.headers());
-		
-		System.out.println("==================HttpReqService: Body==================");
-		System.out.println(response.body().string());
-	
+		else {
+
+			URLStatus = "Invalid URL";
+		}
+
 		return URLStatus;
 
 	}
