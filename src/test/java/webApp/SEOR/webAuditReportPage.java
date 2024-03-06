@@ -185,9 +185,9 @@ public class webAuditReportPage extends webAppHelper {
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 			}
-			
+
 			else {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
@@ -197,7 +197,7 @@ public class webAuditReportPage extends webAppHelper {
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
 
 		} catch (Exception e) {
@@ -232,7 +232,7 @@ public class webAuditReportPage extends webAppHelper {
 					&& !context.getDriver().findElement(summarySection_webSiteScore_alpha).getText().isEmpty()
 					&& context.getDriver().findElement(summarySection_webSiteScore_percentage).isDisplayed()
 					&& !context.getDriver().findElement(summarySection_webSiteScore_percentage).getText().isEmpty()) {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
@@ -243,9 +243,9 @@ public class webAuditReportPage extends webAppHelper {
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 			}
-			
+
 			else {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
@@ -255,10 +255,8 @@ public class webAuditReportPage extends webAppHelper {
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
-			}
 
-			
+			}
 
 		} catch (Exception e) {
 
@@ -287,30 +285,30 @@ public class webAuditReportPage extends webAppHelper {
 	public void userSeesTheSummarySectionVerdictTableSubSectionIsCorrect() {
 
 		try {
-			
+
 			// Step Definition
 			// Critical, For Improvement, Looking Good Table Header
 			// ===============================================================
-			if (context.getDriver().findElement(summarySection_verdict_critical).isDisplayed() 
+			if (context.getDriver().findElement(summarySection_verdict_critical).isDisplayed()
 					&& context.getDriver().findElement(summarySection_verdict_criticalScore).isDisplayed()
 					&& !context.getDriver().findElement(summarySection_verdict_criticalScore).getText().isEmpty()
-					
+
 					&& context.getDriver().findElement(summarySection_verdict_forImprovement).isDisplayed()
 					&& context.getDriver().findElement(summarySection_verdict_forImprovementScore).isDisplayed()
 					&& !context.getDriver().findElement(summarySection_verdict_forImprovementScore).getText().isEmpty()
-					
+
 					&& context.getDriver().findElement(summarySection_verdict_lookingGood).isDisplayed()
 					&& context.getDriver().findElement(summarySection_verdict_lookingGoodScore).isDisplayed()
 					&& !context.getDriver().findElement(summarySection_verdict_lookingGoodScore).getText().isEmpty()) {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add(context.getDriver().findElement(summarySection_verdict_critical).getText() + " - " 
-				+ context.getDriver().findElement(summarySection_verdict_criticalScore).getText());
-				details.add(context.getDriver().findElement(summarySection_verdict_forImprovement).getText() + " - " 
+				details.add(context.getDriver().findElement(summarySection_verdict_critical).getText() + " - "
+						+ context.getDriver().findElement(summarySection_verdict_criticalScore).getText());
+				details.add(context.getDriver().findElement(summarySection_verdict_forImprovement).getText() + " - "
 						+ context.getDriver().findElement(summarySection_verdict_forImprovementScore).getText());
-				details.add(context.getDriver().findElement(summarySection_verdict_lookingGood).getText() + " - " 
+				details.add(context.getDriver().findElement(summarySection_verdict_lookingGood).getText() + " - "
 						+ context.getDriver().findElement(summarySection_verdict_lookingGoodScore).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Summary Section > Verdict Table SubSection is correct", details);
@@ -319,30 +317,28 @@ public class webAuditReportPage extends webAppHelper {
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
-							
 			}
-			
+
 			else {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add(context.getDriver().findElement(summarySection_verdict_critical).getText() + " - " 
+				details.add(context.getDriver().findElement(summarySection_verdict_critical).getText() + " - "
 						+ context.getDriver().findElement(summarySection_verdict_criticalScore).getText());
-				details.add(context.getDriver().findElement(summarySection_verdict_forImprovement).getText() + " - " 
+				details.add(context.getDriver().findElement(summarySection_verdict_forImprovement).getText() + " - "
 						+ context.getDriver().findElement(summarySection_verdict_forImprovementScore).getText());
-				details.add(context.getDriver().findElement(summarySection_verdict_lookingGood).getText() + " - " 
+				details.add(context.getDriver().findElement(summarySection_verdict_lookingGood).getText() + " - "
 						+ context.getDriver().findElement(summarySection_verdict_lookingGoodScore).getText());
-						
+
 				extentReportService.insertFailedStep(context,
 						"User sees the Summary Section > Verdict Table SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");			
-				
-			}
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
+			}
 
 		} catch (Exception e) {
 
@@ -351,12 +347,12 @@ public class webAuditReportPage extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add(context.getDriver().findElement(summarySection_verdict_critical).getText() + " - " 
+				details.add(context.getDriver().findElement(summarySection_verdict_critical).getText() + " - "
 						+ context.getDriver().findElement(summarySection_verdict_criticalScore).getText());
-						details.add(context.getDriver().findElement(summarySection_verdict_forImprovement).getText() + " - " 
-								+ context.getDriver().findElement(summarySection_verdict_forImprovementScore).getText());
-						details.add(context.getDriver().findElement(summarySection_verdict_lookingGood).getText() + " - " 
-								+ context.getDriver().findElement(summarySection_verdict_lookingGoodScore).getText());
+				details.add(context.getDriver().findElement(summarySection_verdict_forImprovement).getText() + " - "
+						+ context.getDriver().findElement(summarySection_verdict_forImprovementScore).getText());
+				details.add(context.getDriver().findElement(summarySection_verdict_lookingGood).getText() + " - "
+						+ context.getDriver().findElement(summarySection_verdict_lookingGoodScore).getText());
 				details.add("Error Message: " + e.getMessage());
 				extentReportService.insertFailedStep(context,
 						"User sees the Summary Section > Verdict Table SubSection is correct", details);
@@ -389,84 +385,85 @@ public class webAuditReportPage extends webAppHelper {
 							"$.['Usability']['Mobile Friendliness']['" + context.getDriver()
 									.findElement(subSectionElementFinder("Mobile Friendliness", "verdict")).getText()
 									+ "']");
-			
-			// Validate verbiage from JSON against WebAudit Report -- Looking Good or Critical
-			if (context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verdict"))
-					.getText().equals("Looking Good") && context.getDriver()
-					.findElement(subSectionElementFinder("Mobile Friendliness", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			// Validate verbiage from JSON against WebAudit Report -- Looking Good or
+			// Critical
+			if (context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verdict")).getText()
+					.equals("Looking Good")
+					&& context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verbiage"))
+							.getText().contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("Mobile Friendliness", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Usability Section > Mobile Friendliness SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
+
 			else if (context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verdict"))
-					.getText().equals("Critical") && context.getDriver()
-					.findElement(subSectionElementFinder("Mobile Friendliness", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+					.getText().equals("Critical")
+					&& context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verbiage"))
+							.getText().contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("Mobile Friendliness", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Usability Section > Mobile Friendliness SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
+
 			else if (context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verdict"))
-					.getText().equals("N/A") && context.getDriver()
-					.findElement(subSectionElementFinder("Mobile Friendliness", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+					.getText().equals("N/A")
+					&& context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verbiage"))
+							.getText().contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("Mobile Friendliness", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Usability Section > Mobile Friendliness SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
+
 			else {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Mobile Friendliness", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("Mobile Friendliness", "verbiage")).getText());
 				extentReportService.insertFailedStep(context,
 						"User sees the Usability Section > Mobile Friendliness SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
-			}			
-			
-			
 
-			
+			}
 
 		} catch (Exception e) {
 
@@ -515,80 +512,85 @@ public class webAuditReportPage extends webAppHelper {
 										.findElement(subSectionElementFinder("Google Analytics", "verdict")).getText()
 								+ "']");
 
-				// Validate verbiage from JSON against WebAudit Report -- Looking Good or Critical			
-				if (context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verdict"))
-						.getText().equals("Looking Good") && context.getDriver()
-						.findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText()
-						.contains(expected_verbiage)) {
-					
+				// Validate verbiage from JSON against WebAudit Report -- Looking Good or
+				// Critical
+				if (context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verdict")).getText()
+						.equals("Looking Good")
+						&& context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verbiage"))
+								.getText().contains(expected_verbiage)) {
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
 					extentReportService.insertPassedStep(context,
 							"User sees the Usability Section > Google Analytics SubSection is correct", details);
 
 					context.getExtentTestScenario().log(Status.PASS, "PASSED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
+
 				else if (context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verdict"))
-						.getText().equals("Critical") && context.getDriver()
-						.findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText()
-						.contains(expected_verbiage)) {
-					
+						.getText().equals("Critical")
+						&& context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verbiage"))
+								.getText().contains(expected_verbiage)) {
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
 					extentReportService.insertPassedStep(context,
 							"User sees the Usability Section > Google Analytics SubSection is correct", details);
 
 					context.getExtentTestScenario().log(Status.PASS, "PASSED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
+
 				else if (context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verdict"))
-						.getText().equals("N/A") && context.getDriver()
-						.findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText()
-						.contains(expected_verbiage)) {
-					
+						.getText().equals("N/A")
+						&& context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verbiage"))
+								.getText().contains(expected_verbiage)) {
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
 					extentReportService.insertPassedStep(context,
 							"User sees the Usability Section > Google Analytics SubSection is correct", details);
 
 					context.getExtentTestScenario().log(Status.PASS, "PASSED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
+
 				else {
-					
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Usability Section > Google Analytics SubSection is correct", details);
 
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
+
 			} catch (Exception e) {
 
 				// Check if Rating is available in report
@@ -598,45 +600,45 @@ public class webAuditReportPage extends webAppHelper {
 				// Get value from JSON based on rating -- Looking Good or Critical
 				expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
 						"$.['Usability']['Google Analytics']['N/A']");
-				
-				if (context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verdict"))
-						.getText().equals("N/A") && context.getDriver()
-						.findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText()
-						.contains(expected_verbiage)) {
-					
+
+				if (context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verdict")).getText()
+						.equals("N/A")
+						&& context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verbiage"))
+								.getText().contains(expected_verbiage)) {
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
 					extentReportService.insertPassedStep(context,
 							"User sees the Usability Section > Google Analytics SubSection is correct", details);
 
 					context.getExtentTestScenario().log(Status.PASS, "PASSED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
+
 				else {
-					
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("Google Analytics", "verbiage")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Usability Section > Google Analytics SubSection is correct", details);
 
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
 
 			}
-
-
 
 		} catch (Exception e) {
 
@@ -685,41 +687,42 @@ public class webAuditReportPage extends webAppHelper {
 						.findElement(subSectionElementFinder("website speed", "verbiage")).getText()))
 
 				{
-					
-					if (context.getDriver()
-							.findElement(subSectionElementFinder("website speed", "verbiage")).getText()
+
+					if (context.getDriver().findElement(subSectionElementFinder("website speed", "verbiage")).getText()
 							.equals(expected_verbiage.get(i))) {
-						
+
 						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage.get(i));
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("website speed", "verbiage")).getText());
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("website speed", "verbiage")).getText());
 						extentReportService.insertPassedStep(context,
 								"User sees the Usability Section > Page Speed Insight SubSection is correct", details);
 
 						context.getExtentTestScenario().log(Status.PASS, "PASSED");
 						extentReportService.attachedScreenshotToReport(context,
 								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-						
+
 					}
-					
+
 					else {
-						
+
 						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage.get(i));
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("website speed", "verbiage")).getText());
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("website speed", "verbiage")).getText());
 						extentReportService.insertFailedStep(context,
 								"User sees the Usability Section > Page Speed Insight SubSection is correct", details);
 
 						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 						extentReportService.attachedScreenshotToReport(context,
 								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-						
+
 					}
-					
+
 					break;
 				}
 			}
@@ -801,77 +804,80 @@ public class webAuditReportPage extends webAppHelper {
 			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Security']['SSL']['"
 					+ context.getDriver().findElement(subSectionElementFinder("SSL", "verdict")).getText() + "']");
 
-			if (context.getDriver().findElement(subSectionElementFinder("SSL", "verdict"))
-					.getText().equals("Looking Good") && context.getDriver()
-					.findElement(subSectionElementFinder("SSL", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+			if (context.getDriver().findElement(subSectionElementFinder("SSL", "verdict")).getText()
+					.equals("Looking Good")
+					&& context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Security Section > SSL SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("SSL", "verdict"))
-					.getText().equals("Critical") && context.getDriver()
-					.findElement(subSectionElementFinder("SSL", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("SSL", "verdict")).getText()
+					.equals("Critical")
+					&& context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Security Section > SSL SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("SSL", "verdict"))
-					.getText().equals("N/A") && context.getDriver()
-					.findElement(subSectionElementFinder("SSL", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("SSL", "verdict")).getText().equals("N/A")
+					&& context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Security Section > SSL SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
+
 			else {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("SSL", "verbiage")).getText());
 				extentReportService.insertFailedStep(context,
 						"User sees the Security Section > SSL SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
 
 		} catch (Exception e) {
@@ -905,77 +911,81 @@ public class webAuditReportPage extends webAppHelper {
 			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(), "$.['Security']['Malware']['"
 					+ context.getDriver().findElement(subSectionElementFinder("Malware", "verdict")).getText() + "']");
 
-			if (context.getDriver().findElement(subSectionElementFinder("Malware", "verdict"))
-					.getText().equals("Looking Good") && context.getDriver()
-					.findElement(subSectionElementFinder("Malware", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+			if (context.getDriver().findElement(subSectionElementFinder("Malware", "verdict")).getText()
+					.equals("Looking Good")
+					&& context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Security Section > Malware SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("Malware", "verdict"))
-					.getText().equals("Critical") && context.getDriver()
-					.findElement(subSectionElementFinder("Malware", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("Malware", "verdict")).getText()
+					.equals("Critical")
+					&& context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Security Section > Malware SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("Malware", "verdict"))
-					.getText().equals("N/A") && context.getDriver()
-					.findElement(subSectionElementFinder("Malware", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("Malware", "verdict")).getText()
+					.equals("N/A")
+					&& context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Security Section > Malware SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
+
 			else {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Malware", "verbiage")).getText());
 				extentReportService.insertFailedStep(context,
 						"User sees the Security Section > Malware SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
 
 			// Extent Report
@@ -1033,7 +1043,6 @@ public class webAuditReportPage extends webAppHelper {
 
 				if (context.getDriver().findElement(subSectionElementFinder(subSectionAnchor, "verbiage")).getText()
 						.contains(expected_verbiage)) {
-
 
 					// Extent Report
 					context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
@@ -1157,77 +1166,81 @@ public class webAuditReportPage extends webAppHelper {
 					+ context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict")).getText()
 					+ "']");
 
-			if (context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict"))
-					.getText().equals("Looking Good") && context.getDriver()
-					.findElement(subSectionElementFinder("blacklisted", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+			if (context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict")).getText()
+					.equals("Looking Good")
+					&& context.getDriver().findElement(subSectionElementFinder("blacklisted", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("blacklisted", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("blacklisted", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Security Section > Blacklisted SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict"))
-					.getText().equals("Critical") && context.getDriver()
-					.findElement(subSectionElementFinder("blacklisted", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict")).getText()
+					.equals("Critical")
+					&& context.getDriver().findElement(subSectionElementFinder("blacklisted", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("blacklisted", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("blacklisted", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Security Section > Blacklisted SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict"))
-					.getText().equals("N/A") && context.getDriver()
-					.findElement(subSectionElementFinder("blacklisted", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("blacklisted", "verdict")).getText()
+					.equals("N/A")
+					&& context.getDriver().findElement(subSectionElementFinder("blacklisted", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("blacklisted", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("blacklisted", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Security Section > Blacklisted SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
+
 			else {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("blacklisted", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("blacklisted", "verbiage")).getText());
 				extentReportService.insertFailedStep(context,
 						"User sees the Security Section > Blacklisted SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
 
 		} catch (Exception e) {
@@ -1315,77 +1328,81 @@ public class webAuditReportPage extends webAppHelper {
 							+ context.getDriver().findElement(subSectionElementFinder("Sitemap", "verdict")).getText()
 							+ "']");
 
-			if (context.getDriver().findElement(subSectionElementFinder("Sitemap", "verdict"))
-					.getText().equals("Looking Good") && context.getDriver()
-					.findElement(subSectionElementFinder("Sitemap", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+			if (context.getDriver().findElement(subSectionElementFinder("Sitemap", "verdict")).getText()
+					.equals("Looking Good")
+					&& context.getDriver().findElement(subSectionElementFinder("Sitemap", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Sitemap", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Sitemap", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Sitemap SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("Sitemap", "verdict"))
-					.getText().equals("Critical") && context.getDriver()
-					.findElement(subSectionElementFinder("Sitemap", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("Sitemap", "verdict")).getText()
+					.equals("Critical")
+					&& context.getDriver().findElement(subSectionElementFinder("Sitemap", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Sitemap", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Sitemap", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Sitemap SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("Sitemap", "verdict"))
-					.getText().equals("N/A") && context.getDriver()
-					.findElement(subSectionElementFinder("Sitemap", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("Sitemap", "verdict")).getText()
+					.equals("N/A")
+					&& context.getDriver().findElement(subSectionElementFinder("Sitemap", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Sitemap", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Sitemap", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Sitemap SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
+
 			else {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Sitemap", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Sitemap", "verbiage")).getText());
 				extentReportService.insertFailedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Sitemap SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
 
 		} catch (Exception e) {
@@ -1427,77 +1444,81 @@ public class webAuditReportPage extends webAppHelper {
 							+ context.getDriver().findElement(subSectionElementFinder("Robots", "verdict")).getText()
 							+ "']");
 
-			if (context.getDriver().findElement(subSectionElementFinder("Robots", "verdict"))
-					.getText().equals("Looking Good") && context.getDriver()
-					.findElement(subSectionElementFinder("Robots", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+			if (context.getDriver().findElement(subSectionElementFinder("Robots", "verdict")).getText()
+					.equals("Looking Good")
+					&& context.getDriver().findElement(subSectionElementFinder("Robots", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Robots", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Robots", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Robot SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("Robots", "verdict"))
-					.getText().equals("Critical") && context.getDriver()
-					.findElement(subSectionElementFinder("Robots", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("Robots", "verdict")).getText()
+					.equals("Critical")
+					&& context.getDriver().findElement(subSectionElementFinder("Robots", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Robots", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Robots", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Robot SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("Robots", "verdict"))
-					.getText().equals("N/A") && context.getDriver()
-					.findElement(subSectionElementFinder("Robots", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("Robots", "verdict")).getText()
+					.equals("N/A")
+					&& context.getDriver().findElement(subSectionElementFinder("Robots", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Robots", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Robots", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Robot SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
+
 			else {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Robots", "verbiage")).getText());
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Robots", "verbiage")).getText());
 				extentReportService.insertFailedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Robot SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
 
 		} catch (Exception e) {
@@ -1538,77 +1559,81 @@ public class webAuditReportPage extends webAppHelper {
 					"$.['Organic Traffic']['Technical SEO']['Redirection']['" + context.getDriver()
 							.findElement(subSectionElementFinder("redirection", "verdict")).getText() + "']");
 
-			if (context.getDriver().findElement(subSectionElementFinder("redirection", "verdict"))
-					.getText().equals("Looking Good") && context.getDriver()
-					.findElement(subSectionElementFinder("redirection", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+			if (context.getDriver().findElement(subSectionElementFinder("redirection", "verdict")).getText()
+					.equals("Looking Good")
+					&& context.getDriver().findElement(subSectionElementFinder("redirection", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("redirection", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("redirection", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Redirection SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("redirection", "verdict"))
-					.getText().equals("Critical") && context.getDriver()
-					.findElement(subSectionElementFinder("redirection", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("redirection", "verdict")).getText()
+					.equals("Critical")
+					&& context.getDriver().findElement(subSectionElementFinder("redirection", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("redirection", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("redirection", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Redirection SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
-			else if (context.getDriver().findElement(subSectionElementFinder("redirection", "verdict"))
-					.getText().equals("N/A") && context.getDriver()
-					.findElement(subSectionElementFinder("redirection", "verbiage")).getText()
-					.contains(expected_verbiage)) {
-				
+
+			else if (context.getDriver().findElement(subSectionElementFinder("redirection", "verdict")).getText()
+					.equals("N/A")
+					&& context.getDriver().findElement(subSectionElementFinder("redirection", "verbiage")).getText()
+							.contains(expected_verbiage)) {
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("redirection", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("redirection", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Redirection SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
-			
+
 			else {
-				
+
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("redirection", "verbiage")).getText());
+				details.add("Actual Verbiage: " + context.getDriver()
+						.findElement(subSectionElementFinder("redirection", "verbiage")).getText());
 				extentReportService.insertFailedStep(context,
 						"User sees the Organic Traffic > Technical SEO > Redirection SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
 
 		} catch (Exception e) {
@@ -1645,140 +1670,132 @@ public class webAuditReportPage extends webAppHelper {
 			context.getWait()
 					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("title", "verdict")));
 
-			
-			try {				
-				
-				
-				String expected_verbiage = JsonPath
-						.read(getWebAuditReportVerbiages(),
-								"$.['Organic Traffic']['On-Page SEO']['Title']['"
-										+ context.getDriver()
-												.findElement(subSectionElementFinder("title", "verdict")).getText()
-										+ "']");
-	
+			try {
+
+				String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+						"$.['Organic Traffic']['On-Page SEO']['Title']['"
+								+ context.getDriver().findElement(subSectionElementFinder("title", "verdict")).getText()
+								+ "']");
+
 				// validate verbiage against actual
-				if (context.getDriver().findElement(subSectionElementFinder("title", "verdict"))
-						.getText().equals("For Improvement") && context.getDriver()
-						.findElement(subSectionElementFinder("title", "verbiage")).getText()
-						.contains(expected_verbiage)) {
-					
+				if (context.getDriver().findElement(subSectionElementFinder("title", "verdict")).getText()
+						.equals("For Improvement")
+						&& context.getDriver().findElement(subSectionElementFinder("title", "verbiage")).getText()
+								.contains(expected_verbiage)) {
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("title", "verbiage")).getText());
+					details.add("Actual Verbiage: "
+							+ context.getDriver().findElement(subSectionElementFinder("title", "verbiage")).getText());
 					extentReportService.insertPassedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Title SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.PASS, "PASSED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
-				}			
-				
-				else if (context.getDriver().findElement(subSectionElementFinder("title", "verdict"))
-						.getText().equals("N/A") && context.getDriver()
-						.findElement(subSectionElementFinder("title", "verbiage")).getText()
-						.contains(expected_verbiage)) {
-					
-					// Extent Report
-					details.clear();
-					details.add("Page URL: " + context.getDriver().getCurrentUrl());
-					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("title", "verbiage")).getText());
-					extentReportService.insertPassedStep(context,
-							"User sees the Organic Traffic > OnPage SEO > Title SubSection is correct", details);
-	
-					context.getExtentTestScenario().log(Status.PASS, "PASSED");
-					extentReportService.attachedScreenshotToReport(context,
-							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
-				else {
-					
+
+				else if (context.getDriver().findElement(subSectionElementFinder("title", "verdict")).getText()
+						.equals("N/A")
+						&& context.getDriver().findElement(subSectionElementFinder("title", "verbiage")).getText()
+								.contains(expected_verbiage)) {
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("title", "verbiage")).getText());
+					details.add("Actual Verbiage: "
+							+ context.getDriver().findElement(subSectionElementFinder("title", "verbiage")).getText());
+					extentReportService.insertPassedStep(context,
+							"User sees the Organic Traffic > OnPage SEO > Title SubSection is correct", details);
+
+					context.getExtentTestScenario().log(Status.PASS, "PASSED");
+					extentReportService.attachedScreenshotToReport(context,
+							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+				}
+
+				else {
+
+					// Extent Report
+					details.clear();
+					details.add("Page URL: " + context.getDriver().getCurrentUrl());
+					details.add("Expected Verbiage: " + expected_verbiage);
+					details.add("Actual Verbiage: "
+							+ context.getDriver().findElement(subSectionElementFinder("title", "verbiage")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Title SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-			
+
 			} catch (Exception e) {
-				
-				
-				
+
 				JSONArray expected_verbiageArray = JsonPath.read(getWebAuditReportVerbiages(),
 						"$.['Organic Traffic']['On-Page SEO']['Title']['"
 								+ context.getDriver().findElement(subSectionElementFinder("title", "verdict")).getText()
-								+ "']");				
-				
+								+ "']");
+
 				String expected_verbiage = "";
-				
-				if (context.getDriver().findElement(subSectionElementFinder("title", "verdict"))
-						.getText().equals("Critical")) {
-					
-					
-					
+
+				if (context.getDriver().findElement(subSectionElementFinder("title", "verdict")).getText()
+						.equals("Critical")) {
+
 					// validate verbiage against actual
 					for (int i = 0; i < expected_verbiageArray.size(); i++) {
-						
+
 						expected_verbiage = expected_verbiageArray.get(i).toString();
-				
-						
-						if (context.getDriver().findElement(subSectionElementFinder("title", "verdict"))
-								.getText().equals("For Improvement") && context.getDriver()
-								.findElement(subSectionElementFinder("title", "verbiage")).getText()
-								.equals(expected_verbiage)) {
-							
+
+						if (context.getDriver().findElement(subSectionElementFinder("title", "verdict")).getText()
+								.equals("For Improvement")
+								&& context.getDriver().findElement(subSectionElementFinder("title", "verbiage"))
+										.getText().equals(expected_verbiage)) {
+
 							// Extent Report
 							details.clear();
 							details.add("Page URL: " + context.getDriver().getCurrentUrl());
 							details.add("Expected Verbiage: " + expected_verbiage);
-							details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("title", "verbiage")).getText());
+							details.add("Actual Verbiage: " + context.getDriver()
+									.findElement(subSectionElementFinder("title", "verbiage")).getText());
 							extentReportService.insertPassedStep(context,
-									"User sees the Organic Traffic > OnPage SEO > Title SubSection is correct", details);
+									"User sees the Organic Traffic > OnPage SEO > Title SubSection is correct",
+									details);
 
 							context.getExtentTestScenario().log(Status.PASS, "PASSED");
 							extentReportService.attachedScreenshotToReport(context,
 									"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-							
+
 							break;
-							
+
 						}
-					}					
+					}
 				}
-				
+
 				else {
-					
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("title", "verbiage")).getText());
+					details.add("Actual Verbiage: "
+							+ context.getDriver().findElement(subSectionElementFinder("title", "verbiage")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Title SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
-				
-				
+
 			}
 
-			
-
-			
 		} catch (Exception e) {
 
 			try {
@@ -1812,135 +1829,133 @@ public class webAuditReportPage extends webAppHelper {
 
 			context.getWait().until(
 					ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("description", "verdict")));
-			
-			try {				
-				
-				
+
+			try {
+
 				String expected_verbiage = JsonPath
 						.read(getWebAuditReportVerbiages(),
-								"$.['Organic Traffic']['On-Page SEO']['Description']['"
-										+ context.getDriver()
-												.findElement(subSectionElementFinder("description", "verdict")).getText()
+								"$.['Organic Traffic']['On-Page SEO']['Description']['" + context.getDriver()
+										.findElement(subSectionElementFinder("description", "verdict")).getText()
 										+ "']");
-	
+
 				// validate verbiage against actual
-				if (context.getDriver().findElement(subSectionElementFinder("description", "verdict"))
-						.getText().equals("For Improvement") && context.getDriver()
-						.findElement(subSectionElementFinder("description", "verbiage")).getText()
-						.contains(expected_verbiage)) {
-					
+				if (context.getDriver().findElement(subSectionElementFinder("description", "verdict")).getText()
+						.equals("For Improvement")
+						&& context.getDriver().findElement(subSectionElementFinder("description", "verbiage")).getText()
+								.contains(expected_verbiage)) {
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("description", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("description", "verbiage")).getText());
 					extentReportService.insertPassedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Description SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.PASS, "PASSED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
-				}			
-				
-				else if (context.getDriver().findElement(subSectionElementFinder("description", "verdict"))
-						.getText().equals("N/A") && context.getDriver()
-						.findElement(subSectionElementFinder("description", "verbiage")).getText()
-						.contains(expected_verbiage)) {
-					
-					// Extent Report
-					details.clear();
-					details.add("Page URL: " + context.getDriver().getCurrentUrl());
-					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("description", "verbiage")).getText());
-					extentReportService.insertPassedStep(context,
-							"User sees the Organic Traffic > OnPage SEO > Description SubSection is correct", details);
-	
-					context.getExtentTestScenario().log(Status.PASS, "PASSED");
-					extentReportService.attachedScreenshotToReport(context,
-							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
-				else {
-					
+
+				else if (context.getDriver().findElement(subSectionElementFinder("description", "verdict")).getText()
+						.equals("N/A")
+						&& context.getDriver().findElement(subSectionElementFinder("description", "verbiage")).getText()
+								.contains(expected_verbiage)) {
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("description", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("description", "verbiage")).getText());
+					extentReportService.insertPassedStep(context,
+							"User sees the Organic Traffic > OnPage SEO > Description SubSection is correct", details);
+
+					context.getExtentTestScenario().log(Status.PASS, "PASSED");
+					extentReportService.attachedScreenshotToReport(context,
+							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+				}
+
+				else {
+
+					// Extent Report
+					details.clear();
+					details.add("Page URL: " + context.getDriver().getCurrentUrl());
+					details.add("Expected Verbiage: " + expected_verbiage);
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("description", "verbiage")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Description SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-			
+
 			} catch (Exception e) {
-				
-				
-				
-				JSONArray expected_verbiageArray = JsonPath.read(getWebAuditReportVerbiages(),
-						"$.['Organic Traffic']['On-Page SEO']['Description']['"
-								+ context.getDriver().findElement(subSectionElementFinder("description", "verdict")).getText()
-								+ "']");				
-				
+
+				JSONArray expected_verbiageArray = JsonPath
+						.read(getWebAuditReportVerbiages(),
+								"$.['Organic Traffic']['On-Page SEO']['Description']['" + context.getDriver()
+										.findElement(subSectionElementFinder("description", "verdict")).getText()
+										+ "']");
+
 				String expected_verbiage = "";
-				
-				if (context.getDriver().findElement(subSectionElementFinder("description", "verdict"))
-						.getText().equals("Critical")) {
-					
-					
-					
+
+				if (context.getDriver().findElement(subSectionElementFinder("description", "verdict")).getText()
+						.equals("Critical")) {
+
 					// validate verbiage against actual
 					for (int i = 0; i < expected_verbiageArray.size(); i++) {
-						
+
 						expected_verbiage = expected_verbiageArray.get(i).toString();
-				
-						
-						if (context.getDriver().findElement(subSectionElementFinder("description", "verdict"))
-								.getText().equals("For Improvement") && context.getDriver()
-								.findElement(subSectionElementFinder("description", "verbiage")).getText()
-								.equals(expected_verbiage)) {
-							
+
+						if (context.getDriver().findElement(subSectionElementFinder("description", "verdict")).getText()
+								.equals("For Improvement")
+								&& context.getDriver().findElement(subSectionElementFinder("description", "verbiage"))
+										.getText().equals(expected_verbiage)) {
+
 							// Extent Report
 							details.clear();
 							details.add("Page URL: " + context.getDriver().getCurrentUrl());
 							details.add("Expected Verbiage: " + expected_verbiage);
-							details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("description", "verbiage")).getText());
+							details.add("Actual Verbiage: " + context.getDriver()
+									.findElement(subSectionElementFinder("description", "verbiage")).getText());
 							extentReportService.insertPassedStep(context,
-									"User sees the Organic Traffic > OnPage SEO > Description SubSection is correct", details);
+									"User sees the Organic Traffic > OnPage SEO > Description SubSection is correct",
+									details);
 
 							context.getExtentTestScenario().log(Status.PASS, "PASSED");
 							extentReportService.attachedScreenshotToReport(context,
 									"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-							
+
 							break;
-							
+
 						}
-					}					
+					}
 				}
-				
+
 				else {
-					
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("description", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("description", "verbiage")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Description SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
-				
-				
+
 			}
 
 		} catch (Exception e) {
@@ -1970,157 +1985,159 @@ public class webAuditReportPage extends webAppHelper {
 	public void userSeesTheOrganicTrafficSectionOnPageSEOHeadingSubSectionIsCorrect() throws IOException {
 
 		try {
-			
+
 			// Step Definition
 			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
 					context.getDriver().findElement(subSectionElementFinder("redirection", "verdict")));
 
 			context.getWait()
 					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("headings", "verdict")));
-			
-			try {				
-				
-				
+
+			try {
+
 				String expected_verbiage = JsonPath
 						.read(getWebAuditReportVerbiages(),
 								"$.['Organic Traffic']['On-Page SEO']['Headings']['"
 										+ context.getDriver()
 												.findElement(subSectionElementFinder("headings", "verdict")).getText()
 										+ "']");
-	
+
 				// validate verbiage against actual
-				if (context.getDriver().findElement(subSectionElementFinder("headings", "verdict"))
-						.getText().equals("Critical") && context.getDriver()
-						.findElement(subSectionElementFinder("headings", "verbiage")).getText()
-						.contains(expected_verbiage)) {
-					
+				if (context.getDriver().findElement(subSectionElementFinder("headings", "verdict")).getText()
+						.equals("Critical")
+						&& context.getDriver().findElement(subSectionElementFinder("headings", "verbiage")).getText()
+								.contains(expected_verbiage)) {
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("headings", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("headings", "verbiage")).getText());
 					extentReportService.insertPassedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.PASS, "PASSED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
-				}			
-				
-				else if (context.getDriver().findElement(subSectionElementFinder("headings", "verdict"))
-						.getText().equals("N/A") && context.getDriver()
-						.findElement(subSectionElementFinder("headings", "verbiage")).getText()
-						.contains(expected_verbiage)) {
-					
-					// Extent Report
-					details.clear();
-					details.add("Page URL: " + context.getDriver().getCurrentUrl());
-					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("headings", "verbiage")).getText());
-					extentReportService.insertPassedStep(context,
-							"User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct", details);
-	
-					context.getExtentTestScenario().log(Status.PASS, "PASSED");
-					extentReportService.attachedScreenshotToReport(context,
-							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
-				else {
-					
+
+				else if (context.getDriver().findElement(subSectionElementFinder("headings", "verdict")).getText()
+						.equals("N/A")
+						&& context.getDriver().findElement(subSectionElementFinder("headings", "verbiage")).getText()
+								.contains(expected_verbiage)) {
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("headings", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("headings", "verbiage")).getText());
+					extentReportService.insertPassedStep(context,
+							"User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct", details);
+
+					context.getExtentTestScenario().log(Status.PASS, "PASSED");
+					extentReportService.attachedScreenshotToReport(context,
+							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+				}
+
+				else {
+
+					// Extent Report
+					details.clear();
+					details.add("Page URL: " + context.getDriver().getCurrentUrl());
+					details.add("Expected Verbiage: " + expected_verbiage);
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("headings", "verbiage")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-			
+
 			} catch (Exception e) {
-				
-				
-				
-				JSONArray expected_verbiageArray = JsonPath.read(getWebAuditReportVerbiages(),
-						"$.['Organic Traffic']['On-Page SEO']['Headings']['"
-								+ context.getDriver().findElement(subSectionElementFinder("headings", "verdict")).getText()
-								+ "']");				
-				
+
+				JSONArray expected_verbiageArray = JsonPath
+						.read(getWebAuditReportVerbiages(),
+								"$.['Organic Traffic']['On-Page SEO']['Headings']['"
+										+ context.getDriver()
+												.findElement(subSectionElementFinder("headings", "verdict")).getText()
+										+ "']");
+
 				String expected_verbiage = "";
-				
-				if (context.getDriver().findElement(subSectionElementFinder("headings", "verdict"))
-						.getText().equals("For Improvement")) {
-					
-					
-					
+
+				if (context.getDriver().findElement(subSectionElementFinder("headings", "verdict")).getText()
+						.equals("For Improvement")) {
+
 					// validate verbiage against actual
 					for (int i = 0; i < expected_verbiageArray.size(); i++) {
-						
+
 						expected_verbiage = expected_verbiageArray.get(i).toString();
-				
-						
-						if (context.getDriver().findElement(subSectionElementFinder("headings", "verdict"))
-								.getText().equals("For Improvement") && context.getDriver()
-								.findElement(subSectionElementFinder("headings", "verbiage")).getText()
-								.equals(expected_verbiage)) {
-							
+
+						if (context.getDriver().findElement(subSectionElementFinder("headings", "verdict")).getText()
+								.equals("For Improvement")
+								&& context.getDriver().findElement(subSectionElementFinder("headings", "verbiage"))
+										.getText().equals(expected_verbiage)) {
+
 							// Extent Report
 							details.clear();
 							details.add("Page URL: " + context.getDriver().getCurrentUrl());
 							details.add("Expected Verbiage: " + expected_verbiage);
-							details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("headings", "verbiage")).getText());
+							details.add("Actual Verbiage: " + context.getDriver()
+									.findElement(subSectionElementFinder("headings", "verbiage")).getText());
 							extentReportService.insertPassedStep(context,
-									"User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct", details);
+									"User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct",
+									details);
 
 							context.getExtentTestScenario().log(Status.PASS, "PASSED");
 							extentReportService.attachedScreenshotToReport(context,
 									"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-							
+
 							break;
-							
+
 						}
-					}					
+					}
 				}
-				
+
 				else {
-					
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("headings", "verbiage")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("headings", "verbiage")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
-				
-				
+
 			}
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Organic Traffic > OnPage SEO > Heading SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -2139,165 +2156,159 @@ public class webAuditReportPage extends webAppHelper {
 
 			context.getWait()
 					.until(ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Images", "verdict")));
-			
-			try {				
-				
-				
-				String expected_verbiage = JsonPath
-						.read(getWebAuditReportVerbiages(),
-								"$.['Organic Traffic']['On-Page SEO']['Images']['"
-										+ context.getDriver()
-												.findElement(subSectionElementFinder("Images", "verdict")).getText()
-										+ "']");
-	
+
+			try {
+
+				String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
+						"$.['Organic Traffic']['On-Page SEO']['Images']['" + context.getDriver()
+								.findElement(subSectionElementFinder("Images", "verdict")).getText() + "']");
+
 				// validate verbiage against actual
-				if (context.getDriver().findElement(subSectionElementFinder("Images", "verdict"))
-						.getText().equals("N/A") && context.getDriver()
-						.findElement(subSectionElementFinder("Images", "verbiage")).getText()
-						.contains(expected_verbiage)) {
-					
+				if (context.getDriver().findElement(subSectionElementFinder("Images", "verdict")).getText()
+						.equals("N/A")
+						&& context.getDriver().findElement(subSectionElementFinder("Images", "verbiage")).getText()
+								.contains(expected_verbiage)) {
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Images", "verbiage")).getText());
+					details.add("Actual Verbiage: "
+							+ context.getDriver().findElement(subSectionElementFinder("Images", "verbiage")).getText());
 					extentReportService.insertPassedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Images SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.PASS, "PASSED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
-				}			
-				
+
+				}
+
 				else {
-					
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Images", "verbiage")).getText());
+					details.add("Actual Verbiage: "
+							+ context.getDriver().findElement(subSectionElementFinder("Images", "verbiage")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Images SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-			
+
 			} catch (Exception e) {
-				
-				
-				
+
 				JSONArray expected_verbiageArray = JsonPath.read(getWebAuditReportVerbiages(),
-						"$.['Organic Traffic']['On-Page SEO']['Images']['"
-								+ context.getDriver().findElement(subSectionElementFinder("Images", "verdict")).getText()
-								+ "']");				
-				
+						"$.['Organic Traffic']['On-Page SEO']['Images']['" + context.getDriver()
+								.findElement(subSectionElementFinder("Images", "verdict")).getText() + "']");
+
 				String expected_verbiage = "";
-				
-				if (context.getDriver().findElement(subSectionElementFinder("Images", "verdict"))
-						.getText().equals("Critical")) {
-					
-					
-					
+
+				if (context.getDriver().findElement(subSectionElementFinder("Images", "verdict")).getText()
+						.equals("Critical")) {
+
 					// validate verbiage against actual
 					for (int i = 0; i < expected_verbiageArray.size(); i++) {
-						
+
 						expected_verbiage = expected_verbiageArray.get(i).toString();
-				
-						
-						if (context.getDriver().findElement(subSectionElementFinder("Images", "verdict"))
-								.getText().equals("For Improvement") && context.getDriver()
-								.findElement(subSectionElementFinder("Images", "verbiage")).getText()
-								.equals(expected_verbiage)) {
-							
+
+						if (context.getDriver().findElement(subSectionElementFinder("Images", "verdict")).getText()
+								.equals("For Improvement")
+								&& context.getDriver().findElement(subSectionElementFinder("Images", "verbiage"))
+										.getText().equals(expected_verbiage)) {
+
 							// Extent Report
 							details.clear();
 							details.add("Page URL: " + context.getDriver().getCurrentUrl());
 							details.add("Expected Verbiage: " + expected_verbiage);
-							details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Images", "verbiage")).getText());
+							details.add("Actual Verbiage: " + context.getDriver()
+									.findElement(subSectionElementFinder("Images", "verbiage")).getText());
 							extentReportService.insertPassedStep(context,
-									"User sees the Organic Traffic > OnPage SEO > Images SubSection is correct", details);
+									"User sees the Organic Traffic > OnPage SEO > Images SubSection is correct",
+									details);
 
 							context.getExtentTestScenario().log(Status.PASS, "PASSED");
 							extentReportService.attachedScreenshotToReport(context,
 									"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-							
+
 							break;
-							
+
 						}
-					}					
+					}
 				}
-				
-				else if (context.getDriver().findElement(subSectionElementFinder("Images", "verdict"))
-						.getText().equals("For Improvement")) {
-					
-					
-					
+
+				else if (context.getDriver().findElement(subSectionElementFinder("Images", "verdict")).getText()
+						.equals("For Improvement")) {
+
 					// validate verbiage against actual
 					for (int i = 0; i < expected_verbiageArray.size(); i++) {
-						
+
 						expected_verbiage = expected_verbiageArray.get(i).toString();
-				
-						
-						if (context.getDriver().findElement(subSectionElementFinder("Images", "verdict"))
-								.getText().equals("For Improvement") && context.getDriver()
-								.findElement(subSectionElementFinder("Images", "verbiage")).getText()
-								.equals(expected_verbiage)) {
-							
+
+						if (context.getDriver().findElement(subSectionElementFinder("Images", "verdict")).getText()
+								.equals("For Improvement")
+								&& context.getDriver().findElement(subSectionElementFinder("Images", "verbiage"))
+										.getText().equals(expected_verbiage)) {
+
 							// Extent Report
 							details.clear();
 							details.add("Page URL: " + context.getDriver().getCurrentUrl());
 							details.add("Expected Verbiage: " + expected_verbiage);
-							details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Images", "verbiage")).getText());
+							details.add("Actual Verbiage: " + context.getDriver()
+									.findElement(subSectionElementFinder("Images", "verbiage")).getText());
 							extentReportService.insertPassedStep(context,
-									"User sees the Organic Traffic > OnPage SEO > Images SubSection is correct", details);
+									"User sees the Organic Traffic > OnPage SEO > Images SubSection is correct",
+									details);
 
 							context.getExtentTestScenario().log(Status.PASS, "PASSED");
 							extentReportService.attachedScreenshotToReport(context,
 									"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-							
+
 							break;
-							
+
 						}
-					}					
+					}
 				}
-				
+
 				else {
-					
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Images", "verbiage")).getText());
+					details.add("Actual Verbiage: "
+							+ context.getDriver().findElement(subSectionElementFinder("Images", "verbiage")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Organic Traffic > OnPage SEO > Images SubSection is correct", details);
-	
+
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
-				
-				
-				
+
 			}
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OnPage SEO > Images SubSection is correct", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Organic Traffic > OnPage SEO > Images SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -2327,45 +2338,53 @@ public class webAuditReportPage extends webAppHelper {
 					.contains(expected_verbiage)
 					&& Pattern.matches("[0-9]+",
 							context.getDriver().findElement(subSectionElementParentH3Finder("Backlinks")).getText())) {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Backlinks", "verbiage")).getText());
-				extentReportService.insertPassedStep(context, "User sees the Organic Traffic > OnPage SEO > Backlinks SubSection is correct", details);				
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Backlinks", "verbiage")).getText());
+				extentReportService.insertPassedStep(context,
+						"User sees the Organic Traffic > OnPage SEO > Backlinks SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 			}
-			
+
 			else {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Backlinks", "verbiage")).getText());
-				extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OnPage SEO > Backlinks SubSection is correct", details);				
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(subSectionElementFinder("Backlinks", "verbiage")).getText());
+				extentReportService.insertFailedStep(context,
+						"User sees the Organic Traffic > OnPage SEO > Backlinks SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			}
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OnPage SEO > Backlinks SubSection is correct", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Organic Traffic > OnPage SEO > Backlinks SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -2393,36 +2412,44 @@ public class webAuditReportPage extends webAppHelper {
 
 				if (expected_verbiage.get(i).toString().equals(context.getDriver()
 						.findElement(subSectionElementFinder("MOZ Domain Authority", "verbiage")).getText())) {
-					
-					
+
 					if (Pattern.matches("[0-9]+", context.getDriver()
 							.findElement(subSectionElementParentH3Finder("MOZ Domain Authority")).getText())) {
 
-						// Extent Report				
+						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage);
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("MOZ Domain Authority", "verbiage")).getText());
-						extentReportService.insertPassedStep(context, "User sees the Organic Traffic > OnPage SEO > MOZ Domain Authority SubSection is correct", details);				
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("MOZ Domain Authority", "verbiage")).getText());
+						extentReportService.insertPassedStep(context,
+								"User sees the Organic Traffic > OnPage SEO > MOZ Domain Authority SubSection is correct",
+								details);
 
 						context.getExtentTestScenario().log(Status.PASS, "PASSED");
-						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-						
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 						break;
-						
+
 					} else {
-						
-						// Extent Report				
+
+						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage);
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("MOZ Domain Authority", "verbiage")).getText());
-						details.add("Additional Details: " + "MOZ Domain Authority count is NULL and/or MOZ Page Authority verbiage is incorrect");
-						extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OnPage SEO > MOZ Domain Authority SubSection is correct", details);				
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("MOZ Domain Authority", "verbiage")).getText());
+						details.add("Additional Details: "
+								+ "MOZ Domain Authority count is NULL and/or MOZ Page Authority verbiage is incorrect");
+						extentReportService.insertFailedStep(context,
+								"User sees the Organic Traffic > OnPage SEO > MOZ Domain Authority SubSection is correct",
+								details);
 
 						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-						
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 					}
 
 				}
@@ -2431,16 +2458,19 @@ public class webAuditReportPage extends webAppHelper {
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OnPage SEO > MOZ Domain Authority SubSection is correct", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Organic Traffic > OnPage SEO > MOZ Domain Authority SubSection is correct",
+						details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -2468,36 +2498,43 @@ public class webAuditReportPage extends webAppHelper {
 
 				if (expected_verbiage.get(i).toString().equals(context.getDriver()
 						.findElement(subSectionElementFinder("MOZ Page Authority", "verbiage")).getText())) {
-					
-					
-					
+
 					if (Pattern.matches("[0-9]+", context.getDriver()
 							.findElement(subSectionElementParentH3Finder("MOZ Page Authority")).getText())) {
 
-						// Extent Report				
+						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage);
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("MOZ Page Authority", "verbiage")).getText());
-						extentReportService.insertPassedStep(context, "User sees the Organic Traffic > OffPage SEO > MOZ Page Authority SubSection is correct", details);				
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("MOZ Page Authority", "verbiage")).getText());
+						extentReportService.insertPassedStep(context,
+								"User sees the Organic Traffic > OffPage SEO > MOZ Page Authority SubSection is correct",
+								details);
 
 						context.getExtentTestScenario().log(Status.PASS, "PASSED");
-						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-						
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 						break;
 					} else {
 
-						// Extent Report				
+						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage);
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("MOZ Page Authority", "verbiage")).getText());
-						details.add("Additional Details: " + "MOZ Page Authority count is NULL and/or MOZ Page Authority verbiage is incorrect");
-						extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OffPage SEO > MOZ Page Authority SubSection is correct", details);				
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("MOZ Page Authority", "verbiage")).getText());
+						details.add("Additional Details: "
+								+ "MOZ Page Authority count is NULL and/or MOZ Page Authority verbiage is incorrect");
+						extentReportService.insertFailedStep(context,
+								"User sees the Organic Traffic > OffPage SEO > MOZ Page Authority SubSection is correct",
+								details);
 
 						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-						
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 					}
 
 				}
@@ -2506,16 +2543,19 @@ public class webAuditReportPage extends webAppHelper {
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OffPage SEO > MOZ Page Authority SubSection is correct", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Organic Traffic > OffPage SEO > MOZ Page Authority SubSection is correct",
+						details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -2544,33 +2584,41 @@ public class webAuditReportPage extends webAppHelper {
 				if (expected_verbiage.get(i).toString().equals(context.getDriver()
 						.findElement(subSectionElementFinder("Majestic Citation Flow", "verbiage")).getText())) {
 
-
 					if (Pattern.matches("[0-9]+", context.getDriver()
 							.findElement(subSectionElementParentH3Finder("Majestic Citation Flow")).getText())) {
 
-						// Extent Report				
+						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage);
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Majestic Citation Flow", "verbiage")).getText());
-						extentReportService.insertPassedStep(context, "User sees the Organic Traffic > OffPage SEO > Majestic Citation Flow SubSection is correct", details);				
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("Majestic Citation Flow", "verbiage")).getText());
+						extentReportService.insertPassedStep(context,
+								"User sees the Organic Traffic > OffPage SEO > Majestic Citation Flow SubSection is correct",
+								details);
 
 						context.getExtentTestScenario().log(Status.PASS, "PASSED");
-						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-						
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 						break;
 					} else {
 
-						// Extent Report				
+						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage);
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Majestic Citation Flow", "verbiage")).getText());
-						details.add("Additional Details: " + "Majestic Citation Flow count is NULL and/or MOZ Page Authority verbiage is incorrect");
-						extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OffPage SEO > Majestic Citation Flow SubSection is correct", details);				
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("Majestic Citation Flow", "verbiage")).getText());
+						details.add("Additional Details: "
+								+ "Majestic Citation Flow count is NULL and/or MOZ Page Authority verbiage is incorrect");
+						extentReportService.insertFailedStep(context,
+								"User sees the Organic Traffic > OffPage SEO > Majestic Citation Flow SubSection is correct",
+								details);
 
 						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 					}
 
 				}
@@ -2579,16 +2627,19 @@ public class webAuditReportPage extends webAppHelper {
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OffPage SEO > Majestic Citation Flow SubSection is correct", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Organic Traffic > OffPage SEO > Majestic Citation Flow SubSection is correct",
+						details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -2617,36 +2668,43 @@ public class webAuditReportPage extends webAppHelper {
 				if (expected_verbiage.get(i).toString().equals(context.getDriver()
 						.findElement(subSectionElementFinder("Majestic Trust Flow", "verbiage")).getText())) {
 
-					
-
 					if (Pattern.matches("[0-9]+", context.getDriver()
 							.findElement(subSectionElementParentH3Finder("Majestic Trust Flow")).getText())) {
-						
-						// Extent Report				
+
+						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage);
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Majestic Trust Flow", "verbiage")).getText());
-						extentReportService.insertPassedStep(context, "User sees the Organic Traffic > OffPage SEO > Majestic Trust Flow SubSection is correct", details);				
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("Majestic Trust Flow", "verbiage")).getText());
+						extentReportService.insertPassedStep(context,
+								"User sees the Organic Traffic > OffPage SEO > Majestic Trust Flow SubSection is correct",
+								details);
 
 						context.getExtentTestScenario().log(Status.PASS, "PASSED");
-						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 						break;
 
 					} else {
 
-						// Extent Report				
+						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage);
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Majestic Trust Flow", "verbiage")).getText());
-						details.add("Additional Details: " + "Majestic Trust Flow count is NULL and/or MOZ Page Authority verbiage is incorrect");
-						extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OffPage SEO > Majestic Trust Flow SubSection is correct", details);				
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("Majestic Trust Flow", "verbiage")).getText());
+						details.add("Additional Details: "
+								+ "Majestic Trust Flow count is NULL and/or MOZ Page Authority verbiage is incorrect");
+						extentReportService.insertFailedStep(context,
+								"User sees the Organic Traffic > OffPage SEO > Majestic Trust Flow SubSection is correct",
+								details);
 
 						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-						extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-						
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 					}
 
 				}
@@ -2655,16 +2713,19 @@ public class webAuditReportPage extends webAppHelper {
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Organic Traffic > OffPage SEO > Majestic Trust Flow SubSection is correct", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Organic Traffic > OffPage SEO > Majestic Trust Flow SubSection is correct",
+						details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -2691,27 +2752,29 @@ public class webAuditReportPage extends webAppHelper {
 
 			// Thread.sleep(1000);
 
-			// Extent Report				
+			// Extent Report
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			extentReportService.insertPassedStep(context, "User scroll to Paid Traffic Section", details);				
+			extentReportService.insertPassedStep(context, "User scroll to Paid Traffic Section", details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User scroll to Paid Traffic Section", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User scroll to Paid Traffic Section", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -2733,46 +2796,56 @@ public class webAuditReportPage extends webAppHelper {
 					&& Pattern.matches("^\\d*.?\\d*K?$",
 							context.getDriver().findElement(subSectionElementParentH3Finder("Estimated")).getText())) {
 
-			
-				// Extent Report				
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(By.xpath("//p[contains(text(), 'Estimated')]")).getText());
-				details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Estimated")).getText());
-				extentReportService.insertPassedStep(context, "User sees the Paid Traffic > Estimated Traffic SubSection is correct", details);				
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(By.xpath("//p[contains(text(), 'Estimated')]")).getText());
+				details.add("Actual Count: "
+						+ context.getDriver().findElement(subSectionElementParentH3Finder("Estimated")).getText());
+				extentReportService.insertPassedStep(context,
+						"User sees the Paid Traffic > Estimated Traffic SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			} else {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(By.xpath("//p[contains(text(), 'Estimated')]")).getText());
-				details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Estimated")).getText());
-				details.add("Additional Details: " + "Estimated Traffic count is NULL and/or MOZ Page Authority verbiage is incorrect");				
-				extentReportService.insertFailedStep(context, "User sees the Paid Traffic > Estimated Traffic SubSection is correct", details);			
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(By.xpath("//p[contains(text(), 'Estimated')]")).getText());
+				details.add("Actual Count: "
+						+ context.getDriver().findElement(subSectionElementParentH3Finder("Estimated")).getText());
+				details.add("Additional Details: "
+						+ "Estimated Traffic count is NULL and/or MOZ Page Authority verbiage is incorrect");
+				extentReportService.insertFailedStep(context,
+						"User sees the Paid Traffic > Estimated Traffic SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 			}
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Paid Traffic > Estimated Traffic SubSection is correct", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Paid Traffic > Estimated Traffic SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -2796,48 +2869,58 @@ public class webAuditReportPage extends webAppHelper {
 					&& Pattern.matches("[0-9]+",
 							context.getDriver().findElement(subSectionElementParentH3Finder("Keywords")).getText())) {
 
-				
-				// Extent Report				
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(By.xpath("//p[contains(text(), 'Estimated')]")).getText());
-				details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Keywords")).getText());
-				extentReportService.insertPassedStep(context, "User sees the Paid Traffic > Keyword Detected SubSection is correct", details);				
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(By.xpath("//p[contains(text(), 'Estimated')]")).getText());
+				details.add("Actual Count: "
+						+ context.getDriver().findElement(subSectionElementParentH3Finder("Keywords")).getText());
+				extentReportService.insertPassedStep(context,
+						"User sees the Paid Traffic > Keyword Detected SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 			}
 
 			else {
 
-				// Extent Report				
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
-				details.add("Actual Verbiage: " + context.getDriver().findElement(By.xpath("//p[contains(text(), 'Estimated')]")).getText());
-				details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Keywords")).getText());
-				details.add("Additional Details: " + "Keyword Detected count is NULL and/or MOZ Page Authority verbiage is incorrect");				
-				extentReportService.insertFailedStep(context, "User sees the Paid Traffic > Keyword Detected SubSection is correct", details);			
+				details.add("Actual Verbiage: "
+						+ context.getDriver().findElement(By.xpath("//p[contains(text(), 'Estimated')]")).getText());
+				details.add("Actual Count: "
+						+ context.getDriver().findElement(subSectionElementParentH3Finder("Keywords")).getText());
+				details.add("Additional Details: "
+						+ "Keyword Detected count is NULL and/or MOZ Page Authority verbiage is incorrect");
+				extentReportService.insertFailedStep(context,
+						"User sees the Paid Traffic > Keyword Detected SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			}
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Paid Traffic > Keyword Detected SubSection is correct", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Paid Traffic > Keyword Detected SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -2866,15 +2949,15 @@ public class webAuditReportPage extends webAppHelper {
 						context.getDriver().findElement(subSectionElementFinder("Position", "verbiage")).getText())
 						&& Pattern.matches("[0-9]+", context.getDriver()
 								.findElement(subSectionElementParentH3Finder("Position")).getText())) {
-					
 
-					
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Position", "verbiage")).getText());
-					details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Position")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("Position", "verbiage")).getText());
+					details.add("Actual Count: "
+							+ context.getDriver().findElement(subSectionElementParentH3Finder("Position")).getText());
 					extentReportService.insertPassedStep(context,
 							"User sees the Paid Traffic > Average Position SubSection is correct", details);
 
@@ -2885,13 +2968,15 @@ public class webAuditReportPage extends webAppHelper {
 				}
 
 				else {
-					
+
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Position", "verbiage")).getText());
-					details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Position")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("Position", "verbiage")).getText());
+					details.add("Actual Count: "
+							+ context.getDriver().findElement(subSectionElementParentH3Finder("Position")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Paid Traffic > Average Position SubSection is correct", details);
 
@@ -2923,8 +3008,10 @@ public class webAuditReportPage extends webAppHelper {
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage.get(i));
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Position", "verbiage")).getText());
-						details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Position")).getText());
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("Position", "verbiage")).getText());
+						details.add("Actual Count: " + context.getDriver()
+								.findElement(subSectionElementParentH3Finder("Position")).getText());
 						extentReportService.insertPassedStep(context,
 								"User sees the Paid Traffic > Average Position SubSection is correct", details);
 
@@ -2946,15 +3033,17 @@ public class webAuditReportPage extends webAppHelper {
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Position", "verbiage")).getText());
-					details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Position")).getText());
+					details.add("Actual Verbiage: " + context.getDriver()
+							.findElement(subSectionElementFinder("Position", "verbiage")).getText());
+					details.add("Actual Count: "
+							+ context.getDriver().findElement(subSectionElementParentH3Finder("Position")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Paid Traffic > Average Position SubSection is correct", details);
 
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
 							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-					
+
 				}
 
 			}
@@ -2963,16 +3052,18 @@ public class webAuditReportPage extends webAppHelper {
 		catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Paid Traffic > Average Position SubSection is correct", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Paid Traffic > Average Position SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -2995,17 +3086,19 @@ public class webAuditReportPage extends webAppHelper {
 								+ context.getDriver().findElement(subSectionElementFinder("Ratio", "verdict")).getText()
 								+ "']");
 
-				if (expected_verbiage.equals(context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText())
+				if (expected_verbiage
+						.equals(context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText())
 						&& Pattern.matches("^\\d*.?\\d*%$",
 								context.getDriver().findElement(subSectionElementParentH3Finder("Ratio")).getText())) {
 
-					
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText());
-					details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Ratio")).getText());
+					details.add("Actual Verbiage: "
+							+ context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText());
+					details.add("Actual Count: "
+							+ context.getDriver().findElement(subSectionElementParentH3Finder("Ratio")).getText());
 					extentReportService.insertPassedStep(context,
 							"User sees the Paid Traffic > Average Position SubSection is correct", details);
 
@@ -3021,8 +3114,10 @@ public class webAuditReportPage extends webAppHelper {
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText());
-					details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Ratio")).getText());
+					details.add("Actual Verbiage: "
+							+ context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText());
+					details.add("Actual Count: "
+							+ context.getDriver().findElement(subSectionElementParentH3Finder("Ratio")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Paid Traffic > Average Position SubSection is correct", details);
 
@@ -3052,8 +3147,10 @@ public class webAuditReportPage extends webAppHelper {
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
 						details.add("Expected Verbiage: " + expected_verbiage);
-						details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText());
-						details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Ratio")).getText());
+						details.add("Actual Verbiage: " + context.getDriver()
+								.findElement(subSectionElementFinder("Ratio", "verbiage")).getText());
+						details.add("Actual Count: "
+								+ context.getDriver().findElement(subSectionElementParentH3Finder("Ratio")).getText());
 						extentReportService.insertPassedStep(context,
 								"User sees the Paid Traffic > Average Position SubSection is correct", details);
 
@@ -3074,8 +3171,10 @@ public class webAuditReportPage extends webAppHelper {
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Expected Verbiage: " + expected_verbiage);
-					details.add("Actual Verbiage: " + context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText());
-					details.add("Actual Count: " + context.getDriver().findElement(subSectionElementParentH3Finder("Ratio")).getText());
+					details.add("Actual Verbiage: "
+							+ context.getDriver().findElement(subSectionElementFinder("Ratio", "verbiage")).getText());
+					details.add("Actual Count: "
+							+ context.getDriver().findElement(subSectionElementParentH3Finder("Ratio")).getText());
 					extentReportService.insertFailedStep(context,
 							"User sees the Paid Traffic > Average Position SubSection is correct", details);
 
@@ -3092,16 +3191,18 @@ public class webAuditReportPage extends webAppHelper {
 		catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Paid Traffic > Average Position SubSection is correct", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Paid Traffic > Average Position SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -3127,30 +3228,28 @@ public class webAuditReportPage extends webAppHelper {
 					context.getDriver().findElement(SectionElemenFinder("social")));
 
 			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User scroll to Social Activity Section").pass("PASSED");
-			
-			// Extent Report				
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			extentReportService.insertFailedStep(context, "User scroll to Social Activity Section", details);			
+			extentReportService.insertPassedStep(context, "User scroll to Social Activity Section", details);
 
-			context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User scroll to Social Activity Section", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User scroll to Social Activity Section", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -3174,16 +3273,16 @@ public class webAuditReportPage extends webAppHelper {
 
 				// Extent Report
 				details.clear();
-				details.add("Page URL: " + context.getDriver().getCurrentUrl());			
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
-				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
+				details.add("Actual-Verbiage: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Social Activity > Facebook SubSection is correct", details);
-				
+
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
@@ -3206,26 +3305,32 @@ public class webAuditReportPage extends webAppHelper {
 					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$", context.getDriver()
 							.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText())) {
 
-				
 				// Extent Report
 				details.clear();
-				details.add("Page URL: " + context.getDriver().getCurrentUrl());			
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
-				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
-				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText());
+				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(
+						context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
+				details.add("Actual-Likes: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
 				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Facebook SubSection is correct", details);
-				
+
 				context.getExtentTestScenario().log(Status.INFO, "WARNING");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			}
-			
+
 			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText()
@@ -3242,26 +3347,32 @@ public class webAuditReportPage extends webAppHelper {
 					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$", context.getDriver()
 							.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText())) {
 
-				
 				// Extent Report
 				details.clear();
-				details.add("Page URL: " + context.getDriver().getCurrentUrl());			
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
-				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
-				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText());
+				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(
+						context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
+				details.add("Actual-Likes: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
 				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Facebook SubSection is correct", details);
-				
+
 				context.getExtentTestScenario().log(Status.INFO, "WARNINING");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			}
-			
+
 			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText()
@@ -3278,20 +3389,26 @@ public class webAuditReportPage extends webAppHelper {
 					&& Pattern.matches("^\\d*.?\\d*[A-Z]?$", context.getDriver()
 							.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText())) {
 
-				
 				// Extent Report
 				details.clear();
-				details.add("Page URL: " + context.getDriver().getCurrentUrl());			
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
-				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
-				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText());
+				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(
+						context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
+				details.add("Actual-Likes: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
 				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Facebook SubSection is correct", details);
-				
+
 				context.getExtentTestScenario().log(Status.INFO, "WARNINING");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
@@ -3303,20 +3420,28 @@ public class webAuditReportPage extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
-				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
-				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText());
+				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(
+						context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
+				details.add("Actual-Likes: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
+
 				extentReportService.insertFailedStep(context,
 						"User sees the Social Activity > Facebook SubSection is correct", details);
-				
+
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-				
+
 			}
 
 		}
@@ -3324,23 +3449,32 @@ public class webAuditReportPage extends webAppHelper {
 		catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[1]")).getText());
-				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
-				details.add("Actual-Likes: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
-				details.add("Actual-Number of Post: " + context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Social Activity > Facebook SubSection is correct", details);				
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText());
+				details.add("Actual-URLStatusCode: " + httpReqService.checkURLStatus200(
+						context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText()));
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verdict")).getText());
+				details.add("Actual-Likes: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow1")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow3")).getText());
+				details.add("Actual-Number of Post: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("facebook", "verbiagerow4")).getText());
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Social Activity > Facebook SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -3477,25 +3611,25 @@ public class webAuditReportPage extends webAppHelper {
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User validates the Social Activity > Facebook SubSection > Data is pulled between "
-						+ fromDate + " and " + toDate, details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User validates the Social Activity > Facebook SubSection > Data is pulled between " + fromDate
+								+ " and " + toDate,
+						details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
-		
-		
-		
 
 	}
 
@@ -3517,12 +3651,12 @@ public class webAuditReportPage extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
-				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiage")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Social Activity > Twitter SubSection is correct", details);
 
@@ -3534,7 +3668,8 @@ public class webAuditReportPage extends webAppHelper {
 
 			// For Verdict = Looking Good
 			// Validate the URL Pattern follows https://twitter.com/AlphaCharacter
-			// Validate that twitter data is either a number (ex. 3000) or a number with prefix (ex. 3K)
+			// Validate that twitter data is either a number (ex. 3000) or a number with
+			// prefix (ex. 3K)
 			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
@@ -3554,12 +3689,18 @@ public class webAuditReportPage extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
-				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
 				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Twitter SubSection is correct", details);
 
@@ -3568,10 +3709,11 @@ public class webAuditReportPage extends webAppHelper {
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			}
-			
+
 			// For Verdict = For Improvement
 			// Validate the URL Pattern follows https://twitter.com/AlphaCharacter
-			// Validate that twitter data is either a number (ex. 3000) or a number with prefix (ex. 3K)
+			// Validate that twitter data is either a number (ex. 3000) or a number with
+			// prefix (ex. 3K)
 			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
@@ -3591,12 +3733,18 @@ public class webAuditReportPage extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
-				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
 				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Twitter SubSection is correct", details);
 
@@ -3605,10 +3753,11 @@ public class webAuditReportPage extends webAppHelper {
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			}
-			
+
 			// For Verdict = Critical
 			// Validate the URL Pattern follows https://twitter.com/AlphaCharacter
-			// Validate that twitter data is either a number (ex. 3000) or a number with prefix (ex. 3K)
+			// Validate that twitter data is either a number (ex. 3000) or a number with
+			// prefix (ex. 3K)
 			else if (Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
@@ -3628,12 +3777,18 @@ public class webAuditReportPage extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
-				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
 				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Twitter SubSection is correct", details);
 
@@ -3642,10 +3797,11 @@ public class webAuditReportPage extends webAppHelper {
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			}
-			
+
 			// For Verdict = Looking Good
 			// Validate the URL Pattern do not follows https://twitter.com/AlphaCharacter
-			// Validate that twitter data is either a number (ex. 3000) or a number with prefix (ex. 3K)
+			// Validate that twitter data is either a number (ex. 3000) or a number with
+			// prefix (ex. 3K)
 			else if (!Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
@@ -3665,12 +3821,18 @@ public class webAuditReportPage extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
-				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
 				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Twitter SubSection is correct", details);
 
@@ -3679,10 +3841,11 @@ public class webAuditReportPage extends webAppHelper {
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			}
-			
+
 			// For Verdict = For Improvement
 			// Validate the URL Pattern do not follows https://twitter.com/AlphaCharacter
-			// Validate that twitter data is either a number (ex. 3000) or a number with prefix (ex. 3K)
+			// Validate that twitter data is either a number (ex. 3000) or a number with
+			// prefix (ex. 3K)
 			else if (!Pattern.matches("^[a-z]+:\\/\\/[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText()
@@ -3702,12 +3865,18 @@ public class webAuditReportPage extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
-				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
 				extentReportService.insertWarningStep(context,
 						"User sees the Social Activity > Twitter SubSection is correct", details);
 
@@ -3721,12 +3890,18 @@ public class webAuditReportPage extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
-				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
 				extentReportService.insertFailedStep(context,
 						"User sees the Social Activity > Twitter SubSection is correct", details);
 
@@ -3740,22 +3915,30 @@ public class webAuditReportPage extends webAppHelper {
 		catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Actual-URL: " + context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
-				details.add("Actual-Verdict: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
-				details.add("Actual-Follower: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
-				details.add("Actual-Average EngageMent: " + context.getDriver() .findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
-				details.add("Actual-Number of Tweets: " + context.getDriver().findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User sees the Paid Traffic > Keyword Detected SubSection is correct", details);				
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User sees the Paid Traffic > Keyword Detected SubSection is correct", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
