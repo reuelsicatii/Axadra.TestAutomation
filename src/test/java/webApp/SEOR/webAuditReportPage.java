@@ -2325,8 +2325,8 @@ public class webAuditReportPage extends webAppHelper {
 			context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
 					context.getDriver().findElement(subSectionElementFinder("Images", "verdict")));
 
-			context.getWait().until(
-					ExpectedConditions.presenceOfElementLocated(subSectionElementFinder("Backlinks", "verdict")));
+			context.getWait()
+					.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[contains(text(), 'Backlinks')]")));
 
 			String expected_verbiage = JsonPath.read(getWebAuditReportVerbiages(),
 					"$.['Organic Traffic']['Off-Page SEO']['Backlinks']['"
@@ -2344,7 +2344,7 @@ public class webAuditReportPage extends webAppHelper {
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
 				details.add("Actual Verbiage: "
-						+ context.getDriver().findElement(subSectionElementFinder("Backlinks", "verbiage")).getText());
+						+ context.getDriver().findElement(By.xpath("//p[contains(text(), 'Backlinks')]")).getText());
 				extentReportService.insertPassedStep(context,
 						"User sees the Organic Traffic > OnPage SEO > Backlinks SubSection is correct", details);
 
@@ -2360,7 +2360,7 @@ public class webAuditReportPage extends webAppHelper {
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Verbiage: " + expected_verbiage);
 				details.add("Actual Verbiage: "
-						+ context.getDriver().findElement(subSectionElementFinder("Backlinks", "verbiage")).getText());
+						+ context.getDriver().findElement(By.xpath("//p[contains(text(), 'Backlinks')]")).getText());
 				extentReportService.insertFailedStep(context,
 						"User sees the Organic Traffic > OnPage SEO > Backlinks SubSection is correct", details);
 
@@ -3414,7 +3414,7 @@ public class webAuditReportPage extends webAppHelper {
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			}
-			
+
 			else if (!Pattern.matches("^[a-z]+:\\/\\/[a-z]{3}.[a-z]+.[a-z]{3}\\/[a-zA-Z]+\\/?$",
 					context.getDriver().findElement(By.xpath("//div[@id='facebook']/div[1]/div[2]")).getText())
 					&& context.getDriver().findElement(subSectionSocialElementFinder("facebook", "verdict")).getText()
@@ -3997,7 +3997,7 @@ public class webAuditReportPage extends webAppHelper {
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 			}
-			
+
 			// For Verdict = For Improvement
 			// Validate the URL Pattern do not follows https://twitter.com/AlphaCharacter
 			// Validate that twitter data is either a number (ex. 3000) or a number with
@@ -4042,29 +4042,29 @@ public class webAuditReportPage extends webAppHelper {
 
 			}
 
-		else {
-			// Extent Report
-			details.clear();
-			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			details.add("Actual-URL: "
-					+ context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
-			details.add("Actual-Verdict: " + context.getDriver()
-					.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
-			details.add("Actual-Follower: " + context.getDriver()
-					.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
-			details.add("Actual-Number of Tweets: " + context.getDriver()
-					.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
-			details.add("Actual-Average EngageMent: " + context.getDriver()
-					.findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
-			details.add("Actual-Number of Tweets: " + context.getDriver()
-					.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
-			extentReportService.insertFailedStep(context,
-					"User sees the Social Activity > Twitter SubSection is correct", details);
+			else {
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Actual-URL: "
+						+ context.getDriver().findElement(By.xpath("//div[@id='twitter']/div[1]/div[2]")).getText());
+				details.add("Actual-Verdict: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verdict")).getText());
+				details.add("Actual-Follower: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow1")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow2")).getText());
+				details.add("Actual-Average EngageMent: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow3")).getText());
+				details.add("Actual-Number of Tweets: " + context.getDriver()
+						.findElement(subSectionSocialElementFinder("twitter", "verbiagerow4")).getText());
+				extentReportService.insertFailedStep(context,
+						"User sees the Social Activity > Twitter SubSection is correct", details);
 
-			context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-			extentReportService.attachedScreenshotToReport(context,
-					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
-		}
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			}
 
 		}
 
