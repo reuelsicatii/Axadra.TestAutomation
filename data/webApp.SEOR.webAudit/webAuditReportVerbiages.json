@@ -94,7 +94,7 @@
                "Headings are the titles and subtitles of your site. They are really important for search engines.",
                "Headings are the title and subtitles of your site. They are really important for search engines."
             ],
-            "Critical":"Your headings seem to be problematic. Headings are improtant for search engines.",
+            "Critical":"Your headings seem to be problematic. Headings are important for search engines.",
             "N/A":"Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again"
          },
          "Images":{
