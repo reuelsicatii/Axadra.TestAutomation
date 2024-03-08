@@ -63,6 +63,7 @@ public class loginPage extends webAppHelper {
 
 			// Extent Report				
 			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
 			extentReportService.insertPassedStep(context, "User enter the username as " + username, details);				
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
@@ -97,6 +98,7 @@ public class loginPage extends webAppHelper {
 
 			// Extent Report				
 			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
 			extentReportService.insertPassedStep(context, "User enter the password as " + password, details);				
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
@@ -132,6 +134,7 @@ public class loginPage extends webAppHelper {
 
 			// Extent Report				
 			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
 			extentReportService.insertPassedStep(context, "User click on the login button", details);				
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
@@ -169,6 +172,7 @@ public class loginPage extends webAppHelper {
 
 				// Extent Report				
 				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				extentReportService.insertPassedStep(context, "User is successfully login", details);				
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
@@ -178,6 +182,7 @@ public class loginPage extends webAppHelper {
 				
 				// Extent Report				
 				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				extentReportService.insertFailedStep(context, "User is successfully login", details);				
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
@@ -214,6 +219,7 @@ public class loginPage extends webAppHelper {
 
 			// Extent Report				
 			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
 			extentReportService.insertPassedStep(context, "User enter the Compass > username as " + username, details);				
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
@@ -248,6 +254,7 @@ public class loginPage extends webAppHelper {
 
 			// Extent Report				
 			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
 			extentReportService.insertPassedStep(context, "User enter the Compass > password as " + password, details);				
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
@@ -283,6 +290,7 @@ public class loginPage extends webAppHelper {
 
 			// Extent Report				
 			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
 			extentReportService.insertPassedStep(context, "User click on the Compass > login button", details);				
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
@@ -320,6 +328,7 @@ public class loginPage extends webAppHelper {
 
 				// Extent Report				
 				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				extentReportService.insertPassedStep(context, "User is successfully login", details);				
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
@@ -329,6 +338,7 @@ public class loginPage extends webAppHelper {
 
 				// Extent Report				
 				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				extentReportService.insertFailedStep(context, "User is successfully login", details);				
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
