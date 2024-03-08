@@ -3717,7 +3717,7 @@ public class webAuditReportPage extends webAppHelper {
 				}
 
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/webAudit/UservalidatestheSocialActivityFacebookSubSectionDataispulledbetween.png?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/UservalidatestheSocialActivityFacebookSubSectionDataispulledbetween.png?raw=true");
 			}
 
 		} catch (Exception e) {
@@ -3735,7 +3735,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/UservalidatestheSocialActivityFacebookSubSectionDataispulledbetween.png?raw=true");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -4212,7 +4212,7 @@ public class webAuditReportPage extends webAppHelper {
 				}
 
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/webAudit/UservalidatestheSocialActivityTwitterSubSectionDataispulledbetween.png?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/UservalidatestheSocialActivityTwitterSubSectionDataispulledbetween.png?raw=true");
 			}
 
 		} catch (Exception e) {
@@ -4231,7 +4231,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/webAudit/UservalidatestheSocialActivityTwitterSubSectionDataispulledbetween.png?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/UservalidatestheSocialActivityTwitterSubSectionDataispulledbetween.png?raw=true");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block

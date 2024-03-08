@@ -66,7 +66,7 @@ public class loginPage extends webAppHelper {
 			extentReportService.insertPassedStep(context, "User enter the username as " + username, details);				
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/login/userEnterTheUsernameAs.png?raw=true");
 
 		} catch (Exception e) {
 
@@ -79,7 +79,7 @@ public class loginPage extends webAppHelper {
 				extentReportService.insertFailedStep(context, "User enter the username as " + username, details);				
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/login/userEnterTheUsernameAs.png?raw=true");
 			
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -100,7 +100,7 @@ public class loginPage extends webAppHelper {
 			extentReportService.insertPassedStep(context, "User enter the password as " + password, details);				
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/login/userEnterThePasswordAs.png?raw=true");
 
 		} catch (Exception e) {
 
@@ -113,7 +113,7 @@ public class loginPage extends webAppHelper {
 				extentReportService.insertFailedStep(context, "User enter the password as " + password, details);				
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/login/userEnterThePasswordAs.png?raw=true");
 			
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -135,7 +135,7 @@ public class loginPage extends webAppHelper {
 			extentReportService.insertPassedStep(context, "User click on the login button", details);				
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/login/userClickOnTheLoginButton.png?raw=true");
 
 		} catch (Exception e) {
 
@@ -148,7 +148,7 @@ public class loginPage extends webAppHelper {
 				extentReportService.insertFailedStep(context, "User click on the login button", details);				
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/login/userClickOnTheLoginButton.png?raw=true");
 			
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -172,7 +172,7 @@ public class loginPage extends webAppHelper {
 				extentReportService.insertPassedStep(context, "User is successfully login", details);				
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/login/userIsSuccessfullyLogin.png?raw=true");
 				
 			} else {
 				
@@ -181,7 +181,7 @@ public class loginPage extends webAppHelper {
 				extentReportService.insertFailedStep(context, "User is successfully login", details);				
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/login/userIsSuccessfullyLogin.png?raw=true");
 
 			}
 
