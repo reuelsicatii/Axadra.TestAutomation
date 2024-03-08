@@ -12,6 +12,7 @@ import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import testAuto.Service.ExtentReportService;
 import testAuto.Service.WebAuditService;
 
 public class webAuditPage extends webAppHelper {
@@ -36,6 +37,14 @@ public class webAuditPage extends webAppHelper {
 		this.context = context;
 	}
 
+	// Declare Services
+	// ==========================================
+	ExtentReportService extentReportService = new ExtentReportService();
+
+	// Declare Variables
+	// ==========================================
+	ArrayList<String> details = new ArrayList<String>();
+
 	// Page Step Definition
 	// =================================================
 	@When("User generates a WebAuditReport")
@@ -50,6 +59,19 @@ public class webAuditPage extends webAppHelper {
 			context.getDriver().findElement(urlWebAudit_inputfield).sendKeys(url);
 			Thread.sleep(2000);
 			context.getDriver().findElement(urlWebAudit_button).click();
+			
+			
+			// Extent Report
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			details.add("Additional Details: " + "Populate WebAudit textfield with " + url + "and click RUN AUDIT button");
+			extentReportService.insertPassedStep(context,
+					"User generates a WebAuditReport", details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userGeneratesAWebAuditReport1.png?raw=true");
+			
 
 			// Check WebAudit Report is generated
 			// ==================================================
@@ -62,11 +84,15 @@ public class webAuditPage extends webAppHelper {
 					if (x >= 420) {
 
 						// Extent Report
-						context.getExtentTestScenario()
-								.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport")
-								.fail("FAILED: Not able to generate WebAudit Report for " + url + "<br>"
-										+ "WebAudit Report generation, waiting for " + x + "sec");
-						context.getExtentTestScenario().log(Status.FAIL, "Failed");
+						details.clear();
+						details.add("Page URL: " + context.getDriver().getCurrentUrl());
+						details.add("Additional Details: " + "Not able to generate WebAudit Report for " + url + "WebAudit Report generation, waiting for " + x + "sec");
+
+						extentReportService.insertFailedStep(context, "User generates a WebAuditReport", details);
+
+						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userGeneratesAWebAuditReport2.png?raw=true");
 
 						// exit the loop
 						System.out.println("Exiting whileloop");
@@ -79,10 +105,17 @@ public class webAuditPage extends webAppHelper {
 									"(//table[@id='webaudit-table']//tbody//a[contains(text(), '" + url + "')])[1]"))
 							.isDisplayed()) {
 
+						
 						// Extent Report
-						context.getExtentTestScenario()
-								.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport for " + url)
-								.pass("PASSED");
+						details.clear();
+						details.add("Page URL: " + context.getDriver().getCurrentUrl());
+						details.add("Additional Details: " + "Able to generate WebAudit Report for " + url + "WebAudit Report generation, waiting for " + x + "sec");
+						extentReportService.insertPassedStep(context,
+								"User generates a WebAuditReport", details);
+
+						context.getExtentTestScenario().log(Status.PASS, "PASSED");
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userGeneratesAWebAuditReport2.png?raw=true");
 
 						// exit the loop
 						System.out.println("Exiting whileloop");
@@ -103,10 +136,19 @@ public class webAuditPage extends webAppHelper {
 
 			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User generates a WebAuditReport for " + url)
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+					
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Additional Details: " + "Not able to generate WebAudit Report for " + url);
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User generates a WebAuditReport", details);
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userGeneratesAWebAuditReport2.png?raw=true");
+				
+				
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -125,19 +167,30 @@ public class webAuditPage extends webAppHelper {
 					context.getDriver().findElement(urlWebAudit_button));
 			context.getDriver().findElement(recent_WebAuditReport).click();
 
+			
 			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User clicks the most recent WebAuditReport")
-					.pass("PASSED");
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			extentReportService.insertPassedStep(context, "User clicks the most recent WebAuditReport", details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
 			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"), "User clicks the most recent WebAuditReport")
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User clicks the most recent WebAuditReport", details);
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				
+				
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -154,19 +207,29 @@ public class webAuditPage extends webAppHelper {
 			context.getDriver().switchTo().window(newTb.get(1));
 
 			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("When"), "User sees a new tab is open redering the WebAuditReport")
-					.pass("PASSED");
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			extentReportService.insertPassedStep(context, "User sees a new tab is open redering the WebAuditReport", details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
 			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("When"),
-								"User sees a new tab is open redering the WebAuditReport")
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				
+				
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				extentReportService.insertFailedStep(context, "User sees a new tab is open redering the WebAuditReport", details);
+				details.add("Error Message: " + e.getMessage());
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				
+				
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
