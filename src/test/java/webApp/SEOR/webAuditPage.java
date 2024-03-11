@@ -174,7 +174,8 @@ public class webAuditPage extends webAppHelper {
 			extentReportService.insertPassedStep(context, "User clicks the most recent WebAuditReport", details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			extentReportService.attachedScreenshotToReport(context, 
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userClicksTheMostRecentWebAuditReport.png?raw=true");
 
 		} catch (Exception e) {
 
@@ -188,7 +189,8 @@ public class webAuditPage extends webAppHelper {
 				extentReportService.insertFailedStep(context, "User clicks the most recent WebAuditReport", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				extentReportService.attachedScreenshotToReport(context, 
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userClicksTheMostRecentWebAuditReport.png?raw=true");
 				
 				
 			} catch (ClassNotFoundException e1) {
@@ -212,7 +214,8 @@ public class webAuditPage extends webAppHelper {
 			extentReportService.insertPassedStep(context, "User sees a new tab is open redering the WebAuditReport", details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			extentReportService.attachedScreenshotToReport(context, 
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesANewTabIsOpenRederingTheWebAuditReport.png?raw=true");
 
 		} catch (Exception e) {
 
@@ -227,7 +230,8 @@ public class webAuditPage extends webAppHelper {
 				details.add("Error Message: " + e.getMessage());
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+				extentReportService.attachedScreenshotToReport(context, 
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesANewTabIsOpenRederingTheWebAuditReport.png?raw=true");
 				
 				
 			} catch (ClassNotFoundException e1) {
