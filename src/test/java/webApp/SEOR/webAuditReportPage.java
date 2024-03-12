@@ -783,7 +783,7 @@ public class webAuditReportPage extends webAppHelper {
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
 			extentReportService.attachedScreenshotToReport(context,
-					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userScrollToSecuritySection.png?raw=true");
 
 		} catch (Exception e) {
 
@@ -797,7 +797,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userScrollToSecuritySection.png?raw=true");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -830,7 +830,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionSSLSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -850,7 +850,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionSSLSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -869,7 +869,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionSSLSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -886,7 +886,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionSSLSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -903,7 +903,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionSSLSubSectionIsCorrect.png?raw=true");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -937,7 +937,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionMalwareSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -957,7 +957,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionMalwareSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -977,7 +977,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionMalwareSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -994,19 +994,9 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionMalwareSubSectionIsCorrect.png?raw=true");
 
 			}
-
-			// Extent Report
-			details.clear();
-			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			extentReportService.insertPassedStep(context,
-					"User sees the Security Section > Malware SubSection is correct", details);
-
-			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context,
-					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
@@ -1020,7 +1010,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionMalwareSubSectionIsCorrect.png?raw=true");
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -1055,10 +1045,6 @@ public class webAuditReportPage extends webAppHelper {
 						.contains(expected_verbiage)) {
 
 					// Extent Report
-					context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-							"User sees the Security Section > HTTPS SubSection is correct").pass("PASSED");
-
-					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
 					details.add("Actual - verbiage: " + context.getDriver()
@@ -1069,7 +1055,7 @@ public class webAuditReportPage extends webAppHelper {
 
 					context.getExtentTestScenario().log(Status.PASS, "PASSED");
 					extentReportService.attachedScreenshotToReport(context,
-							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionHTTPSSubSectionIsCorrect.png?raw=true");
 				}
 
 				else {
@@ -1085,7 +1071,7 @@ public class webAuditReportPage extends webAppHelper {
 
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
-							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionHTTPSSubSectionIsCorrect.png?raw=true");
 
 				}
 
@@ -1116,7 +1102,7 @@ public class webAuditReportPage extends webAppHelper {
 
 						context.getExtentTestScenario().log(Status.PASS, "PASSED");
 						extentReportService.attachedScreenshotToReport(context,
-								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionHTTPSSubSectionIsCorrect.png?raw=true");
 
 						fail = false;
 
@@ -1138,7 +1124,7 @@ public class webAuditReportPage extends webAppHelper {
 
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 					extentReportService.attachedScreenshotToReport(context,
-							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionHTTPSSubSectionIsCorrect.png?raw=true");
 
 				}
 
@@ -1157,7 +1143,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionHTTPSSubSectionIsCorrect.png?raw=true");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -1192,7 +1178,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionBlacklistedSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1212,7 +1198,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionBlacklistedSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1232,7 +1218,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionBlacklistedSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1249,7 +1235,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionBlacklistedSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1266,7 +1252,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheSecuritySectionBlacklistedSubSectionIsCorrect.png?raw=true");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
