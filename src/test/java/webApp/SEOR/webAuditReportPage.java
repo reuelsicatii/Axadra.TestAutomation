@@ -1262,30 +1262,30 @@ public class webAuditReportPage extends webAppHelper {
 
 	}
 
-	@Then("User scroll to Organic Traffic Section")
-	public void userScrollToOrganicTrafficSection() {
+	@Then("User scroll to Organic Traffic > Technical SEO Section")
+	public void userScrollToOrganicTrafficTechnicalSeoSection() {
 
 		try {
 			// document zooming
-			context.getDriver().executeScript("document.body.style.zoom = '0.45'");
+			context.getDriver().executeScript("document.body.style.zoom = '0.75'");
 
-			context.getWait().until(ExpectedConditions.presenceOfElementLocated(SectionElemenFinder("security")));
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='technical-seo']")));
 
 			// scroll to pixel
 			// context.getDriver().executeScript("window.scrollBy(0,2000)");
 
 			// scroll to element
 			context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
-					context.getDriver().findElement(SectionElemenFinder("security")));
+					context.getDriver().findElement(By.xpath("//div[@id='technical-seo']")));
 
 			// Extent Report
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			extentReportService.insertPassedStep(context, "User scroll to Organic Traffic Section", details);
+			extentReportService.insertPassedStep(context, "User scroll to Organic Traffic > Technical SEO Section", details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
 			extentReportService.attachedScreenshotToReport(context,
-					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userScrollToOrganicTrafficTechnicalSeoSection.png?raw=true");
 
 		} catch (Exception e) {
 
@@ -1295,11 +1295,105 @@ public class webAuditReportPage extends webAppHelper {
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Error Message: " + e.getMessage());
-				extentReportService.insertFailedStep(context, "User scroll to Organic Traffic Section", details);
+				extentReportService.insertFailedStep(context, "User scroll to Organic Traffic > Technical SEO Section", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userScrollToOrganicTrafficTechnicalSeoSection.png?raw=true");
+
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+	
+	@Then("User scroll to Organic Traffic > On-Page SEO Section")
+	public void userScrollToOrganicTrafficOnPageSeoSection() {
+
+		try {
+			// document zooming
+			context.getDriver().executeScript("document.body.style.zoom = '0.75'");
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='on-page']")));
+
+			// scroll to pixel
+			// context.getDriver().executeScript("window.scrollBy(0,2000)");
+
+			// scroll to element
+			context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
+				context.getDriver().findElement(By.xpath("//div[@id='on-page']")));
+
+			// Extent Report
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			extentReportService.insertPassedStep(context, "User scroll to Organic Traffic > On-Page SEO Section", details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userScrollToOrganicTrafficOnPageSeoSection.png?raw=true");
+
+		} catch (Exception e) {
+
+			try {
+
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User scroll to Organic Traffic > On-Page SEO Section", details);
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userScrollToOrganicTrafficOnPageSeoSection.png?raw=true");
+
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	@Then("User scroll to Organic Traffic > Off-Page SEO Section")
+	public void userScrollToOrganicTrafficOffPageSeoSection() {
+
+		try {
+			// document zooming
+			context.getDriver().executeScript("document.body.style.zoom = '0.75'");
+
+			context.getWait().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='off-page']")));
+
+			// scroll to pixel
+			// context.getDriver().executeScript("window.scrollBy(0,2000)");
+
+			// scroll to element
+			context.getDriver().executeScript("arguments[0].scrollIntoView(false);",
+				context.getDriver().findElement(By.xpath("//div[@id='off-page']")));
+
+			// Extent Report
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			extentReportService.insertPassedStep(context, "User scroll to Organic Traffic > Off-Page SEO Section", details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userScrollToOrganicTrafficOffPageSeoSection.png?raw=true");
+
+		} catch (Exception e) {
+
+			try {
+
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User scroll to Organic Traffic > Off-Page SEO Section", details);
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userScrollToOrganicTrafficOffPageSeoSection.png?raw=true");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -1340,7 +1434,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEOSitemapSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1360,7 +1454,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEOSitemapSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1380,7 +1474,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEOSitemapSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1397,7 +1491,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEOSitemapSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1414,7 +1508,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEOSitemapSubSectionIsCorrect.png?raw=true");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -1456,7 +1550,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEORobotSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1476,7 +1570,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEORobotSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1496,7 +1590,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEORobotSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1513,7 +1607,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEORobotSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1530,7 +1624,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEORobotSubSectionIsCorrect.png?raw=true");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
@@ -1571,7 +1665,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEORedirectionSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1591,7 +1685,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEORedirectionSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1611,7 +1705,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEORedirectionSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1628,7 +1722,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEORedirectionSubSectionIsCorrect.png?raw=true");
 
 			}
 
@@ -1645,7 +1739,7 @@ public class webAuditReportPage extends webAppHelper {
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/webAudit/userSeesTheOrganicTrafficSectionTechnicalSEORedirectionSubSectionIsCorrect.png?raw=true");
 
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
