@@ -117,6 +117,7 @@ Feature: SEOR > Agency Tools > WebAudit
     Then User sees a new tab is open rendering the WebAuditReport
     And User scroll to Organic Traffic > Off-Page SEO Section
     And User sees the Organic Traffic > OffPage SEO > Backlinks SubSection is correct
+    And User sees the Organic Traffic > OffPage SEO > Ahref Domain Rating SubSection is correct
     And User sees the Organic Traffic > OffPage SEO > MOZ Domain Authority SubSection is correct
     And User sees the Organic Traffic > OffPage SEO > MOZ Page Authority SubSection is correct
 
