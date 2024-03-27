@@ -1,6 +1,7 @@
 package webApp.SEOR;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import com.aventstack.extentreports.Status;
 import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.en.When;
+import testAuto.Service.ExtentReportService;
 
 public class campaignSeoKeywordRankingPage extends webAppHelper {
 
@@ -62,6 +64,14 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 		this.context = context;
 	}
 
+	// Declare Services
+	// ==========================================
+	ExtentReportService extentReportService = new ExtentReportService();
+
+	// Declare Variables
+	// ==========================================
+	ArrayList<String> details = new ArrayList<String>();
+
 	// Page Step Definition
 	// =================================================
 	@When("User remove a single {string} from Delete button")
@@ -85,6 +95,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 			for (int i = 0; i < context.getDriver().findElements(keywordColumn_table).size(); i++) {
 
 				System.out.println(context.getDriver().findElements(keywordColumn_table).get(i).getText());
+
 				context.getDriver().executeScript("arguments[0].scrollIntoView(true);", context.getDriver()
 						.findElement(By.xpath("//table[@id='keyword-ranking-post-table']/tbody/tr[" + (i + 1) + "]")));
 
@@ -114,6 +125,17 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 							context.getDriver().findElement(deleteButton_table));
 
 					Thread.sleep(2000);
+
+					// Extent Report
+					details.clear();
+					details.add("Page URL: " + context.getDriver().getCurrentUrl());
+					details.add("User confimrs deletion of keywords");
+					extentReportService.insertPassedStep(context,
+							"User remove a single " + keyword + " from Delete button", details);
+
+					context.getExtentTestScenario().log(Status.PASS, "PASSED");
+					extentReportService.attachedScreenshotToReport(context,
+							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userRemoveASingleFromDeleteButtonModalConfirmation.png?raw=true");
 
 					context.getDriver().executeScript("arguments[0].click();",
 							context.getDriver().findElement(deleteButton_modal));
@@ -146,8 +168,16 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 					if (context.getDriver().findElements(keywordColumn_table).get(i).getText().contains(keyword)) {
 
 						// Extent Report
-						context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-								"User remove a \"" + keyword + "\' from Delete button").info("INFO: ");
+						details.clear();
+						details.add("Page URL: " + context.getDriver().getCurrentUrl());
+						details.add("User confimrs deletion of keywords is unsuccessful");
+						extentReportService.insertFailedStep(context,
+								"User remove a single " + keyword + " from Delete button", details);
+
+						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userRemoveASingleFromDeleteButtonSuccess.png?raw=true");
+
 						keywordExist = false;
 						break;
 
@@ -156,9 +186,17 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 				}
 
 				if (keywordExist) {
+
 					// Extent Report
-					context.getExtentTestScenario().createNode(new GherkinKeyword("When"),
-							"User remove a \"" + keyword + "\' from Delete button").pass("PASSED: ");
+					details.clear();
+					details.add("Page URL: " + context.getDriver().getCurrentUrl());
+					details.add("User confimrs deletion of keywords is successful");
+					extentReportService.insertPassedStep(context,
+							"User remove a single " + keyword + " from Delete button", details);
+
+					context.getExtentTestScenario().log(Status.PASS, "PASSED");
+					extentReportService.attachedScreenshotToReport(context,
+							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userRemoveASingleFromDeleteButtonSuccess.png?raw=true");
 
 				}
 
@@ -169,12 +207,19 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 
 		} catch (Exception e) {
 
-			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("Then"), "User remove a \'" + keyword + "\' from Delete button")
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User remove a single " + keyword + " from Delete button",
+						details);
+				
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userRemoveASingleFromDeleteButtonSuccess.png?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
