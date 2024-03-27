@@ -129,9 +129,9 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
-					details.add("User confimrs deletion of keywords");
+					details.add("Note: User confimrs deletion of keywords");
 					extentReportService.insertPassedStep(context,
-							"User remove a single " + keyword + " from Delete button", details);
+							"User remove a single '" + keyword + "' from Delete button", details);
 
 					context.getExtentTestScenario().log(Status.PASS, "PASSED");
 					extentReportService.attachedScreenshotToReport(context,
@@ -170,9 +170,9 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
-						details.add("User confimrs deletion of keywords is unsuccessful");
+						details.add("Note: User confimrs deletion of keywords is unsuccessful");
 						extentReportService.insertFailedStep(context,
-								"User remove a single " + keyword + " from Delete button", details);
+								"User remove a single '" + keyword + "' from Delete button", details);
 
 						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 						extentReportService.attachedScreenshotToReport(context,
@@ -190,9 +190,9 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
-					details.add("User confirms deletion of keywords is successful");
+					details.add("Note: User confirms deletion of keywords is successful");
 					extentReportService.insertPassedStep(context,
-							"User remove a single " + keyword + " from Delete button", details);
+							"User remove a single '" + keyword + "' from Delete button", details);
 
 					context.getExtentTestScenario().log(Status.PASS, "PASSED");
 					extentReportService.attachedScreenshotToReport(context,
@@ -213,8 +213,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Error Message: " + e.getMessage());
-				extentReportService.insertFailedStep(context, "User remove a single " + keyword + " from Delete button",
-						details);
+				extentReportService.insertFailedStep(context, "User remove a single '" + keyword + "' from Delete button", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
@@ -431,8 +430,8 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 			// Extent Report
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			details.add("User confimrs addition of keywords");
-			extentReportService.insertPassedStep(context, "User add a single " + keyword, details);
+			details.add("Note: User confimrs addition of keywords");
+			extentReportService.insertPassedStep(context, "User add a single keword:" + keyword, details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
 			extentReportService.attachedScreenshotToReport(context,
@@ -481,12 +480,14 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
-						details.add("User successfully adds a keywords");
+						details.add("Note: User successfully adds a keywords");
 						extentReportService.insertPassedStep(context, "User add a single keyword: " + keyword, details);
 
 						context.getExtentTestScenario().log(Status.PASS, "PASSED");
 						extentReportService.attachedScreenshotToReport(context,
 								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userAddASingleSuccess.png?raw=true");
+						
+						keywordExist = false;
 
 					}
 
@@ -497,7 +498,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
-					details.add("User successfully adds a keywords");
+					details.add("Note: User unsuccessfully adds a keywords");
 					extentReportService.insertFailedStep(context, "User add a single keyword: " + keyword, details);
 
 					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
