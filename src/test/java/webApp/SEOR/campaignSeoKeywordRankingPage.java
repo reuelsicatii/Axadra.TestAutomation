@@ -190,7 +190,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
-					details.add("User confimrs deletion of keywords is successful");
+					details.add("User confirms deletion of keywords is successful");
 					extentReportService.insertPassedStep(context,
 							"User remove a single " + keyword + " from Delete button", details);
 
@@ -215,7 +215,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 				details.add("Error Message: " + e.getMessage());
 				extentReportService.insertFailedStep(context, "User remove a single " + keyword + " from Delete button",
 						details);
-				
+
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userRemoveASingleFromDeleteButtonSuccess.png?raw=true");
@@ -428,6 +428,16 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 			context.getDriver().executeScript("arguments[0].click();",
 					context.getDriver().findElement(nextKeywordLocation_button));
 
+			// Extent Report
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			details.add("User confimrs addition of keywords");
+			extentReportService.insertPassedStep(context, "User add a single " + keyword, details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userAddASingleModalConfirmation.png?raw=true");
+
 			// Click Submit button
 			Thread.sleep(5000);
 			context.getDriver().executeScript("arguments[0].click();",
@@ -453,23 +463,46 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 
 					if (context.getDriver().findElements(keywordColumn_table).get(i).getText().contains(keyword)) {
 
+						if (i > 2) {
+
+							context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+									context.getDriver().findElement(By.xpath(
+											"//table[@id='keyword-ranking-post-table']/tbody/tr[" + (i - 2) + "]")));
+
+						}
+
+						else {
+
+							context.getDriver().executeScript("arguments[0].scrollIntoView(true);",
+									context.getDriver().findElement(
+											By.xpath("//table[@id='keyword-ranking-post-table']/tbody/tr[" + i + "]")));
+						}
+
 						// Extent Report
-						context.getExtentTestScenario()
-								.createNode(new GherkinKeyword("When"), "User add a \"" + keyword + "\" keyword")
-								.pass("PASSED: ");
-						keywordExist = false;
-						break;
+						details.clear();
+						details.add("Page URL: " + context.getDriver().getCurrentUrl());
+						details.add("User successfully adds a keywords");
+						extentReportService.insertPassedStep(context, "User add a single keyword: " + keyword, details);
+
+						context.getExtentTestScenario().log(Status.PASS, "PASSED");
+						extentReportService.attachedScreenshotToReport(context,
+								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userAddASingleSuccess.png?raw=true");
 
 					}
 
 				}
 
 				if (keywordExist) {
+
 					// Extent Report
-					context.getExtentTestScenario()
-							.createNode(new GherkinKeyword("When"), "User add a \"" + keyword + "\" keyword")
-							.fail("FAILED: ");
-					context.getExtentTestScenario().log(Status.FAIL, "Failed");
+					details.clear();
+					details.add("Page URL: " + context.getDriver().getCurrentUrl());
+					details.add("User successfully adds a keywords");
+					extentReportService.insertFailedStep(context, "User add a single keyword: " + keyword, details);
+
+					context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+					extentReportService.attachedScreenshotToReport(context,
+							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userAddASingleSuccess.png?raw=true");
 
 				}
 
@@ -480,12 +513,18 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 
 		} catch (Exception e) {
 
-			// Extent Report
 			try {
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("Then"), "User add a \"" + keyword + "\" keyword")
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User add a single keyword: " + keyword, details);
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userAddASingleSuccess.png?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
