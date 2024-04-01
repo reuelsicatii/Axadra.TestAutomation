@@ -94,7 +94,8 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 			// Search for Keyword Index and click delete button
 			for (int i = 0; i < context.getDriver().findElements(keywordColumn_table).size(); i++) {
 
-				System.out.println(context.getDriver().findElements(keywordColumn_table).get(i).getText());
+				System.out.println(
+						i + " index -- " + context.getDriver().findElements(keywordColumn_table).get(i).getText());
 
 				context.getDriver().executeScript("arguments[0].scrollIntoView(true);", context.getDriver()
 						.findElement(By.xpath("//table[@id='keyword-ranking-post-table']/tbody/tr[" + (i + 1) + "]")));
@@ -142,6 +143,18 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 
 					// no anchor over table
 					Thread.sleep(2000);
+
+					// Hard Reload Page
+					Thread.sleep(5000);
+					context.getDriver().executeScript("location.reload(true);");
+					Thread.sleep(5000);
+					context.getDriver().executeScript("document.body.style.zoom = '0.85'");
+
+					// select 100 from table dropdown
+					keywordTableRowDropDownElementFinder().selectByVisibleText("100");
+
+					// no anchor over table
+					Thread.sleep(10000);
 
 				}
 
@@ -213,7 +226,8 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Error Message: " + e.getMessage());
-				extentReportService.insertFailedStep(context, "User remove a single '" + keyword + "' from Delete button", details);
+				extentReportService.insertFailedStep(context,
+						"User remove a single '" + keyword + "' from Delete button", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
@@ -486,7 +500,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 						context.getExtentTestScenario().log(Status.PASS, "PASSED");
 						extentReportService.attachedScreenshotToReport(context,
 								"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userAddASingleSuccess.png?raw=true");
-						
+
 						keywordExist = false;
 
 					}
