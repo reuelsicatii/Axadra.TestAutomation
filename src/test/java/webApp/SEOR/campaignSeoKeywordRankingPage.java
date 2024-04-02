@@ -130,7 +130,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 					// Extent Report
 					details.clear();
 					details.add("Page URL: " + context.getDriver().getCurrentUrl());
-					details.add("Note: User confimrs deletion of keywords");
+					details.add("Note: User confirms deletion of keywords");
 					extentReportService.insertPassedStep(context,
 							"User remove a single '" + keyword + "' from Delete button", details);
 
@@ -183,7 +183,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
-						details.add("Note: User confimrs deletion of keywords is unsuccessful");
+						details.add("Note: User confirms deletion of keywords is unsuccessful");
 						extentReportService.insertFailedStep(context,
 								"User remove a single '" + keyword + "' from Delete button", details);
 
@@ -302,7 +302,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
-						details.add("Note: User confimrs deletion of keyword: '" + keywords.get(j));
+						details.add("Note: User confirms deletion of keyword: '" + keywords.get(j));
 						extentReportService.insertPassedStep(context,
 								"User remove a multiple keyword: '" + keywords.get(j) + "' from Delete button",
 								details);
@@ -357,7 +357,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 							// Extent Report
 							details.clear();
 							details.add("Page URL: " + context.getDriver().getCurrentUrl());
-							details.add("Note: User confimrs deletion of keyword: '" + keywords.get(j) + "' is unsuccessful");
+							details.add("Note: User confirms deletion of keyword: '" + keywords.get(j) + "' is unsuccessful");
 							extentReportService.insertFailedStep(context,
 									"User remove a mulitple keyword: '" + keywords.get(j) + "' from Delete button",
 									details);
@@ -378,7 +378,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 						// Extent Report
 						details.clear();
 						details.add("Page URL: " + context.getDriver().getCurrentUrl());
-						details.add("Note: User confimrs deletion of keyword: '" + keywords.get(j) + "' is successful");
+						details.add("Note: User confirms deletion of keyword: '" + keywords.get(j) + "' is successful");
 						extentReportService.insertPassedStep(context,
 								"User remove a mulitple keyword: '" + keywords.get(j) + "' from Delete button",
 								details);
@@ -477,7 +477,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 			// Extent Report
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			details.add("Note: User confimrs addition of keywords");
+			details.add("Note: User confirms addition of keywords");
 			extentReportService.insertPassedStep(context, "User add a single keword:" + keyword, details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
@@ -649,7 +649,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
 			for (int j = 0; j < keywords.size(); j++) {
-				details.add("Note: User confimrs addition of keyword '" + keywords.get(j) + "'");
+				details.add("Note: User confirms addition of keyword '" + keywords.get(j) + "'");
 			}
 			extentReportService.insertPassedStep(context, "User add a multiple kewords", details);
 
