@@ -693,7 +693,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 
 							context.getExtentTestScenario().log(Status.PASS, "PASSED");
 							extentReportService.attachedScreenshotToReport(context,
-							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userAddAMutipleSuccess.png?raw=true");
+							"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userAddAMultipleSuccess.png?raw=true");
 
 							
 							
@@ -716,7 +716,7 @@ public class campaignSeoKeywordRankingPage extends webAppHelper {
 
 						context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 						extentReportService.attachedScreenshotToReport(context,
-						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userAddAMutipleSuccess.png?raw=true");
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordRanking/userAddAMultipleSuccess.png?raw=true");
 
 					}
 				}
