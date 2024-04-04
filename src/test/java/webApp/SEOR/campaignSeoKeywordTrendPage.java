@@ -14,6 +14,7 @@ import com.aventstack.extentreports.Status;
 import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.en.When;
+import testAuto.Service.ExtentReportService;
 
 public class campaignSeoKeywordTrendPage extends webAppHelper {
 
@@ -53,6 +54,14 @@ public class campaignSeoKeywordTrendPage extends webAppHelper {
 		this.context = context;
 	}
 
+	// Declare Services
+	// ==========================================
+	ExtentReportService extentReportService = new ExtentReportService();
+
+	// Declare Variables
+	// ==========================================
+	ArrayList<String> details = new ArrayList<String>();
+
 	// Page Step Definition
 	// =================================================
 	@SuppressWarnings("unchecked")
@@ -71,7 +80,19 @@ public class campaignSeoKeywordTrendPage extends webAppHelper {
 			context.getFluentWait().until(ExpectedConditions
 					.visibilityOf(context.getDriver().findElement(By.xpath("//input[@id='account_password']"))));
 			context.getDriver().findElement(By.xpath("//input[@id='account_password']")).sendKeys("asdasdasd");
+			
+			
+			// Extent Report
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			extentReportService.insertPassedStep(context,
+					"User 'Login as Client' from Compass to SEOR Dashboard", details);
 
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordTrendPage/campaignSeoKeywordTrendPageLoginAsClient.png?raw=true");
+
+			
 			context.getFluentWait().until(ExpectedConditions.elementToBeClickable(context.getDriver().findElement(By
 					.xpath("//form[@id='login_as_client_authenticator_modal']//button[contains(text(), 'Submit')]"))));
 			context.getDriver()
@@ -90,7 +111,20 @@ public class campaignSeoKeywordTrendPage extends webAppHelper {
 			// =============================================================================================================
 			context.getDriver().get(rankingPage);
 
-			// wait for table to load - no anchor Thread.sleep(10000);
+			// wait for table to load - no anchor 
+			Thread.sleep(10000);
+			
+			// Extent Report
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			details.add("Notes: Keyword and Position are save for comparison");
+			extentReportService.insertPassedStep(context,
+					"User navigates to SEOR Dashboard > Campaign > SEO > Keyword Ranking", details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordTrendPage/campaignSeoKeywordTrendPageRanking.png?raw=true");
+
 
 			// select 100 over dropdown
 			keywordRankingTableRowDropDownElementFinder().selectByVisibleText("100");
@@ -154,6 +188,17 @@ public class campaignSeoKeywordTrendPage extends webAppHelper {
 
 			// wait for table to load - no anchor
 			Thread.sleep(10000);
+			
+			// Extent Report
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			details.add("Notes: Keyword and Position are save for comparison");
+			extentReportService.insertPassedStep(context,
+					"User navigates to SEOR Dashboard > Campaign > SEO > Monthly Trend", details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/campaignSeoKeywordTrendPage/campaignSeoKeywordTrendPageTrend.png?raw=true");
 
 			// select 100 over dropdown
 			monthTrendTableRowDropDownElementFinder().selectByVisibleText("100");
@@ -208,13 +253,25 @@ public class campaignSeoKeywordTrendPage extends webAppHelper {
 			}
 
 			// compare keyword and position
+			// Extent Report
+			details.clear();
+			details.add("Campaign URL: " + rankingPage.replace("/seo/rankings", ""));
+			details.add("CPS > Summary Page > Keyword Count: "  + rankingPageKeywordPosition.size());
+			details.add("CPS > Trend Page > Keyword Count: "  + trendPageKeywordPosition.size());
+			extentReportService.insertPassedStep(context, "User compares Keyword and Position from KEYWORD RANKING vs MONTHLY TREND", details);
+			
 			context.getExtentTestScenario().createNode(
-					"User compares Keyword and Position against CPS > Summary Page vs CPS > Trend Page vs SRS > Ranking Page"
-							+ "<br>" + "Campaign URL: " + rankingPage.replace("/seo/rankings", "") + "<br>"
-							+ "Trend Page Keyword Count: " + trendPageKeywordPosition.size() + "<br>"
-							+ "Ranking Page Keyword Count: " + rankingPageKeywordPosition.size()
-
-			);
+					"<div style=\"display: flex;\">\r\n"
+					+ "\r\n"
+					+ "	<p style=\"flex: 3; height: 50px; overflow: hidden; border-bottom: 5px solid black; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \"><b>Keyword Ranking</b></p>\r\n"
+					+ "	\r\n"
+					+ "	<p style=\"flex: 1; height: 50px; overflow: hidden; border-bottom: 5px solid black; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \"><b>Position</b></p>\r\n"
+					+ "	\r\n"
+					+ "	<p style=\"flex: 3; height: 50px; overflow: hidden; border-bottom: 5px solid black; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \"><b>Month Trend</b></p>\r\n"
+					+ "	\r\n"
+					+ "	<p style=\"flex: 1; height: 50px; overflow: hidden; border-bottom: 5px solid black; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \"><b>Position</b></p>\r\n"
+					+ "\r\n"
+					+ "</div>");
 
 			// Iterating HashMap through for loop
 			int trd = 1;
@@ -226,28 +283,39 @@ public class campaignSeoKeywordTrendPage extends webAppHelper {
 					if (rankingPageKeywordPositionset.getKey().equals(trendPageKeywordPositionset.getKey())
 							&& rankingPageKeywordPositionset.getValue()
 									.equals(trendPageKeywordPositionset.getValue())) {
-
-						context.getExtentTestScenario()
-								// .createNode("User compares Keyword and Position against Summary Page row " +
-								// summ + " vs Trend Page row " + trd)
-								.createNode("Index: " + trd + " -- " + ran)
-								.pass("PASSED: " + "<br>" + "Trend Page: " + trendPageKeywordPositionset.getKey()
-										+ " -- " + trendPageKeywordPositionset.getValue() + "<br>" + "Ranking Page: "
-										+ rankingPageKeywordPositionset.getKey() + " -- "
-										+ rankingPageKeywordPositionset.getValue());
+						
+						context.getExtentTestScenario().createNode(
+								"<div style=\"display: flex;\">\r\n"
+								+ "\r\n"
+								+ "	<p style=\"flex: 3; height: 50px; overflow: hidden; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \"><i>"+ rankingPageKeywordPositionset.getKey() +"</i></p>\r\n"
+								+ "	\r\n"
+								+ "	<p style=\"flex: 1; height: 50px; overflow: hidden; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \">"+ rankingPageKeywordPositionset.getValue() +"</p>\r\n"
+								+ "	\r\n"
+								+ "	<p style=\"flex: 3; height: 50px; overflow: hidden; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \"><i>"+ trendPageKeywordPositionset.getKey() +"</i></p>\r\n"
+								+ "	\r\n"
+								+ "	<p style=\"flex: 1; height: 50px; overflow: hidden; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \">"+ trendPageKeywordPositionset.getValue() +"</p>\r\n"
+								+ "\r\n"
+								+ "</div>"
+								).pass("");
 
 					}
 
 					else if (rankingPageKeywordPositionset.getKey().equals(trendPageKeywordPositionset.getKey())) {
 
-						context.getExtentTestScenario()
-								// .createNode("User compares Keyword and Position against Summary Page row " +
-								// summ + " vs Trend Page row" + trd)
-								.createNode("Index: " + trd + " -- " + ran)
-								.warning("WARNING: " + "<br>" + "Trend Page: " + trendPageKeywordPositionset.getKey()
-										+ " -- " + trendPageKeywordPositionset.getValue() + "<br>" + "Ranking Page: "
-										+ rankingPageKeywordPositionset.getKey() + " -- "
-										+ rankingPageKeywordPositionset.getValue());
+						
+						context.getExtentTestScenario().createNode(
+								"<div style=\"display: flex;\">\r\n"
+								+ "\r\n"
+								+ "	<p style=\"flex: 3; height: 50px; overflow: hidden; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \"><i>"+ rankingPageKeywordPositionset.getKey() +"</i></p>\r\n"
+								+ "	\r\n"
+								+ "	<p style=\"flex: 1; height: 50px; overflow: hidden; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \">"+ rankingPageKeywordPositionset.getValue() +"</p>\r\n"
+								+ "	\r\n"
+								+ "	<p style=\"flex: 3; height: 50px; overflow: hidden; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \"><i>"+ trendPageKeywordPositionset.getKey() +"</i></p>\r\n"
+								+ "	\r\n"
+								+ "	<p style=\"flex: 1; height: 50px; overflow: hidden; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center; align-items: center; text-align: center; \">"+ trendPageKeywordPositionset.getValue() +"</p>\r\n"
+								+ "\r\n"
+								+ "</div>"
+								).fail("");
 
 						// break inner loop
 						break;
