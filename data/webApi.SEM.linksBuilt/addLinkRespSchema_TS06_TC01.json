@@ -25,17 +25,20 @@
               }
             }
           },
+          "additionalProperties": false,
           "required": [
             "project_id",
             "links.0.url"
           ]
         }
       },
+      "additionalProperties": false,
       "required": [
         "error"
       ]
     }
   },
+  "additionalProperties": false,
   "required": [
     "statusCode",
     "response"

@@ -13,11 +13,13 @@
           "type": "string"
         }
       },
+      "additionalProperties": false,
       "required": [
         "data"
       ]
     }
   },
+  "additionalProperties": false,
   "required": [
     "statusCode",
     "response"

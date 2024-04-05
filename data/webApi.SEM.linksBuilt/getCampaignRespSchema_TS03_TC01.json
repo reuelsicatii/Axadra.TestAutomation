@@ -28,6 +28,7 @@
               "type": "number"
             }
           },
+          "additionalProperties": false,
           "required": [
             "id",
             "name",
@@ -37,11 +38,13 @@
           ]
         }
       },
+      "additionalProperties": false,
       "required": [
         "data"
       ]
     }
   },
+  "additionalProperties": false,
   "required": [
     "statusCode",
     "response"

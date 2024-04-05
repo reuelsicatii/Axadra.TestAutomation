@@ -19,16 +19,19 @@
               }
             }
           },
+          "additionalProperties": false,
           "required": [
             "campaignId"
           ]
         }
       },
+      "additionalProperties": false,
       "required": [
         "error"
       ]
     }
   },
+  "additionalProperties": false,
   "required": [
     "statusCode",
     "response"

@@ -46,6 +46,7 @@
               "type": "string"
             }
           },
+          "additionalProperties": false,
           "required": [
             "accountId",
             "email",
@@ -61,11 +62,13 @@
           ]
         }
       },
+      "additionalProperties": false,
       "required": [
         "data"
       ]
     }
   },
+  "additionalProperties": false,
   "required": [
     "statusCode",
     "response"
