@@ -2,7 +2,8 @@ package webApp.SEOR;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -138,6 +139,7 @@ public class loginPage extends webAppHelper {
 			// Extent Report
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			details.add("TimeStamp: " + new SimpleDateFormat("_yyMMdd_HHmmssSSS").format(new Date()));
 			extentReportService.insertPassedStep(context, "User click on the login button", details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
