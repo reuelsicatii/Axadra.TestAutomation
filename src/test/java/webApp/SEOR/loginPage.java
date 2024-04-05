@@ -139,7 +139,7 @@ public class loginPage extends webAppHelper {
 			extentReportService.insertPassedStep(context, "User click on the login button", details);	
 			
 			// Random Sleep
-			Thread.sleep(commonService.generateNumber(10000,30000) + 555);
+			Thread.sleep(commonService.generateNumber(1,20) + 2500);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
 			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userClickOnTheLoginButton.png?raw=true");
