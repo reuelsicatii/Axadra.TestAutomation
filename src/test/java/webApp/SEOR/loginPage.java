@@ -40,17 +40,15 @@ public class loginPage extends webAppHelper {
 		super();
 		this.context = context;
 	}
-	
-	
+
 	// Declare Services
 	// ==========================================
 	ExtentReportService extentReportService = new ExtentReportService();
 	CommonService commonService = new CommonService();
-	
+
 	// Declare Variables
 	// ==========================================
 	ArrayList<String> details = new ArrayList<String>();
-	
 
 	// Page Step Definition
 	// =================================================
@@ -62,27 +60,29 @@ public class loginPage extends webAppHelper {
 			// Step Definition
 			context.getDriver().findElement(username_textfield).sendKeys(username);
 
-			// Extent Report				
+			// Extent Report
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			extentReportService.insertPassedStep(context, "User enter the username as " + username, details);				
+			extentReportService.insertPassedStep(context, "User enter the username as " + username, details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheUsernameAs.png?raw=true");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheUsernameAs.png?raw=true");
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User enter the username as " + username, details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User enter the username as " + username, details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheUsernameAs.png?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheUsernameAs.png?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -97,27 +97,29 @@ public class loginPage extends webAppHelper {
 			// Step Definition
 			context.getDriver().findElement(password_textfield).sendKeys(password);
 
-			// Extent Report				
+			// Extent Report
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			extentReportService.insertPassedStep(context, "User enter the password as " + password, details);				
+			extentReportService.insertPassedStep(context, "User enter the password as " + password, details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterThePasswordAs.png?raw=true");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterThePasswordAs.png?raw=true");
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User enter the password as " + password, details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User enter the password as " + password, details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterThePasswordAs.png?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterThePasswordAs.png?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -129,34 +131,37 @@ public class loginPage extends webAppHelper {
 	public void userClickOnTheLoginButton() throws Throwable {
 
 		try {
+
+			// Random Sleep
+			Thread.sleep(commonService.generateNumber(1, 10) + 2500);
+
+			// Extent Report
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			extentReportService.insertPassedStep(context, "User click on the login button", details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userClickOnTheLoginButton.png?raw=true");
+
 			// Step Definition
 			context.getWait().until(ExpectedConditions.presenceOfElementLocated(login_button));
 			context.getDriver().findElement(login_button).click();
 
-			// Extent Report				
-			details.clear();
-			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			extentReportService.insertPassedStep(context, "User click on the login button", details);	
-			
-			// Random Sleep
-			Thread.sleep(commonService.generateNumber(1,20) + 2500);
-
-			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userClickOnTheLoginButton.png?raw=true");
-
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User click on the login button", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User click on the login button", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userClickOnTheLoginButton.png?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userClickOnTheLoginButton.png?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -174,23 +179,24 @@ public class loginPage extends webAppHelper {
 
 			if (context.getDriver().findElement(welcome_message).getText() != null) {
 
-				// Extent Report				
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				extentReportService.insertPassedStep(context, "User is successfully login", details);				
+				extentReportService.insertPassedStep(context, "User is successfully login", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userIsSuccessfullyLogin.png?raw=true");
-				
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userIsSuccessfullyLogin.png?raw=true");
+
 			} else {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				extentReportService.insertFailedStep(context, "User is successfully login", details);				
+				extentReportService.insertFailedStep(context, "User is successfully login", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, 
+				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userIsSuccessfullyLogin.png?raw=true");
 
 			}
@@ -198,17 +204,17 @@ public class loginPage extends webAppHelper {
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User is successfully login", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User is successfully login", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, 
+				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userIsSuccessfullyLogin.png?raw=true");
-			
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -223,27 +229,30 @@ public class loginPage extends webAppHelper {
 			// Step Definition
 			context.getDriver().findElement(compassUsername_textfield).sendKeys(username);
 
-			// Extent Report				
+			// Extent Report
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			extentReportService.insertPassedStep(context, "User enter the Compass > username as " + username, details);				
+			extentReportService.insertPassedStep(context, "User enter the Compass > username as " + username, details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheCompassUsernameAs.png?raw=true");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheCompassUsernameAs.png?raw=true");
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User enter the Compass > username as " + username, details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User enter the Compass > username as " + username,
+						details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheCompassUsernameAs.png?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheCompassUsernameAs.png?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -258,27 +267,30 @@ public class loginPage extends webAppHelper {
 			// Step Definition
 			context.getDriver().findElement(compassPassword_textfield).sendKeys(password);
 
-			// Extent Report				
+			// Extent Report
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			extentReportService.insertPassedStep(context, "User enter the Compass > password as " + password, details);				
+			extentReportService.insertPassedStep(context, "User enter the Compass > password as " + password, details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheCompassPasswordAs.png?raw=true");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheCompassPasswordAs.png?raw=true");
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User enter the Compass > password as " + password, details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User enter the Compass > password as " + password,
+						details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheCompassPasswordAs.png?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userEnterTheCompassPasswordAs.png?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -294,27 +306,29 @@ public class loginPage extends webAppHelper {
 			context.getWait().until(ExpectedConditions.presenceOfElementLocated(compassLogin_button));
 			context.getDriver().findElement(compassLogin_button).click();
 
-			// Extent Report				
+			// Extent Report
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			extentReportService.insertPassedStep(context, "User click on the Compass > login button", details);				
+			extentReportService.insertPassedStep(context, "User click on the Compass > login button", details);
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
-			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userClickOnTheCompassLoginButton.png?raw=true");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userClickOnTheCompassLoginButton.png?raw=true");
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User click on the Compass > login button", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User click on the Compass > login button", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userClickOnTheCompassLoginButton.png?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userClickOnTheCompassLoginButton.png?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -332,39 +346,42 @@ public class loginPage extends webAppHelper {
 
 			if (context.getDriver().findElement(compassWelcome_message).getText() != null) {
 
-				// Extent Report				
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				extentReportService.insertPassedStep(context, "User is successfully login", details);				
+				extentReportService.insertPassedStep(context, "User is successfully login", details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userIsSuccessfullyLoginOnCompass.png?raw=true");
-				
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userIsSuccessfullyLoginOnCompass.png?raw=true");
+
 			} else {
 
-				// Extent Report				
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				extentReportService.insertFailedStep(context, "User is successfully login", details);				
+				extentReportService.insertFailedStep(context, "User is successfully login", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userIsSuccessfullyLoginOnCompass.png?raw=true");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userIsSuccessfullyLoginOnCompass.png?raw=true");
 
 			}
 
 		} catch (Exception e) {
 
 			try {
-				
-				// Extent Report				
+
+				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				details.add("Error Message: " +  e.getMessage());
-				extentReportService.insertFailedStep(context, "User is successfully login", details);				
+				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context, "User is successfully login", details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userIsSuccessfullyLoginOnCompass.png?raw=true");
-			
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userIsSuccessfullyLoginOnCompass.png?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
