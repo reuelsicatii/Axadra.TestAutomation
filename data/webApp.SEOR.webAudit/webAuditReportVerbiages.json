@@ -117,6 +117,10 @@
             "Critical":"Backlinks found",
             "N/A":"Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again."
          },
+         "Ahref Domain Rating":[
+            "Domain Rating is a metric developed by Ahref that represents the strength of the website's backlink profile on a logarithmic scale of 0 to 100, with the latter being the strongest",
+            "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again."
+         ],
          "MOZ Domain Authority":[
             "Domain Authority is a search engine ranking score developed by Moz that predicts how well a website will rank on search engine result pages.",
             "Unfortunately, this data could not be retrieved at the time. Please try to run this audit later again."
