@@ -134,7 +134,7 @@ public class loginPage extends webAppHelper {
 		try {
 
 			// Random Sleep
-			Thread.sleep(commonService.generateNumber(1, 10) + 2500);
+			Thread.sleep(commonService.generateNumber(1, 10) * 2500);
 
 			// Extent Report
 			details.clear();
