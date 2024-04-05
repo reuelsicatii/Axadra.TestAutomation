@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.aventstack.extentreports.GherkinKeyword;
 import com.aventstack.extentreports.Status;
 
 import helper.webAppContext;
@@ -14,6 +13,7 @@ import helper.webAppHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import testAuto.Service.CommonService;
 import testAuto.Service.ExtentReportService;
 
 public class loginPage extends webAppHelper {
@@ -45,6 +45,7 @@ public class loginPage extends webAppHelper {
 	// Declare Services
 	// ==========================================
 	ExtentReportService extentReportService = new ExtentReportService();
+	CommonService commonService = new CommonService();
 	
 	// Declare Variables
 	// ==========================================
@@ -125,7 +126,7 @@ public class loginPage extends webAppHelper {
 	}
 
 	@When("User click on the login button")
-	public void userClickOnTheLoginButton() {
+	public void userClickOnTheLoginButton() throws Throwable {
 
 		try {
 			// Step Definition
@@ -135,7 +136,10 @@ public class loginPage extends webAppHelper {
 			// Extent Report				
 			details.clear();
 			details.add("Page URL: " + context.getDriver().getCurrentUrl());
-			extentReportService.insertPassedStep(context, "User click on the login button", details);				
+			extentReportService.insertPassedStep(context, "User click on the login button", details);	
+			
+			// Random Sleep
+			Thread.sleep(commonService.generateNumber(10000,30000));
 
 			context.getExtentTestScenario().log(Status.PASS, "PASSED");
 			extentReportService.attachedScreenshotToReport(context, "https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEOR/login/userClickOnTheLoginButton.png?raw=true");
