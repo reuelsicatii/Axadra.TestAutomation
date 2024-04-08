@@ -1,0 +1,1 @@
+java -jar selenium-server-4.13.0.jar standalone --max-sessions 1
