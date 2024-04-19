@@ -1,0 +1,102 @@
+{
+	"statusCode": 200,
+	"response": {
+		"current_page": 1,
+		"from": 1,
+		"last_page": 2,
+		"next_page_url": "?page=2",
+		"path": "",
+		"per_page": 10,
+		"prev_page_url": null,
+		"to": 10,
+		"total": 18,
+		"data": [
+			{
+				"accountWorkflowId": 11,
+				"accountId": 7140,
+				"workflowId": 29,
+				"inactive": 0,
+				"createdBy": 7140,
+				"createdDate": "2018-04-30 15:36:09"
+			},
+			{
+				"accountWorkflowId": 12,
+				"accountId": 7140,
+				"workflowId": 30,
+				"inactive": 0,
+				"createdBy": 7140,
+				"createdDate": "2018-04-30 15:41:44"
+			},
+			{
+				"accountWorkflowId": 13,
+				"accountId": 7140,
+				"workflowId": 31,
+				"inactive": 0,
+				"createdBy": 7140,
+				"createdDate": "2018-04-30 15:43:07",
+				"modifiedBy": 7140,
+				"modifiedDate": "2018-05-01 04:17:41"
+			},
+			{
+				"accountWorkflowId": 14,
+				"accountId": 7140,
+				"workflowId": 32,
+				"inactive": 0,
+				"createdBy": 7140,
+				"createdDate": "2018-04-30 15:43:28",
+				"modifiedBy": 7140,
+				"modifiedDate": "2020-02-18 09:56:38"
+			},
+			{
+				"accountWorkflowId": 15,
+				"accountId": 7140,
+				"workflowId": 33,
+				"inactive": 0,
+				"createdBy": 7140,
+				"createdDate": "2018-04-30 18:38:06",
+				"modifiedBy": 7140,
+				"modifiedDate": "2023-11-07 02:19:41"
+			},
+			{
+				"accountWorkflowId": 16,
+				"accountId": 7140,
+				"workflowId": 34,
+				"inactive": 0,
+				"createdBy": 7140,
+				"createdDate": "2018-04-30 18:39:07"
+			},
+			{
+				"accountWorkflowId": 17,
+				"accountId": 7140,
+				"workflowId": 35,
+				"inactive": 0,
+				"createdBy": 7140,
+				"createdDate": "2018-04-30 18:55:01"
+			},
+			{
+				"accountWorkflowId": 18,
+				"accountId": 7140,
+				"workflowId": 36,
+				"inactive": 0,
+				"createdBy": 7140,
+				"createdDate": "2018-04-30 18:57:07"
+			},
+			{
+				"accountWorkflowId": 19,
+				"accountId": 7140,
+				"workflowId": 37,
+				"inactive": 0,
+				"createdBy": 7140,
+				"createdDate": "2018-04-30 19:01:00"
+			},
+			{
+				"accountWorkflowId": 20,
+				"accountId": 7140,
+				"workflowId": 38,
+				"inactive": 0,
+				"createdBy": 7140,
+				"createdDate": "2018-04-30 19:01:49"
+			}
+		]
+	}
+}
