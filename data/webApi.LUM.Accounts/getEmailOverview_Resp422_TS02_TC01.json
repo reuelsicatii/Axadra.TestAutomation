@@ -1,0 +1,16 @@
+{
+  "statusCode": 422,
+  "response": {
+    "error": {
+      "account_id": [
+        "The account id field is required."
+      ],
+      "site_id": [
+        "The site id field is required."
+      ],
+      "workflow_type_code": [
+        "The workflow type code field is required."
+      ]
+    }
+  }
+}
