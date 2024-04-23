@@ -47,7 +47,15 @@ public class responseValidationStep {
 				// Extent Report
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("Given"), "I validate response status against " + expectedStatus)
-						.pass("PASSED");
+						.pass("PASSED" + "<div style=\"display: flex;\">\r\n" + "        <div style=\"flex: 1;\r\n"
+								+ "            border: 1px solid #ccc;\r\n" + "            padding: 20px;\r\n"
+								+ "            background-color: #f0f0f0;\r\n" + "            max-width: 50%;\">\r\n"
+								+ "            <h2>Expected Result</h2>\r\n" + "            <pre>" + expectedStatus
+								+ "</pre>\r\n" + "        </div>\r\n" + "        <div style=\"flex: 1;\r\n"
+								+ "            border: 1px solid #ccc;\r\n" + "            padding: 20px;\r\n"
+								+ "            background-color: #e0e0e0;\r\n" + "            max-width: 50%;\">\r\n"
+								+ "            <h2>Actual Result</h2>\r\n" + "            <pre>" + actualStatus
+								+ "</pre>\r\n" + "        </div>\r\n" + "</div>");
 			}
 
 			else {
@@ -55,7 +63,15 @@ public class responseValidationStep {
 				// Extent Report
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("Given"), "I validate response status against " + expectedStatus)
-						.fail("FAILED");
+						.fail("FAILED" + "<div style=\"display: flex;\">\r\n" + "        <div style=\"flex: 1;\r\n"
+								+ "            border: 1px solid #ccc;\r\n" + "            padding: 20px;\r\n"
+								+ "            background-color: #f0f0f0;\r\n" + "            max-width: 50%;\">\r\n"
+								+ "            <h2>Expected Result</h2>\r\n" + "            <pre>" + expectedStatus
+								+ "</pre>\r\n" + "        </div>\r\n" + "        <div style=\"flex: 1;\r\n"
+								+ "            border: 1px solid #ccc;\r\n" + "            padding: 20px;\r\n"
+								+ "            background-color: #e0e0e0;\r\n" + "            max-width: 50%;\">\r\n"
+								+ "            <h2>Actual Result</h2>\r\n" + "            <pre>" + actualStatus
+								+ "</pre>\r\n" + "        </div>\r\n" + "</div>");
 
 			}
 
@@ -106,10 +122,6 @@ public class responseValidationStep {
 			// Compile the schema
 			JsonSchema schema = factory.getJsonSchema(schemaNode);
 
-		
-			
-			
-
 			// Check if validation passed
 			if (schema.validInstance(dataNode)) {
 
@@ -129,13 +141,12 @@ public class responseValidationStep {
 								+ "</div>");
 
 			} else {
-				
+
 				// Extent Report
 				context.getExtentTestScenario()
 						.createNode(new GherkinKeyword("Given"),
 								"I validate response body against schema " + expectedSchemaBody)
-						.fail("FAILED" 								
-								+ "<div style=\"display: flex;\">\r\n" + "        <div style=\"flex: 1;\r\n"
+						.fail("FAILED" + "<div style=\"display: flex;\">\r\n" + "        <div style=\"flex: 1;\r\n"
 								+ "            border: 1px solid #ccc;\r\n" + "            padding: 20px;\r\n"
 								+ "            background-color: #f0f0f0;\r\n" + "            max-width: 50%;\">\r\n"
 								+ "            <h2>Expected Result</h2>\r\n" + "            <pre>"
