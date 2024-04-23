@@ -50,6 +50,12 @@ public class addParameterStep {
 
 			}
 
+			else if (value.equals("dynamicEmail")) {
+				context.getFormBuilder().add(key,
+						commonService.generateRandomString(10) + '@' + commonService.generateRandomString(6) + ".com");
+
+			}
+
 			else if (value.equals("SemSig")) {
 
 				long epochTimestamp = (long) Math.ceil(System.currentTimeMillis() / 60000);

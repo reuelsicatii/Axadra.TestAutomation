@@ -1,0 +1,60 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Accounts - 422 - SignUp",
+	"type": "object",
+	"properties": {
+		"statusCode": {
+			"type": "number"
+		},
+		"response": {
+			"type": "object",
+			"properties": {
+				"error": {
+					"type": "object",
+					"properties": {
+						"password": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"confirmPassword": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"site_id": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"email": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					},
+					"additionalProperties": false,
+					"required": [
+						"password",
+						"confirmPassword",
+						"site_id",
+						"email"
+					]
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"error"
+			]
+		}
+	},
+	"additionalProperties": false,
+	"required": [
+		"statusCode",
+		"response"
+	]
+}

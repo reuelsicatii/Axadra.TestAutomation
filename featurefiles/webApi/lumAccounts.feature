@@ -110,3 +110,41 @@ Feature: Lumen > API > Accounts
     Examples: 
       | BaseURL                     | BasePath                             | account_id | site_id | workflow_type_code | method | expectedStatus | expectedBody                                                         | expectedSchemaBody                                                         |
       | http://dev.api.lumen.io.aws | /api/account-workflow/email-overview |       7140 |       1 | email_automation   | GET    |            422 | \\data\\webApi.LUM.Accounts\\getEmailOverview_Resp422_TS02_TC01.json | \\data\\webApi.LUM.Accounts\\getEmailOverview_RespSchema422_TS02_TC01.json |
+
+  @postSignUp200
+  Scenario Outline: postSignUp - 200 - /signup
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add formBody Key as "password" and Value as "asdasdasd"
+    And I add formBody Key as "confirmPassword" and Value as "asdasdasd"
+    And I add formBody Key as "site_id" and Value as "1"
+    And I add formBody Key as "email" and Value as "dynamicEmail"
+    And I add the formBody to the request
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                     | BasePath    | method | expectedStatus | expectedBody                                                   | expectedSchemaBody                                                   |
+      | http://dev.api.lumen.io.aws | /api/signup | POST   |            200 | \\data\\webApi.LUM.Accounts\\postSignUp_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\postSignUp_RespSchema200_TS01_TC01.json |
+
+  @postSignUp422
+  Scenario Outline: postSignUp - 422 - /signup
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add formBody Key as "password1" and Value as "asdasdasd"
+    And I add formBody Key as "confirmPassword1" and Value as "asdasdasd"
+    And I add formBody Key as "site_id1" and Value as "1"
+    And I add formBody Key as "email1" and Value as "dynamicEmail"
+    And I add the formBody to the request
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                     | BasePath    | method | expectedStatus | expectedBody                                                   | expectedSchemaBody                                                   |
+      | http://dev.api.lumen.io.aws | /api/signup | POST   |            422 | \\data\\webApi.LUM.Accounts\\postSignUp_Resp422_TS02_TC01.json | \\data\\webApi.LUM.Accounts\\postSignUp_RespSchema422_TS02_TC01.json |

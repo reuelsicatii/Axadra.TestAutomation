@@ -1,0 +1,19 @@
+{
+    "statusCode": 422,
+    "response": {
+        "error": {
+            "password": [
+                "The password field is required."
+            ],
+            "confirmPassword": [
+                "The confirm password field is required."
+            ],
+            "site_id": [
+                "The site id field is required."
+            ],
+            "email": [
+                "The email field is required."
+            ]
+        }
+    }
+}
