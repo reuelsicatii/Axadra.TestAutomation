@@ -1,5 +1,5 @@
-@LumenAccounts
-Feature: Lumen > API > Accounts
+@LumenCampaigns
+Feature: Lumen > API > Campaigns
 
   Background: 
 
