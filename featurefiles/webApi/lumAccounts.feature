@@ -17,6 +17,8 @@ Feature: Lumen > API > Accounts
   #Then I validate response status against "<expectedStatus>"
   #And I validate response body against schema "<expectedSchemaBody>"
   #And I validate response body against raw "<expectedBody>"
+  
+  
   @postCredentialStatus200
   Scenario Outline: postCredentialStatus - 200 - /account-email-server/credentials-status
     Given I set a request
@@ -47,8 +49,8 @@ Feature: Lumen > API > Accounts
       | BaseURL                     | BasePath                                     | method | expectedStatus | requestBody                                                             | expectedBody                                                             | expectedSchemaBody                                                             |
       | http://dev.api.lumen.io.aws | /api/account-email-server/credentials-status | POST   |            422 | \\data\\webApi.LUM.Accounts\\postCredentialStatus_Req422_TS02_TC01.json | \\data\\webApi.LUM.Accounts\\postCredentialStatus_Resp422_TS02_TC01.json | \\data\\webApi.LUM.Accounts\\postCredentialStatus_RespSchema422_TS02_TC01.json |
 
-  @accountWorkflow200
-  Scenario Outline: getAccountWorkflow - 200 - /api/account-workflow
+  @getAccountWorkflow200
+  Scenario Outline: getAccountWorkflow - 200 - /account-workflow
     Given I set a request
     And I set the baseURL to "<BaseURL>"
     And I set the basePath to "<BasePath>"
@@ -62,8 +64,8 @@ Feature: Lumen > API > Accounts
       | BaseURL                     | BasePath              | account_id | method | expectedStatus | expectedBody                                                           | expectedSchemaBody                                                           |
       | http://dev.api.lumen.io.aws | /api/account-workflow |       7140 | GET    |            200 | \\data\\webApi.LUM.Accounts\\getAccountWorkflow_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\getAccountWorkflow_RespSchema200_TS01_TC01.json |
 
-  @accountWorkflow422
-  Scenario Outline: getAccountWorkflow - 422 - /api/account-workflow
+  @getAccountWorkflow422
+  Scenario Outline: getAccountWorkflow - 422 - /account-workflow
     Given I set a request
     And I set the baseURL to "<BaseURL>"
     And I set the basePath to "<BasePath>"
@@ -77,8 +79,8 @@ Feature: Lumen > API > Accounts
       | BaseURL                     | BasePath              | account_id | method | expectedStatus | expectedBody                                                           | expectedSchemaBody                                                           |
       | http://dev.api.lumen.io.aws | /api/account-workflow |       7140 | GET    |            422 | \\data\\webApi.LUM.Accounts\\getAccountWorkflow_Resp422_TS02_TC01.json | \\data\\webApi.LUM.Accounts\\getAccountWorkflow_RespSchema422_TS02_TC01.json |
 
-  @emailOverview200
-  Scenario Outline: getEmailOverview - 200 - /api/account-workflow
+  @getEmailOverview200
+  Scenario Outline: getEmailOverview - 200 - /account-workflow
     Given I set a request
     And I set the baseURL to "<BaseURL>"
     And I set the basePath to "<BasePath>"
@@ -94,8 +96,8 @@ Feature: Lumen > API > Accounts
       | BaseURL                     | BasePath                             | account_id | site_id | workflow_type_code | method | expectedStatus | expectedBody                                                         | expectedSchemaBody                                                         |
       | http://dev.api.lumen.io.aws | /api/account-workflow/email-overview |       7140 |       1 | email_automation   | GET    |            200 | \\data\\webApi.LUM.Accounts\\getEmailOverview_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\getEmailOverview_RespSchema200_TS01_TC01.json |
 
-  @emailOverview422
-  Scenario Outline: getEmailOverview - 422 - /api/account-workflow
+  @getEmailOverview422
+  Scenario Outline: getEmailOverview - 422 - /account-workflow
     Given I set a request
     And I set the baseURL to "<BaseURL>"
     And I set the basePath to "<BasePath>"

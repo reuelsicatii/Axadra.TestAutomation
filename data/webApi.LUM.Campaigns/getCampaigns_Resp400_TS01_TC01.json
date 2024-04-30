@@ -1,0 +1,6 @@
+{
+	"statusCode": 400,
+	"response": {
+		"error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column \u0027campaignId_\u0027 in \u0027where clause\u0027 (SQL: select count(*) as aggregate from `tbl_projects` inner join `tbl_user` on `tbl_projects`.`creator` \u003d `tbl_user`.`id` left join `tbl_userinfo` on `tbl_user`.`id` \u003d `tbl_userinfo`.`use_id` where `campaignId_` \u003d 1 and `site_Id` \u003d 1)"
+	}
+}
