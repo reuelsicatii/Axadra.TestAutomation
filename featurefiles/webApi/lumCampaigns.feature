@@ -19,7 +19,7 @@ Feature: Lumen > API > Campaigns
   #And I validate response body against raw "<expectedBody>"
   
   
-  @postcampaignsToContacts200
+  @postCampaignsToContacts200
   Scenario Outline: postcampaignsToContacts - 200 - /campaigns-to-contacts
     Given I set a request
     And I set the baseURL to "<BaseURL>"
@@ -38,7 +38,7 @@ Feature: Lumen > API > Campaigns
       | BaseURL                     | BasePath                   | method | expectedStatus | expectedBody                                                                 | expectedSchemaBody                                                                 |
       | http://dev.api.lumen.io.aws | /api/campaigns-to-contacts | POST   |            200 | \\data\\webApi.LUM.Campaigns\\postcampaignsToContacts_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Campaigns\\postcampaignsToContacts_RespSchema200_TS01_TC01.json |
 
-  @postcampaignsToContacts200
+  @postCampaignsToContacts200
   Scenario Outline: postcampaignsToContacts - 200 - /campaigns-to-contacts
     Given I set a request
     And I set the baseURL to "<BaseURL>"

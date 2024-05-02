@@ -106,6 +106,38 @@ public class buildRequestStep {
 				System.out.println(context.getResponseBody().toString());
 			}
 
+			else if (method.equals("PUT")) {
+
+				// Build URL
+				// ==============================
+				context.setFullURL(context.getBaseURL() + context.getBasePath());
+
+				// Build REQ
+				// ==============================
+				context.setRequest(
+						context.getRequestBuilder().url(context.getFullURL()).put(context.getRequestBody()).build());
+
+				// Execute REQ
+				// ==============================
+				context.setResponse(context.getOkHttpClient().newCall(context.getRequest()).execute());
+
+				// Retrieve RESP
+				// ==============================
+				context.setResponseHeader(context.getResponse().headers());
+				context.setResponseBody(context.getResponse().body().string());
+				context.setResponseMessage(context.getResponse().message());
+
+				System.out.println("============================================");
+				System.out.println("HEADER");
+				System.out.println(context.getResponseHeader().toString());
+				System.out.println("============================================");
+				System.out.println("MESSAGE");
+				System.out.println(context.getResponseMessage().toString());
+				System.out.println("============================================");
+				System.out.println("BODY");
+				System.out.println(context.getResponseBody().toString());
+			}
+
 			else {
 				// Do Nothing
 			}

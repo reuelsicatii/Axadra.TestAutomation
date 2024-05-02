@@ -18,7 +18,6 @@ Feature: Lumen > API > Accounts
   #And I validate response body against schema "<expectedSchemaBody>"
   #And I validate response body against raw "<expectedBody>"
   
-  
   @postCredentialStatus200
   Scenario Outline: postCredentialStatus - 200 - /account-email-server/credentials-status
     Given I set a request
@@ -150,3 +149,21 @@ Feature: Lumen > API > Accounts
     Examples: 
       | BaseURL                     | BasePath    | method | expectedStatus | expectedBody                                                   | expectedSchemaBody                                                   |
       | http://dev.api.lumen.io.aws | /api/signup | POST   |            422 | \\data\\webApi.LUM.Accounts\\postSignUp_Resp422_TS02_TC01.json | \\data\\webApi.LUM.Accounts\\postSignUp_RespSchema422_TS02_TC01.json |
+
+  @putAccount200
+  Scenario Outline: putAccount - 200 - /account
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add formBody Key as "id" and Value as "7831"
+    And I add formBody Key as "email" and Value as "dynamicEmail"
+    And I add formBody Key as "username" and Value as "dynamicEmail"
+    And I add the formBody to the request
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                     | BasePath     | method | expectedStatus | expectedBody                                                   | expectedSchemaBody                                                   |
+      | http://dev.api.lumen.io.aws | /api/account | PUT    |            200 | \\data\\webApi.LUM.Accounts\\putAccount_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\putAccount_RespSchema200_TS01_TC01.json |
