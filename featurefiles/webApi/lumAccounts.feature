@@ -18,6 +18,7 @@ Feature: Lumen > API > Accounts
   #And I validate response body against schema "<expectedSchemaBody>"
   #And I validate response body against raw "<expectedBody>"
   
+  
   @postCredentialStatus200
   Scenario Outline: postCredentialStatus - 200 - /account-email-server/credentials-status
     Given I set a request
@@ -157,7 +158,7 @@ Feature: Lumen > API > Accounts
     And I set the basePath to "<BasePath>"
     And I add formBody Key as "id" and Value as "7831"
     And I add formBody Key as "email" and Value as "dynamicEmail"
-    And I add formBody Key as "username" and Value as "dynamicEmail"
+    And I add formBody Key as "username" and Value as "apitest-username"
     And I add the formBody to the request
     And I build a "<method>" request
     Then I validate response status against "<expectedStatus>"
