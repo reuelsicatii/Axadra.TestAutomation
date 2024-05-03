@@ -17,8 +17,6 @@ Feature: Lumen > API > Accounts
   #Then I validate response status against "<expectedStatus>"
   #And I validate response body against schema "<expectedSchemaBody>"
   #And I validate response body against raw "<expectedBody>"
-  
-  
   @postCredentialStatus200
   Scenario Outline: postCredentialStatus - 200 - /account-email-server/credentials-status
     Given I set a request
@@ -168,3 +166,35 @@ Feature: Lumen > API > Accounts
     Examples: 
       | BaseURL                     | BasePath     | method | expectedStatus | expectedBody                                                   | expectedSchemaBody                                                   |
       | http://dev.api.lumen.io.aws | /api/account | PUT    |            200 | \\data\\webApi.LUM.Accounts\\putAccount_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\putAccount_RespSchema200_TS01_TC01.json |
+
+  @getAccount200
+  Scenario Outline: getAccount - 200 - /account
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add parameter Key as "<parName>" and Value as "<parValue>"
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                     | BasePath     | parName | parValue              | method | expectedStatus | expectedBody                                                   | expectedSchemaBody                                                   |
+      | http://dev.api.lumen.io.aws | /api/account | id      |                  7140 | GET    |            200 | \\data\\webApi.LUM.Accounts\\getAccount_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\getAccount_RespSchema200_TS01_TC01.json |
+      | http://dev.api.lumen.io.aws | /api/account | email   | chew@truelogic.com.ph | GET    |            200 | \\data\\webApi.LUM.Accounts\\getAccount_Resp200_TS01_TC02.json | \\data\\webApi.LUM.Accounts\\getAccount_RespSchema200_TS01_TC02.json |
+
+  @getAccount422
+  Scenario Outline: getAccount - 422 - /account
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add parameter Key as "<parName>" and Value as "<parValue>"
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                     | BasePath     | parName | parValue              | method | expectedStatus | expectedBody                                                   | expectedSchemaBody                                                   |
+      | http://dev.api.lumen.io.aws | /api/account | id1     |                  7140 | GET    |            422 | \\data\\webApi.LUM.Accounts\\getAccount_Resp422_TS02_TC01.json | \\data\\webApi.LUM.Accounts\\getAccount_RespSchema422_TS02_TC01.json |
+      | http://dev.api.lumen.io.aws | /api/account | email1  | chew@truelogic.com.ph | GET    |            422 | \\data\\webApi.LUM.Accounts\\getAccount_Resp422_TS02_TC02.json | \\data\\webApi.LUM.Accounts\\getAccount_RespSchema422_TS02_TC02.json |
