@@ -198,3 +198,18 @@ Feature: Lumen > API > Accounts
       | BaseURL                     | BasePath     | parName | parValue              | method | expectedStatus | expectedBody                                                   | expectedSchemaBody                                                   |
       | http://dev.api.lumen.io.aws | /api/account | id1     |                  7140 | GET    |            422 | \\data\\webApi.LUM.Accounts\\getAccount_Resp422_TS02_TC01.json | \\data\\webApi.LUM.Accounts\\getAccount_RespSchema422_TS02_TC01.json |
       | http://dev.api.lumen.io.aws | /api/account | email1  | chew@truelogic.com.ph | GET    |            422 | \\data\\webApi.LUM.Accounts\\getAccount_Resp422_TS02_TC02.json | \\data\\webApi.LUM.Accounts\\getAccount_RespSchema422_TS02_TC02.json |
+
+  @getAccountDetails200
+  Scenario Outline: getAccountDetails - 200 - /account/details
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    # error due to special chracter --> "?page=3"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                     | BasePath             | method | expectedStatus | expectedBody                                                          | expectedSchemaBody                                                          |
+      | http://dev.api.lumen.io.aws | /api/account/details | GET    |            200 | \\data\\webApi.LUM.Accounts\\getAccountDetails_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\getAccountDetails_RespSchema200_TS01_TC01.json |

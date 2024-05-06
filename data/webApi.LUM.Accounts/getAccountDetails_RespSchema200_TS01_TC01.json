@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Accounts - 200 - AccountDetails",
+  "type": "object",
+  "properties": {
+    "statusCode": {
+      "type": "number"
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "current_page": {
+          "type": "number"
+        },
+        "from": {
+          "type": "number"
+        },
+        "last_page": {
+          "type": "number"
+        },
+        "next_page_url": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "per_page": {
+          "type": "number"
+        },
+        "to": {
+          "type": "number"
+        },
+        "total": {
+          "type": "number"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "accountId": {
+                "type": "number"
+              },
+              "siteId": {
+                "type": "number"
+              },
+              "email": {
+                "type": "string"
+              },
+              "accountManagerId": {
+                "type": "number"
+              },
+              "firstname": {
+                "type": "string"
+              },
+              "lastname": {
+                "type": "string"
+              },
+              "amName": {
+                "type": "string"
+              },
+              "dateAdded": {
+                "type": "string"
+              },
+              "lastLogin": {
+                "type": "string"
+              },
+              "phone": {
+                "type": "string"
+              },
+              "activationToken": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "accountId",
+              "siteId",
+              "email",
+              "firstname",
+              "lastname",
+              "dateAdded"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "current_page",
+        "from",
+        "last_page",
+        "next_page_url",
+        "path",
+        "per_page",
+        "to",
+        "total",
+        "data"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "statusCode",
+    "response"
+  ]
+}

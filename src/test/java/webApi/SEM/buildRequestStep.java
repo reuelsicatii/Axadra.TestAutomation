@@ -32,20 +32,33 @@ public class buildRequestStep {
 
 				// Build URL
 				// ==============================
-				boolean isFirst = true;
-				for (Map.Entry<String, String> baseParameterSet : context.getBaseParameter().entrySet()) {
+				if (!context.getBaseParameter().entrySet().isEmpty()) {
 
-					if (isFirst) {
+					// Build URL with Parameters
+					// ==============================
+					boolean isFirst = true;
+					for (Map.Entry<String, String> baseParameterSet : context.getBaseParameter().entrySet()) {
 
-						context.setFullURL(context.getBaseURL() + context.getBasePath() + "?"
-								+ baseParameterSet.getKey() + "=" + baseParameterSet.getValue());
-						isFirst = false;
+						if (isFirst) {
 
-					} else {
-						context.setFullURL(context.getFullURL() + "&" + baseParameterSet.getKey() + "="
-								+ baseParameterSet.getValue());
+							context.setFullURL(context.getBaseURL() + context.getBasePath() + "?"
+									+ baseParameterSet.getKey() + "=" + baseParameterSet.getValue());
+							isFirst = false;
+
+						} else {
+							context.setFullURL(context.getFullURL() + "&" + baseParameterSet.getKey() + "="
+									+ baseParameterSet.getValue());
+						}
+
 					}
 
+				}
+
+				else {
+
+					// Build URL without Parameters
+					// ==============================
+					context.setFullURL(context.getBaseURL() + context.getBasePath());
 				}
 
 				// Build REQ
