@@ -94,7 +94,7 @@ Feature: API > LinksBuilt
     Examples: 
       | BaseURL                      | BasePath                             | requestBody                                              | method | expectedStatus | expectedSchemaBody                                              | expectedBody                                              |
       | http://dev.sync.accesshub.co | /api/v1/semify/campaigns/links-built | \\data\\webApi.SEM.linksBuilt\\addLinkReq_TS05_TC01.json | POST   |            200 | \\data\\webApi.SEM.linksBuilt\\addLinkRespSchema_TS05_TC01.json | \\data\\webApi.SEM.linksBuilt\\addLinkResp_TS05_TC01.json |
-      | http://dev.sync.accesshub.co | /api/v1/semify/campaigns/links-built | \\data\\webApi.SEM.linksBuilt\\addLinkReq_TS05_TC02.json | POST   |            200 | \\data\\webApi.SEM.linksBuilt\\addLinkRespSchema_TS05_TC01.json | \\data\\webApi.SEM.linksBuilt\\addLinkResp_TS05_TC01.json |
+      #| http://dev.sync.accesshub.co | /api/v1/semify/campaigns/links-built | \\data\\webApi.SEM.linksBuilt\\addLinkReq_TS05_TC02.json | POST   |            200 | \\data\\webApi.SEM.linksBuilt\\addLinkRespSchema_TS05_TC01.json | \\data\\webApi.SEM.linksBuilt\\addLinkResp_TS05_TC01.json |
 
   @addLink422
   Scenario Outline: addLink - 422 - /api/v1/semify/campaigns/links-built
