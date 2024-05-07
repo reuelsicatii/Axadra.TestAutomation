@@ -1,0 +1,13 @@
+{
+	"statusCode": 422,
+	"response": {
+		"error": {
+			"use_id": [
+				"The use id field is required."
+			],
+			"site_id": [
+				"The site id field is required."
+			]
+		}
+	}
+}

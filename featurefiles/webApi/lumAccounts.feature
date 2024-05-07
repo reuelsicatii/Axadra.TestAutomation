@@ -213,3 +213,41 @@ Feature: Lumen > API > Accounts
     Examples: 
       | BaseURL                     | BasePath             | method | expectedStatus | expectedBody                                                          | expectedSchemaBody                                                          |
       | http://dev.api.lumen.io.aws | /api/account/details | GET    |            200 | \\data\\webApi.LUM.Accounts\\getAccountDetails_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\getAccountDetails_RespSchema200_TS01_TC01.json |
+
+  @putAccountDashboardProfileInfo200
+  Scenario Outline: putAccountDashboardProfileInfo - 200 - /account/dashboard-profile-info
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add formBody Key as "use_id" and Value as "<use_id>"
+    And I add formBody Key as "site_id" and Value as "1"
+    And I add formBody Key as "firstname" and Value as "ApiTest"
+    And I add formBody Key as "lastname" and Value as "Automation"
+    And I add the formBody to the request
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                     | BasePath                            | use_id | method | expectedStatus | expectedBody                                                                       | expectedSchemaBody                                                                       |
+      | http://dev.api.lumen.io.aws | /api/account/dashboard-profile-info |   7628 | PUT    |            200 | \\data\\webApi.LUM.Accounts\\putAccountDashboardProfileInfo_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\putAccountDashboardProfileInfo_RespSchema200_TS01_TC01.json |
+
+  @putAccountDashboardProfileInfo422
+  Scenario Outline: putAccountDashboardProfileInfo - 422 - /account/dashboard-profile-info
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add formBody Key as "use_id1" and Value as "<use_id>"
+    And I add formBody Key as "site_id1" and Value as "1"
+    And I add formBody Key as "firstname" and Value as "ApiTest"
+    And I add formBody Key as "lastname" and Value as "Automation"
+    And I add the formBody to the request
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                     | BasePath                            | use_id | method | expectedStatus | expectedBody                                                                       | expectedSchemaBody                                                                       |
+      | http://dev.api.lumen.io.aws | /api/account/dashboard-profile-info |   7628 | PUT    |            422 | \\data\\webApi.LUM.Accounts\\putAccountDashboardProfileInfo_Resp422_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\putAccountDashboardProfileInfo_RespSchema422_TS01_TC01.json |
