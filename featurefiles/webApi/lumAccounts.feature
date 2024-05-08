@@ -251,3 +251,17 @@ Feature: Lumen > API > Accounts
     Examples: 
       | BaseURL                     | BasePath                            | use_id | method | expectedStatus | expectedBody                                                                       | expectedSchemaBody                                                                       |
       | http://dev.api.lumen.io.aws | /api/account/dashboard-profile-info |   7628 | PUT    |            422 | \\data\\webApi.LUM.Accounts\\putAccountDashboardProfileInfo_Resp422_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\putAccountDashboardProfileInfo_RespSchema422_TS01_TC01.json |
+
+  @getAccountLastLogin200
+  Scenario Outline: getAccountLastLogin - 200 - account/last-login
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                     | BasePath                | method | expectedStatus | expectedBody                                                            | expectedSchemaBody                                                            |
+      | http://dev.api.lumen.io.aws | /api/account/last-login | GET    |            200 | \\data\\webApi.LUM.Accounts\\getAccountLastLogin_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\getAccountLastLogin_RespSchema200_TS01_TC01.json |
