@@ -1,0 +1,9 @@
+{
+	"statusCode": 200,
+	"response": {
+		"data": {
+			"status": "active",
+			"label": "Google Search Console"
+		}
+	}
+}

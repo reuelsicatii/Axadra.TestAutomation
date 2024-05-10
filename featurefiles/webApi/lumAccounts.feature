@@ -265,3 +265,42 @@ Feature: Lumen > API > Accounts
     Examples: 
       | BaseURL                     | BasePath                | method | expectedStatus | expectedBody                                                            | expectedSchemaBody                                                            |
       | http://dev.api.lumen.io.aws | /api/account/last-login | GET    |            200 | \\data\\webApi.LUM.Accounts\\getAccountLastLogin_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Accounts\\getAccountLastLogin_RespSchema200_TS01_TC01.json |
+
+  @postCampaignCheckIntegration200
+  Scenario Outline: postCampaignCheckIntegration - 200 - /campaign/check-integration
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add formBody Key as "campaignId" and Value as "1"
+    And I add formBody Key as "app" and Value as "<app>"
+    And I add the formBody to the request
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                     | BasePath                        | app               | method | expectedStatus | expectedBody                                                                      | expectedSchemaBody                                                                      |
+      | http://dev.api.lumen.io.aws | /api/campaign/check-integration | analytics         | POST   |            200 | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_Resp200_TS01_TC01.json | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_RespSchema200_TS01_TC01.json |
+      | http://dev.api.lumen.io.aws | /api/campaign/check-integration | facebook          | POST   |            200 | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_Resp200_TS01_TC02.json | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_RespSchema200_TS01_TC02.json |
+      | http://dev.api.lumen.io.aws | /api/campaign/check-integration | adwords           | POST   |            200 | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_Resp200_TS01_TC03.json | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_RespSchema200_TS01_TC03.json |
+      | http://dev.api.lumen.io.aws | /api/campaign/check-integration | google_mybusiness | POST   |            200 | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_Resp200_TS01_TC04.json | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_RespSchema200_TS01_TC04.json |
+      | http://dev.api.lumen.io.aws | /api/campaign/check-integration | webmaster_tools   | POST   |            200 | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_Resp200_TS01_TC05.json | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_RespSchema200_TS01_TC05.json |
+      | http://dev.api.lumen.io.aws | /api/campaign/check-integration | yelp              | POST   |            200 | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_Resp200_TS01_TC06.json | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_RespSchema200_TS01_TC06.json |
+
+  @postCampaignCheckIntegration422
+  Scenario Outline: postCampaignCheckIntegration - 422 - /campaign/check-integration
+    Given I set a request
+    And I set the baseURL to "<BaseURL>"
+    And I set the basePath to "<BasePath>"
+    And I add formBody Key as "campaignId1" and Value as "1"
+    And I add formBody Key as "app1" and Value as "<app>"
+    And I add the formBody to the request
+    And I build a "<method>" request
+    Then I validate response status against "<expectedStatus>"
+    And I validate response body against raw "<expectedBody>"
+    And I validate response body against schema "<expectedSchemaBody>"
+
+    Examples: 
+      | BaseURL                     | BasePath                        | app       | method | expectedStatus | expectedBody                                                                      | expectedSchemaBody                                                                      |
+      | http://dev.api.lumen.io.aws | /api/campaign/check-integration | analytics | POST   |            422 | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_Resp422_TS01_TC01.json | \\data\\webApi.LUM.Campaigns\\postCampaignCheckIntegration_RespSchema422_TS01_TC01.json |
