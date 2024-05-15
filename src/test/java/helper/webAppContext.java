@@ -1,6 +1,7 @@
 package helper;
 
 import java.io.File;
+import java.util.HashMap;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -13,6 +14,7 @@ import io.cucumber.java.Scenario;
 
 public class webAppContext {
 
+	HashMap<String, Long> loadTime = new HashMap<String, Long>();
 	private RemoteWebDriver driver;
 	private WebDriverWait wait;
 	private FluentWait fluentWait;
@@ -21,6 +23,11 @@ public class webAppContext {
 	private ExtentTest extentTestFeature;
 	private ExtentTest extentTestScenario;
 	private File SrcFile;
+	
+
+	public HashMap<String, Long> getLoadTime() {
+		return loadTime;
+	}
 
 	public ExtentTest getExtentTestFeature() {
 		return extentTestFeature;

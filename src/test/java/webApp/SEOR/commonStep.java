@@ -39,7 +39,7 @@ public class commonStep extends webAppHelper {
 	// Declare Variables
 	// ==========================================
 	ArrayList<String> details = new ArrayList<String>();
-	HashMap<String, Long> loadTime = new HashMap<String, Long>();
+	// HashMap<String, Long> loadTime = new HashMap<String, Long>();
 
 	// Page Step Definition
 	// =================================================
@@ -271,11 +271,8 @@ public class commonStep extends webAppHelper {
 	@When("User captures startTime")
 	public void userCapturesStartime() {
 
-		// Captures startReqTime
-		loadTime.put("firstReqTime", (long) 0);
-
 		// Captures startTime
-		loadTime.put("startTime", System.currentTimeMillis());
+		context.getLoadTime().put("startTime", System.currentTimeMillis());
 
 	}
 
@@ -284,8 +281,8 @@ public class commonStep extends webAppHelper {
 		try {
 
 			// Captures endTime
-			loadTime.put("stopPageLoad", System.currentTimeMillis());
-			long actualPageLoad = Math.subtractExact(loadTime.get("stopPageLoad"), loadTime.get("startTime"));
+			context.getLoadTime().put("stopPageLoad", System.currentTimeMillis());
+			long actualPageLoad = Math.subtractExact(context.getLoadTime().get("stopPageLoad"), context.getLoadTime().get("startTime"));
 
 			if (actualPageLoad <= expectedPageLoad) {
 				// Extent Report
