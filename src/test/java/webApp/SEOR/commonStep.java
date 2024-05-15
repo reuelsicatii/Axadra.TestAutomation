@@ -282,7 +282,8 @@ public class commonStep extends webAppHelper {
 
 			// Captures endTime
 			context.getLoadTime().put("stopPageLoad", System.currentTimeMillis());
-			long actualPageLoad = Math.subtractExact(context.getLoadTime().get("stopPageLoad"), context.getLoadTime().get("startTime"));
+			long actualPageLoad = Math.subtractExact(context.getLoadTime().get("stopPageLoad"),
+					context.getLoadTime().get("startTime"));
 
 			if (actualPageLoad <= expectedPageLoad) {
 				// Extent Report
@@ -290,8 +291,8 @@ public class commonStep extends webAppHelper {
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Page Load: " + expectedPageLoad);
 				details.add("Actual Page Load: " + actualPageLoad);
-				extentReportService.insertPassedStep(context, "User measures page load to be within" + expectedPageLoad,
-						details);
+				extentReportService.insertPassedStep(context,
+						"User measures page load to be within " + expectedPageLoad, details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
 				extentReportService.attachedPageLoadToReport(context, expectedPageLoad, actualPageLoad);
@@ -304,8 +305,8 @@ public class commonStep extends webAppHelper {
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
 				details.add("Expected Page Load: " + expectedPageLoad);
 				details.add("Actual Page Load: " + actualPageLoad);
-				extentReportService.insertFailedStep(context, "User measures page load to be within" + expectedPageLoad,
-						details);
+				extentReportService.insertFailedStep(context,
+						"User measures page load to be within " + expectedPageLoad, details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedPageLoadToReport(context, expectedPageLoad, actualPageLoad);
@@ -321,8 +322,103 @@ public class commonStep extends webAppHelper {
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				extentReportService.insertFailedStep(context, "User measures page load to be within" + expectedPageLoad,
-						details);
+				extentReportService.insertFailedStep(context,
+						"User measures page load to be within " + expectedPageLoad, details);
+				details.add("Error Message: " + e.getMessage());
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	@Then("User measures lazy load to be within {int}")
+	public void userMeasuresLazyLoadToBeWithin(Integer expectedLazyLoad) {
+		try {
+
+			if (context.getDriver().getCurrentUrl().contains("account.seoreseller.com/pro/audits")) {
+
+				while (true) {
+
+					Thread.sleep(1);
+					if (context.getDriver().findElement(By.xpath("//table[@id='webaudit-table']//tbody/tr[1]"))
+							.isDisplayed()) {
+
+						// Captures endTime
+						context.getLoadTime().put("stopLazyLoad", System.currentTimeMillis());
+						break;
+
+					}
+
+				}
+
+			}
+
+			else if (context.getDriver().getCurrentUrl().contains("account.seoreseller.com/pro/gbp-report")) {
+
+				while (true) {
+					Thread.sleep(1);
+					if (context.getDriver().findElement(By.xpath("//table[@id='lar-table']//tbody/tr[1]"))
+							.isDisplayed()) {
+
+						// Captures endTime
+						context.getLoadTime().put("stopLazyLoad", System.currentTimeMillis());
+						break;
+
+					}
+
+				}
+
+			}
+
+			long actualLazyLoad = Math.subtractExact(context.getLoadTime().get("stopLazyLoad"),
+					context.getLoadTime().get("startTime"));
+
+			System.err.println("Actual Lazy Load: " + actualLazyLoad);
+
+			if (actualLazyLoad <= expectedLazyLoad) {
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Expected Lazy Load: " + expectedLazyLoad);
+				details.add("Actual Lazy Load: " + actualLazyLoad);
+				extentReportService.insertPassedStep(context,
+						"User measures lazy load to be within " + expectedLazyLoad, details);
+
+				context.getExtentTestScenario().log(Status.PASS, "PASSED");
+				extentReportService.attachedPageLoadToReport(context, expectedLazyLoad, actualLazyLoad);
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+			} else {
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				details.add("Expected Lazy Load: " + expectedLazyLoad);
+				details.add("Actual Lazy Load: " + actualLazyLoad);
+				extentReportService.insertFailedStep(context,
+						"User measures lazy load to be within " + expectedLazyLoad, details);
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedPageLoadToReport(context, expectedLazyLoad, actualLazyLoad);
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+			}
+
+		} catch (Exception e) {
+
+			// Extent Report
+			try {
+
+				// Extent Report
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				extentReportService.insertFailedStep(context,
+						"User measures lazy load to be within " + expectedLazyLoad, details);
 				details.add("Error Message: " + e.getMessage());
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");

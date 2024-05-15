@@ -11,6 +11,7 @@ Feature: SEOR > Agency Tools > WebAudit
   #When User navigates to "https://account.seoreseller.com/pro/audits"
   #And User generates a WebAuditReport
   
+  
   @PageAndLazyWebAuditReport
   Scenario Outline: Measure Page and Lazy Load of WebAudit Report
     Given User navigates to "<loginUrl>" using "<browser>"
@@ -21,6 +22,7 @@ Feature: SEOR > Agency Tools > WebAudit
     When User captures startTime
     And User navigates to "https://account.seoreseller.com/pro/audits"
     Then User measures page load to be within <PageLoad>
+    Then User measures lazy load to be within <LazyLoad>
 
     Examples: 
       | browser | loginUrl                              | PageLoad | LazyLoad |
@@ -36,6 +38,7 @@ Feature: SEOR > Agency Tools > WebAudit
     When User captures startTime
     And User navigates to "https://account.seoreseller.com/pro/gbp-report"
     Then User measures page load to be within <PageLoad>
+    Then User measures lazy load to be within <LazyLoad>
 
     Examples: 
       | browser | loginUrl                              | PageLoad | LazyLoad |
