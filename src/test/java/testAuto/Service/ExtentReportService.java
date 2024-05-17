@@ -178,7 +178,7 @@ public class ExtentReportService {
 		}
 	}
 
-	public void attachedFinishLoadToReport(webAppContext context, int expectedPageLoad, long actualPageLoad) {
+	public void attachedLAzyLoadToReport(webAppContext context, int expectedLazyLoad, long actualLazyLoad) {
 
 		try {
 
@@ -187,11 +187,11 @@ public class ExtentReportService {
 					.createNode("<div style=\"display: flex;\">\r\n" + "        <div style=\"flex: 1;\r\n"
 							+ "            border: 1px solid #ccc;\r\n" + "            padding: 20px;\r\n"
 							+ "            background-color: #f0f0f0;\r\n" + "            max-width: 50%;\">\r\n"
-							+ "            <h2>Expected Page Load</h2>\r\n" + "            <pre>" + expectedPageLoad
+							+ "            <h2>Expected Lazy Load</h2>\r\n" + "            <pre>" + expectedLazyLoad
 							+ "</pre>\r\n" + "        </div>\r\n" + "        <div style=\"flex: 1;\r\n"
 							+ "            border: 1px solid #ccc;\r\n" + "            padding: 20px;\r\n"
 							+ "            background-color: #e0e0e0;\r\n" + "            max-width: 50%;\">\r\n"
-							+ "            <h2>Actual Page Load</h2>\r\n" + "            <pre>" + actualPageLoad
+							+ "            <h2>Actual Lazy Load</h2>\r\n" + "            <pre>" + actualLazyLoad
 							+ "</pre>\r\n" + "        </div>\r\n" + "</div>");
 
 		} catch (

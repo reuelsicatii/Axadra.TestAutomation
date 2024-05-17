@@ -10,8 +10,6 @@ Feature: SEOR > Agency Tools > WebAudit
   #Then User is successfully login
   #When User navigates to "https://account.seoreseller.com/pro/audits"
   #And User generates a WebAuditReport
-  
-  
   @PageAndLazyWebAuditReport
   Scenario Outline: Measure Page and Lazy Load of WebAudit Report
     Given User navigates to "<loginUrl>" using "<browser>"
@@ -22,7 +20,7 @@ Feature: SEOR > Agency Tools > WebAudit
     When User captures startTime
     And User navigates to "https://account.seoreseller.com/pro/audits"
     Then User measures page load to be within <PageLoad>
-    Then User measures lazy load to be within <LazyLoad>
+    Then User measures lazy load to be within <LazyLoad> using "//table[@id='webaudit-table']//tbody/tr[1]"
 
     Examples: 
       | browser | loginUrl                              | PageLoad | LazyLoad |
@@ -38,7 +36,58 @@ Feature: SEOR > Agency Tools > WebAudit
     When User captures startTime
     And User navigates to "https://account.seoreseller.com/pro/gbp-report"
     Then User measures page load to be within <PageLoad>
-    Then User measures lazy load to be within <LazyLoad>
+    Then User measures lazy load to be within <LazyLoad> using "//table[@id='lar-table']//tbody/tr[1]"
+
+    Examples: 
+      | browser | loginUrl                              | PageLoad | LazyLoad |
+      | chrome  | https://account.seoreseller.com/login |     3000 |     4000 |
+
+  @PageAndLazyCampaignOverview
+  Scenario Outline: Measure Page and Lazy Load of Campaign > Overview
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "clayton@truelogic.com.ph"
+    And User enter the password as "aGXYwqhPeAV4j7J"
+    And User click on the login button
+    Then User is successfully login
+    When User captures startTime
+    And User navigates to "https://account.seoreseller.com/campaigns/140"
+    Then User measures page load to be within <PageLoad>
+    Then User measures lazy load to be within <LazyLoad> using "//h5[contains(text(), 'Desktop Speed')]"
+    Then User measures lazy load to be within <LazyLoad> using "//h4[contains(text(), 'Robots.txt found')]"
+
+    Examples: 
+      | browser | loginUrl                              | PageLoad | LazyLoad |
+      | chrome  | https://account.seoreseller.com/login |     3000 |     4000 |
+
+  @PageAndLazyCampaignSEO
+  Scenario Outline: Measure Page and Lazy Load of Campaign > SEO
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "clayton@truelogic.com.ph"
+    And User enter the password as "aGXYwqhPeAV4j7J"
+    And User click on the login button
+    Then User is successfully login
+    When User captures startTime
+    And User navigates to "https://account.seoreseller.com/campaigns/140/seo"
+    Then User measures page load to be within <PageLoad>
+    Then User measures lazy load to be within <LazyLoad> using "//table[@id='keyword-ranking-post-table']//tbody/tr[1]"
+
+    Examples: 
+      | browser | loginUrl                              | PageLoad | LazyLoad |
+      | chrome  | https://account.seoreseller.com/login |     3000 |     4000 |
+
+  @PageAndLazyCampaignGBP
+  Scenario Outline: Measure Page and Lazy Load of Campaign > GBP
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "clayton@truelogic.com.ph"
+    And User enter the password as "aGXYwqhPeAV4j7J"
+    And User click on the login button
+    Then User is successfully login
+    When User captures startTime
+    And User navigates to "https://account.seoreseller.com/campaigns/140/location"
+    Then User measures page load to be within <PageLoad>
+    Then User measures lazy load to be within <LazyLoad> using "//span[@class='legend-title'][contains(text(), 'Direction')]"
+    Then User measures lazy load to be within <LazyLoad> using "(//div[@class='rating-stars'])[1]"
+    Then User measures lazy load to be within <LazyLoad> using "(//div[@class='rating-stars'])[2]"
 
     Examples: 
       | browser | loginUrl                              | PageLoad | LazyLoad |

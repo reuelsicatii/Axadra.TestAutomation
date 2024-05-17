@@ -285,6 +285,10 @@ public class commonStep extends webAppHelper {
 			long actualPageLoad = Math.subtractExact(context.getLoadTime().get("stopPageLoad"),
 					context.getLoadTime().get("startTime"));
 
+			System.out.println("startTime: " + context.getLoadTime().get("startTime"));
+			System.out.println("stopPageLoad: " + context.getLoadTime().get("stopPageLoad"));
+			System.out.println("Actual Lazy Load: " + actualPageLoad);
+
 			if (actualPageLoad <= expectedPageLoad) {
 				// Extent Report
 				details.clear();
@@ -336,40 +340,19 @@ public class commonStep extends webAppHelper {
 		}
 	}
 
-	@Then("User measures lazy load to be within {int}")
-	public void userMeasuresLazyLoadToBeWithin(Integer expectedLazyLoad) {
+	@Then("User measures lazy load to be within {int} using {string}")
+	public void userMeasuresLazyLoadToBeWithinUsing(Integer expectedLazyLoad, String anchor) {
+
 		try {
 
-			if (context.getDriver().getCurrentUrl().contains("account.seoreseller.com/pro/audits")) {
+			while (true) {
 
-				while (true) {
+				Thread.sleep(1);
+				if (context.getDriver().findElement(By.xpath(anchor)).isDisplayed()) {
 
-					Thread.sleep(1);
-					if (context.getDriver().findElement(By.xpath("//table[@id='webaudit-table']//tbody/tr[1]"))
-							.isDisplayed()) {
-
-						// Captures endTime
-						context.getLoadTime().put("stopLazyLoad", System.currentTimeMillis());
-						break;
-
-					}
-
-				}
-
-			}
-
-			else if (context.getDriver().getCurrentUrl().contains("account.seoreseller.com/pro/gbp-report")) {
-
-				while (true) {
-					Thread.sleep(1);
-					if (context.getDriver().findElement(By.xpath("//table[@id='lar-table']//tbody/tr[1]"))
-							.isDisplayed()) {
-
-						// Captures endTime
-						context.getLoadTime().put("stopLazyLoad", System.currentTimeMillis());
-						break;
-
-					}
+					// Captures endTime
+					context.getLoadTime().put("stopLazyLoad", System.currentTimeMillis());
+					break;
 
 				}
 
@@ -378,7 +361,9 @@ public class commonStep extends webAppHelper {
 			long actualLazyLoad = Math.subtractExact(context.getLoadTime().get("stopLazyLoad"),
 					context.getLoadTime().get("startTime"));
 
-			System.err.println("Actual Lazy Load: " + actualLazyLoad);
+			System.out.println("startTime: " + context.getLoadTime().get("startTime"));
+			System.out.println("stopLazyLoad: " + context.getLoadTime().get("stopLazyLoad"));
+			System.out.println("Actual Lazy Load: " + actualLazyLoad);
 
 			if (actualLazyLoad <= expectedLazyLoad) {
 				// Extent Report
@@ -387,10 +372,10 @@ public class commonStep extends webAppHelper {
 				details.add("Expected Lazy Load: " + expectedLazyLoad);
 				details.add("Actual Lazy Load: " + actualLazyLoad);
 				extentReportService.insertPassedStep(context,
-						"User measures lazy load to be within " + expectedLazyLoad, details);
+						"User measures lazy load to be within " + expectedLazyLoad + " using " + anchor, details);
 
 				context.getExtentTestScenario().log(Status.PASS, "PASSED");
-				extentReportService.attachedPageLoadToReport(context, expectedLazyLoad, actualLazyLoad);
+				extentReportService.attachedLAzyLoadToReport(context, expectedLazyLoad, actualLazyLoad);
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
@@ -401,25 +386,24 @@ public class commonStep extends webAppHelper {
 				details.add("Expected Lazy Load: " + expectedLazyLoad);
 				details.add("Actual Lazy Load: " + actualLazyLoad);
 				extentReportService.insertFailedStep(context,
-						"User measures lazy load to be within " + expectedLazyLoad, details);
+						"User measures lazy load to be within " + expectedLazyLoad + " using " + anchor, details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
-				extentReportService.attachedPageLoadToReport(context, expectedLazyLoad, actualLazyLoad);
+				extentReportService.attachedLAzyLoadToReport(context, expectedLazyLoad, actualLazyLoad);
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 			}
 
 		} catch (Exception e) {
-
 			// Extent Report
 			try {
 
 				// Extent Report
 				details.clear();
 				details.add("Page URL: " + context.getDriver().getCurrentUrl());
-				extentReportService.insertFailedStep(context,
-						"User measures lazy load to be within " + expectedLazyLoad, details);
 				details.add("Error Message: " + e.getMessage());
+				extentReportService.insertFailedStep(context,
+						"User measures lazy load to be within " + expectedLazyLoad + " using " + anchor, details);
 
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
@@ -429,6 +413,6 @@ public class commonStep extends webAppHelper {
 				e1.printStackTrace();
 			}
 		}
-	}
 
+	}
 }
