@@ -347,13 +347,21 @@ public class commonStep extends webAppHelper {
 
 			while (true) {
 
-				Thread.sleep(1);
-				if (context.getDriver().findElement(By.xpath(anchor)).isDisplayed()) {
+				try {
 
-					// Captures endTime
-					context.getLoadTime().put("stopLazyLoad", System.currentTimeMillis());
-					break;
+					if (context.getDriver().findElement(By.xpath(anchor)).isDisplayed()) {
 
+						// Captures endTime
+						context.getLoadTime().put("stopLazyLoad", System.currentTimeMillis());
+						break;
+
+					}
+
+				} catch (Exception e) {
+
+					System.err.println(" =========== WAITING FOR THE ELEMENT =========== ");
+					System.err.println("Exception: " + e.getMessage());
+					Thread.sleep(100);
 				}
 
 			}

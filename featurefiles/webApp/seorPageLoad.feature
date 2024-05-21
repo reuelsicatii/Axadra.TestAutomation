@@ -92,3 +92,51 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | PageLoad | LazyLoad |
       | chrome  | https://account.seoreseller.com/login |     3000 |     4000 |
+
+  @PageAndLazyCampaignRepMan
+  Scenario Outline: Measure Page and Lazy Load of Campaign > Reputation Management
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "clayton@truelogic.com.ph"
+    And User enter the password as "aGXYwqhPeAV4j7J"
+    And User click on the login button
+    Then User is successfully login
+    When User captures startTime
+    And User navigates to "https://account.seoreseller.com/campaigns/140/reputation-management"
+    Then User measures page load to be within <PageLoad>
+    Then User measures lazy load to be within <LazyLoad> using "(//span[@class='rating-container'])[1]"
+    Then User measures lazy load to be within <LazyLoad> using "//div[@id='feedback-request-container']//p[contains(text(), 'Sent Feedbacks')]"
+
+    Examples: 
+      | browser | loginUrl                              | PageLoad | LazyLoad |
+      | chrome  | https://account.seoreseller.com/login |     3000 |     4000 |
+
+  @PageAndLazyCampaignAnalytics
+  Scenario Outline: Measure Page and Lazy Load of Campaign > Analytics Overview
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "clayton@truelogic.com.ph"
+    And User enter the password as "aGXYwqhPeAV4j7J"
+    And User click on the login button
+    Then User is successfully login
+    When User captures startTime
+    And User navigates to "https://account.seoreseller.com/campaigns/140/analytics"
+    Then User measures page load to be within <PageLoad>
+
+    Examples: 
+      | browser | loginUrl                              | PageLoad | LazyLoad |
+      | chrome  | https://account.seoreseller.com/login |     3000 |     4000 |
+
+  @PageAndLazyCampaignContacts
+  Scenario Outline: Measure Page and Lazy Load of Campaign > Contacts
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "clayton@truelogic.com.ph"
+    And User enter the password as "aGXYwqhPeAV4j7J"
+    And User click on the login button
+    Then User is successfully login
+    When User captures startTime
+    And User navigates to "https://account.seoreseller.com/campaigns/140/contacts"
+    Then User measures page load to be within <PageLoad>
+    Then User measures lazy load to be within <LazyLoad> using "//table[@id='leads-table']//tbody/tr[1]"
+
+    Examples: 
+      | browser | loginUrl                              | PageLoad | LazyLoad |
+      | chrome  | https://account.seoreseller.com/login |     3000 |     4000 |
