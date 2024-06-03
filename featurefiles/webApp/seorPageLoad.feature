@@ -140,3 +140,19 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | PageLoad | LazyLoad |
       | chrome  | https://account.seoreseller.com/login |     3000 |     4000 |
+
+  @PageAndLazyCampaignCallTracking
+  Scenario Outline: Measure Page and Lazy Load of Campaign > Call Tracking
+    Given User navigates to "<loginUrl>" using "<browser>"
+    And User enter the username as "clayton@truelogic.com.ph"
+    And User enter the password as "aGXYwqhPeAV4j7J"
+    And User click on the login button
+    Then User is successfully login
+    When User captures startTime
+    And User navigates to "https://account.seoreseller.com/campaigns/140/call-tracking"
+    Then User measures page load to be within <PageLoad>
+    Then User measures lazy load to be within <LazyLoad> using "(//div[@id='call_tracking_graphs_widget']//h3)[2][contains(text(), 'Number')]"
+
+    Examples: 
+      | browser | loginUrl                              | PageLoad | LazyLoad |
+      | chrome  | https://account.seoreseller.com/login |     3000 |     4000 |
