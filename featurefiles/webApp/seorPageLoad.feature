@@ -172,3 +172,5 @@ Feature: SEOR > Agency Tools > WebAudit
     Examples: 
       | browser | loginUrl                              | PageLoad | LazyLoad |
       | chrome  | https://account.seoreseller.com/login |     3000 |     4000 |
+      
+      
