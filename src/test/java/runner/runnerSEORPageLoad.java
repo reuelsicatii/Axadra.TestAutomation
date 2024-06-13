@@ -31,10 +31,10 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 public class runnerSEORPageLoad extends AbstractTestNGCucumberTests {	
 	
 	
-	// Running Cucumber - Parallel Test
+	// Running Cucumber - Sequential Test
 	// =========================================
 	@Override
-	@DataProvider (parallel = true)
+	@DataProvider (parallel = false)
 	public Object[][] scenarios() {
 		return super.scenarios();
 	}
