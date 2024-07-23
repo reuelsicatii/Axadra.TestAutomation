@@ -66,7 +66,7 @@ public class adminPage extends webAppHelper {
 			// Step Definition
 			context.getDriver().findElement(By.xpath("//input[@name='Reseller_Account_ID_2']"))
 					.sendKeys(context.getTextExecutionDetails().get("Account Name"));
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 
 			if (context.getDriver()
 					.findElement(By.xpath("//div[@id='as-results-Reseller_Account_ID_2']//li//em[contains(text(),'"
