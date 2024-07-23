@@ -82,7 +82,7 @@ public class webAppHook extends webAppHelper {
 				"Feature Name: " + scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "<br>"
 						+ " Scenario Name: " + scenario.getName() + "<br>" + "TestCase ID: " + scenario.getLine(),
 				"<br><br><br>" + " Scenario Name: " + scenario.getName());
-		
+
 		// add scenario
 		testCaseCount++;
 
@@ -105,68 +105,6 @@ public class webAppHook extends webAppHelper {
 
 		System.out.println("Im in a AfterStep StepDefination");
 
-		try {
-
-			/*
-			 * 
-			 * DestFile = System.getProperty("user.dir") + "\\screenshots\\" +
-			 * scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_" +
-			 * new SimpleDateFormat("_yyMMdd_HHmmss").format(new Date()) + ".png";
-			 * 
-			 * SrcFile = ((TakesScreenshot)
-			 * context.getDriver()).getScreenshotAs(OutputType.FILE);
-			 * 
-			 * // Generating and Copying Screenshot to DestFile FileUtils.copyFile(SrcFile,
-			 * new File(DestFile));
-			 * 
-			 * // Attaching screenshot to Cucumber Report
-			 * context.getScenario().attach(FileUtils.readFileToByteArray(SrcFile),
-			 * "image/png", context.getScenario().getStatus().toString());
-			 * 
-			 * // Attached Screenshot to Extent Report context.getExtentTestScenario().
-			 * createNode(" ======================================== ")
-			 * .info("Captured Screenshot: ",
-			 * MediaEntityBuilder.createScreenCaptureFromPath(DestFile).build());
-			 * 
-			 */
-
-			Random generator = new Random();
-			int randomIndex = generator.nextInt(2000);
-			Thread.sleep(randomIndex);
-
-			String date = new SimpleDateFormat("_yyMMdd_HHmmssSSS").format(new Date());
-
-			// XAMPP htdocs Folder - Image not resolving
-			// ====================================================
-			DestFile = "C:/xampp/htdocs/AutomationProject/screenshots/"
-					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_" + date + ".png";
-
-			SrcImage = "/AutomationProject/screenshots/"
-					+ scenario.getSourceTagNames().toArray()[0].toString().replace("@", "") + "_" + date + ".png";
-
-			context.setSrcFile(((TakesScreenshot) context.getDriver()).getScreenshotAs(OutputType.FILE));
-
-			// SrcFile = ((TakesScreenshot)
-			// context.getDriver()).getScreenshotAs(OutputType.FILE);
-
-			// Generating and Copying Screenshot to DestFile
-			FileUtils.copyFile(context.getSrcFile(), new File(DestFile));
-
-			// Attaching screenshot to Cucumber Report
-			context.getScenario().attach(FileUtils.readFileToByteArray(context.getSrcFile()), "image/png",
-					context.getScenario().getStatus().toString());
-
-			// Attached Screenshot to Extent Report
-			context.getExtentTestScenario().createNode(" ======================================== ").info(
-					"Captured Screenshot: ",
-					MediaEntityBuilder.createScreenCaptureFromPath(DestFile.replace("C:/xampp/htdocs", "")).build());
-
-		} catch (Exception e) {
-			// Extent Report
-			context.getExtentTestScenario().createNode(" ======================================== ")
-					.warning(e.getMessage());
-		}
-
 	}
 
 	@After
@@ -187,42 +125,47 @@ public class webAppHook extends webAppHelper {
 		// Create Extent Report over XAMPP htdocs Folder
 		// ==============================================================================
 		String date = new SimpleDateFormat("yyMMdd_HHmmss").format(new Date());
-		extentSparkReporter = new ExtentSparkReporter("C:/xampp/htdocs/AutomationProject/reports/" + scenarioName + "/"
-				+ date + ".html");
+		extentSparkReporter = new ExtentSparkReporter(
+				"C:/xampp/htdocs/AutomationProject/reports/" + scenarioName + "/" + date + ".html");
 		extentReports.attachReporter(extentSparkReporter);
 		extentReports.flush();
-		
+
 		// Get the counts of failed test steps
-		long  failedTestScenario = extentReports.getReport().getTestList().stream()
-                .filter(extentTest -> extentTest.getStatus() == Status.FAIL)
-                .count();		
-		
+		long failedTestScenario = extentReports.getReport().getTestList().stream()
+				.filter(extentTest -> extentTest.getStatus() == Status.FAIL).count();
+
 		// SLACK NOTIFICATION
 		OkHttpClient client = new OkHttpClient();
 
-        // JSON payload as a string
-		String jsonPayload = "{\"text\": \" SELENIUM - Automation" 
-				+ "\\n ===================== "
-				+ "\\n Feature Name: " + scenarioName 
-				+ "\\n Report Link: http://automation-report.cloud/AutomationProject/reports/"+ scenarioName +"/"+ date +".html"
-				+ "\\n Test Case - FAILED: "+ failedTestScenario +" of "+ testCaseCount + " \"}";
+		// JSON payload as a string
+		String jsonPayload = "{\"text\": \" SELENIUM - Automation" + "\\n ===================== " + "\\n Feature Name: "
+				+ scenarioName + "\\n Report Link: http://localhost/AutomationProject/reports/"
+				+ scenarioName + "/" + date + ".html" + "\\n Test Scenario - Status: "
+				+ extentReports.getReport().getStats().getParent() + "\\n Test Case - Status: "
+				+ extentReports.getReport().getStats().getChild() + "\\n Test Step - Status: "
+				+ extentReports.getReport().getStats().getGrandchild() + " \"}";
 
-        RequestBody requestBody = RequestBody.create(jsonPayload, MediaType.get("application/json"));
-        Request request = new Request.Builder()
-                .url("https://hooks.slack.com//services/T94TNR6JX/B05TF33U3SM/GNYWxDN6wq8xP0P1Zsnov49a") 
-                .post(requestBody)
-                .build();
+		RequestBody requestBody = RequestBody.create(jsonPayload, MediaType.get("application/json"));
+		Request request = new Request.Builder()
 
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                String responseBody = response.body().string();
-                System.out.println("Response: " + responseBody);
-            } else {
-                System.err.println("Request failed with status code: " + response.code());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+				// LOCAL - SLACK
+				//.url("https://hooks.slack.com/services/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")
+
+				// PROD - SLACK
+				.url("https://hooks.slack.com/services/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")
+
+				.post(requestBody).build();
+
+		try (Response response = client.newCall(request).execute()) {
+			if (response.isSuccessful()) {
+				String responseBody = response.body().string();
+				System.out.println("Response: " + responseBody);
+			} else {
+				System.err.println("Request failed with status code: " + response.code());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 

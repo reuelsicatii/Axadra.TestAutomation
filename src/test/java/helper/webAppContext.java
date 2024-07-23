@@ -1,6 +1,7 @@
 package helper;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -14,7 +15,7 @@ import io.cucumber.java.Scenario;
 
 public class webAppContext {
 
-	HashMap<String, Long> loadTime = new HashMap<String, Long>();
+	
 	private RemoteWebDriver driver;
 	private WebDriverWait wait;
 	private FluentWait fluentWait;
@@ -23,7 +24,8 @@ public class webAppContext {
 	private ExtentTest extentTestFeature;
 	private ExtentTest extentTestScenario;
 	private File SrcFile;
-	
+	private HashMap<String, Long> loadTime = new HashMap<String, Long>();
+	private HashMap<String, String> textExecutionDetails = new HashMap<String, String>();
 
 	public HashMap<String, Long> getLoadTime() {
 		return loadTime;
@@ -68,7 +70,7 @@ public class webAppContext {
 	public void setWait(WebDriverWait wait) {
 		this.wait = wait;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public FluentWait getFluentWait() {
 		return fluentWait;
@@ -94,5 +96,11 @@ public class webAppContext {
 	public void setSrcFile(File SrcFile) {
 		this.SrcFile = SrcFile;
 	}
+
+	public HashMap<String, String> getTextExecutionDetails() {
+		return textExecutionDetails;
+	}
+
+
 
 }

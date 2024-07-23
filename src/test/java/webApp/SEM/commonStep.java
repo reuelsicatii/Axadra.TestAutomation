@@ -2,6 +2,7 @@ package webApp.SEM;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.openqa.selenium.By;
 
@@ -12,6 +13,8 @@ import helper.webAppContext;
 import helper.webAppHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import testAuto.Service.CommonService;
+import testAuto.Service.ExtentReportService;
 
 public class commonStep extends webAppHelper {
 
@@ -29,12 +32,20 @@ public class commonStep extends webAppHelper {
 		this.context = context;
 	}
 
+	// Declare Services
+	// ==========================================
+	ExtentReportService extentReportService = new ExtentReportService();
+	CommonService commonService = new CommonService();
+
+	// Declare Variables
+	// ==========================================
+	ArrayList<String> details = new ArrayList<String>();
+
 	// Page Step Definition
 	// =================================================
-	
+
 	@Given("User setup a {string}")
-	public void userSetupABrowser(String browserName)
-			throws MalformedURLException, ClassNotFoundException {
+	public void userSetupABrowser(String browserName) throws MalformedURLException, ClassNotFoundException {
 
 		try {
 
@@ -42,19 +53,16 @@ public class commonStep extends webAppHelper {
 			context.setWait(initializeBrowserWait(context.getDriver(), 120));
 			context.setFluentWait(initializeFluentWait(context.getDriver()));
 			context.getDriver().manage().window().maximize();
-			
 
 			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("Given"), "User setup a " + browserName)
+			context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "User setup a " + browserName)
 					.pass("PASSED");
 
 		} catch (Exception e) {
 
 			try {
 				// Extent Report
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("Given"), "User setup a " + browserName)
+				context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "User setup a " + browserName)
 						.fail("FAILED: " + e.getMessage());
 				context.getExtentTestScenario().log(Status.FAIL, "Failed");
 			} catch (ClassNotFoundException e1) {
@@ -64,7 +72,7 @@ public class commonStep extends webAppHelper {
 		}
 	}
 
-	@Given("User navigates to {string} using {string}")
+	@Given("User navigate to {string} using {string}")
 	public void userNavigatesToUsing(String url, String browserName)
 			throws MalformedURLException, ClassNotFoundException {
 
@@ -80,18 +88,29 @@ public class commonStep extends webAppHelper {
 			Thread.sleep(5000);
 
 			// Extent Report
-			context.getExtentTestScenario()
-					.createNode(new GherkinKeyword("Given"), "User navigates to " + url + " using " + browserName)
-					.pass("PASSED");
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			extentReportService.insertPassedStep(context, "User navigates to " + url + " using " + browserName,
+					details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
 
 		} catch (Exception e) {
 
 			try {
+
 				// Extent Report
-				context.getExtentTestScenario()
-						.createNode(new GherkinKeyword("Given"), "User navigates to " + url + " using " + browserName)
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				extentReportService.insertFailedStep(context, "User navigates to " + url + " using " + browserName,
+						details);
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -99,7 +118,7 @@ public class commonStep extends webAppHelper {
 		}
 	}
 
-	@When("User navigates to {string}")
+	@When("User navigate to {string}")
 	public void userNavigatesTo(String url) {
 
 		try {
@@ -110,18 +129,75 @@ public class commonStep extends webAppHelper {
 			context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "User navigates to " + url)
 					.pass("PASSED");
 
+			// Extent Report
+			details.clear();
+			details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			extentReportService.insertPassedStep(context, "User navigates to " + url, details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 		} catch (Exception e) {
 
 			try {
+
 				// Extent Report
-				context.getExtentTestScenario().createNode(new GherkinKeyword("Given"), "User navigates to " + url)
-						.fail("FAILED: " + e.getMessage());
-				context.getExtentTestScenario().log(Status.FAIL, "Failed");
+				details.clear();
+				details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				extentReportService.insertFailedStep(context, "User navigates to " + url, details);
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
+	}
+
+	@When("User pause for {int} seconds")
+	public void userPauseForSeconds(Integer pauseSeconds) {
+
+		try {
+
+			Thread.sleep(pauseSeconds * 1000);
+
+			// Extent Report
+			context.getExtentTestScenario()
+					.createNode(new GherkinKeyword("Given"), "User pause for " + pauseSeconds + " seconds")
+					.pass("PASSED");
+
+			// Extent Report
+			details.clear();
+			// details.add("Page URL: " + context.getDriver().getCurrentUrl());
+			extentReportService.insertPassedStep(context, "User pause for " + pauseSeconds + " seconds", details);
+
+			context.getExtentTestScenario().log(Status.PASS, "PASSED");
+			extentReportService.attachedScreenshotToReport(context,
+					"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+		} catch (Exception e) {
+
+			try {
+
+				// Extent Report
+				details.clear();
+				// details.add("Page URL: " + context.getDriver().getCurrentUrl());
+				extentReportService.insertFailedStep(context, "User pause for " + pauseSeconds + " seconds", details);
+
+				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
+				extentReportService.attachedScreenshotToReport(context,
+						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/ExpectedResult.jpg?raw=true");
+
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
 	}
 
 	@When("User switch to new tab")
