@@ -22,9 +22,9 @@ import io.cucumber.testng.CucumberOptions.SnippetType;
 		tags =  "@SEM_CreateReseller",
 		plugin =  {				
 				"pretty",
-				"html:reports/results.html",
-				"json:reports/results.json",
-				"junit:reports/results.xml"
+				"html:reports/semCreateReseller.html",
+				"json:reports/semCreateReseller.json",
+				"junit:reports/semCreateReseller.xml"
 		}
 		
 
