@@ -144,7 +144,7 @@ public class webAppHook extends webAppHelper {
 
 		RequestBody requestBody = RequestBody.create(jsonPayload, MediaType.get("application/json"));
 		Request request = new Request.Builder()
-				.url("https://hooks.slack.com/services/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")
+				.url("https://hooks.slack.com/services/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")
 				.post(requestBody).build();
 
 		try (Response response = client.newCall(request).execute()) {
