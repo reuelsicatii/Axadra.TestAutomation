@@ -119,7 +119,6 @@ public class webAppHook extends webAppHelper {
 
 	@AfterAll
 	public static void afterAll() {
-
 		System.out.println("Im in a After Scenario");
 
 		// Create Extent Report over XAMPP htdocs Folder
@@ -130,16 +129,14 @@ public class webAppHook extends webAppHelper {
 		extentReports.attachReporter(extentSparkReporter);
 		extentReports.flush();
 
-		// Get the counts of failed test steps
-		long failedTestScenario = extentReports.getReport().getTestList().stream()
-				.filter(extentTest -> extentTest.getStatus() == Status.FAIL).count();
-
 		// SLACK NOTIFICATION
 		OkHttpClient client = new OkHttpClient();
 
+		System.err.println(extentReports.getReport().toString());
+
 		// JSON payload as a string
 		String jsonPayload = "{\"text\": \" SELENIUM - Automation" + "\\n ===================== " + "\\n Feature Name: "
-				+ scenarioName + "\\n Report Link: http://localhost/AutomationProject/reports/"
+				+ scenarioName + "\\n Report Link: http://automation-report.cloud/AutomationProject/reports/"
 				+ scenarioName + "/" + date + ".html" + "\\n Test Scenario - Status: "
 				+ extentReports.getReport().getStats().getParent() + "\\n Test Case - Status: "
 				+ extentReports.getReport().getStats().getChild() + "\\n Test Step - Status: "
@@ -147,13 +144,7 @@ public class webAppHook extends webAppHelper {
 
 		RequestBody requestBody = RequestBody.create(jsonPayload, MediaType.get("application/json"));
 		Request request = new Request.Builder()
-
-				// LOCAL - SLACK
-				//.url("https://hooks.slack.com/services/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")
-
-				// PROD - SLACK
-				.url("https://hooks.slack.com/services/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")
-
+				.url("https://hooks.slack.com//services/T94TNR6JX/B05TF33U3SM/GNYWxDN6wq8xP0P1Zsnov49a")
 				.post(requestBody).build();
 
 		try (Response response = client.newCall(request).execute()) {
