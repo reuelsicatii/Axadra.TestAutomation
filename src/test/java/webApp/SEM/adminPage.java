@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import com.aventstack.extentreports.Status;
 
@@ -99,6 +100,8 @@ public class adminPage extends webAppHelper {
 				context.getExtentTestScenario().log(Status.FAIL, "FAILED");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEM/adminPage/userSeeResellerIsSearchableOverAdminCampaignScorecard.png?raw=true");
+				
+				Assert.fail();
 
 			}
 

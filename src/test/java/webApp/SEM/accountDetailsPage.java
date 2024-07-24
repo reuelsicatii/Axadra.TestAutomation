@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import com.aventstack.extentreports.Status;
 
@@ -268,6 +269,8 @@ public class accountDetailsPage extends webAppHelper {
 				context.getDriver().executeScript("window.scrollTo(0, " + 0 + ")");
 				extentReportService.attachedScreenshotToReport(context,
 						"https://github.com/reuelsicatii/Axadra.TestAutomation/blob/master/screenshots/SEM/accountDetailsPage/userSeeResellerIsSuccessfullyCreated.png?raw=true");
+				
+				Assert.fail();
 
 			}
 

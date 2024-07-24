@@ -42,7 +42,6 @@ public class ExtentReportService {
 	public void insertFailedStep(webAppContext context, String title, ArrayList<String> details)
 			throws ClassNotFoundException {
 
-		Assert.fail();
 		String htmlContentTitle = "<p style=\"font-weight: bold;\">" + title + " -- "
 				+ "<button style=\"background-color:red; color: white;text-align: center;border-radius: 25%;\">FAILED</button></p>";
 		String htmlContentDetails = "Details: ";
@@ -56,7 +55,6 @@ public class ExtentReportService {
 
 		context.getExtentTestScenario().createNode(new GherkinKeyword("When"), htmlContentTitle)
 				.fail(htmlContentDetails);
-		
 
 	}
 
